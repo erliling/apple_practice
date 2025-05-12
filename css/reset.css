@@ -1,0 +1,82 @@
+
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input {
+    margin: 0;
+    padding: 0;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+img {
+    display: block;
+    border: 0;
+}
+
+b, strong {
+    font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+i, em {
+    font-style: normal;
+}
+
+u, ins, s, del {
+    text-decoration: none;
+}
+
+table {
+    border: 1px solid #999;
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid #999;
+}
+
+input, button {
+    outline: none;
+    border: none;
+}
+
+body {
+    
+    font: 14px "Google Sans", Arial, sans-serif;
+    font-weight: 100;
+    color: #333;
+    /* font-family: 'Product Sans', sans-serif;
+    font-family: 'Product Sans Thin', sans-serif;
+    font-family: 'Product Sans Light', sans-serif;
+    font-family: 'Product Sans Medium', sans-serif;
+    font-family: 'Product Sans Black', sans-serif; */
+
+}
+
+a {
+    text-decoration: none;
+    color: #666;
+}
+
+a:hover {
+    color: #1967d2;
+    text-decoration: none;
+}
+
+.leftfix {
+    float: left;
+}
+
+.rightfix {
+    float: right;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
