@@ -2,10 +2,13 @@
     --default-background-color: rgb(0, 0, 0);
     --default-background-light-color: #1d1d1f;
     --default-text-color: #f5f5f7;
+    --default-icon-color: #f5f5f7;
     --default-highlight-text-color: #fff;
     --default-link-color: #2997ff;
     --default-btn-bg-color: #0071E3;
     --welcome-apple-headline-height: 54px;
+    --icon-background-color: rgba(66, 66, 69, 0.7);
+    
 
     --shared-media-gallery-responsive-content-absolute-max-width: 1680px;
     --shared-media-gallery-height: 680px;
@@ -214,8 +217,9 @@ body {
 
 /* #region carousel*/
 .carousel {
-    padding: 160px 0;
+    padding: 160px 0 216px;
     background-color: var(--default-background-light-color);
+    position: relative;
 }
 .carousel .titlecontent {
     margin-inline-start: auto;
@@ -243,7 +247,6 @@ body {
 .carousel .content {
     width: 100%;
     margin: 0 auto;
-    position: relative;
     height: var(--shared-media-gallery-height);
     padding-bottom: 30px;
 
@@ -259,6 +262,8 @@ body {
     display: grid;
     grid-gap: 20px;
     grid-auto-flow: column;
+    position: relative;
+
 
     width: fit-content;
     /* height: fit-content; */
@@ -309,6 +314,112 @@ body {
 .carousel .content .carouselcontent .tile picture img {
     /* width: 100%;
     height: auto; */
+}
+
+.carousel .content .playbaraccesscontainer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    /* margin: 0; */
+
+    z-index: 99;
+
+    pointer-events: none;
+
+    /* background-color: rgba(255, 255, 255, 0.3) */
+}
+
+.carousel .content .playbarcontent {
+    display: flex;
+    align-items: center;
+
+    /* width: 100px;
+    height: 50px;
+    background-color: #fff; */
+
+
+    position: sticky;
+    bottom: 30px;
+
+    margin-top: 30px;
+    margin-bottom: 100px;
+    
+    /* will-change: transform; */
+}
+
+.carousel .content .playbarcontent .playbarleft {
+    background-color: var(--icon-background-color);
+    backdrop-filter: blur(7px);
+
+    width: 56px;
+    height: 56px;
+
+    border-radius: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+/* .carousel .content .playbarcontent .playbarleft .triangle {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 14px solid var(--default-icon-color);
+
+} */
+
+.carousel .content .playbarcontent .playbarleft svg {
+    fill: var(--default-icon-color);
+}
+
+.carousel .content .playbarcontent .playbarright {
+    display: flex;
+    align-items: center;
+
+    background-color: var(--icon-background-color);
+    backdrop-filter: blur(7px);
+    /* width: 56px; */
+    height: 56px;
+    width: fit-content;
+
+    border-radius: 50px;
+
+    display: flex;
+    column-gap: 20px;
+
+    padding: 20px;
+    box-sizing: border-box;
+    margin-left: 20px;
+    
+}
+
+.carousel .content .playbarcontent .playbarright .longdot {
+    background-color: var(--default-icon-color);
+    width: 46px;
+    height: 8px;
+    /* padding: 8px; */
+    border-radius: 50px;
+
+    box-sizing: border-box;
+}
+.carousel .content .playbarcontent .playbarright .dot {
+    background-color: var(--default-icon-color);
+    width: 8px;
+    height: 8px;
+    /* padding: 8px; */
+    border-radius: 50px;
+
+    box-sizing: border-box;
 }
 /* #endregion carousel*/
 
