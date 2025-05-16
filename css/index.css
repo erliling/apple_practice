@@ -419,6 +419,29 @@ body {
     fill: var(--default-icon-color);
 }
 
+.playbaraccesscontainer .playbarcontent_modify {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 12px;
+}
+
+.playbaraccesscontainer .playbarcontent .label {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    color: var(--default-text-color);
+}
+
+.playbaraccesscontainer .playbarcontent .label .checkedlabel {
+    display: inline;
+}
+
+.playbaraccesscontainer .playbarcontent .label span {
+    display: none;
+}
+
 .playbarcontent .playbarright {
     display: flex;
     align-items: center;
@@ -439,6 +462,11 @@ body {
     margin-left: 20px;
     
 }
+
+.playbarcontent .playbarright_modify {
+    margin-left: 0;
+}
+
 
 .playbarcontent .playbarright .longdot {
     background-color: var(--default-icon-color);
