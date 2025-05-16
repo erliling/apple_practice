@@ -221,7 +221,6 @@ body {
     position: relative;
 }
 
-
 .carousel .content {
     width: 100%;
     margin: 0 auto;
@@ -293,118 +292,13 @@ body {
     /* width: 100%;
     height: auto; */
 }
-
-.carousel .content .playbaraccesscontainer {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-
-    width: 100%;
-    height: 100%;
-
-    position: absolute;
-    left: 0;
-    top: 0;
-
-    /* margin: 0; */
-
-    z-index: 99;
-
-    pointer-events: none;
-
-    /* background-color: rgba(255, 255, 255, 0.3) */
-}
-
-.carousel .content .playbarcontent {
-    display: flex;
-    align-items: center;
-
-    /* width: 100px;
-    height: 50px;
-    background-color: #fff; */
-
-
-    position: sticky;
-    bottom: 30px;
-
-    margin-top: 30px;
-    margin-bottom: 100px;
-    
-    /* will-change: transform; */
-}
-
-.carousel .content .playbarcontent .playbarleft {
-    background-color: var(--icon-background-color);
-    backdrop-filter: blur(7px);
-
-    width: 56px;
-    height: 56px;
-
-    border-radius: 50px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-/* .carousel .content .playbarcontent .playbarleft .triangle {
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-left: 14px solid var(--default-icon-color);
-
-} */
-
-.carousel .content .playbarcontent .playbarleft svg {
-    fill: var(--default-icon-color);
-}
-
-.carousel .content .playbarcontent .playbarright {
-    display: flex;
-    align-items: center;
-
-    background-color: var(--icon-background-color);
-    backdrop-filter: blur(7px);
-    /* width: 56px; */
-    height: 56px;
-    width: fit-content;
-
-    border-radius: 50px;
-
-    display: flex;
-    column-gap: 20px;
-
-    padding: 20px;
-    box-sizing: border-box;
-    margin-left: 20px;
-    
-}
-
-.carousel .content .playbarcontent .playbarright .longdot {
-    background-color: var(--default-icon-color);
-    width: 46px;
-    height: 8px;
-    /* padding: 8px; */
-    border-radius: 50px;
-
-    box-sizing: border-box;
-}
-.carousel .content .playbarcontent .playbarright .dot {
-    background-color: var(--default-icon-color);
-    width: 8px;
-    height: 8px;
-    /* padding: 8px; */
-    border-radius: 50px;
-
-    box-sizing: border-box;
-}
 /* #endregion carousel*/
 
 /* #region carousel2*/
 .carousel2 {
     padding: 160px 0 216px;
     
+    position: relative;
 }
 .carousel2 .carsouselcontentcontainer {
     position: relative;
@@ -466,4 +360,101 @@ body {
     color: var(--default-link-color);
 }
 
+.playbaraccesscontainer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    /* margin: 0; */
+
+    z-index: 99;
+
+    pointer-events: none;
+
+    /* background-color: rgba(255, 255, 255, 0.3) */
+}
+
+.playbarcontent {
+    display: flex;
+    align-items: center;
+
+    /* width: 100px;
+    height: 50px;
+    background-color: #fff; */
+
+
+    position: sticky;
+    bottom: 30px;
+
+    margin-top: 30px;
+    margin-bottom: 100px;
+    
+    /* will-change: transform; */
+}
+
+.playbarcontent .playbarleft {
+    background-color: var(--icon-background-color);
+    backdrop-filter: blur(7px);
+
+    width: 56px;
+    height: 56px;
+
+    border-radius: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.playbarcontent .playbarleft svg {
+    fill: var(--default-icon-color);
+}
+
+.playbarcontent .playbarright {
+    display: flex;
+    align-items: center;
+
+    background-color: var(--icon-background-color);
+    backdrop-filter: blur(7px);
+    /* width: 56px; */
+    height: 56px;
+    width: fit-content;
+
+    border-radius: 50px;
+
+    display: flex;
+    column-gap: 20px;
+
+    padding: 20px;
+    box-sizing: border-box;
+    margin-left: 20px;
+    
+}
+
+.playbarcontent .playbarright .longdot {
+    background-color: var(--default-icon-color);
+    width: 46px;
+    height: 8px;
+    /* padding: 8px; */
+    border-radius: 50px;
+
+    box-sizing: border-box;
+}
+.playbarcontent .playbarright .dot {
+    background-color: var(--default-icon-color);
+    width: 8px;
+    height: 8px;
+    /* padding: 8px; */
+    border-radius: 50px;
+
+    box-sizing: border-box;
+}
 /* #endregion general*/
