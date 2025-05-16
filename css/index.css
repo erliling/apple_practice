@@ -404,27 +404,39 @@ body {
 /* #region carousel2*/
 .carousel2 {
     padding: 160px 0 216px;
-
+    
 }
-.carousel2 .carouselcontent {
+.carousel2 .carsouselcontentcontainer {
+    position: relative;
+    /* width: 100%; */
+    height: 680px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+    
+}
+.carousel2 .carouselcontent {
+    position: absolute;
+
+    /* width: 100%; */
+    height: fit-content;
+    
 }
 
-.carousel2 .carouselcontent .imgcontent1 {
+.carousel2 .carouselcontent1 {
     z-index: 1;
 }
-.carousel2 .carouselcontent .imgcontent2 {
+.carousel2 .carouselcontent2 {
     z-index: 0;
 }
-.carousel2 .carouselcontent .imgcontent3 {
+.carousel2 .carouselcontent3 {
     z-index: 0;
 }
-.carousel2 .carouselcontent .imgcontent4 {
+.carousel2 .carouselcontent4 {
     z-index: 0;
 }
-.carousel2 .carouselcontent .imgcontent5 {
+.carousel2 .carouselcontent5 {
     z-index: 0;
 }
 /* #endregion carousel2*/
