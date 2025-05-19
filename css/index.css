@@ -372,6 +372,20 @@ body {
 .material .glowtext .filter {
     filter: url(#glow-1);
 }
+.material .gradient-wrapper {
+    /* height: 550px; */
+    background: radial-gradient(100% 50% at center, #2c201a, #000);;
+}
+
+.material .columncontent {
+    color: #868693;
+    font-size: 20px;
+    line-height: 1.39;
+    font-weight: 600;
+    letter-spacing: 0.011em;
+    columns: 2;
+    column-gap: 24px;
+}
 /* #endregion material*/
 
 
