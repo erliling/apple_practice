@@ -207,7 +207,7 @@ body {
     border-radius: 25px;
 }
 .welcome .content .textcontent span {
-    font-size: 16px;
+    font-size: 14px;
     color: var(--default-highlight-text-color);
     font-weight: 600;
     letter-spacing: 1px;
@@ -409,16 +409,25 @@ body {
 }
 .material .carousel3 {
     overflow-x: scroll;
+    scrollbar-width: none;
 }
 .material .carousel3 .carouselgrid {
+    --content-inset: min(7.2916666667vw - var(--global-scrollbar-width)/12*1,140px);
+    --xsmall-gutter-additions: 0px;
+    --responsive-gutter-width: calc(var(--content-inset) + 50vw - min(87.5vw, 1680px) * 0.5 + var(--xsmall-gutter-additions) * 0.5);
+    /* --responsive-gutter-width: var(--content-inset); */
+
     display: grid;
     margin-inline-start: auto;
     margin-inline-end: auto;
-
-    width: auto;
     grid-template-columns: none;
     grid-auto-flow: column;
     column-gap: 24px;
+
+    /* width: min(1680px, 87.5%); */
+    min-width: fit-content;
+    padding: 0 var(--responsive-gutter-width);
+    
 }
 .material .carousel3 .carouselgrid .tile {
     width: 550px;
@@ -455,8 +464,37 @@ body {
     padding-top: 32px;
     padding-bottom: 20px;
 }
-/* #endregion material*/
+.material .carousel3nav .btngroup {
+    --responsive-content-width: min(1680px, 87.5%);
+    --responsive-gutter-width: calc(50% - var(--responsive-content-width) / 2);
+    width: var(--responsive-content-width);
+    height: 36px;
+    padding-top: 64px;
+    /* inset-inline-start: var(--responsive-gutter-width); */
+    margin-left: var(--responsive-gutter-width);
+    /* background-color: #fff; */
 
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    column-gap: 20px;
+}
+.material .carousel3nav .btngroup button {
+    width: 36px;
+    height: 36px;
+    background-color: rgba(66, 66, 69, 0.72);
+    
+    border-radius: 100px;
+}
+.material .carousel3nav .btngroup button:disabled {
+    opacity: 0.36;
+    pointer-events: none;
+    /* background-color: orange; */
+}
+.material .carousel3nav .btngroup button svg {
+    fill: rgba(255,255,255,0.8);
+}
+/* #endregion material*/
 
 /* #region general*/
 
