@@ -339,7 +339,7 @@ body {
 /* #region material*/
 .material {
     padding: 160px 0 216px;
-    background-color: orange;
+    /* background-color: orange; */
     /* position: relative; */
 }
 .material:not(:has(.all-access-pass:not(.aap-timer))).no-pad, .material:not(:has(.all-access-pass:not(.aap-timer))).no-pad-bottom {
@@ -352,6 +352,25 @@ body {
     font-weight: 600;
     letter-spacing: -0.015em;
     text-align: center;
+
+    height: fit-content;
+    margin-bottom: 72px;
+
+    position: relative;
+}
+.material .sectiontitlecontent2 svg {
+    display: none;
+}
+.material .glowtext {
+    /* color: rgba(0, 0, 0, 0); */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+}
+.material .glowtext .filter {
+    filter: url(#glow-1);
 }
 /* #endregion material*/
 
