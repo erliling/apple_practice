@@ -336,6 +336,26 @@ body {
 }
 /* #endregion carousel2*/
 
+/* #region material*/
+.material {
+    padding: 160px 0 216px;
+    background-color: orange;
+    /* position: relative; */
+}
+.material:not(:has(.all-access-pass:not(.aap-timer))).no-pad, .material:not(:has(.all-access-pass:not(.aap-timer))).no-pad-bottom {
+    padding-bottom: 0;
+}
+.material .sectiontitlecontent2 {
+    color: #c8c2bd;
+    font-size: 80px;
+    line-height: 1.05;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    text-align: center;
+}
+/* #endregion material*/
+
+
 /* #region general*/
 
 .sectiontitlecontent {
