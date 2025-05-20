@@ -523,7 +523,17 @@ body {
     color: #86868b;
     text-align: center;
 }
+.ai .intelligence-gradient {
+    width: 100%;
+    background: linear-gradient(180deg,rgb(0,0,0) 0%,#131313 50%)
+
+}
 .ai .tabgroup {
+    width: 87.5%;
+    max-width: 1680px;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+
     margin-top: 140px;
 
     display: flex;
@@ -532,7 +542,6 @@ body {
     justify-content: center;
     row-gap: 32px;
 
-    background: linear-gradient(180deg,rgb(0,0,0) 0%,#131313 50%)
 }
 .ai .tabgroup .tablist {
     display: flex;
@@ -568,6 +577,13 @@ body {
     row-gap: 24px;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 330px 330px;
+
+    width: 100%;
+    height: 680px;
+    min-width: 280px;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    max-width: 83.3%;
 }
 .ai .tabgroup .tabcontent .grid .tile .innerpic {
     position: absolute;
