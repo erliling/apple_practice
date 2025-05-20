@@ -569,6 +569,7 @@ body {
 .ai .tabgroup .tabcontent h3 {
     color: var(--default-text-color);
     font-size: 20px;
+    margin-bottom: 30px;
 }
 
 .ai .tabgroup .tabcontent .grid {
@@ -577,6 +578,7 @@ body {
     row-gap: 24px;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 330px 330px;
+    grid-template-areas: "tile1 tile2" "tile1 tile3";
 
     width: 100%;
     height: 680px;
@@ -585,10 +587,67 @@ body {
     margin-inline-end: auto;
     max-width: 83.3%;
 }
-.ai .tabgroup .tabcontent .grid .tile .innerpic {
+/* .ai .tabgroup .tabcontent .grid .tile .innerpic {
     position: absolute;
+} */
+.ai .tabgroup .tabcontent .grid .tile {
+    background-color: #000;
+    /* background-color: orange; */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* row-gap: 40px; */
+    /* justify-content: space-around; */
+    /* padding: 32px auto; */
+
+    overflow: hidden;
+
+    border-radius: 20px;
+}
+.ai .tabgroup .tabcontent .grid .tile picture {
+    margin-top: 40px;
 }
 
+.ai .tabgroup .tabcontent .grid .tile .figure1{
+    background-size: 700px 104px;
+    background-repeat: no-repeat;
+    background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/apple-intelligence/productivity_summerize__ca938bki3pki_large_2x.jpg); 
+
+    width: 700px;
+    height: 104px;
+    /* position: ; */
+}
+.ai .tabgroup .tabcontent .grid .tile .figure2{
+    background-size: 209px 430px;
+    background-repeat: no-repeat;
+    background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/apple-intelligence/productivity_notifications__cyc0vjsn76gm_large_2x.jpg); 
+
+    width: 209px;
+    height: 430px;
+    /* position: ; */
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.ai .tabgroup .tabcontent .grid .tile span {
+    margin-top: 40px;
+    margin-bottom: 40px;
+
+    width: 65%;
+    text-align: center;
+
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+.ai .tabgroup .tabcontent .grid .tile1 {
+    grid-area: tile1;
+}
+.ai .tabgroup .tabcontent .grid .tile2 {
+    grid-area: tile2;
+}
+.ai .tabgroup .tabcontent .grid .tile3 {
+    grid-area: tile3;
+}
 /* #endregion ai*/
 
 /* #region general*/
@@ -824,6 +883,16 @@ body {
     letter-spacing: 0.011em;
 }
 .contenttext strong {
+    color: var(--default-text-color);
+}
+.contenttext2 {
+    color: #868693;
+    font-size: 14px;
+    line-height: 1.286;
+    font-weight: 600;
+    letter-spacing: -0.016em;
+}
+.contenttext2 strong {
     color: var(--default-text-color);
 }
 /* #endregion general*/
