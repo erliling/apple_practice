@@ -349,11 +349,7 @@ body {
     padding-bottom: 0;
 }
 .material .sectiontitlecontent2 {
-    color: #c8c2bd;
-    font-size: 80px;
-    line-height: 1.05;
-    font-weight: 600;
-    letter-spacing: -0.015em;
+    
     text-align: center;
 
     height: fit-content;
@@ -631,26 +627,11 @@ body {
     border-radius: 20px;
 }
 
-.ai .tabgroup .tabcontent .grid .tile .figure1{
-    background-size: 700px 104px;
-    background-repeat: no-repeat;
-    background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/apple-intelligence/productivity_summerize__ca938bki3pki_large_2x.jpg); 
-
-    width: 700px;
-    height: 104px;
-    /* position: ; */
+.ai .tabgroup .tabcontent .grid .tile figure{
+    padding: 0;
+    margin: 0;
 }
-.ai .tabgroup .tabcontent .grid .tile .figure2{
-    background-size: 209px 430px;
-    background-repeat: no-repeat;
-    background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/apple-intelligence/productivity_notifications__cyc0vjsn76gm_large_2x.jpg); 
 
-    width: 209px;
-    height: 430px;
-    /* position: ; */
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
 .ai .tabgroup .tabcontent .grid .tile span {
     margin-top: 40px;
     margin-bottom: 40px;
@@ -680,6 +661,97 @@ body {
 .ai .tabgroup .tabcontent3 {
     z-index: 1;
 }
+.ai .tabgroup .tabcontent1 h3 {
+    opacity: 1;
+}
+.ai .tabgroup .tabcontent2 h3 {
+    opacity: 0;
+}
+.ai .tabgroup .tabcontent3 h3 {
+    opacity: 0;
+}
+.ai .tabgroup .tabcontent1 .tile .figure1{
+    background-size: 700px 104px;
+    background-repeat: no-repeat;
+    background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/apple-intelligence/productivity_summerize__ca938bki3pki_large_2x.jpg); 
+
+    width: 700px;
+    height: 104px;
+}
+.ai .tabgroup .tabcontent1 .grid .tile .figure2{
+    background-size: 209px 430px;
+    background-repeat: no-repeat;
+    background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/apple-intelligence/productivity_notifications__cyc0vjsn76gm_large_2x.jpg); 
+
+    width: 209px;
+    height: 430px;
+}
+.ai .tabgroup .tabcontent1 .tile .figure2{
+    background-size: 700px 104px;
+    background-repeat: no-repeat;
+    background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/apple-intelligence/productivity_summerize__ca938bki3pki_large_2x.jpg); 
+
+    width: 700px;
+    height: 104px;
+}
+.ai .tabgroup .tabcontent2 .tile .figure1{
+    background-size: 182px 136px;
+    width: 182px;
+    height: 136px;
+    background-repeat: no-repeat;
+
+    background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/apple-intelligence/express_playground__f2yecli2odqq_large_2x.jpg);
+}
+.ai .tabgroup .tabcontent2 .tile .figure2{
+    background-size: 209px 430px;
+    width: 209px;
+    height: 430px;
+    background-repeat: no-repeat;
+
+    background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/apple-intelligence/express_clean_up__bh8okd58kr9e_large.jpg);
+}
+.ai .tabgroup .tabcontent3 .tile .figure1{
+    background-size: 118px 105px;
+    width: 118px;
+    height: 105px;
+    background-repeat: no-repeat;
+
+    background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/apple-intelligence/siri_language__fd1s6qrvetqq_large_2x.jpg);
+}
+.ai .tabgroup .tabcontent3 .tile .figure2{
+    background-size: 209px 430px;
+    width: 209px;
+    height: 430px;
+    /* background-size: contain;
+    height: 200%;
+    width: 100%;
+    background-position: 50%;
+    position: static;
+    margin: 0; */
+    background-repeat: no-repeat;
+
+    background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/apple-intelligence/siri_instructions__d51kwie6zoae_large_2x.jpg);
+}
+.ai .privacy {
+    padding-top: 32px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 40px;
+}
+.ai .privacy .titlecontent {
+    max-width: 33.3%;
+    text-align: center;
+    
+}
+.ai .privacy span {
+    --ric-column-width-3: min(21.8749vw - var(--global-scrollbar-width) / 12 * 3, 420px);
+    columns: 2;
+    column-gap: 40px;
+
+    column-width: var(--ric-column-width-3);
+}
 /* #endregion ai*/
 
 /* #region general*/
@@ -707,6 +779,46 @@ body {
     color: var(--default-link-color);
 }
 
+.sectiontitlecontent2 {
+    color: #c8c2bd;
+    font-size: 80px;
+    line-height: 1.05;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+}
+.sectiontitlecontent3 {
+    color: var(--default-text-color);
+    font-size: 48px;
+    line-height: 1.083;
+    font-weight: 600;
+    letter-spacing: -0.003em;
+}
+
+.contenttext {
+    color: #868693;
+    font-size: 20px;
+    line-height: 1.39;
+    font-weight: 600;
+    letter-spacing: 0.011em;
+}
+.contenttext strong {
+    color: var(--default-text-color);
+}
+.contenttext2 {
+    color: #868693;
+    font-size: 14px;
+    line-height: 1.286;
+    font-weight: 600;
+    letter-spacing: -0.016em;
+}
+.contenttext2 strong {
+    color: var(--default-text-color);
+}
+
+/* #endregion general*/
+
+
+/* #region playbar*/
 .playbaraccesscontainer {
     display: flex;
     align-items: flex-end;
@@ -907,24 +1019,5 @@ body {
     background-size: 100%;
 }
 
-.contenttext {
-    color: #868693;
-    font-size: 20px;
-    line-height: 1.39;
-    font-weight: 600;
-    letter-spacing: 0.011em;
-}
-.contenttext strong {
-    color: var(--default-text-color);
-}
-.contenttext2 {
-    color: #868693;
-    font-size: 14px;
-    line-height: 1.286;
-    font-weight: 600;
-    letter-spacing: -0.016em;
-}
-.contenttext2 strong {
-    color: var(--default-text-color);
-}
-/* #endregion general*/
+
+/* #endregion playbar*/
