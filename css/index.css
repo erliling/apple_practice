@@ -607,6 +607,19 @@ body {
 }
 .ai .tabgroup .tabcontent .grid .tile picture {
     margin-top: 40px;
+    z-index: 2;
+}
+.ai .tabgroup .tabcontent .grid .tile .innerpic {
+    position: absolute;
+    top: 2.1%;
+    /* aspect-ratio: 0.46; */
+    /* height: 95.8%; */
+    z-index: 1;
+    
+}
+
+.ai .tabgroup .tabcontent .grid .tile .innerpic img {
+    border-radius: 20px;
 }
 
 .ai .tabgroup .tabcontent .grid .tile .figure1{
@@ -641,6 +654,7 @@ body {
 }
 .ai .tabgroup .tabcontent .grid .tile1 {
     grid-area: tile1;
+    position: relative;
 }
 .ai .tabgroup .tabcontent .grid .tile2 {
     grid-area: tile2;
