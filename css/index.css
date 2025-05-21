@@ -561,9 +561,18 @@ body {
     color: var(--default-text-color);
     border-bottom-color: var(--default-text-color);
 }
+.ai .tabgroup .tabcontentcontainer {
+    width: 100%;
+    height: 880px;
+    position: relative;
+}
 
 .ai .tabgroup .tabcontent {
     text-align: center;
+
+    position: absolute;
+    /* width: 100%; */
+    height: 880px;
 
 }
 .ai .tabgroup .tabcontent h3 {
@@ -661,6 +670,15 @@ body {
 }
 .ai .tabgroup .tabcontent .grid .tile3 {
     grid-area: tile3;
+}
+.ai .tabgroup .tabcontent1 {
+    z-index: 2;
+}
+.ai .tabgroup .tabcontent2 {
+    z-index: 1;
+}
+.ai .tabgroup .tabcontent3 {
+    z-index: 1;
 }
 /* #endregion ai*/
 
