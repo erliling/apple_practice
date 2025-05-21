@@ -101,7 +101,7 @@ body {
 }
 .ribbon a {
     padding-left: 4px;
-    color: var(--default-link-color);
+    /* color: var(--default-link-color); */
 }
 /* #endregion ribbon*/
 
@@ -499,7 +499,7 @@ body {
     margin-top: 0;
     top: 0; */
 }
-.ai:not(:has(.all-access-pass:not(.aap-timer))).no-pad, .material:not(:has(.all-access-pass:not(.aap-timer))).no-pad-bottom {
+.ai:not(:has(.all-access-pass:not(.aap-timer))).no-pad, .ai:not(:has(.all-access-pass:not(.aap-timer))).no-pad-bottom {
     padding-bottom: 0;
 }
 .ai .container {
@@ -521,8 +521,9 @@ body {
 }
 .ai .intelligence-gradient {
     width: 100%;
-    background: linear-gradient(180deg,rgb(0,0,0) 0%,#131313 50%)
+    background: linear-gradient(180deg,rgb(0,0,0) 0%,#131313 50%);
 
+    padding-bottom: 160px;
 }
 .ai .tabgroup {
     width: 87.5%;
@@ -746,7 +747,9 @@ body {
     
 }
 .ai .privacy span {
-    --ric-column-width-3: min(21.8749vw - var(--global-scrollbar-width) / 12 * 3, 420px);
+    /* --ric-column-width-3: min(21.8749vw - var(--global-scrollbar-width) / 12 * 3, 420px); */
+    --ric-column-width-3: min((100vw - var(--global-scrollbar-width)) / 12 * 3, 420px);
+    width: 60%;
     columns: 2;
     column-gap: 40px;
 
@@ -774,10 +777,10 @@ body {
     font-size: 56px;
     font-weight: 600;
 }
-.sectiontitlecontent .title a {
+/* .sectiontitlecontent .title a {
     font-size: 16px;
     color: var(--default-link-color);
-}
+} */
 
 .sectiontitlecontent2 {
     color: #c8c2bd;
@@ -813,6 +816,10 @@ body {
 }
 .contenttext2 strong {
     color: var(--default-text-color);
+}
+a {
+    font-size: 16px;
+    color: var(--default-link-color);
 }
 
 /* #endregion general*/
