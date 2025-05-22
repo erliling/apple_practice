@@ -354,124 +354,8 @@ body {
     background: radial-gradient(100% 50% at center, #2c201a, #000);;
 }
 
-.material .columncontainer {
-    width: 87.5%;
-    margin-inline-start: auto;
-    margin-inline-end: auto;
-    max-width: 1680px;
 
-    
-    /* columns: 2;
-    column-gap: 24px; */
-}
-.material .columncontainer .columncontent {
-    columns: 2;
-    column-gap: 100px;
 
-    margin-top: 112px;
-    margin-bottom: 96px;
-    padding-inline-start: min(7.2916666667vw - var(--global-scrollbar-width) / 12 * 1, 140px);
-    padding-inline-end: min(7.2916666667vw - var(--global-scrollbar-width) / 12 * 1, 140px);
-    margin-inline-start: min(7.2916666667vw - var(--global-scrollbar-width) / 12 * 1, 140px);
-    margin-inline-end: min(7.2916666667vw - var(--global-scrollbar-width) / 12 * 1, 140px);
-}
-.material .columncontainer_position{
-    margin-top: 112px;
-    margin-bottom: 96px;
-}
-.material .columncontainer .columncontent:last-child {
-    margin-bottom: 0;
-}
-.material .columncontainer .columncontent span {
-    color: var(--default-text-color);
-}
-.material .carousel3 {
-    overflow-x: scroll;
-    scrollbar-width: none;
-}
-.material .carousel3 .carouselgrid {
-    --content-inset: min(7.2916666667vw - var(--global-scrollbar-width)/12*1,140px);
-    --xsmall-gutter-additions: 0px;
-    --responsive-gutter-width: calc(var(--content-inset) + 50vw - min(87.5vw, 1680px) * 0.5 + var(--xsmall-gutter-additions) * 0.5);
-    /* --responsive-gutter-width: var(--content-inset); */
-
-    display: grid;
-    margin-inline-start: auto;
-    margin-inline-end: auto;
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    column-gap: 24px;
-
-    /* width: min(1680px, 87.5%); */
-    min-width: fit-content;
-    padding: 0 var(--responsive-gutter-width);
-    
-}
-.material .carousel3 .carouselgrid .tile {
-    width: 550px;
-    height: fit-content;
-    /* background-color: #a3735e; */
-    /* border-radius: 40px; */
-
-}
-.material .carousel3 .carouselgrid .tile figure {
-    margin-top: 0;
-    margin-left: 0;
-    margin-bottom: 0;
-    margin-right: 0;
-
-    width: 100%;
-    height: 100%;
-
-}
-.material .carousel3 .carouselgrid .tile figure img{
-    border-radius: 32px;
-
-}
-.material .carousel3 h2 {
-    --caption-width: 416px;
-    --caption-offset: 34px;
-
-    font-size: 20px;
-    color: rgba(0, 0, 0, 0);
-    background: linear-gradient(90deg,#efcdbb,#dab8a4 50%,#a3735e calc(100% - 5px),rgba(0,0,0,0) calc(100% - 4px));
-    background-clip: text;
-    width: calc(var(--caption-width) - var(--caption-offset));
-
-    padding-inline: 34px 5px;
-    padding-top: 32px;
-    padding-bottom: 20px;
-}
-.material .carousel3nav .btngroup {
-    --responsive-content-width: min(1680px, 87.5%);
-    --responsive-gutter-width: calc(50% - var(--responsive-content-width) / 2);
-    width: var(--responsive-content-width);
-    height: 36px;
-    padding-top: 64px;
-    /* inset-inline-start: var(--responsive-gutter-width); */
-    margin-left: var(--responsive-gutter-width);
-    /* background-color: #fff; */
-
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    column-gap: 20px;
-}
-.material .carousel3nav .btngroup button {
-    width: 36px;
-    height: 36px;
-    background-color: rgba(66, 66, 69, 0.72);
-    
-    border-radius: 100px;
-}
-.material .carousel3nav .btngroup button:disabled {
-    opacity: 0.36;
-    pointer-events: none;
-    /* background-color: orange; */
-}
-.material .carousel3nav .btngroup button svg {
-    fill: rgba(255,255,255,0.8);
-}
 /* #endregion material*/
 
 /* #region ai*/
@@ -748,10 +632,13 @@ body {
     width: 100%;
     /* height: auto; */
 }
+.camera .gradient-wrapper {
+    background: linear-gradient(180deg, rgb(0, 0, 0), rgb(19, 19, 19));
+}
 
 /* #endregion camera*/
 
-/* #region general*/
+/* #region generaltext*/
 
 .sectiontitlecontent {
     margin-inline-start: auto;
@@ -825,6 +712,7 @@ body {
 }
 .contenttext strong {
     color: var(--default-text-color);
+    font-weight: 600;
 }
 .contenttext2 {
     color: #868693;
@@ -835,6 +723,7 @@ body {
 }
 .contenttext2 strong {
     color: var(--default-text-color);
+    font-weight: 600;
 }
 a {
     font-size: 16px;
@@ -871,8 +760,97 @@ a {
     margin-inline-end: min(7.2916666667vw - var(--global-scrollbar-width) / 12 * 1, 140px);
 }
 
-/* #endregion general*/
+/* #endregion generaltext*/
 
+/* #region carousel*/
+.carousel3 {
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
+.carousel3 .carouselgrid {
+    --content-inset: min(7.2916666667vw - var(--global-scrollbar-width)/12*1,140px);
+    --xsmall-gutter-additions: 0px;
+    --responsive-gutter-width: calc(var(--content-inset) + 50vw - min(87.5vw, 1680px) * 0.5 + var(--xsmall-gutter-additions) * 0.5);
+    /* --responsive-gutter-width: var(--content-inset); */
+
+    display: grid;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    column-gap: 24px;
+
+    /* width: min(1680px, 87.5%); */
+    min-width: fit-content;
+    padding: 0 var(--responsive-gutter-width);
+    
+}
+.carousel3 .carouselgrid .tile {
+    width: 550px;
+    height: fit-content;
+    /* background-color: #a3735e; */
+    /* border-radius: 40px; */
+
+}
+.carousel3 .carouselgrid .tile figure {
+    margin-top: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+    margin-right: 0;
+
+    width: 100%;
+    height: 100%;
+
+}
+.carousel3 .carouselgrid .tile figure img{
+    border-radius: 32px;
+
+}
+.carousel3 h2 {
+    --caption-width: 416px;
+    --caption-offset: 34px;
+
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0);
+    background: linear-gradient(90deg,#efcdbb,#dab8a4 50%,#a3735e calc(100% - 5px),rgba(0,0,0,0) calc(100% - 4px));
+    background-clip: text;
+    width: calc(var(--caption-width) - var(--caption-offset));
+
+    padding-inline: 34px 5px;
+    padding-top: 32px;
+    padding-bottom: 20px;
+}
+.carousel3nav .btngroup {
+    --responsive-content-width: min(1680px, 87.5%);
+    --responsive-gutter-width: calc(50% - var(--responsive-content-width) / 2);
+    width: var(--responsive-content-width);
+    height: 36px;
+    padding-top: 64px;
+    /* inset-inline-start: var(--responsive-gutter-width); */
+    margin-left: var(--responsive-gutter-width);
+    /* background-color: #fff; */
+
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    column-gap: 20px;
+}
+.material .carousel3nav .btngroup button {
+    width: 36px;
+    height: 36px;
+    background-color: rgba(66, 66, 69, 0.72);
+    
+    border-radius: 100px;
+}
+.material .carousel3nav .btngroup button:disabled {
+    opacity: 0.36;
+    pointer-events: none;
+    /* background-color: orange; */
+}
+.material .carousel3nav .btngroup button svg {
+    fill: rgba(255,255,255,0.8);
+}
+/* #endregion carousel*/
 
 /* #region playbar*/
 .playbaraccesscontainer {
