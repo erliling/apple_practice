@@ -1,4 +1,3 @@
-/* #region variables*/
 :root {
     --default-background-color: rgb(0, 0, 0);
     --default-background-light-color: #1d1d1f;
@@ -35,7 +34,6 @@
     --ric-column-width-11: min(80.2082333333vw - var(--global-scrollbar-width) / 12 * 11, 1540px);
     --ric-column-width-12: min(87.4999vw - var(--global-scrollbar-width) / 12 * 12, 1680px);
 }  
-/* #endregion variables*/
 
 body {
     overflow-x: hidden;
@@ -695,9 +693,10 @@ body {
 }
 /* #endregion camera*/
 
+
 /* #region videoaudio*/
 .videoaudio {
-    padding: 0 0 216px;
+    padding: 160px 0 216px;
 
 }
 .videoaudio .base {
@@ -719,29 +718,19 @@ body {
     overflow: hidden;
 }
 .videoaudio .stickycontainer {
-    /* display: flex;
-    flex-direction: column; */
-    /* justify-content: center;
-    align-items: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-}
-.videoaudio .stickycontainer .resposivecontainer {
-    /* margin-top: 100px;
-    margin-left: auto;
-    margin-right: auto;
-
-    width: var(--ric-column-width-8); */
 }
 .videoaudio .stickycontainer .device {
+    width: var(--ric-column-width-8);
+    max-width: 1102px;
+    display: block;
+
     margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
-
-    width: var(--ric-column-width-8);
-    
-    max-width: 1102px;
-    /* height: fit-content; */
-    /* display: block; */
 
     position: relative;
 
@@ -757,50 +746,40 @@ body {
     height: 100%;
 }
 .videoaudio .stickycontainer .device .frame {
-    aspect-ratio: 2.17;
     position: absolute;
 
     z-index: 2;
-}
-.videoaudio .stickycontainer .device .screen {
-    position: absolute;
-    top: 5px;
-    left: 1.68%;
-    /* top: 4.27%; */
-    
-    width: 96.63%;
-    border-radius: 8% / 10%;
 
-    overflow: hidden;
-}
-.videoaudio .stickycontainer .device .screen .videowrapper {
-    /* aspect-ratio: 2.17; */
-    /* display: grid;
+    /* font-size: 0; */
 
-    position: relative;
-    width: 100%;
-    height: 100%; */
-}
-.videoaudio .stickycontainer .device .screen .videowrapper img {
-    /* max-width: 100%; */
-    /* position: absolute; */
-
-    /* overflow-clip-margin: content-box;
-    overflow: clip; */
+    aspect-ratio: 2.1688888889;
+    /* top: 0; */
 }
 .videoaudio .stickycontainer .device .pic {
+    /* aspect-ratio: 2.1714285714; */
 
-    /* position: absolute;
+    /* background-image: url('https://www.apple.com/v/iphone-16-pro/f/images/overview/video-audio/video_hero_endframe__d9fxqzedhxci_xlarge_2x.jpg');
+    width: 100%;
+    height: 100%; */
+
+    position: absolute;
     left: 1.68%;
     top: 7px;
 
     width: 96.63%;
+    /* height: 91.46%; */
 
     border-radius: 60px;
-    overflow: hidden; */
+    /* display: none; */
+    overflow: hidden;
 }
+.videoaudio .stickycontainer .device .pic img {
+    /* border-radius: 40px; */
 
+}
 /* #endregion videoaudio*/
+
+
 
 /* #region generaltext*/
 
