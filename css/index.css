@@ -678,6 +678,34 @@ body {
 }
 /* #endregion camera*/
 
+
+/* #region videoaudio*/
+.videoaudio {
+    padding: 160px 0 216px;
+
+}
+.videoaudio .base {
+    /* width: 100%;
+    height: fit-content; */
+    background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/video-audio/hero_video__dxljsirulx4y_large_2x.jpg);
+    background-size: 1680px 946px;
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+
+    width: 100%;
+    height: 946px;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+/* #endregion videoaudio*/
+
+
+
 /* #region generaltext*/
 
 .sectiontitlecontent {
@@ -702,6 +730,18 @@ body {
     font-size: 16px;
     color: var(--default-link-color);
 } */
+.sectiontitlecontent2 {
+    /* text-align: center; */
+}
+.sectiontitlecontent2 h1 {
+    text-align: center;
+
+    color: var(--default-text-color);
+    font-size: 80px;
+    line-height: 1.05;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+}
 
 .glowsectiontitlecontent {
     color: #c8c2bd;
