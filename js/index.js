@@ -56,6 +56,7 @@ const img = document.getElementsByClassName('devicewrapper')[0];
 const container = document.getElementsByClassName('stickycontainer')[0];
 const screen = document.getElementsByClassName('screen')[0];
 const frame = document.getElementsByClassName('frame')[0];
+const sectiontitlecontent2 = document.getElementsByClassName('sectiontitlecontent2')[0];
 let lastScrollTop = 0;
 
 
@@ -71,15 +72,30 @@ let lastScrollTop = 0;
     // console.log(progress);
 
     // Scale from 1 to 0.5 as you scroll through the container
-    const scale = 1.5 - progress * 1;
+    let scale = 1.5 - progress * 1;
+    if (scale < 0.5) {
+        scale = 0.5;
+    }
     img.style.transform = `scale(${scale})`;
     console.log(scale);
 
+    if ((currentScroll > lastScrollTop) && (scale < 1.45)) {
+        // frame.style.display = 'block';
+        sectiontitlecontent2.style.opacity = 0;
+    }
+    if ((currentScroll < lastScrollTop) && (scale > 1.45)) {
+        // frame.style.display = 'none';
+        sectiontitlecontent2.style.opacity = 1;
+    }
+
+
     if ((currentScroll > lastScrollTop) && (scale < 1.4)) {
         frame.style.display = 'block';
+        // sectiontitlecontent2.style.opacity = 0;
     }
     if ((currentScroll < lastScrollTop) && (scale > 1.4)) {
         frame.style.display = 'none';
+        // sectiontitlecontent2.style.opacity = 1;
     }
 
     lastScrollTop = currentScroll;
