@@ -54,23 +54,19 @@
 
 const img = document.getElementsByClassName('devicewrapper')[0];
 const container = document.getElementsByClassName('stickycontainer')[0];
+const screen = document.getElementsByClassName('screen')[0];
 const frame = document.getElementsByClassName('frame')[0];
-
-window.onload = function () {
-    // img.style.transform = 'scale(1.5) translateY(-200px)';
-}
-
+let lastScrollTop = 0;
 
 
   window.addEventListener('scroll', () => {
     const containerTop = container.getBoundingClientRect().top;
     const containerHeight = container.offsetHeight;
+    const currentScroll = window.scrollY;
 
-    // if ((containerTop > 0) && (containerTop <10)) {
-    //     frame.style.display = 'block';
-    // }
-    console.log('top: '+ containerTop);
-    console.log('height: '+ containerHeight);
+    
+    // console.log('top: '+ containerTop);
+    // console.log('height: '+ containerHeight);
     const progress = Math.min(Math.max(-containerTop / containerHeight, 0), 1.5);
     // console.log(progress);
 
@@ -78,10 +74,30 @@ window.onload = function () {
     const scale = 1.5 - progress * 1;
     img.style.transform = `scale(${scale})`;
     console.log(scale);
-    var topvalue = (10-scale*10)*5;
-    if (topvalue > 50) {
-        topvalue = 50;
+
+    if ((currentScroll > lastScrollTop) && (scale < 1.4)) {
+        frame.style.display = 'block';
     }
-    img.style.top = `${topvalue}%`;
+    if ((currentScroll < lastScrollTop) && (scale > 1.4)) {
+        frame.style.display = 'none';
+    }
+
+    lastScrollTop = currentScroll;
+
+    // var topvalue = (10-scale*10)*5;
+    // if (topvalue > 50) {
+    //     topvalue = 50;
+    // }
+    //calc(50vh - 233px)
+
+    // let topvalue = (window.innerHeight - img.getBoundingClientRect().height)/2;
+    let topvalue = (window.innerHeight - screen.getBoundingClientRect().height)/2;
+    console.log('innerheight: '+window.innerHeight);
+    // console.log('offsetheight: '+img.getBoundingClientRect().height);
+    console.log('offsetheight: '+screen.getBoundingClientRect().height);
+    console.log('top: '+topvalue);
+    
+
+    img.style.top = `${topvalue}px`;
     // console.log(scale);
   });

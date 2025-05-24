@@ -765,6 +765,8 @@ body {
     /* display: flex;
     justify-content: center;
     align-items: center; */
+
+    background-color: #0071E3;
 }
 .videoaudio .stickycontainer .devicewrapper {
     position: sticky;
@@ -772,6 +774,7 @@ body {
     /* transform: translateY(-50%); */
     display: block;
     margin: auto;
+    height: fit-content;
 
     /* display: flex;
     justify-content: center; */
