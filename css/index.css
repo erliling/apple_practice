@@ -740,7 +740,7 @@ body {
     height: 100%;
     /* make the mask covered a little from the top, then transparent in the end */
     /* use image-mask will cause z-index issue */
-    background: linear-gradient(rgba(0, 0, 0, 0.2), transparent);
+    background: linear-gradient(rgba(0, 0, 0, 0.3), transparent);
 
     /* mask - text - frame - screen */
     z-index: 3;
