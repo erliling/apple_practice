@@ -38,13 +38,18 @@ window.onload = function () {
         // the div's position: sticky, and its container doesn't have overflow: scroll
         // so the div's top is relative to the viewport not the whole sticky container
         changetop(screen, img);
-        changetop(screen2, img2);
+        changetop2(screen2, img2);
     }); 
 }
 
 function changetop(screen, img) {
     let topvalue = (window.innerHeight - screen.getBoundingClientRect().height)/2;
     // let topvalue = (window.innerHeight - screen.getBoundingClientRect().height + 0.6*screen.getBoundingClientRect().height)/2;
+    img.style.top = `${topvalue}px`;
+}
+function changetop2(screen, img) {
+    // let topvalue = (window.innerHeight - screen.getBoundingClientRect().height)/2;
+    let topvalue = (window.innerHeight - screen.getBoundingClientRect().height + 0.6*screen.getBoundingClientRect().height)/2;
     img.style.top = `${topvalue}px`;
 }
 
@@ -105,14 +110,6 @@ function changelargescale(container, img, screen2, frame2) {
     // Get scroll progress between 0 and 1
     const progress = Math.min(Math.max(-containerTop / containerHeight, 0), 1);
 
-    // Scale from 3.5 to 0.5 as you scroll through the container
-    let scale = 3.5 - progress * 3;
-    if (scale < 0.5) {
-        scale = 0.5;
-    }
-    img.style.transform = `scale(${scale})`;
-
-
     // change screen2's translateX from 4% to 0
     // change screen2's translateY from -30% to 0
     // change frame2's translateX from 4% to 0
@@ -121,12 +118,28 @@ function changelargescale(container, img, screen2, frame2) {
     // let translateX = screenmatrix.m41;
     let translateX = 4 - progress * 4;
     // let translateY = 30 - progress * 30;
-    let translateY = 30 - progress * 180;
-    if (translateY < 0) {
-        translateY = 0;
-    }
-    screen2.style.transform = `translate(${translateX}%, -${translateY}%)`;
-    frame2.style.transform = `translate(${translateX}%, -${translateY}%)`;
+    // let translateY = 30 - progress * 180;
+    // if (translateY < 0) {
+    //     translateY = 0;
+    // }
+
+    // screen2.style.transform = `translateX(${translateX}%)`;
+    // frame2.style.transform = `translateX(${translateX}%)`;
+    // screen2.style.transform = `translate(${translateX}%, -${translateY}%)`;
+    // frame2.style.transform = `translate(${translateX}%, -${translateY}%)`;
+    // screen2.style.transform = `translate(${translateX}%, -30%)`;
+    // frame2.style.transform = `translate(${translateX}%, -30%)`;
+
+    // if (translateY == 0) {
+        // Scale from 3.5 to 0.5 as you scroll through the container
+        let scale = 3.5 - progress * 3;
+        if (scale < 0.5) {
+            scale = 0.5;
+        }
+        img.style.transform = `scale(${scale})`;
+    // }
+
+    
 
     return scale;
 }
