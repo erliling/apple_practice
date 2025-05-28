@@ -998,6 +998,8 @@ body {
     position: relative;
     height: 600vh;
 
+    background-color: orange;
+
     /* overflow: hidden; */
 }
 .camera2 .stickycontainer .gradientoverlay {
@@ -1076,6 +1078,9 @@ body {
     /* object-fit: cover; */
     /* object-position: 60px  -250px; */
     /* object-position: 50%  50%; */
+}
+.camera2 .columntext2 {
+    margin-top: 500px;
 }
 
 /* #endregion camera2*/

@@ -13,8 +13,8 @@ window.onload = function () {
     const sectiontitlecontent2 = document.getElementsByClassName('sectiontitlecontent2')[0];
     const sectiontitlecontent3 = document.getElementsByClassName('sectiontitlecontent2')[1];
 
-    // const screenstyle = window.getComputedStyle(screen2);
-    // const screenmatrix = new WebKitCSSMatrix(screenstyle.transform || "none");
+    const screenstyle = window.getComputedStyle(screen2);
+    const screenmatrix = new WebKitCSSMatrix(screenstyle.transform || "none");   
 
     let lastScrollTop = 0;
     
@@ -25,7 +25,7 @@ window.onload = function () {
         // if scroll down, at some point makes the text disappear; vice versa
         const currentScroll = window.scrollY;
         changeopacity(sectiontitlecontent2, scale, currentScroll, lastScrollTop);
-        changeopacity(sectiontitlecontent3, scale2, currentScroll, lastScrollTop);
+        changeopacity2(sectiontitlecontent3, scale2, currentScroll, lastScrollTop);
     
         // if scroll down, at some point makes the frame appear; vice versa
         changedisplay(frame, scale, currentScroll, lastScrollTop);
@@ -49,29 +49,32 @@ function changetop(screen, img) {
 }
 
 function changedisplay(frame, scale, currentScroll, lastScrollTop) {
-    if ((currentScroll > lastScrollTop) && (scale < 3.4)) {
+    if ((currentScroll > lastScrollTop) && (scale < 1.4)) {
         frame.style.display = 'block';
     }
-    if ((currentScroll < lastScrollTop) && (scale > 3.4)) {
+    if ((currentScroll < lastScrollTop) && (scale > 1.4)) {
         frame.style.display = 'none';
     }
 }
 function changedisplay2(frame2, scale2, currentScroll, lastScrollTop, screen2) {
-    // let screentranslateX = screenmatrix.m41;
 
     if ((currentScroll > lastScrollTop) && (scale2 < 3.4)) {
         frame2.style.display = 'block';
-        // frame2.style.transform = 'translateX(0) translateY(0)';
-        // screen2.style.transform = 'translateX(0) translateY(0)';
     }
     if ((currentScroll < lastScrollTop) && (scale2 > 3.4)) {
         frame2.style.display = 'none';
-        // frame2.style.transform = 'translateX(4%) translateY(-30%)';
-        // screen2.style.transform = 'translateX(4%) translateY(-30%)';
     }
 }
 
 function changeopacity(sectiontitlecontent2, scale, currentScroll, lastScrollTop) {
+    if ((currentScroll > lastScrollTop) && (scale < 1.45)) {
+        sectiontitlecontent2.style.opacity = 0;
+    }
+    if ((currentScroll < lastScrollTop) && (scale > 1.45)) {
+        sectiontitlecontent2.style.opacity = 1;
+    }
+}
+function changeopacity2(sectiontitlecontent2, scale, currentScroll, lastScrollTop) {
     if ((currentScroll > lastScrollTop) && (scale < 3.45)) {
         sectiontitlecontent2.style.opacity = 0;
     }
@@ -102,7 +105,7 @@ function changelargescale(container, img, screen2, frame2) {
     // Get scroll progress between 0 and 1
     const progress = Math.min(Math.max(-containerTop / containerHeight, 0), 1);
 
-    // Scale from 1.5 to 0.5 as you scroll through the container
+    // Scale from 3.5 to 0.5 as you scroll through the container
     let scale = 3.5 - progress * 3;
     if (scale < 0.5) {
         scale = 0.5;
@@ -110,10 +113,20 @@ function changelargescale(container, img, screen2, frame2) {
     img.style.transform = `scale(${scale})`;
 
 
-    // change screen2's translate
+    // change screen2's translateX from 4% to 0
+    // change screen2's translateY from -30% to 0
+    // change frame2's translateX from 4% to 0
+    // change frame2's translateY from -30% to 0
 
-    // change frame's translate
-
+    // let translateX = screenmatrix.m41;
+    let translateX = 4 - progress * 4;
+    // let translateY = 30 - progress * 30;
+    let translateY = 30 - progress * 180;
+    if (translateY < 0) {
+        translateY = 0;
+    }
+    screen2.style.transform = `translate(${translateX}%, -${translateY}%)`;
+    frame2.style.transform = `translate(${translateX}%, -${translateY}%)`;
 
     return scale;
 }
