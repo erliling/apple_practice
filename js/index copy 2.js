@@ -51,8 +51,6 @@ function changetop2(screen, img) {
     // let topvalue = (window.innerHeight - screen.getBoundingClientRect().height)/2;
     let topvalue = (window.innerHeight - screen.getBoundingClientRect().height + 0.6*screen.getBoundingClientRect().height)/2;
     img.style.top = `${topvalue}px`;
-
-    // img.style.left = ``;
 }
 
 function changedisplay(frame, scale, currentScroll, lastScrollTop) {
@@ -112,38 +110,16 @@ function changelargescale(container, img, screen2, frame2) {
     // Get scroll progress between 0 and 1
     const progress = Math.min(Math.max(-containerTop / containerHeight, 0), 1);
 
-    // change screen2's translateX from 4% to 0
-    // change screen2's translateY from -30% to 0
-    // change frame2's translateX from 4% to 0
-    // change frame2's translateY from -30% to 0
+    let translateX = 4 - progress * 4;
+    screen2.style.transform = `translate(${translateX}%, -30%)`;
+    frame2.style.transform = `translate(${translateX}%, -30%)`;
 
-    // let translateX = screenmatrix.m41;
-    let translateX = 4 - (1-progress) * 4;
-    // let translateY = 30 - progress * 30;
-    // let translateY = 30 - progress * 180;
-    // if (translateY < 0) {
-    //     translateY = 0;
-    // }
-
-    // screen2.style.transform = `translateX(${translateX}%)`;
-    // frame2.style.transform = `translateX(${translateX}%)`;
-    // screen2.style.transform = `translate(${translateX}%, -${translateY}%)`;
-    // frame2.style.transform = `translate(${translateX}%, -${translateY}%)`;
-    // screen2.style.transform = `translate(${translateX}%, -30%)`;
-    // frame2.style.transform = `translate(${translateX}%, -30%)`;
-
-    // if (translateY == 0) {
-        // Scale from 3.5 to 0.5 as you scroll through the container
-        let scale = 3.5 - progress * 3;
-        if (scale < 0.5) {
-            scale = 0.5;
-        }
-        // img.style.transform = `scaleX(${scale}) scaleY()`;
-        img.style.transform = `scale(${scale}) translateX(-${translateX}%)`;
-        // img.style.transform = `scale(${scale})`;
-    // }
-
-    
+    let scale = 3.5 - progress * 3;
+    if (scale < 0.5) {
+        scale = 0.5;
+    }
+    // img.style.transform = `scaleX(${scale}) scaleY()`;
+    img.style.transform = `scale(${scale})`;
 
     return scale;
 }
