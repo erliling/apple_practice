@@ -1,8 +1,15 @@
 
 window.onload = function () {
+    const carsouselcontentcontainer = document.querySelector('.camera2 .carsouselcontentcontainer');
+    const carouselcontent = document.querySelector('.camera2 .carouselcontent');
+    carsouselcontentcontainer.style.height = `${carouselcontent.offsetHeight}px`;
+    window.addEventListener('resize', () => {
+        carsouselcontentcontainer.style.height = `${carouselcontent.offsetHeight}px`;
+    })
+
     const img = document.getElementsByClassName('devicewrapper')[0];
     const img2 = document.getElementsByClassName('devicewrapper')[1];
-    const screenimg = document.querySelector('.camera2 .stickycontainer .device img');
+    // const screenimg = document.querySelector('.camera2 .stickycontainer .device img');
     const container = document.getElementsByClassName('stickycontainer')[0];
     const container2 = document.getElementsByClassName('stickycontainer')[1];
 
@@ -13,8 +20,8 @@ window.onload = function () {
     const sectiontitlecontent2 = document.getElementsByClassName('sectiontitlecontent2')[0];
     const sectiontitlecontent3 = document.getElementsByClassName('sectiontitlecontent2')[1];
 
-    const screenstyle = window.getComputedStyle(screen2);
-    const screenmatrix = new WebKitCSSMatrix(screenstyle.transform || "none");   
+    // const screenstyle = window.getComputedStyle(screen2);
+    // const screenmatrix = new WebKitCSSMatrix(screenstyle.transform || "none");   
 
     let lastScrollTop = 0;
     
@@ -146,4 +153,16 @@ function changelargescale(container, img, screen2, frame2) {
     
 
     return scale;
+}
+
+
+function setRelativeHeight () {
+    // set absolute children' parent's height
+    
+    // const rect = carouselcontent.getBoundingClientRect();
+    // const offsetTop = carouselcontent.offsetTop;
+    // const totalHeight = offsetTop + rect.height;
+
+
+    
 }

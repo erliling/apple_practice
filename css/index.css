@@ -998,7 +998,7 @@ body {
     position: relative;
     height: 300vh;
 
-    background-color: pink;
+    /* background-color: pink; */
 
     /* overflow: hidden; */
 }
@@ -1079,8 +1079,95 @@ body {
     /* object-position: 60px  -250px; */
     /* object-position: 50%  50%; */
 }
-.camera2 .columntext2 {
-    margin-top: 500px;
+.camera2 .columncontainer_position {
+    margin-top: 400px;
+}
+
+.camera2 .viewcontent {
+    width: 87.5%;
+    max-width: 1680px;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.camera2 .viewcontent .contentlayout {
+    margin-top: 128px;
+
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+    flex-direction: column;
+
+    width: var(--ric-column-width-8);
+
+    position: relative;
+
+}
+
+.camera2 .carsouselcontentcontainer {
+    /* margin-top: 50px; */
+
+    
+    /* width: 100%; */
+    /* height: auto;
+    overflow: hidden; */
+    /* aspect-ratio: 1.3333333333; */
+    /* display: block; */
+
+    /* overflow: hidden; */
+    /* display: table; */
+    
+}
+/* .camera2 .carsouselcontentcontainer::after {
+    content:  '';
+    display: block;
+    height: 776px;
+} */
+.camera2 .carouselcontent {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 100%;
+    height: auto;
+
+    /* aspect-ratio: 1.3337628866; */
+    
+}
+.camera2 .carouselcontent picture {
+    /* width: 100%;
+    height: 100%;
+    object-fit: cover; */
+
+}
+.camera2 .carouselcontent img {
+    /* width: 100%;
+    height: auto; */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* position: absolute; */
+}
+
+.camera2 .carouselcontent1 {
+    z-index: 1;
+}
+.camera2 .carouselcontent2 {
+    z-index: 0;
+}
+.camera2 .carouselcontent3 {
+    z-index: 0;
+}
+.camera2 .carouselcontent4 {
+    z-index: 0;
+}
+.camera2 .carouselcontent5 {
+    z-index: 0;
 }
 
 /* #endregion camera2*/
