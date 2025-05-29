@@ -1098,7 +1098,7 @@ body {
     margin-top: 128px;
 
     display: flex;
-    /* align-items: center; */
+    align-items: center;
     /* justify-content: center; */
     flex-direction: column;
 
@@ -1169,7 +1169,21 @@ body {
 .camera2 .carouselcontent5 {
     z-index: 0;
 }
-
+.camera2 .playbarcontent {
+    position: relative;
+    top: 20px;
+}
+.camera2 .playbarcontent .playbarright .buttonshape {
+    padding: 10px 20px;
+    
+    border-radius: 50px;
+}
+.camera2 .playbarcontent .playbarright .selectedbuttonshape {
+    background-color: #fff;
+}
+.camera2 .playbarcontent .playbarright .selectedbuttonshape span {
+    color: #000;
+}
 /* #endregion camera2*/
 
 /* #region generaltext*/
@@ -1283,6 +1297,13 @@ body {
     font-size: 14px;
     line-height: 1.286;
     /* font-weight: 600; */
+    letter-spacing: -0.016em;
+}
+.contenttext4 {
+    color: var(--default-highlight-text-color);
+    font-size: 20px;
+    line-height: 1.286;
+    font-weight: 300;
     letter-spacing: -0.016em;
 }
 a {
