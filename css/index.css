@@ -1169,20 +1169,54 @@ body {
 .camera2 .carouselcontent5 {
     z-index: 0;
 }
-.camera2 .playbarcontent {
+.camera2 .viewcontent .playbarcontent {
     position: relative;
     top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
 }
-.camera2 .playbarcontent .playbarright .buttonshape {
-    padding: 10px 20px;
+.camera2 .viewcontent .playbarcontent .playbarright {
+    padding: 20px 10px;
+}
+.camera2 .viewcontent .playbarcontent .playbarright .buttonshape {
+    padding: 10px 16px;
     
     border-radius: 50px;
 }
-.camera2 .playbarcontent .playbarright .selectedbuttonshape {
+.camera2 .viewcontent .playbarcontent .playbarright .selectedbuttonshape {
     background-color: #fff;
 }
-.camera2 .playbarcontent .playbarright .selectedbuttonshape span {
+.camera2 .viewcontent .playbarcontent .playbarright .selectedbuttonshape span {
     color: #000;
+}
+.camera2 .viewcontent .playbarcontent .info span {
+    display: none;
+}
+.camera2 .viewcontent .playbarcontent .info .selectedinfo {
+    display: block;
+}
+.camera2 .textpiccontainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.camera2 .textpic {
+    /* --bento-width: min(72.9166666667vw - var(--global-scrollbar-width) / 12 * 10, 1400px); */
+    
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    column-gap: 100px;
+
+    margin-top: 96px;
+    /* width: var(--bento-width); */
+    width: var(--ric-column-width-10);
+    max-width: 1036px;
+    border-radius: 28px;
+    background: #000;
+    overflow: hidden;
 }
 /* #endregion camera2*/
 
