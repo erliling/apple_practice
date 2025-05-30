@@ -1,13 +1,10 @@
-let minimagewidth = getminimagewidth();
 
 window.onload = function () {
     const carsouselcontentcontainer = document.querySelector('.camera2 .carsouselcontentcontainer');
     const carouselcontent = document.querySelector('.camera2 .carouselcontent');
-
     carsouselcontentcontainer.style.height = `${carouselcontent.offsetHeight}px`;
     window.addEventListener('resize', () => {
         carsouselcontentcontainer.style.height = `${carouselcontent.offsetHeight}px`;
-        minimagewidth = getminimagewidth();
     })
 
     const img = document.getElementsByClassName('devicewrapper')[0];
@@ -29,12 +26,11 @@ window.onload = function () {
     let lastScrollTop = 0;
     
     window.addEventListener('scroll', () => {
-        const currentScroll = window.scrollY;
-
         let scale = changescale(container, img);
-        let scale2 = changelargescale(container2, img2, currentScroll, lastScrollTop);
+        let scale2 = changelargescale(container2, img2, screen2, frame2);
     
         // if scroll down, at some point makes the text disappear; vice versa
+        const currentScroll = window.scrollY;
         changeopacity(sectiontitlecontent2, scale, currentScroll, lastScrollTop);
         changeopacity2(sectiontitlecontent3, scale2, currentScroll, lastScrollTop);
     
@@ -116,54 +112,57 @@ function changescale(container, img) {
     img.style.transform = `scale(${scale})`;
     return scale;
 }
-
-// let flag = false;
-function changelargescale(container, img, currentScroll, lastScrollTop) {
+function changelargescale(container, img, screen2, frame2) {
     const containerTop = container.getBoundingClientRect().top;
     const containerHeight = container.offsetHeight;
-    
-    minimagewidth = getminimagewidth();
-    const imgwidth = img.getBoundingClientRect().width;
-    // console.log(imgwidth);
-    // console.log(minimagewidth);
 
     // Get scroll progress between 0 and 1
     const progress = Math.min(Math.max(-containerTop / containerHeight, 0), 1);
 
-    let translateX = 4 - (1-progress) * 4;
+    // change screen2's translateX from 4% to 0
+    // change screen2's translateY from -30% to 0
+    // change frame2's translateX from 4% to 0
+    // change frame2's translateY from -30% to 0
 
-    let scale = 3.5 - progress * 3;
-    if (scale < 0.5) {
-        scale = 0.5;
-    }
-    // if(!flag) {
-    //     img.style.transform = `scale(${scale}) translateX(-${translateX}%)`;
-    //     flag = true;
+    // let translateX = screenmatrix.m41;
+    let translateX = 4 - (1-progress) * 4;
+    // let translateY = 30 - progress * 30;
+    // let translateY = 30 - progress * 180;
+    // if (translateY < 0) {
+    //     translateY = 0;
     // }
 
-    // img.style.transform = `scale(${scale}) translateX(-${translateX}%)`;
-    if (currentScroll < lastScrollTop) {
-        // scroll up
+    // screen2.style.transform = `translateX(${translateX}%)`;
+    // frame2.style.transform = `translateX(${translateX}%)`;
+    // screen2.style.transform = `translate(${translateX}%, -${translateY}%)`;
+    // frame2.style.transform = `translate(${translateX}%, -${translateY}%)`;
+    // screen2.style.transform = `translate(${translateX}%, -30%)`;
+    // frame2.style.transform = `translate(${translateX}%, -30%)`;
+
+    // if (translateY == 0) {
+        // Scale from 3.5 to 0.5 as you scroll through the container
+        let scale = 3.5 - progress * 3;
+        if (scale < 0.5) {
+            scale = 0.5;
+        }
+        // img.style.transform = `scaleX(${scale}) scaleY()`;
         img.style.transform = `scale(${scale}) translateX(-${translateX}%)`;
-    } else if (imgwidth > minimagewidth) {
-        //scroll down
-        img.style.transform = `scale(${scale}) translateX(-${translateX}%)`;
-    }
+        // img.style.transform = `scale(${scale})`;
+    // }
+
+    
 
     return scale;
 }
 
-function getminimagewidth() {
-    // get width-8 property in css
-    const vw = window.innerWidth / 100;
 
-    const root = document.documentElement;
-    const scrollbarWidthStr = getComputedStyle(root).getPropertyValue('--global-scrollbar-width');
-    const scrollbarWidth = parseFloat(scrollbarWidthStr); 
+function setRelativeHeight () {
+    // set absolute children' parent's height
+    
+    // const rect = carouselcontent.getBoundingClientRect();
+    // const offsetTop = carouselcontent.offsetTop;
+    // const totalHeight = offsetTop + rect.height;
 
-    const calcValue = 58.3332333333 * vw - (scrollbarWidth / 12 * 8);
-    const minImageWidth = Math.min(calcValue, 1120);
 
-    return minImageWidth;
+    
 }
-
