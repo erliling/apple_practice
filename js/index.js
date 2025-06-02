@@ -14,7 +14,6 @@ window.onload = function () {
     const img = document.getElementsByClassName('devicewrapper')[0];
     const img2 = document.getElementsByClassName('devicewrapper')[1];
 
-    // const screenimg = document.querySelector('.camera2 .stickycontainer .device img');
     const container = document.getElementsByClassName('stickycontainer')[0];
     const container2 = document.getElementsByClassName('stickycontainer')[1];
 
@@ -26,9 +25,6 @@ window.onload = function () {
     
     const sectiontitlecontent2 = document.getElementsByClassName('sectiontitlecontent2')[0];
     const sectiontitlecontent3 = document.getElementsByClassName('sectiontitlecontent2')[1];
-
-    // const screenstyle = window.getComputedStyle(screen2);
-    // const screenmatrix = new WebKitCSSMatrix(screenstyle.transform || "none");   
 
     let lastScrollTop = 0;
     
@@ -104,14 +100,15 @@ function changeopacity2(sectiontitlecontent2, scale, currentScroll, lastScrollTo
 function changescale(container, img) {
     const containerTop = container.getBoundingClientRect().top;
     const containerHeight = container.offsetHeight;
+    const windowHeight = window.innerHeight;
 
     // Get scroll progress between 0 and 1
-    const progress = Math.min(Math.max(-containerTop / containerHeight, 0), 1);
+    const progress = Math.min(Math.max(-containerTop / windowHeight, 0), 1);
 
     // Scale from 1.5 to 0.5 as you scroll through the container
     let scale = 1.5 - progress * 1;
-    if (scale < 0.5) {
-        scale = 0.5;
+    if (scale < 0.57) {
+        scale = 0.57;
     }
     img.style.transform = `scale(${scale})`;
     return scale;
@@ -130,9 +127,9 @@ function changelargescale(container, img, currentScroll, lastScrollTop, screen, 
 
     // Progress from 0 to 1 during the shrink phase (first viewport height of stickycontainer)
     const progress = Math.min(Math.max(-containerTop / windowHeight, 0), 1);
-    console.log('container top: ' + containerTop);
-    console.log('container height: ' + containerHeight);
-    console.log('window height: ' + windowHeight);
+    // console.log('container top: ' + containerTop);
+    // console.log('container height: ' + containerHeight);
+    // console.log('window height: ' + windowHeight);
 
     let translateX = 4 - (1-progress) * 4;
 
@@ -144,10 +141,6 @@ function changelargescale(container, img, currentScroll, lastScrollTop, screen, 
     }
 
     img.style.transform = `scale(${scale}) translateX(-${translateX}%)`;
-
-    // set device height
-    // let deviceheight = screen.getBoundingClientRect().height;
-    // device.style.height = `${deviceheight}px`;
 
     return scale;
 }

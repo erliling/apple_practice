@@ -727,11 +727,11 @@ body {
 }
 
 .videoaudio .stickycontainer {
-    margin-top: 100px;
+    /* margin-top: 100px; */
 
     /* scrollable space */
     position: relative;
-    height: 600vh;
+    height: 120vh;
 
     /* background-color: #0071E3; */
     /* overflow: scroll; */
@@ -821,12 +821,12 @@ body {
 
 .videoaudio .columntext2 {
     text-align: center;
-    padding-top: 400px;
+    padding-top: 440px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    row-gap: 32px;
+    row-gap: 100px;
 
 }
 .videoaudio .textcolumngrid {
@@ -1006,6 +1006,7 @@ body {
     /* margin-top: 100px; */
 
     position: relative;
+
     /* scrollable space, make it 1.5 viewport height */
     /* shrink can happen in the 1st viewport height */
     height: 150vh;
