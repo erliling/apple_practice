@@ -1006,9 +1006,9 @@ body {
 
     /* scrollable space */
     position: relative;
-    height: 300vh;
+    height: 600vh;
 
-    /* background-color: pink; */
+    background-color: pink;
 
     /* overflow: hidden; */
 }

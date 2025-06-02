@@ -22,8 +22,6 @@ window.onload = function () {
     const screen2 = document.getElementsByClassName('screen')[1];
     const frame = document.getElementsByClassName('frame')[0];
     const frame2 = document.getElementsByClassName('frame')[1];
-    const device2 = document.getElementsByClassName('device')[1];
-    
     const sectiontitlecontent2 = document.getElementsByClassName('sectiontitlecontent2')[0];
     const sectiontitlecontent3 = document.getElementsByClassName('sectiontitlecontent2')[1];
 
@@ -36,7 +34,7 @@ window.onload = function () {
         const currentScroll = window.scrollY;
 
         let scale = changescale(container, img);
-        let scale2 = changelargescale(container2, img2, currentScroll, lastScrollTop, screen2, device2);
+        let scale2 = changelargescale(container2, img2, currentScroll, lastScrollTop);
     
         // if scroll down, at some point makes the text disappear; vice versa
         changeopacity(sectiontitlecontent2, scale, currentScroll, lastScrollTop);
@@ -59,11 +57,15 @@ window.onload = function () {
 
 function changetop(screen, img) {
     let topvalue = (window.innerHeight - screen.getBoundingClientRect().height)/2;
+    // let topvalue = (window.innerHeight - screen.getBoundingClientRect().height + 0.6*screen.getBoundingClientRect().height)/2;
     img.style.top = `${topvalue}px`;
 }
 function changetop2(screen, img) {
-    let topvalue = (window.innerHeight - screen.getBoundingClientRect().height + 0.7*screen.getBoundingClientRect().height)/2;
+    // let topvalue = (window.innerHeight - screen.getBoundingClientRect().height)/2;
+    let topvalue = (window.innerHeight - screen.getBoundingClientRect().height + 0.6*screen.getBoundingClientRect().height)/2;
     img.style.top = `${topvalue}px`;
+
+    // img.style.left = ``;
 }
 
 function changedisplay(frame, scale, currentScroll, lastScrollTop) {
@@ -117,12 +119,16 @@ function changescale(container, img) {
     return scale;
 }
 
-function changelargescale(container, img, currentScroll, lastScrollTop, screen, device) {
+// let flag = false;
+// let originalwidth = img2.getBoundingClientRect().width;
+function changelargescale(container, img, currentScroll, lastScrollTop) {
     const containerTop = container.getBoundingClientRect().top;
     const containerHeight = container.offsetHeight;
     
     minimagewidth = getminimagewidth();
     const imgwidth = img.getBoundingClientRect().width;
+    // console.log(imgwidth);
+    // console.log(minimagewidth);
 
     // Get scroll progress between 0 and 1
     const progress = Math.min(Math.max(-containerTop / containerHeight, 0), 1);
@@ -134,15 +140,25 @@ function changelargescale(container, img, currentScroll, lastScrollTop, screen, 
     if (scale < 0.57) {
         scale = 0.57;
     }
+    // if(!flag) {
+    //     img.style.transform = `scale(${scale}) translateX(-${translateX}%)`;
+    //     flag = true;
+    // }
 
     img.style.transform = `scale(${scale}) translateX(-${translateX}%)`;
 
-    // set device height
-    // let deviceheight = screen.getBoundingClientRect().height;
-    // device.style.height = `${deviceheight}px`;
+    // if ((currentScroll < lastScrollTop) && (imgwidth*scale > minimagewidth)) {
+    //     img.style.transform = `scale(${scale}) translateX(-${translateX}%)`;
+    // } else if ((currentScroll > lastScrollTop) && (imgwidth > minimagewidth)) {
+    //     img.style.transform = `scale(${scale}) translateX(-${translateX}%)`;
+    // }
 
     return scale;
 }
+
+// function getminscale(imgwidth) {
+
+// }
 
 function getminimagewidth() {
     // get width-8 property in css
