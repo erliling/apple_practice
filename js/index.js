@@ -120,15 +120,23 @@ function changescale(container, img) {
 function changelargescale(container, img, currentScroll, lastScrollTop, screen, device) {
     const containerTop = container.getBoundingClientRect().top;
     const containerHeight = container.offsetHeight;
+    const windowHeight = window.innerHeight;
     
     minimagewidth = getminimagewidth();
     const imgwidth = img.getBoundingClientRect().width;
 
     // Get scroll progress between 0 and 1
-    const progress = Math.min(Math.max(-containerTop / containerHeight, 0), 1);
+    // const progress = Math.min(Math.max(-containerTop / containerHeight, 0), 1);
+
+    // Progress from 0 to 1 during the shrink phase (first viewport height of stickycontainer)
+    const progress = Math.min(Math.max(-containerTop / windowHeight, 0), 1);
+    console.log('container top: ' + containerTop);
+    console.log('container height: ' + containerHeight);
+    console.log('window height: ' + windowHeight);
 
     let translateX = 4 - (1-progress) * 4;
 
+    // create a 0.5 to 3.5 scale
     let scale = 3.5 - progress * 3;
     // 0.57 is the min scale
     if (scale < 0.57) {
