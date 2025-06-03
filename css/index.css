@@ -702,14 +702,18 @@ body {
     padding: 0 0 216px;
     position: relative;
 
+    /* cover the big picture from camera2 */
     z-index: 2;
     background-color: var(--default-background-color);
 }
-.videoaudio .stickybanner {
-    /* for children's position: absolute */
+
+.videoaudio .stickycontainer {
+    /* scrollable space */
     position: relative;
+    height: 120vh;
+
 }
-.videoaudio .stickybanner .sectiontitlecontent2 {
+.videoaudio .stickycontainer .sectiontitlecontent2 {
     width: 100%;
     
     /* keep the text in the middle of viewport, 
@@ -725,26 +729,16 @@ body {
     /* mask - text - frame - screen */
     z-index: 4;
 }
-
-.videoaudio .stickycontainer {
-    /* margin-top: 100px; */
-
-    /* scrollable space */
-    position: relative;
-    height: 120vh;
-
-    /* background-color: #0071E3; */
-    /* overflow: scroll; */
-}
 .videoaudio .stickycontainer .gradientoverlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+
     /* make the mask covered a little from the top, then transparent in the end */
     /* use image-mask will cause z-index issue */
-    background: linear-gradient(rgba(0, 0, 0, 0.3), transparent);
+    background: linear-gradient(rgba(0, 0, 0, 0.4), transparent);
 
     /* mask - text - frame - screen */
     z-index: 3;
@@ -754,33 +748,14 @@ body {
     position: sticky;
     /* initial location to the top */
     top: 0;
-
-    /* display: block;
-    margin: auto;
-    height: fit-content; */
-
 }
 .videoaudio .stickycontainer .device {
-
-    /* height: fit-content; */
-
-    /* margin-left: auto;
-    margin-right: auto; */
-
-    /* width: var(--ric-column-width-12); */
-    
-    /* max-width: 1680px; */
-    /* height: fit-content; */
-    /* display: block; */
-
+    /* for position frame and screen */
     position: relative;
-
-    /* padding: 0; */
 
     /* scale from the middle */
     transform-origin: center center;
     transition: transform 0.2s ease-out;
-
 }
 
 .videoaudio .stickycontainer .device .frame {
