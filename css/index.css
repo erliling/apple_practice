@@ -715,7 +715,7 @@ body {
     /* keep the text in the middle of viewport, 
     but it will move up as the sticky banner moves up */
     position: absolute;
-    top: calc(100vh/2);
+    top: calc(100vh*0.6);
     text-align: center;
 
     /* text will turn transparent as scroll down */
@@ -990,7 +990,7 @@ body {
     /* keep the text in the middle of viewport, 
     but it will move up as the sticky banner moves up */
     position: absolute;
-    top: calc(100vh/2);
+    top: calc(100vh*0.6);
     text-align: center;
 
     /* text will turn transparent as scroll down */

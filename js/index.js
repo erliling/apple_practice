@@ -31,12 +31,12 @@ window.onload = function () {
     window.addEventListener('scroll', () => {
         const currentScroll = window.scrollY;
 
-        let scale = changescale(container, img);
-        let scale2 = changelargescale(container2, img2, currentScroll, lastScrollTop, screen2, device2);
+        let scale = changescale(container, img, sectiontitlecontent2);
+        let scale2 = changelargescale(container2, img2, sectiontitlecontent3);
     
         // if scroll down, at some point makes the text disappear; vice versa
-        changeopacity(sectiontitlecontent2, scale, currentScroll, lastScrollTop);
-        changeopacity2(sectiontitlecontent3, scale2, currentScroll, lastScrollTop);
+        // changeopacity(sectiontitlecontent2, scale, currentScroll, lastScrollTop);
+        // changeopacity2(sectiontitlecontent3, scale2, currentScroll, lastScrollTop);
     
         // if scroll down, at some point makes the frame appear; vice versa
         changedisplay(frame, scale, currentScroll, lastScrollTop);
@@ -90,14 +90,14 @@ function changeopacity(sectiontitlecontent2, scale, currentScroll, lastScrollTop
 }
 function changeopacity2(sectiontitlecontent2, scale, currentScroll, lastScrollTop) {
     if ((currentScroll > lastScrollTop) && (scale < 3.45)) {
-        sectiontitlecontent2.style.opacity = 0;
+        // sectiontitlecontent2.style.opacity = 0;
     }
     if ((currentScroll < lastScrollTop) && (scale > 3.45)) {
-        sectiontitlecontent2.style.opacity = 1;
+        // sectiontitlecontent2.style.opacity = 1;
     }
 }
 
-function changescale(container, img) {
+function changescale(container, img, sectiontitlecontent2) {
     const containerTop = container.getBoundingClientRect().top;
     const containerHeight = container.offsetHeight;
     const windowHeight = window.innerHeight;
@@ -111,10 +111,13 @@ function changescale(container, img) {
         scale = 0.57;
     }
     img.style.transform = `scale(${scale})`;
+
+    sectiontitlecontent2.style.opacity = 1-progress;
+
     return scale;
 }
 
-function changelargescale(container, img, currentScroll, lastScrollTop, screen, device) {
+function changelargescale(container, img, sectiontitlecontent2) {
     const containerTop = container.getBoundingClientRect().top;
     const containerHeight = container.offsetHeight;
     const windowHeight = window.innerHeight;
@@ -141,6 +144,8 @@ function changelargescale(container, img, currentScroll, lastScrollTop, screen, 
     }
 
     img.style.transform = `scale(${scale}) translateX(-${translateX}%)`;
+
+    sectiontitlecontent2.style.opacity = 1-progress;
 
     return scale;
 }
