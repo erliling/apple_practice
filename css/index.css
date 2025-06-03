@@ -707,92 +707,7 @@ body {
     background-color: var(--default-background-color);
 }
 
-.videoaudio .stickycontainer {
-    /* scrollable space */
-    position: relative;
-    height: 120vh;
 
-}
-.videoaudio .stickycontainer .sectiontitlecontent2 {
-    width: 100%;
-    
-    /* keep the text in the middle of viewport, 
-    but it will move up as the sticky banner moves up */
-    position: absolute;
-    top: calc(100vh*0.6);
-    text-align: center;
-
-    /* text will turn transparent as scroll down */
-    opacity: 1;
-    transition: opacity 0.2s ease-out;
-
-    /* mask - text - frame - screen */
-    z-index: 4;
-}
-.videoaudio .stickycontainer .gradientoverlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
-    /* make the mask covered a little from the top, then transparent in the end */
-    /* use image-mask will cause z-index issue */
-    background: linear-gradient(rgba(0, 0, 0, 0.4), transparent);
-
-    /* mask - text - frame - screen */
-    z-index: 3;
-}
-.videoaudio .stickycontainer .devicewrapper {
-    /* sticky device's wrapper */
-    position: sticky;
-    /* initial location to the top */
-    top: 0;
-}
-.videoaudio .stickycontainer .device {
-    /* for position frame and screen */
-    position: relative;
-
-    /* scale from the middle */
-    transform-origin: center center;
-    transition: transform 0.2s ease-out;
-}
-
-.videoaudio .stickycontainer .device .frame {
-    /* frame will appear later as scroll */
-    display: none;
-
-    aspect-ratio: 2.17;
-    
-    position: absolute;
-
-    /* the device wrapper has a width in the beginning, 
-    then it will be width * scale as scroll, so frame inherits 
-    the width when set to 100% */
-    width: 100%;
-
-    /* mask - text - frame - screen */
-    z-index: 2;
-}
-.videoaudio .stickycontainer .device .screen {
-    /* adjust the pic in order to fit the frame */
-    position: absolute;
-    top: 8px;
-    left: 1.68%;
-    width: 96.63%;
-    border-radius: 8% / 10%;
-
-    overflow: hidden;
-}
-
-.videoaudio .stickycontainer .device picture {
-    margin: 0;
-    padding: 0;
-}
-.videoaudio .stickycontainer .device img{
-    width: 100%;
-    height: 100%;
-}
 
 .videoaudio .columntext2 {
     text-align: center;
@@ -941,10 +856,6 @@ body {
     /* padding: 160px 0 216px; */
     padding: 0px 0 216px;
     position: relative;
-    /* box-sizing: border-box; */
-
-    /* background-color: var(--default-background-color); */
-    /* overflow: hidden; */
 }
 .camera2 .spacer {
     
@@ -955,129 +866,28 @@ body {
     position: absolute;
     z-index: 2;
 }
-.camera2 .stickybanner {
-    /* for children's position: absolute */
-    position: relative;
-}
-.camera2 .stickybanner .sectiontitlecontent2 {
-    width: 100%;
-    
-    /* keep the text in the middle of viewport, 
-    but it will move up as the sticky banner moves up */
-    position: absolute;
-    top: calc(100vh*0.6);
-    text-align: center;
-
-    /* text will turn transparent as scroll down */
-    opacity: 1;
-    transition: opacity 0.2s ease-out;
-
-    /* mask - text - frame - screen */
-    z-index: 4;
-}
 
 /* scroll container */
 .camera2 .stickycontainer {
-    /* margin-top: 100px; */
-
-    position: relative;
-
-    /* scrollable space, make it 1.5 viewport height */
-    /* shrink can happen in the 1st viewport height */
     height: 150vh;
-
-    /* background-color: pink; */
-
-    /* overflow: hidden; */
-}
-.camera2 .stickycontainer .gradientoverlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* make the mask covered a little from the top, then transparent in the end */
-    /* use image-mask will cause z-index issue */
-    background: linear-gradient(rgba(0, 0, 0, 0.3), transparent);
-
-    /* mask - text - frame - screen */
-    z-index: 3;
 }
 
 /* sticky wrapper */
 .camera2 .stickycontainer .devicewrapper {
-    position: sticky;
-    /* initial location to the top */
-    top: 0;
-    /* bottom: 0; */
     transform: scale(3.5);
-
-    /* height: 300vh;
-    overflow: hidden; */
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-}
-.camera2 .stickycontainer .device {
-
-    position: relative;
-    /* height: 100vh; */
-    /* width: 100%;
-    height: 100%; */
-
-    /* scale from the middle */
-    transform-origin: center center;
-    transition: transform 0.2s ease-out;
-
-    /* transform: translateX(4%) translateY(-30%) ; */
 }
 
 .camera2 .stickycontainer .device .frame {
-    /* frame will appear later as scroll */
-    display: none;
-
-    aspect-ratio: 2.17;
-    
-    position: absolute;
-
-    /* the device wrapper has a width in the beginning, 
-    then it will be width * scale as scroll, so frame inherits 
-    the width when set to 100% */
-    width: 100%;
-
-    /* mask - text - frame - screen */
-    z-index: 2;
 
     transform: translateX(4%) translateY(-30%) ;
     transition: transform 0.2s ease-out;
 }
 .camera2 .stickycontainer .device .screen {
-    /* adjust the pic in order to fit the frame */
-    position: absolute;
-    top: 8px;
-    left: 1.68%;
-    width: 96.63%;
-    border-radius: 8% / 10%;
-
-    overflow: hidden;
 
     transform: translateX(4%) translateY(-30%) ;
     transition: transform 0.2s ease-out;
-    /* transform: translateX(-5%); */
 }
 
-.camera2 .stickycontainer .device picture {
-    margin: 0;
-    padding: 0;
-}
-.camera2 .stickycontainer .device img{
-    width: 100%;
-    height: 100%;
-
-    /* object-fit: cover; */
-    /* object-position: 60px  -250px; */
-    /* object-position: 50%  50%; */
-}
 .camera2 .columncontainer_position {
     margin-top: 400px;
 }
@@ -1466,6 +1276,97 @@ a {
     fill: rgba(255,255,255,0.8);
 }
 /* #endregion carousel*/
+
+/* #region stickyscroll */
+.stickycontainer {
+    /* scrollable space */
+    position: relative;
+    height: 120vh;
+
+}
+.stickycontainer .sectiontitlecontent2 {
+    width: 100%;
+    
+    /* keep the text in the middle of viewport, 
+    but it will move up as the sticky banner moves up */
+    position: absolute;
+    top: calc(100vh*0.6);
+    text-align: center;
+
+    /* text will turn transparent as scroll down */
+    opacity: 1;
+    transition: opacity 0.2s ease-out;
+
+    /* mask - text - frame - screen */
+    z-index: 4;
+}
+.videoaudio .stickycontainer .gradientoverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* make the mask covered a little from the top, then transparent in the end */
+    /* use image-mask will cause z-index issue */
+    background: linear-gradient(rgba(0, 0, 0, 0.4), transparent);
+
+    /* mask - text - frame - screen */
+    z-index: 3;
+}
+.stickycontainer .devicewrapper {
+    /* sticky device's wrapper */
+    position: sticky;
+    /* initial location to the top */
+    top: 0;
+}
+.videoaudio .stickycontainer .device {
+    /* for position frame and screen */
+    position: relative;
+
+    /* scale from the middle */
+    transform-origin: center center;
+    transition: transform 0.2s ease-out;
+}
+
+.stickycontainer .device .frame {
+    /* frame will appear later as scroll */
+    display: none;
+
+    aspect-ratio: 2.17;
+    
+    position: absolute;
+
+    /* the device wrapper has a width in the beginning, 
+    then it will be width * scale as scroll, so frame inherits 
+    the width when set to 100% */
+    width: 100%;
+
+    /* mask - text - frame - screen */
+    z-index: 2;
+}
+.stickycontainer .device .screen {
+    /* adjust the pic in order to fit the frame */
+    position: absolute;
+    top: 8px;
+    left: 1.68%;
+    width: 96.63%;
+    border-radius: 8% / 10%;
+
+    overflow: hidden;
+}
+
+.stickycontainer .device picture {
+    margin: 0;
+    padding: 0;
+}
+.stickycontainer .device img{
+    width: 100%;
+    height: 100%;
+}
+
+/* #endregion stickyscroll */
+
 
 /* #region playbar*/
 .playbaraccesscontainer {
