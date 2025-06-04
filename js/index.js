@@ -70,35 +70,43 @@ window.onload = function () {
     }); 
 }
 
-let ticking = false;
+let reveal1 = 100;
+let reveal2 = 100;
 function moveslider(scrollwrapper, images) {
-    if (!ticking) {
-        requestAnimationFrame(() => {
 
-            const rect = scrollwrapper.getBoundingClientRect();
-            const recttop = -rect.top;
-            const scrollheight = window.innerHeight;
+    const rect = scrollwrapper.getBoundingClientRect();
+    const recttop = -rect.top;
+    const scrollheight = window.innerHeight;
+    
 
-            if (recttop <= scrollheight) {
-                const progress = Math.min(Math.max(recttop / scrollheight, 0), 1);
-                console.log("recttop1: " + recttop);
-                console.log("progress1: " + progress);
-                console.log("scrollheight: " + scrollheight);
-                const reveal = 100 - progress * 100;
-                images[1].style.clipPath = `inset(0 0 0 ${reveal}%)`;
-            } else if ((recttop > scrollheight) && (recttop <= 2*scrollheight)) {
-                const adjusttop = recttop - scrollheight;
-                const progress = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
-                console.log("recttop2: " + adjusttop);
-                console.log("progress2: " + progress);
-                console.log("scrollheight: " + scrollheight);
-                const reveal = 100 - progress * 100;
-                images[2].style.clipPath = `inset(0 0 0 ${reveal}%)`;
-            } 
-            ticking = false;
-        });
-        ticking = true;
-    }
+    if (recttop <= scrollheight) {
+        const progress = Math.min(Math.max(recttop / scrollheight, 0), 1);
+        console.log("recttop1: " + recttop);
+        console.log("progress1: " + progress);
+        console.log("scrollheight: " + scrollheight);
+        reveal1 = 100 - progress * 100;
+        images[1].style.clipPath = `inset(0 0 0 ${reveal1}%)`;
+    } else if ((recttop > scrollheight) && (recttop <= 2*scrollheight) && (reveal1 > 0)) {
+        const progress = Math.min(Math.max(recttop / scrollheight, 0), 1);
+        reveal1 = 100 - progress * 100;
+        images[1].style.clipPath = `inset(0 0 0 ${reveal1}%)`;
+        console.log("reveal1: "+ reveal1);
+    
+    } else if ((recttop > scrollheight) && (recttop <= 2*scrollheight) && (reveal1 <= 0)) {
+        // console.log("reveal1: "+ reveal1);
+        const adjusttop = recttop - scrollheight;
+        const progress = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
+        console.log("recttop2: " + recttop);
+        console.log("progress2: " + progress);
+        console.log("scrollheight: " + scrollheight);
+        reveal2 = 100 - progress * 100;
+        images[2].style.clipPath = `inset(0 0 0 ${reveal2}%)`;
+    } else if ((recttop > 2*scrollheight) && (reveal2 > 0)) {
+        const adjusttop = recttop - scrollheight;
+        const progress = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
+        reveal2 = 100 - progress * 100;
+        images[2].style.clipPath = `inset(0 0 0 ${reveal2}%)`;
+    } 
     
 }
 
