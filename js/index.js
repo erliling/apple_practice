@@ -32,13 +32,15 @@ window.onload = function () {
     let lastScrollTop = 0;
 
     const scrollwrapper = document.querySelector('.photograph .scrollwrapper');
-    const slides = document.querySelector('.photograph .stickycontainer .slides');
+    const image2 = document.querySelector('.photograph .stickycontainer .image2');
+    const image3 = document.querySelector('.photograph .stickycontainer .image3');
+    // const slides = document.querySelector('.photograph .stickycontainer .slides');
 
     
     // shrink img via scroll
     window.addEventListener('scroll', () => {
         
-        moveslider(scrollwrapper, slides);
+        moveslider(scrollwrapper, image2, image3);
 
         // Get scroll progress between 0 and 1
         const progress = getprogress(container);
@@ -67,7 +69,7 @@ window.onload = function () {
     }); 
 }
 
-function moveslider(scrollwrapper, slides) {
+function moveslider(scrollwrapper, image2, image3) {
     const rect = scrollwrapper.getBoundingClientRect();
     // when scroll down, top gradually becomes negative
     const recttop = -rect.top;
@@ -78,8 +80,15 @@ function moveslider(scrollwrapper, slides) {
     const progress = Math.min(Math.max(recttop/maxscrollheight, 0), 1);
     console.log('progress: '+progress);
 
-    const translateX = progress * -200;
-    slides.style.transform = `translateX(${translateX}%)`;
+    // const translateX = progress * -200;
+    // slides.style.transform = `translateX(${translateX}%)`;
+
+    const reveal = 100 - progress * 100;
+    image2.style.clipPath = `inset(0 0 0 ${reveal}%)`;
+    // if (reveal == 0) {
+    //     reveal = 100;
+    // }
+    // image3.style.clipPath = `inset(0 0 0 ${reveal}%)`;
 }
 
 function getminimagewidth() {

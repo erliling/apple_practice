@@ -1032,11 +1032,10 @@ body {
     /* background-color: pink; */
 }
 .photograph .scrollwrapper {
-    height: 330vh;
+    height: 300vh;
 
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
+    position: relative;
+
 }
 .photograph .stickycontainer {
     position: sticky;
@@ -1044,20 +1043,12 @@ body {
     height: 100vh;
     overflow: hidden;
 }
-.photograph .stickycontainer .slides {
-    display: flex;
-    height: 100%;
-    /* width: 300%; */
-    transition: transform 0.3s ease;
-}
-.photograph .stickycontainer .slides .slide {
-    flex: 0 0 100vw;
-    height: 100%;
-
+.photograph .stickycontainer .image {
+    position: absolute;
+    top: 0;
+    left: 0;
     --slide-width: 1680px;
     --slide-height: 1050px;
-
-    position: relative;
     width: var(--slide-width);
     height: var(--slide-height);
 
@@ -1065,14 +1056,23 @@ body {
     background-repeat: no-repeat;
     background-position: 50%;
 }
-.photograph .stickycontainer .slides .slide1 {
+.photograph .stickycontainer .image1 {
     background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/photographic-styles/hero_style1__ejjuw3sw3t0m_large_2x.jpg);
 }
-.photograph .stickycontainer .slides .slide2 {
+.photograph .stickycontainer .image2 {
     background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/photographic-styles/hero_style2__gbh1d5shzmie_large_2x.jpg);
+    clip-path: inset(0 0 0 100%);
 }
-.photograph .stickycontainer .slides .slide3 {
+.photograph .stickycontainer .image3 {
     background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/photographic-styles/hero_style3__ebrovo7velkm_large_2x.jpg);
+    clip-path: inset(0 0 0 100%);
+}
+.photograph .stickycontainer .maskslide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 /* #endregion photograph */
 
