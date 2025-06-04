@@ -1027,15 +1027,10 @@ body {
     padding: 0px 0 216px;
     position: relative;
 }
-.photograph .carousel4 {
-    /* height: 300px; */
-    /* background-color: pink; */
-}
 .photograph .scrollwrapper {
     height: 300vh;
 
     position: relative;
-
 }
 .photograph .stickycontainer {
     position: sticky;
@@ -1047,6 +1042,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
+    
     --slide-width: 1680px;
     --slide-height: 1050px;
     width: var(--slide-width);

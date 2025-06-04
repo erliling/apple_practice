@@ -78,7 +78,6 @@ function moveslider(scrollwrapper, images) {
     const recttop = -rect.top;
     const scrollheight = window.innerHeight;
     
-
     if (recttop <= scrollheight) {
         const progress = Math.min(Math.max(recttop / scrollheight, 0), 1);
         console.log("recttop1: " + recttop);
@@ -86,6 +85,7 @@ function moveslider(scrollwrapper, images) {
         console.log("scrollheight: " + scrollheight);
         reveal1 = 100 - progress * 100;
         images[1].style.clipPath = `inset(0 0 0 ${reveal1}%)`;
+
     } else if ((recttop > scrollheight) && (recttop <= 2*scrollheight) && (reveal1 > 0)) {
         const progress = Math.min(Math.max(recttop / scrollheight, 0), 1);
         reveal1 = 100 - progress * 100;
@@ -101,6 +101,7 @@ function moveslider(scrollwrapper, images) {
         console.log("scrollheight: " + scrollheight);
         reveal2 = 100 - progress * 100;
         images[2].style.clipPath = `inset(0 0 0 ${reveal2}%)`;
+
     } else if ((recttop > 2*scrollheight) && (reveal2 > 0)) {
         const adjusttop = recttop - scrollheight;
         const progress = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
