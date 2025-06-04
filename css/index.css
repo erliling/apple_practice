@@ -1055,17 +1055,24 @@ body {
     background-size: var(--slide-width) var(--slide-height);
     background-repeat: no-repeat;
     background-position: 50%;
+
+    transition: clip-path 0.3s ease-out;
 }
 .photograph .stickycontainer .image1 {
     background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/photographic-styles/hero_style1__ejjuw3sw3t0m_large_2x.jpg);
+    /* z-index: 3; */
 }
 .photograph .stickycontainer .image2 {
     background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/photographic-styles/hero_style2__gbh1d5shzmie_large_2x.jpg);
+    /* z-index: 2; */
     clip-path: inset(0 0 0 100%);
+
 }
 .photograph .stickycontainer .image3 {
     background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/photographic-styles/hero_style3__ebrovo7velkm_large_2x.jpg);
+    /* z-index: 1; */
     clip-path: inset(0 0 0 100%);
+
 }
 .photograph .stickycontainer .maskslide {
     position: absolute;
