@@ -411,10 +411,7 @@ body {
 }
 
 .ai .tabgroup {
-    width: 87.5%;
-    max-width: 1680px;
-    margin-inline-start: auto;
-    margin-inline-end: auto;
+    
 
     margin-top: 140px;
 
@@ -893,11 +890,6 @@ body {
 }
 
 .camera2 .viewcontent {
-    width: 87.5%;
-    max-width: 1680px;
-    margin-inline-start: auto;
-    margin-inline-end: auto;
-
 
     display: flex;
     align-items: center;
@@ -1041,15 +1033,22 @@ body {
 }
 /* #endregion photograph */
 
+/* #region generallayout */
+.viewportcontent {
+    width: 87.5%;
+    max-width: 1680px;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+}
+
+/* #endregion generallayout */
+
+
 
 /* #region generaltext*/
 
 .sectiontitlecontent {
-    margin-inline-start: auto;
-    margin-inline-end: auto;
-    /* leave padding 6.25vw */
-    width: 87.5%;
-    max-width: 1680px;
+    
 }
 .sectiontitlecontent .title {
     display: flex;
@@ -1182,10 +1181,7 @@ a {
 }
 
 .columncontainer {
-    width: 87.5%;
-    margin-inline-start: auto;
-    margin-inline-end: auto;
-    max-width: 1680px;
+    
 
     
     /* columns: 2;
