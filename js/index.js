@@ -38,11 +38,12 @@ window.onload = function () {
     // const slides = document.querySelector('.photograph .stickycontainer .slides');
 
     const maskslide = document.querySelector('.photograph .stickycontainer .maskslide');
+    const imagecontent = document.querySelector('.photograph .stickycontainer .imagecontent');
     
     // shrink img via scroll
     window.addEventListener('scroll', () => {
         
-        moveslider(scrollwrapper, images, maskslide);
+        moveslider(scrollwrapper, images, maskslide, imagecontent);
 
         // Get scroll progress between 0 and 1
         const progress = getprogress(container);
@@ -73,7 +74,7 @@ window.onload = function () {
 
 let reveal1 = 100;
 let reveal2 = 100;
-function moveslider(scrollwrapper, images, maskslide) {
+function moveslider(scrollwrapper, images, maskslide, imagecontent) {
 
     const rect = scrollwrapper.getBoundingClientRect();
     const recttop = -rect.top;
@@ -118,7 +119,19 @@ function moveslider(scrollwrapper, images, maskslide) {
         const moveoffset = imgWidth * reveal2 * 0.01;
         maskslide.style.left = `${moveoffset}px`;
         images[2].style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
-    } 
+
+        
+    } else if ((recttop > 2*scrollheight) && (reveal2 <= 0)) {
+        // console.log('here');
+        // imagecontent.style.transform = `scale(0.7)`;
+        const adjusttop = recttop - scrollheight*2;
+        const progress = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
+        console.log('top: ' + adjusttop);
+        console.log('progress: ' + progress);
+        // const minscale = 0.7;
+        const adjustprogress = 1 - 0.2 * progress;
+        imagecontent.style.transform = `scale(${adjustprogress})`;
+    }
     
 }
 
