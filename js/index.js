@@ -37,11 +37,12 @@ window.onload = function () {
     // const image3 = document.querySelector('.photograph .stickycontainer .image3');
     // const slides = document.querySelector('.photograph .stickycontainer .slides');
 
+    const maskslide = document.querySelector('.photograph .stickycontainer .maskslide');
     
     // shrink img via scroll
     window.addEventListener('scroll', () => {
         
-        moveslider(scrollwrapper, images);
+        moveslider(scrollwrapper, images, maskslide);
 
         // Get scroll progress between 0 and 1
         const progress = getprogress(container);
@@ -72,7 +73,7 @@ window.onload = function () {
 
 let reveal1 = 100;
 let reveal2 = 100;
-function moveslider(scrollwrapper, images) {
+function moveslider(scrollwrapper, images, maskslide) {
 
     const rect = scrollwrapper.getBoundingClientRect();
     const recttop = -rect.top;
@@ -80,33 +81,41 @@ function moveslider(scrollwrapper, images) {
     
     if (recttop <= scrollheight) {
         const progress = Math.min(Math.max(recttop / scrollheight, 0), 1);
-        console.log("recttop1: " + recttop);
-        console.log("progress1: " + progress);
-        console.log("scrollheight: " + scrollheight);
+        // console.log("recttop1: " + recttop);
+        // console.log("progress1: " + progress);
+        // console.log("scrollheight: " + scrollheight);
         reveal1 = 100 - progress * 100;
-        images[1].style.clipPath = `inset(0 0 0 ${reveal1}%)`;
+        const imgWidth = images[1].getBoundingClientRect().width;
+        const moveoffset = imgWidth * reveal1 * 0.01;
+        maskslide.style.left = `${moveoffset}px`;
+        images[1].style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
 
     } else if ((recttop > scrollheight) && (recttop <= 2*scrollheight) && (reveal1 > 0)) {
         const progress = Math.min(Math.max(recttop / scrollheight, 0), 1);
         reveal1 = 100 - progress * 100;
-        images[1].style.clipPath = `inset(0 0 0 ${reveal1}%)`;
-        console.log("reveal1: "+ reveal1);
+        const imgWidth = images[1].getBoundingClientRect().width;
+        const moveoffset = imgWidth * reveal1 * 0.01;
+        maskslide.style.left = `${moveoffset}px`;
+        images[1].style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
     
     } else if ((recttop > scrollheight) && (recttop <= 2*scrollheight) && (reveal1 <= 0)) {
         // console.log("reveal1: "+ reveal1);
         const adjusttop = recttop - scrollheight;
         const progress = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
-        console.log("recttop2: " + recttop);
-        console.log("progress2: " + progress);
-        console.log("scrollheight: " + scrollheight);
         reveal2 = 100 - progress * 100;
-        images[2].style.clipPath = `inset(0 0 0 ${reveal2}%)`;
+        const imgWidth = images[2].getBoundingClientRect().width;
+        const moveoffset = imgWidth * reveal2 * 0.01;
+        maskslide.style.left = `${moveoffset}px`;
+        images[2].style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
 
     } else if ((recttop > 2*scrollheight) && (reveal2 > 0)) {
         const adjusttop = recttop - scrollheight;
         const progress = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
         reveal2 = 100 - progress * 100;
-        images[2].style.clipPath = `inset(0 0 0 ${reveal2}%)`;
+        const imgWidth = images[2].getBoundingClientRect().width;
+        const moveoffset = imgWidth * reveal2 * 0.01;
+        maskslide.style.left = `${moveoffset}px`;
+        images[2].style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
     } 
     
 }

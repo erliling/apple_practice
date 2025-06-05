@@ -1031,18 +1031,38 @@ body {
     height: 300vh;
 
     position: relative;
+
+    /* padding: 0 5px; */
 }
 .photograph .stickycontainer {
     position: sticky;
-    top: 0;
+    top: -50px;
     height: 100vh;
-    overflow: hidden;
+    /* overflow: hidden; */
+
+    /* padding: 0 5px; */
+}
+.photograph .stickycontainer .imagecontainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    
+    border-radius: 50px;
+    /* overflow: hidden; */
+
+    /* padding: 0 10px; */
+}
+.photograph .stickycontainer .frame {
+    
 }
 .photograph .stickycontainer .image {
     position: absolute;
     top: 0;
     left: 0;
-    
+
     --slide-width: 1680px;
     --slide-height: 1050px;
     width: var(--slide-width);
@@ -1052,7 +1072,9 @@ body {
     background-repeat: no-repeat;
     background-position: 50%;
 
-    transition: clip-path 0.3s ease-out;
+    /* transform: scale(1.1);
+    transform-origin: center center; */
+    /* transition: clip-path 0.3s ease-out; */
 }
 .photograph .stickycontainer .image1 {
     background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/photographic-styles/hero_style1__ejjuw3sw3t0m_large_2x.jpg);
@@ -1071,12 +1093,23 @@ body {
 
 }
 .photograph .stickycontainer .maskslide {
+    width: 20px;
+    height: 1050px;
+    background-color: var(--default-background-color);
+
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    left: 100%;
+
+    /* transform: translateX(50%) ; */
+
+    /* transition: left 0.3s ease-out; */
 }
+
+.photograph .contenttext {
+    margin-top: 250px;
+}
+
 /* #endregion photograph */
 
 /* #region generallayout */
