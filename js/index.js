@@ -78,6 +78,7 @@ function moveslider(scrollwrapper, images, maskslide) {
     const rect = scrollwrapper.getBoundingClientRect();
     const recttop = -rect.top;
     const scrollheight = window.innerHeight;
+    const imagescale = 1.2;
     
     if (recttop <= scrollheight) {
         const progress = Math.min(Math.max(recttop / scrollheight, 0), 1);
@@ -87,6 +88,7 @@ function moveslider(scrollwrapper, images, maskslide) {
         reveal1 = 100 - progress * 100;
         const imgWidth = images[1].getBoundingClientRect().width;
         const moveoffset = imgWidth * reveal1 * 0.01;
+        // const adjustmoveoffset = moveoffset * imagescale;
         maskslide.style.left = `${moveoffset}px`;
         images[1].style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
 
