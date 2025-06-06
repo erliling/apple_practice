@@ -130,7 +130,7 @@ function moveslider(scrollwrapper, images, maskslide, imagecontent) {
         console.log('progress: ' + progress);
         // const minscale = 0.7;
         const adjustprogress = 1 - 0.2 * progress;
-        imagecontent.style.transform = `scale(${adjustprogress})`;
+        // imagecontent.style.transform = `scale(${adjustprogress})`;
     }
     
 }
