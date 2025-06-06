@@ -134,6 +134,10 @@ function moveslider(scrollwrapper, images, maskslide, imagecontent) {
         const progress = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
         
         // const wholeprogress = Math.min(Math.max(recttop / rectheight, 0), 1);
+
+        // let slider move from 0 to -20
+        const moveoffset = -20 * progress;
+        maskslide.style.left = `${moveoffset}px`;
         
         console.log('progress2: ' + progress);
         // min scale is 0.8, max scale is 1

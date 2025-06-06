@@ -8,7 +8,7 @@
     --default-highlight-text-color: #fff;
     --default-link-color: #2997ff;
     --default-btn-bg-color: #0071E3;
-    --default-frame-color: #0071E3;
+    --default-frame-color: rgb(0, 0, 0);
     --welcome-apple-headline-height: 54px;
     --icon-background-color: rgba(66, 66, 69, 0.7);
     --colornav-item-size: 36px;
@@ -1072,6 +1072,8 @@ body {
     height: 100%;
     overflow: hidden;
     position: absolute;
+
+    /* transition: scale 0.3s ease-out;; */
 }
 .photograph .stickycontainer .frame {
     width: 100%;
@@ -1090,7 +1092,7 @@ body {
 }
 .photograph .stickycontainer .frame .corner.top {
     top: 0;
-    padding-top: 4px;
+    /* padding-top: 4px; */
 }
 .photograph .stickycontainer .frame .corner.top.left {
     left: 0;
@@ -1104,7 +1106,7 @@ body {
 }
 .photograph .stickycontainer .frame .corner.bottom {
     bottom: 0;
-    padding-bottom: 4px;
+    /* padding-bottom: 4px; */
 }
 .photograph .stickycontainer .frame .corner.bottom.right {
     right: 0;
@@ -1123,14 +1125,14 @@ body {
 }
 .photograph .stickycontainer .frame .rect.top {
     width: 100%;
-    height: 4px;
+    height: 10px;
     left: 0;
     background-color: var(--default-frame-color);
     top: 0;
 }
 .photograph .stickycontainer .frame .rect.bottom {
     width: 100%;
-    height: 4px;
+    height: 10px;
     left: 0;
     background-color: var(--default-frame-color);
     bottom: 0;
