@@ -78,6 +78,7 @@ function moveslider(scrollwrapper, images, maskslide, imagecontent) {
 
     const rect = scrollwrapper.getBoundingClientRect();
     const recttop = -rect.top;
+    const rectheight = rect.height;
     const scrollheight = window.innerHeight;
     const imagescale = 1.2;
     
@@ -111,7 +112,7 @@ function moveslider(scrollwrapper, images, maskslide, imagecontent) {
         maskslide.style.left = `${moveoffset}px`;
         images[2].style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
 
-    } else if ((recttop > 2*scrollheight) && (reveal2 > 0)) {
+    } else if ((recttop > 2*scrollheight) && (recttop <= 3*scrollheight) && (reveal2 > 0)) {
         const adjusttop = recttop - scrollheight;
         const progress = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
         reveal2 = 100 - progress * 100;
@@ -120,17 +121,28 @@ function moveslider(scrollwrapper, images, maskslide, imagecontent) {
         maskslide.style.left = `${moveoffset}px`;
         images[2].style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
 
+        // const wholeprogress = Math.min(Math.max(recttop / rectheight, 0), 1);
         
+        // console.log('progress: ' + progress);
+        // const adjustprogress = 1 - 0.2 * progress;
+        // console.log('adjustprogress: ' + adjustprogress);
+        // imagecontent.style.transform = `scale(${adjustprogress})`;
     } else if ((recttop > 2*scrollheight) && (reveal2 <= 0)) {
         // console.log('here');
         // imagecontent.style.transform = `scale(0.7)`;
         const adjusttop = recttop - scrollheight*2;
         const progress = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
-        console.log('top: ' + adjusttop);
-        console.log('progress: ' + progress);
-        // const minscale = 0.7;
-        const adjustprogress = 1 - 0.2 * progress;
-        // imagecontent.style.transform = `scale(${adjustprogress})`;
+        
+        // const wholeprogress = Math.min(Math.max(recttop / rectheight, 0), 1);
+        
+        console.log('progress2: ' + progress);
+        // min scale is 0.8, max scale is 1
+        let adjustprogress = 1 - 0.2 * progress;
+        console.log('adjustprogress2: ' + adjustprogress);
+        if (adjustprogress > 0.98) {
+            adjustprogress = 1;
+        }
+        imagecontent.style.transform = `scale(${adjustprogress})`;
     }
     
 }
