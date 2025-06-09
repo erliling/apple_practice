@@ -17,6 +17,7 @@
     --gallery-height: 1050px;
     --radius: 0.042;
 
+    --ps-spacing-48: 48px;
 
     --shared-media-gallery-responsive-content-absolute-max-width: 1680px;
     --shared-media-gallery-height: 680px;
@@ -1211,11 +1212,57 @@ body {
 
     /* transition: left 0.3s ease-out; */
 }
+.photograph .viewportcontent {
 
-.photograph .contenttext {
-    margin-top: 300px;
 }
+.photograph .contenttext_pos {
+    margin-top: 360px;
+    width: var(--ric-column-width-6);
+    text-align: center;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+}
+.photograph .viewportcontent .textpic {
+    margin-top: 48px;;
+    width: var(--ric-column-width-10);
+    margin-inline-start: auto;
+    margin-inline-end: auto;
 
+    display: grid;
+    /* Takes up as much space as needed */
+    /* Takes up the rest */
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "copy-top iphone" "copy-middle iphone" "copy-bottom iphone";
+}
+.photograph .textpic .text {
+    width: var(--ric-column-width-4);
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+    
+}
+.photograph .textpic .text1 {
+    grid-area: "copy-top";
+}
+.photograph .textpic .text2 {
+    grid-area: "copy-middle";
+}
+.photograph .textpic .text3 {
+    grid-area: "copy-bottom";
+}
+.photograph .textpic .text h3 {
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--default-text-color);
+}
+.photograph .textpic .pic {
+    grid-area: "iphone";
+}
+.photograph .textpic .pic picture {
+    opacity: 1;
+
+}
+.photograph .textpic .pic picture 
 /* #endregion photograph */
 
 /* #region generallayout */
@@ -1313,7 +1360,7 @@ body {
 }
 
 .contenttext {
-    color: #868693;
+    color: var(--default-gray-text-color);
     font-size: 20px;
     line-height: 1.39;
     font-weight: 600;
