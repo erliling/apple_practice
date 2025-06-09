@@ -1216,7 +1216,7 @@ body {
 
 }
 .photograph .contenttext_pos {
-    margin-top: 360px;
+    margin-top: 300px;
     width: var(--ric-column-width-6);
     text-align: center;
     margin-inline-start: auto;
@@ -1224,7 +1224,7 @@ body {
 }
 .photograph .viewportcontent .textpic {
     margin-top: 48px;;
-    width: var(--ric-column-width-10);
+    width: var(--ric-column-width-9);
     margin-inline-start: auto;
     margin-inline-end: auto;
 
@@ -1237,32 +1237,60 @@ body {
 .photograph .textpic .text {
     width: var(--ric-column-width-4);
     display: flex;
+    justify-content: center;
     flex-direction: column;
     row-gap: 24px;
     
+    height: 100vh;
+    display: flex;
+    align-items: center;
 }
 .photograph .textpic .text1 {
-    grid-area: "copy-top";
+    grid-area: copy-top;
 }
 .photograph .textpic .text2 {
-    grid-area: "copy-middle";
+    grid-area: copy-middle;
 }
 .photograph .textpic .text3 {
-    grid-area: "copy-bottom";
+    grid-area: copy-bottom;
 }
 .photograph .textpic .text h3 {
     font-size: 40px;
     font-weight: 600;
     color: var(--default-text-color);
 }
-.photograph .textpic .pic {
-    grid-area: "iphone";
+.photograph .textpic .piccontainer {
+    grid-area: iphone;
+    /* justify-self: end; */
 }
-.photograph .textpic .pic picture {
-    opacity: 1;
+.photograph .textpic .piccontent {
+    position: sticky;
+    top: 52px;
+    height: calc(100vh - 52px);
 
+    --aspect-ratio: 0.4837209302;
+    min-height: calc(var(--ric-column-width-3)/var(--aspect-ratio));
+    /* min-height: 600px; */
+
+    display: grid;
+    justify-items: end;
+    align-items: center;
 }
-.photograph .textpic .pic picture 
+.photograph .textpic .pic {
+    grid-area: 1/1;
+    opacity: 0;
+    transition: opacity .6s ease-out;
+}
+.photograph .textpic .pic1 {
+    opacity: 1;
+}
+.photograph .textpic .pic2 {
+    opacity: 0;
+}
+.photograph .textpic .pic3 {
+    opacity: 0;
+}
+/* .photograph .textpic .pic picture  */
 /* #endregion photograph */
 
 /* #region generallayout */

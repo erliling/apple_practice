@@ -31,19 +31,23 @@ window.onload = function () {
 
     let lastScrollTop = 0;
 
+    // wipe scroll
     const scrollwrapper = document.querySelector('.photograph .scrollwrapper');
     const images = document.querySelectorAll('.photograph .stickycontainer .image');
     // const totalimages = images.length;
-    // const image3 = document.querySelector('.photograph .stickycontainer .image3');
-    // const slides = document.querySelector('.photograph .stickycontainer .slides');
-
     const maskslide = document.querySelector('.photograph .stickycontainer .maskslide');
     const imagecontent = document.querySelector('.photograph .stickycontainer .imagecontent');
     
+    // disolve scroll
+    const piccontainer = document.querySelector('.photograph .textpic .piccontainer');
+    const pics = document.querySelectorAll('.photograph .textpic .pic');
+
     // shrink img via scroll
     window.addEventListener('scroll', () => {
         
         moveslider(scrollwrapper, images, maskslide, imagecontent);
+
+        disolvescroll(piccontainer, pics);
 
         // Get scroll progress between 0 and 1
         const progress = getprogress(container);
@@ -70,6 +74,26 @@ window.onload = function () {
         changetop(screen, img);
         changetop2(screen2, img2);
     }); 
+}
+
+function disolvescroll(piccontainer, pics) {
+    const rect = piccontainer.getBoundingClientRect();
+    const recttop = -rect.top;
+    const scrollheight = window.innerHeight;
+
+    if (recttop <= 0.5*scrollheight) {
+        pics[0].style.opacity = "1";
+        pics[1].style.opacity = "0";
+        pics[2].style.opacity = "0";
+    } else if ((recttop > 0.5*scrollheight) && (recttop <= 1.5*scrollheight)) {
+        pics[0].style.opacity = "0";
+        pics[1].style.opacity = "1";
+        pics[2].style.opacity = "0";
+    } else if (recttop > 1.5*scrollheight) {
+        pics[0].style.opacity = "0";
+        pics[1].style.opacity = "0";
+        pics[2].style.opacity = "1";
+    }
 }
 
 let reveal1 = 100;
