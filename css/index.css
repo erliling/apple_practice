@@ -1316,6 +1316,22 @@ body {
 .chip .titletext .contenttext {
     text-align: center;
 }
+.chip .littlegrid {
+    margin-top: 60px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--ric-column-width-2);
+    row-gap: 80px;
+    /* width: var(--ric-column-width-8); */
+
+    /* margin-left: var(--ric-column-width-2); */
+}
+.chip .littlegrid .tile {
+    width: var(--ric-column-width-4);
+    border-top: 1px solid var(--default-gray-text-color);
+    padding-top: 20px;
+}
 /* #endregion chip */
 
 /* #region generallayout */
@@ -1447,6 +1463,17 @@ body {
     line-height: 1.286;
     font-weight: 300;
     letter-spacing: -0.016em;
+}
+.contenttext5 {
+    color: var(--default-gray-text-color);
+    font-size: 32px;
+    line-height: 1.125;
+    font-weight: 600;
+    letter-spacing: 0.004em;
+}
+.contenttext5 strong {
+    color: var(--default-text-color);
+    font-weight: 600;
 }
 a {
     font-size: 16px;
