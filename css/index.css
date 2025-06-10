@@ -1293,6 +1293,22 @@ body {
 /* .photograph .textpic .pic picture  */
 /* #endregion photograph */
 
+/* #region chip */
+.chip {
+    padding: 0px 0 216px;
+}
+.chip .bigpic {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.chip .titletext {
+    margin-top: 60px;
+}
+
+/* #endregion chip */
+
 /* #region generallayout */
 .viewportcontent {
     width: 87.5%;
