@@ -1348,7 +1348,7 @@ body {
     display: grid;
     justify-content: center;
     align-content: center;
-    grid-template-columns: repeat(2, var(--ric-column-width-4));
+    grid-template-columns: repeat(2, var(--ric-column-width-3));
     grid-column-gap: var(--ric-column-width-2);
     grid-row-gap: 80px;
     /* width: var(--ric-column-width-8); */
@@ -1383,7 +1383,7 @@ body {
     margin-inline-start: auto;
     margin-inline-end: auto;
 
-    padding-inline: var(--ric-column-width-1);
+    padding-inline: var(--ric-column-width-2);
 }
 .chip .comparedropdown .dropdown {
     font-size: 24px;
@@ -1456,16 +1456,24 @@ body {
     text-align: center;
 }
 .chip .pictext .img {
-    /* position: relative; */
+    position: relative;
     
-    width: 1344px;
-    /* height: 1176px; */
-    
-}
-.chip .pictext .img picture {
+    /* width: 1344px; */
+    height: 1176px;
+    /* z-index: 0; */
+
     /* position: absolute;
     left: 50%;
-    transform: translateX(-50%); */
+     */
+}
+.chip .pictext .img picture {
+    
+    position: absolute;
+    width: 1344px;
+    /* height: 1176px; */
+    left: 50%;
+    /* left: 0; */
+    transform: translateX(-50%);
 
     /* width: 1344px;
     height: 1176px; */
@@ -1475,6 +1483,10 @@ body {
     height: 100%;
 }
 .chip .pictext .textcolumn2 {
+    position: relative;
+    margin-top: -190px;
+    z-index: 1;
+
     display: flex;
     flex-direction: column;
     row-gap: var(--ps-spacing-56);
