@@ -1299,12 +1299,15 @@ body {
     padding: 0px 0 216px;
 }
 .chip .bigpic {
-    width: 100vw;
+    /* width: 100vw; */
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
+.chip .bigpic img {
+    width: 100%;
+    height: auto;
+}
 .chip .titletext {
     margin-top: 60px;
     width: var(--ric-column-width-6);
@@ -1346,6 +1349,44 @@ body {
     height: 1px;
     background-color: var(--default-gray-text-color);
 }
+.chip .comparedropdown {
+    margin-top: 128px;
+
+}
+.chip .comparedropdown .dropdown {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--default-text-color);
+    position: relative;
+
+    width: max-content;
+}
+.chip .comparedropdown .dropdown select {
+    height: 40px;
+    padding: 0 42px 0 22px;
+    border: 1px solid var(--default-gray-text-color);
+    border-radius: 20px;
+    background-color: var(--default-background-color);
+
+    font-size: 24px;
+    line-height: 1.1666;
+    font-weight: 600;
+    letter-spacing: 0.009em;
+    color: var(--default-text-color);
+
+    appearance: none;
+}
+.chip .comparedropdown .dropdown .downarrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    inset-inline-end: 1.2rem;
+
+}
+.chip .comparedropdown .dropdown .downarrow::after {
+    content: ">";
+}
+
 /* #endregion chip */
 
 /* #region generallayout */
