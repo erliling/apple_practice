@@ -1447,12 +1447,30 @@ body {
     margin-top: 128px;
 
     width: var(--ric-column-width-8);
+
+    /* position: relative; */
 }
 .chip .pictext .smallcaption {
+    width: 100%;
     margin-inline: auto;
     text-align: center;
 }
-.chip .pictext .img img {
+.chip .pictext .img {
+    /* position: relative; */
+    
+    width: 1344px;
+    /* height: 1176px; */
+    
+}
+.chip .pictext .img picture {
+    /* position: absolute;
+    left: 50%;
+    transform: translateX(-50%); */
+
+    /* width: 1344px;
+    height: 1176px; */
+}
+.chip .pictext .img picture img {
     width: 100%;
     height: 100%;
 }
