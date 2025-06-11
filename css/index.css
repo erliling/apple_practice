@@ -1282,6 +1282,9 @@ body {
     opacity: 0;
     transition: opacity .6s ease-out;
 }
+.photograph .textpic .pic img{
+    width: 100%;
+}
 .photograph .textpic .pic1 {
     opacity: 1;
 }
@@ -1297,12 +1300,19 @@ body {
 /* #region chip */
 .chip {
     padding: 0px 0 216px;
+    /* position: relative; */
 }
+/* .chip .bigpicwrapper {
+    position: relative;
+} */
 .chip .bigpic {
-    /* width: 100vw; */
-    display: flex;
+    position: relative;
+    width: 100vw;
+    left: 50%; 
+    transform: translateX(-50%);
+    /* display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
 }
 .chip .bigpic img {
     width: 100%;
