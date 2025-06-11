@@ -1267,10 +1267,10 @@ body {
 .photograph .textpic .piccontent {
     position: sticky;
     top: 52px;
-    height: calc(100vh - 52px);
+    /* height: calc(100vh - 52px); */
 
     --aspect-ratio: 0.4837209302;
-    min-height: calc(var(--ric-column-width-3)/var(--aspect-ratio));
+    /* min-height: calc(var(--ric-column-width-3)/var(--aspect-ratio)); */
     /* min-height: 600px; */
 
     display: grid;
@@ -1284,7 +1284,7 @@ body {
 }
 .photograph .textpic .pic img{
     width: 100%;
-    object-fit: contain;
+    /* object-fit: contain; */
 }
 .photograph .textpic .pic1 {
     opacity: 1;
