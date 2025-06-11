@@ -1284,6 +1284,7 @@ body {
 }
 .photograph .textpic .pic img{
     width: 100%;
+    object-fit: contain;
 }
 .photograph .textpic .pic1 {
     opacity: 1;
