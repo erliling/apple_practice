@@ -26,6 +26,8 @@
     --ps-spacing-72: 72px;
     --ps-spacing-80: 80px;
     --ps-spacing-96: 96px;
+    --section-padding: 160px;
+
 
     --shared-media-gallery-responsive-content-absolute-max-width: 1680px;
     --shared-media-gallery-height: 680px;
@@ -1523,6 +1525,85 @@ body {
 
 /* #endregion chip */
 
+/* #region battery */
+.battery {
+    padding: var(--section-padding) 0;
+}
+.battery .viewportcontent {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--ps-spacing-72);
+    align-items: center;
+}
+.battery .title {
+    
+    padding-inline: 16.6666666667%;
+}
+.battery .title .glowsectiontitlecontent {
+    text-align: left;
+}
+.battery .title .glowsectiontitlecontent_position {
+    margin-bottom: 0;
+}
+.battery .textgrid {
+    display: grid;
+    grid-template-areas: "tile1 tile2" "tile1 tile3";
+    grid-template-columns: var(--ric-column-width-4) var(--ric-column-width-2);
+    row-gap: 32px;
+    column-gap: var(--ric-column-width-1);
+}
+.battery .textgrid .tile1 {
+    grid-area: tile1;
+}
+.battery .textgrid .tile2 {
+    grid-area: tile2;
+}
+.battery .textgrid .tile3 {
+    grid-area: tile3;
+}
+.battery .textgrid span {
+    color: var(--default-highlight-text-color);
+    font-size: 40px;
+    display: block;
+    margin: 4px 0;
+}
+.battery figure {
+    width: var(--ric-column-width-8);
+    aspect-ratio: 2.0597014925;
+    margin-inline: auto;
+
+    padding: 0;
+    margin: 0;
+
+    position: relative;
+}
+.battery figure .pic1 {
+    position: relative;
+    z-index: 2;
+
+    /* overflow: hidden; */
+}
+.battery figure .pic2 {
+    position: absolute;
+    left: 1.8304431599%;
+    top: 3.984063745%;
+    width: 96.3391136802%;
+    height: 92.03187251%;
+    
+    z-index: 1;
+    border-radius: 8% / 15%;
+    overflow: hidden;
+}
+.battery figure .pic3 {
+    position: relative;
+    z-index: 0;
+}
+.battery figure picture img {
+    width: 100%;
+    height: 100%;
+}
+/* #endregion battery */
+
 /* #region generallayout */
 .viewportcontent {
     width: 87.5%;
@@ -1894,7 +1975,6 @@ a {
 }
 
 /* #endregion stickyscroll */
-
 /* #region playbar*/
 .playbaraccesscontainer {
     display: flex;
