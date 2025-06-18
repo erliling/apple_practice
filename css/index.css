@@ -19,6 +19,11 @@
     --gallery-width: min(1680px,calc(100vw - 15px));
     --gallery-height: 1050px;
     --radius: 0.042;
+    --section-padding: 160px;
+    --accordion-side-padding-large: 90px;
+    --accordion-fluid-padding: 7.15%;
+    --accordion-side-padding-xlarge: 120px;
+
 
     --ps-spacing-24: 24px;
     --ps-spacing-32: 32px;
@@ -29,7 +34,6 @@
     --ps-spacing-72: 72px;
     --ps-spacing-80: 80px;
     --ps-spacing-96: 96px;
-    --section-padding: 160px;
 
 
     --shared-media-gallery-responsive-content-absolute-max-width: 1680px;
@@ -1891,7 +1895,81 @@ body {
     background-color: var(--global-section-background-color-alt-dark);
 
 }
+.significant .card {
+    padding: 96px 0;
 
+    background-color: var(--default-background-color);
+    border-radius: 28px;
+
+    display: flex;
+
+    overflow: hidden;
+}
+.significant .card .accordion {
+    width: 350px;
+    padding-left: clamp(var(--accordion-side-padding-large),var(--accordion-fluid-padding),var(--accordion-side-padding-xlarge));
+    padding-right: clamp(var(--accordion-side-padding-large),var(--accordion-fluid-padding),var(--accordion-side-padding-xlarge));
+}
+.significant .card .accordion .item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: 24px;
+
+    border-bottom: 1px solid var(--default-gray-text-color);
+
+    padding: 24px 0;
+}
+.significant .card .accordion .item .title {
+    display: flex;
+    justify-content: space-between;
+}
+.significant .card .accordion .item .title h3 {
+    font-size: 28px;
+    line-height: 1.1428;
+    font-weight: 600;
+    color: var(--default-text-color);
+}
+.significant .card .accordion .item .title .icon {
+    /* vertical-align: middle; */
+    display: flex;
+    align-items: center;
+}
+.significant .card .accordion .item .title svg {
+    width: 2em;
+    stroke-width: 2.25;
+    color: var(--default-gray-text-color);
+}
+.significant .card .accordion .item .contenttext {
+    display: none;
+}
+.significant .card .accordion .item .contenttext.expand {
+    display: block;
+}
+
+.significant .card .imgcontainer {
+
+    /* width: 100%; */
+    position: relative;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-grow: 1;
+}
+.significant .card .imgcontainer picture {
+    position: absolute;
+    top: 0;
+
+    opacity: 0;
+}
+.significant .card .imgcontainer picture.expand {
+    opacity: 1;
+}
+.significant .card .imgcontainer .specialpic.expand {
+    left: 0;
+}
 /* #endregion significant */
 
 
