@@ -1832,6 +1832,55 @@ body {
 
 /* #endregion upgrade */
 
+/* #region values */
+.values {
+    padding: var(--section-padding) 0;
+}
+.values .sectiontitlecontent2 {
+    width: var(--ric-column-width-10);
+    margin-bottom: 64px;
+}
+.values .sectiontitlecontent2 h1 {
+    text-align: left;
+
+}
+
+.values .valuecontainer {
+    width: var(--ric-column-width-10);
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 128px;
+}
+.values .valuecontainer .row {
+    display: flex;
+    flex-direction: column;
+    row-gap: 48px;
+}
+.values .valuecontainer .littlegrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    /* gap: 16px; */
+    column-gap: var(--ric-column-width-1);
+}
+.values .valuecontainer .littlegrid .tile {
+    /* margin-top: 24px; */
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+
+}
+.values .valuecontainer a::after {
+    vertical-align: -1px;
+
+    content: ">";
+    padding-inline-start: .24em;
+}
+
+/* #endregion values */
+
+
 /* #region generallayout */
 .viewportcontent {
     width: 87.5%;
