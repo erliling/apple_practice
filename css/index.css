@@ -1,6 +1,9 @@
 /* #region variables*/
 :root {
     --default-background-color: rgb(0, 0, 0);
+    --global-section-background-color-alt-dark: rgb(29, 29, 31);
+    --global-section-background-color-alt: rgb(245,245,247);
+
     --default-background-light-color: #1d1d1f;
     --default-text-color: #f5f5f7;
     --default-gray-text-color: #86868b;
@@ -1835,6 +1838,7 @@ body {
 /* #region values */
 .values {
     padding: var(--section-padding) 0;
+
 }
 .values .sectiontitlecontent2 {
     width: var(--ric-column-width-10);
@@ -1879,6 +1883,16 @@ body {
 }
 
 /* #endregion values */
+
+
+/* #region significant */
+.significant {
+    padding: var(--section-padding) 0 0;
+    background-color: var(--global-section-background-color-alt-dark);
+
+}
+
+/* #endregion significant */
 
 
 /* #region generallayout */
