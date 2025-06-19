@@ -1972,6 +1972,67 @@ body {
 }
 /* #endregion significant */
 
+/* #region apple */
+.apple {
+    padding: var(--section-padding) 0 0;
+    background-color: var(--global-section-background-color-alt-dark);
+
+}
+.apple .carousel3 .carouselgrid {
+    --responsive-gutter-width: calc(50% - min(1680px, 87.5%) /2);
+
+    padding: 0 0 0 var(--responsive-gutter-width);
+}
+.apple .carousel3 .carouselgrid .tile {
+    width: 405px;
+    min-height: 217px;
+
+    background-color: var(--default-background-color);
+    border-radius: 28px;
+
+   
+    padding-right: 28px;
+    padding-bottom: 28px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+.apple .carousel3 .carouselgrid .tile .cardcontent {
+    padding-top: 28px;
+    padding-inline-end: 76px;
+    padding-bottom: 52px;
+    padding-inline-start: 32px;
+}
+.apple .carousel3 .carouselgrid .tile h3 {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+.apple .carousel3 .carouselgrid .tile .btncontainer {
+    /* padding-top: 20px; */
+    /* width: 100%; */
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    /* flex-grow: 1; */
+}
+.apple .carousel3 .carouselgrid .tile .btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--default-highlight-text-color);
+}
+/* #endregion apple */
+
+/* #region compare */
+.compare {
+    padding: var(--section-padding) 0;
+    background-color: var(--global-section-background-color-alt-dark);
+
+}
+
+/* #endregion compare */
 
 /* #region generallayout */
 .viewportcontent {
@@ -2002,7 +2063,7 @@ body {
 .sectiontitlecontent .title {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: flex-end;
     padding: 0 0 80px;
 }
 .sectiontitlecontent .title h1 {
@@ -2108,7 +2169,7 @@ body {
     letter-spacing: -0.016em;
 }
 .contenttext4 {
-    color: var(--default-highlight-text-color);
+    color: var(--default-text-color);
     font-size: 20px;
     line-height: 1.286;
     font-weight: 300;
@@ -2442,6 +2503,7 @@ a.a2 {
 }
 
 /* #endregion stickyscroll */
+
 /* #region playbar*/
 .playbaraccesscontainer {
     display: flex;
