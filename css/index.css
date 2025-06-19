@@ -16,6 +16,7 @@
     --icon-background-color: rgba(66, 66, 69, 0.7);
     --colornav-item-size: 36px;
     --colornav-swatch-size: 28px;
+    --colornav-swatch-size2: 12px;
     --gallery-width: min(1680px,calc(100vw - 15px));
     --gallery-height: 1050px;
     --radius: 0.042;
@@ -1888,7 +1889,6 @@ body {
 
 /* #endregion values */
 
-
 /* #region significant */
 .significant {
     padding: var(--section-padding) 0 0;
@@ -2031,6 +2031,62 @@ body {
     background-color: var(--global-section-background-color-alt-dark);
 
 }
+.compare .comparecard {
+    background-color: var(--default-background-color);
+    border-radius: 28px;
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+.compare .comparecard ul {
+    display: flex;
+    justify-content: center;
+}
+.compare .comparecard ul li {
+    width: 405px;
+}
+.compare .comparecard li .bigpictext {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: center;
+}
+.compare .comparecard li .bigpictext .playbarcontent_modify {
+    position: static;
+    margin: 0;
+}
+.compare .comparecard li .bigpictext .playbarright_modify {
+    background-color: transparent;
+    column-gap: 0;
+}
+.compare .comparecard li .bigpictext .playbarright_modify .bigdotborder {
+    width: 24px;
+    height: 24px;
+}
+.compare .comparecard li .bigpictext .playbarright_modify .bigdot {
+    width: 12px;
+    height: 12px;
+}
+.compare .comparecard li .bigpictext .playbarright_modify .bigdot::after {
+    --colornav-swatch-size: 12px;
+}
+.compare .comparecard li .smallpictext {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    row-gap: 40px;
+
+    padding-top: 52px;
+}
+.compare .comparecard li .smallpictext .row{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 14px;
+}
+.compare .comparecard li .smallpictext .row .smallcaption {
+    text-align: center;
+}
+
 
 /* #endregion compare */
 
@@ -2056,6 +2112,12 @@ body {
     line-height: 1.333;
     letter-spacing: -0.01em;
     color: var(--default-gray-text-color);
+}
+.smallcaption strong{
+    /* font-size: 12px ;
+    line-height: 1.333;
+    letter-spacing: -0.01em; */
+    color: var(--default-text-color);
 }
 .sectiontitlecontent {
     
