@@ -22,6 +22,7 @@
     --gallery-height: 1050px;
     --radius: 0.042;
     --section-padding: 160px;
+    --section-padding-bar: 216px;
     --accordion-side-padding-large: 90px;
     --accordion-fluid-padding: 7.15%;
     --accordion-side-padding-xlarge: 120px;
@@ -250,11 +251,11 @@ body {
     row-gap: 30px;
 }
 .welcome .content .textcontent a {
-    padding: 15px 20px;
+    /* padding: 15px 20px;
     font-size: 16px;
     background-color: var(--default-btn-bg-color);
     color: var(--default-highlight-text-color);
-    border-radius: 25px;
+    border-radius: 25px; */
 }
 .welcome .content .textcontent span {
     font-size: 14px;
@@ -2034,9 +2035,10 @@ body {
 
 /* #region compare */
 .compare {
-    padding: var(--section-padding) 0;
+    padding: var(--section-padding) 0 var(--section-padding-bar);
     background-color: var(--global-section-background-color-alt-dark);
 
+    position: relative;
 }
 .compare .comparecard {
     background-color: var(--default-background-color);
@@ -2100,6 +2102,13 @@ body {
 
 
 /* #endregion compare */
+
+/* #region bottomnav */
+.bottomnav {
+    padding: var(--section-padding) 0 var(--section-padding-bar);
+}
+/* #endregion bottomnav */
+
 
 /* #region generalcomp */
 .primarybtn {
