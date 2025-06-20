@@ -2107,6 +2107,28 @@ body {
 .bottomnav {
     padding: var(--section-padding) 0 var(--section-padding-bar);
 }
+.bottomnav ul {
+    display: flex;
+
+}
+.bottomnav ul li {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+    color: var(--default-text-color);
+
+}
+.bottomnav ul li .graytext {
+    color: var(--default-gray-text-color);
+    font-weight: 300;
+}
+.bottomnav ul .li1 {
+    padding-right: 88px;
+}
+.bottomnav ul .li2 {
+    padding-right: 44px;
+}
 /* #endregion bottomnav */
 
 
@@ -2276,6 +2298,13 @@ body {
     line-height: 1.286;
     font-weight: 300;
     letter-spacing: -0.016em;
+}
+.contenttext9 {
+    color: var(--default-text-color);
+    font-size: 20px;
+    line-height: 1.39;
+    font-weight: 600;
+    letter-spacing: 0.011em;
 }
 .contenttext5 {
     color: var(--default-gray-text-color);
