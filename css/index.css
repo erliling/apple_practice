@@ -2187,7 +2187,86 @@ footer {
     color: #ffffffcc;
     /* text-decoration: underline; */
 }
+.footcontainer .breadcrumb ul li .icon {
+    display: inline-block;
+    width: 6px;
+    height: 11px;
+    background-color: rgba(255,255,255,.4);
+    /* background-color: pink; */
+    mask-image: url(https://www.apple.com/ac/globalfooter/8/en_US/assets/ac-footer/breadcrumbs/separator/icon_large.svg);
+    /* -webkit-mask-image: url(https://www.apple.com/ac/globalfooter/8/en_US/assets/ac-footer/breadcrumbs/separator/icon_large.svg); */
+}
+.footcontainer .content {
+    color: #ffffffcc;
+}
+.footcontainer .content ul {
+    display: flex;
+}
 
+.footcontainer .content ul li {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    flex-basis: 25%;
+
+}
+
+.footcontainer .content ul li .row {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+.footcontainer .content ul li .row .title {
+    font-weight: 600;
+}
+.footcontainer .bottom {
+    padding: 37px 0 11px;
+}
+.footcontainer .bottom .linktext {
+    padding-bottom: 11px;
+
+}
+.footcontainer .bottom .linktext a {
+    font-size: 12px ;
+    line-height: 1.333;
+    letter-spacing: -0.01em;
+    text-decoration: underline;
+}
+.footcontainer .bottom .bottomtext {
+    padding: 11px 0;
+    margin-top: 11px;
+    border-top: 1px solid var(--default-gray-border-color);
+
+}
+.footcontainer .bottom .bottomtext .left ul {
+    display: flex;
+}
+.footcontainer .bottom .bottomtext a {
+    display: inline-block;
+    font-size: 12px;
+    color: #ffffffcc;
+
+    /* padding: 0 4px; */
+
+    padding-inline-end: 4px;
+    /* border-right: 1px solid #ffffffcc; */
+
+    /* text-decoration: underline; */
+}
+.footcontainer .bottom .bottomtext a:hover {
+    text-decoration: underline;
+}
+.footcontainer .bottom .bottomtext a::after {
+    content: "";
+    height: 10px;
+    width: 1px;
+    background-color: #ffffffcc;
+
+    position: absolute;
+    margin: 3px 0;
+    /* margin-right: 4px; */
+
+}
 /* #endregion footercontainer */
 
 
