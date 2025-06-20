@@ -2131,6 +2131,53 @@ body {
 }
 /* #endregion bottomnav */
 
+/* #region footercontainer */
+footer {
+    background-color: var(--global-section-background-color-alt-dark);
+ 
+}
+.footcontainer {
+    max-width: 980px;
+    padding: 0 22px;
+    margin: 0 auto;
+}
+.footcontainer .text {
+    padding: 17px 0 11px;
+}
+.footcontainer .text ul {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+    padding-bottom: 10px;
+
+}
+.footcontainer .text ul li a {
+    font-size: 12px;
+    color: #ffffffcc;
+    text-decoration: underline;
+}
+.footcontainer .text ol {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+    list-style-type: decimal;
+    /* list-style-position: inside; */
+    padding-left: 10px;
+
+}
+.footcontainer .text ol li p{
+    /* display: flex;
+    flex-direction: column;
+    row-gap: 10px; */
+    padding-bottom: 10px;
+}
+
+
+
+/* #endregion footercontainer */
+
 
 /* #region generalcomp */
 .primarybtn {
