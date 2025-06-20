@@ -2143,6 +2143,8 @@ footer {
 }
 .footcontainer .text {
     padding: 17px 0 11px;
+    
+    border-bottom: 1px solid var(--default-gray-border-color);
 }
 .footcontainer .text ul {
     display: flex;
@@ -2174,7 +2176,17 @@ footer {
     padding-bottom: 10px;
 }
 
+.footcontainer .breadcrumb ul {
+    display: flex;
+    column-gap: 10px;
+    padding: 17px 0;
+}
 
+.footcontainer .breadcrumb ul li a {
+    font-size: 12px;
+    color: #ffffffcc;
+    /* text-decoration: underline; */
+}
 
 /* #endregion footercontainer */
 
