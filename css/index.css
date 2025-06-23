@@ -2250,8 +2250,8 @@ footer {
     /* margin-top: .175em; */
 
     /* background-image: url(https://www.apple.com/ac/globalfooter/8/en_US/assets/ac-footer/breadcrumbs/separator/icon_large.svg); */
-    mask-image: url(https://www.apple.com/ac/globalfooter/8/en_US/assets/ac-footer/breadcrumbs/separator/icon_large.svg);
-    /* mask-image: url(../image/icon_large.svg); */
+    /* mask-image: url(https://www.apple.com/ac/globalfooter/8/en_US/assets/ac-footer/breadcrumbs/separator/icon_large.svg); */
+    mask-image: url(../image/icon_large.svg);
     /* -webkit-mask-image: url(https://www.apple.com/ac/globalfooter/8/en_US/assets/ac-footer/breadcrumbs/separator/icon_large.svg); */
     mask-size: contain;
     mask-repeat: no-repeat;
