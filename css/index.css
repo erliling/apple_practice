@@ -1968,7 +1968,7 @@ body {
 }
 .significant .card .imgcontainer picture {
     position: absolute;
-    top: 0;
+    /* top: 0; */
 
     opacity: 0;
 }
@@ -1977,6 +1977,7 @@ body {
 }
 .significant .card .imgcontainer .specialpic.expand {
     left: 0;
+    /* top: 0; */
 }
 /* #endregion significant */
 
