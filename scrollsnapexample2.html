@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll Snap Start Example</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #f8f8f8;
+        padding-top: 60px; /* Space for the fixed header */
+      }
+
+      .fixed-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        background-color: #333;
+        color: white;
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+      }
+
+      h1 {
+        margin-top: 30px;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .gallery-wrapper {
+        width: 90vw; /* Container for the scrollable gallery */
+        height: 400px;
+        border: 3px solid #007bff;
+        border-radius: 10px;
+        overflow: hidden; /* Hide scrollbar for cleaner look if desired, or let it show */
+        margin-bottom: 20px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      .image-gallery {
+        width: 100%;
+        height: 100%;
+        display: flex; /* Use flex to arrange images horizontally */
+        overflow-x: scroll; /* Enable horizontal scrolling */
+        scroll-behavior: smooth; /* Smooth scrolling when snapped */
+
+        /* --- SCROLL SNAP PROPERTIES FOR THE CONTAINER --- */
+        scroll-snap-type: x proximity; /* Snap horizontally, mandatory snapping */
+        /* Crucial: Offset the snap port from the top to account for the fixed header */
+        scroll-padding-top: 60px; /* If items had vertical scroll, they'd snap below the header */
+        scroll-padding-inline-start: 20px; /* Offset snap start from left edge */
+        scroll-padding-inline-end: 20px; /* Offset snap end from right edge */
+
+        /* For a better visual experience when scrolling to the ends */
+        padding-inline-start: 20px;
+        padding-inline-end: 20px;
+        box-sizing: border-box; /* Include padding in gallery-wrapper's width */
+      }
+
+      .gallery-item {
+        flex: 0 0 calc(90vw - 40px); /* Fill most of the container width (90vw - padding) */
+        max-width: 600px; /* Max width for individual images */
+        height: 100%;
+        margin-inline: 10px; /* Space between images */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden; /* Hide any image overflow */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+        /* --- SCROLL SNAP PROPERTY FOR THE ITEM --- */
+        scroll-snap-align: center; /* Each item will snap to the start (left) of the scrollport */
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Cover the item area without distorting */
+        display: block;
+      }
+
+      /* Optional: Style scrollbar for better visibility */
+      .image-gallery::-webkit-scrollbar {
+        height: 10px;
+      }
+      .image-gallery::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 5px;
+      }
+      .image-gallery::-webkit-scrollbar-track {
+        background-color: #f1f1f1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="fixed-header">
+      <h2>My Awesome Gallery</h2>
+    </div>
+
+    <h1>Travel Destinations</h1>
+
+    <div class="gallery-wrapper">
+      <div class="image-gallery">
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1502602898666-81c2f1e22026?fit=crop&w=600&h=400"
+            alt="Paris, France"
+          />
+        </div>
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1549176378-b118b65287f3?fit=crop&w=600&h=400"
+            alt="New York City, USA"
+          />
+        </div>
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1542459701-d85c490a07d3?fit=crop&w=600&h=400"
+            alt="Tokyo, Japan"
+          />
+        </div>
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1544498308-410a00632208?fit=crop&w=600&h=400"
+            alt="Rome, Italy"
+          />
+        </div>
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1528164344705-47d2f4705030?fit=crop&w=600&h=400"
+            alt="Sydney, Australia"
+          />
+        </div>
+      </div>
+    </div>
+
+    <p>
+      Scroll the gallery horizontally. Each image will snap to the start of the
+      view.
+    </p>
+    <p>
+      Notice how the `scroll-padding-inline-start` keeps the image from touching
+      the left edge of the border, and `scroll-padding-top` would keep content
+      from being obscured by the fixed header if we were scrolling vertically.
+    </p>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll Snap Center Example</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        justify-content: center;
+        background-color: #f0f0f0;
+      }
+
+      h1 {
+        margin-bottom: 30px;
+        color: #333;
+      }
+
+      .carousel-container {
+        width: 80vw; /* Container width */
+        height: 300px;
+        display: flex; /* Use flex to lay out images horizontally */
+        overflow-x: scroll; /* Enable horizontal scrolling */
+        scroll-behavior: smooth; /* Optional: smooth scrolling */
+
+        /* --- SCROLL SNAP PROPERTIES FOR THE CONTAINER --- */
+        scroll-snap-type: x mandatory; /* Snap horizontally, mandatory snapping */
+        /* Add some padding to see the centering effect more clearly */
+        padding-inline: calc((100% - 250px) / 2);
+        /* Centers a 250px wide image */
+        scroll-padding-inline: calc((100% - 250px) / 2);
+        /* Matches padding */
+      }
+
+      .carousel-item {
+        flex: 0 0 250px; /* Prevent shrinking/growing, fixed width of 250px */
+        height: 250px;
+        margin-inline: 15px; /* Spacing between items */
+        background-color: white;
+        border: 2px solid #555;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
+        color: #555;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+        /* --- SCROLL SNAP PROPERTY FOR THE ITEM --- */
+        scroll-snap-align: start; /* This item will center itself in the view */
+      }
+
+      .carousel-item:first-child {
+        margin-inline-start: 0;
+      } /* Remove extra start margin due to padding */
+      .carousel-item:last-child {
+        margin-inline-end: 0;
+      } /* Remove extra end margin due to padding */
+
+      /* Optional: style scrollbar */
+      .carousel-container::-webkit-scrollbar {
+        height: 8px;
+      }
+      .carousel-container::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 4px;
+      }
+      .carousel-container::-webkit-scrollbar-track {
+        background-color: #f1f1f1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Centered Image Carousel</h1>
+
+    <div class="carousel-container">
+      <div class="carousel-item">1</div>
+      <div class="carousel-item">2</div>
+      <div class="carousel-item">3</div>
+      <div class="carousel-item">4</div>
+      <div class="carousel-item">5</div>
+      <div class="carousel-item">6</div>
+    </div>
+
+    <p>
+      Scroll horizontally. Notice how each item snaps to the center of the
+      viewport.
+    </p>
+  </body>
+</html>
