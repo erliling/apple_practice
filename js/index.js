@@ -34,9 +34,8 @@ window.onload = function () {
     // wipe scroll
     const scrollwrapper = document.querySelector('.photograph .scrollwrapper');
     const images = document.querySelectorAll('.photograph .stickycontainer .image');
-    // const totalimages = images.length;
     const maskslide = document.querySelector('.photograph .stickycontainer .maskslide');
-    const imagecontent = document.querySelector('.photograph .stickycontainer .imagecontent');
+    const stickycontainer = document.querySelector('.photograph .stickycontainer');
     
     // disolve scroll
     const piccontainer = document.querySelector('.photograph .textpic .piccontainer');
@@ -45,7 +44,7 @@ window.onload = function () {
     // shrink img via scroll
     window.addEventListener('scroll', () => {
         
-        moveslider(scrollwrapper, images, maskslide, imagecontent);
+        moveslider(scrollwrapper, images, maskslide, stickycontainer);
 
         disolvescroll(piccontainer, pics);
 
@@ -96,17 +95,18 @@ function disolvescroll(piccontainer, pics) {
     }
 }
 
+
 let reveal1 = 100;
 let reveal2 = 100;
-function moveslider(scrollwrapper, images, maskslide, imagecontent) {
+function moveslider(scrollwrapper, images, maskslide, stickycontainer) {
 
     const rect = scrollwrapper.getBoundingClientRect();
     const recttop = -rect.top;
-    const rectheight = rect.height;
     const scrollheight = window.innerHeight;
-    const imagescale = 1.2;
     
     if (recttop <= scrollheight) {
+        // 1st pic
+
         const progress = Math.min(Math.max(recttop / scrollheight, 0), 1);
         // console.log("recttop1: " + recttop);
         // console.log("progress1: " + progress);
@@ -119,6 +119,8 @@ function moveslider(scrollwrapper, images, maskslide, imagecontent) {
         images[1].style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
 
     } else if ((recttop > scrollheight) && (recttop <= 2*scrollheight) && (reveal1 > 0)) {
+        // work around
+
         const progress = Math.min(Math.max(recttop / scrollheight, 0), 1);
         reveal1 = 100 - progress * 100;
         const imgWidth = images[1].getBoundingClientRect().width;
@@ -127,6 +129,8 @@ function moveslider(scrollwrapper, images, maskslide, imagecontent) {
         images[1].style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
     
     } else if ((recttop > scrollheight) && (recttop <= 2*scrollheight) && (reveal1 <= 0)) {
+        // 2nd pic
+
         // console.log("reveal1: "+ reveal1);
         const adjusttop = recttop - scrollheight;
         const progress = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
@@ -137,6 +141,8 @@ function moveslider(scrollwrapper, images, maskslide, imagecontent) {
         images[2].style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
 
     } else if ((recttop > 2*scrollheight) && (recttop <= 3*scrollheight) && (reveal2 > 0)) {
+        // work around
+
         const adjusttop = recttop - scrollheight;
         const progress = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
         reveal2 = 100 - progress * 100;
@@ -152,6 +158,9 @@ function moveslider(scrollwrapper, images, maskslide, imagecontent) {
         // console.log('adjustprogress: ' + adjustprogress);
         // imagecontent.style.transform = `scale(${adjustprogress})`;
     } else if ((recttop > 2*scrollheight) && (reveal2 <= 0)) {
+        // 3rd pic
+        // shrink via scroll to the top
+
         // console.log('here');
         // imagecontent.style.transform = `scale(0.7)`;
         const adjusttop = recttop - scrollheight*2;
@@ -163,14 +172,19 @@ function moveslider(scrollwrapper, images, maskslide, imagecontent) {
         const moveoffset = -20 * progress;
         maskslide.style.left = `${moveoffset}px`;
         
-        console.log('progress2: ' + progress);
+        // console.log('progress2: ' + progress);
+
         // min scale is 0.8, max scale is 1
+        
         let adjustprogress = 1 - 0.2 * progress;
-        console.log('adjustprogress2: ' + adjustprogress);
-        if (adjustprogress > 0.98) {
-            adjustprogress = 1;
-        }
-        imagecontent.style.transform = `scale(${adjustprogress})`;
+        // console.log('adjustprogress2: ' + adjustprogress);
+        // if (adjustprogress > 0.98) {
+        //     adjustprogress = 1;
+        // }
+        // stickycontainer.style.transform = `scale(${adjustprogress})`;
+
+        // not shrink the img, but enlarge the frame around it
+
     }
     
 }

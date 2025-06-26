@@ -1095,7 +1095,7 @@ body {
     /* overflow: hidden; */
     /* position: absolute; */
 }
-.photograph .stickycontainer .imagecontent .imglist {
+.photograph .stickycontainer .imglist {
     
     width: var(--gallery-width);
     height: var(--gallery-height);
