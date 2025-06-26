@@ -32,6 +32,9 @@
     --sk-button-padding-vertical: 12px;
     --sk-button-border-width: 1px;
     --sk-button-border-radius: 980px;
+    --gallery-width: min(1680px,calc(100vw - 15px));
+    --gallery-height: 1050px;
+    --r-localnav-height: 52px;
 
 
     --ps-spacing-24: 24px;
@@ -1060,57 +1063,86 @@ body {
     padding: 0px 0 216px;
     position: relative;
 }
+/* scroll container */
 .photograph .scrollwrapper {
     height: 300vh;
 
     position: relative;
-
-    /* padding: 0 5px; */
 }
+/* scroll sticky item */
 .photograph .stickycontainer {
     position: sticky;
-    top: -150px;
-    height: 100vh;
-    /* overflow: hidden; */
-
-    /* padding: 0 5px; */
+    /* top: -150px; */
+    top: calc(50vh - var(--gallery-height)/2 + var(--r-localnav-height)/2);
+    /* height: 100vh; */
 }
+/* scroll sticky item inside, relative */
 .photograph .stickycontainer .imagecontainer {
-    /* position: absolute;
-    top: 0;
-    left: 0; */
-    position: relative;
+    /* position: relative;
 
     width: 100%;
-    height: 180%;
+    height: 100%;
 
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
     
-    /* border: 6px solid #000;
-    border-radius: 50px;
-    display: inline-block; */
-    /* overflow: hidden; */
-
-    /* padding: 0 10px; */
 }
+/* scroll sticky item inside, absolute */
 .photograph .stickycontainer .imagecontent {
+    /* width: 100%;
+    height: 100%; */
+    /* overflow: hidden; */
+    /* position: absolute; */
+}
+.photograph .stickycontainer .imagecontent .imglist {
+    
+    width: var(--gallery-width);
+    height: var(--gallery-height);
+
+    display: grid;
+}
+.photograph .stickycontainer .image {
+
+    grid-area: 1/1;
+    /* position: absolute;
+    top: 0;
+    left: 0; */
+
     width: 100%;
     height: 100%;
-    overflow: hidden;
-    position: absolute;
 
-    /* transition: scale 0.3s ease-out;; */
+    background-repeat: no-repeat;
+    background-position: 50%;
+    /* background-size: cover; */
+    background-size: 1680px 1050px;
 }
+.photograph .stickycontainer .image1 {
+    background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/photographic-styles/hero_style1__ejjuw3sw3t0m_large_2x.jpg);
+}
+.photograph .stickycontainer .image2 {
+    background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/photographic-styles/hero_style2__gbh1d5shzmie_large_2x.jpg);
+
+    clip-path: inset(0 0 0 100%);
+}
+.photograph .stickycontainer .image3 {
+    background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/photographic-styles/hero_style3__ebrovo7velkm_large_2x.jpg);
+
+    clip-path: inset(0 0 0 100%);
+}
+.photograph .stickycontainer .maskslide {
+    width: 20px;
+    height: 100%;
+    background-color: var(--default-background-color);
+
+    position: absolute;
+    top: 0;
+    left: 100%;
+}
+
 .photograph .stickycontainer .frame {
     width: 100%;
     height: 100%;
-    /* position: relative; */
-    /* background-color: pink; */
-    /* position: absolute;
-    left: 0;
-    top: 0; */
 }
 .photograph .stickycontainer .frame .corner {
     position: absolute;
@@ -1179,69 +1211,7 @@ body {
     background-color: var(--default-frame-color);
     left: 0;
 }
-.photograph .stickycontainer .image {
-    /* border: 5px solid var(--default-background-color); */
-    /* border-radius: 50px; */
-    /* display: block;
-    object-fit: cover; */
-    /* overflow: hidden; */
-    /* visibility: hidden; */
-    /* display: none; */
 
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    /* --slide-width: 1680px;
-    --slide-height: 1050px; */
-    /* width: var(--slide-width);
-    height: var(--slide-height); */
-    width: 100%;
-    height: 100%;
-    /* transform: scale(1.2);
-    transform-origin: center center; */
-
-    /* background-size: var(--slide-width) var(--slide-height); */
-    background-repeat: no-repeat;
-    background-position: 50%;
-    background-size: cover;
-
-    
-    /* transition: clip-path 0.3s ease-out; */
-}
-.photograph .stickycontainer .image1 {
-    background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/photographic-styles/hero_style1__ejjuw3sw3t0m_large_2x.jpg);
-    /* z-index: 3; */
-}
-.photograph .stickycontainer .image2 {
-    background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/photographic-styles/hero_style2__gbh1d5shzmie_large_2x.jpg);
-    /* z-index: 2; */
-    clip-path: inset(0 0 0 100%);
-
-}
-.photograph .stickycontainer .image3 {
-    background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/photographic-styles/hero_style3__ebrovo7velkm_large_2x.jpg);
-    /* z-index: 1; */
-    clip-path: inset(0 0 0 100%);
-
-}
-.photograph .stickycontainer .maskslide {
-    width: 20px;
-    height: 100%;
-    background-color: var(--default-background-color);
-    /* background-color: pink; */
-
-    position: absolute;
-    top: 0;
-    left: 100%;
-
-    /* transform: translateX(50%) ; */
-
-    /* transition: left 0.3s ease-out; */
-}
-.photograph .viewportcontent {
-
-}
 .photograph .contenttext_pos {
     margin-top: 300px;
     width: var(--ric-column-width-6);
