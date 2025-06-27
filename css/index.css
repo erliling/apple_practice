@@ -1065,9 +1065,9 @@ body {
 }
 /* scroll container */
 .photograph .scrollwrapper {
-    /* height: 300vh; */
+    height: 300vh;
     /* 1050 * 2 */
-    height: 2100px;
+    /* height: 2100px; */
 
     position: relative;
 }
