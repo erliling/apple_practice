@@ -1065,7 +1065,9 @@ body {
 }
 /* scroll container */
 .photograph .scrollwrapper {
-    height: 300vh;
+    /* height: 300vh; */
+    /* 1050 * 2 */
+    height: 2100px;
 
     position: relative;
 }
@@ -1075,6 +1077,7 @@ body {
     /* top: -150px; */
     top: calc(50vh - var(--gallery-height)/2 + var(--r-localnav-height)/2);
     /* height: 100vh; */
+    height: var(--gallery-height);
 }
 /* scroll sticky item inside, relative */
 .photograph .stickycontainer .imagecontainer {
@@ -1141,10 +1144,13 @@ body {
 }
 
 .photograph .stickycontainer .frame {
+    position: absolute;
     width: 100%;
     height: 100%;
 }
 .photograph .stickycontainer .frame .corner {
+    --radius: 0.06;
+
     position: absolute;
     width: calc(var(--gallery-height) * var(--radius));
     height: calc(100% * var(--radius));
@@ -1185,14 +1191,14 @@ body {
 }
 .photograph .stickycontainer .frame .rect.top {
     width: 100%;
-    height: 10px;
+    height: 0px;
     left: 0;
     background-color: var(--default-frame-color);
     top: 0;
 }
 .photograph .stickycontainer .frame .rect.bottom {
     width: 100%;
-    height: 10px;
+    height: 0px;
     left: 0;
     background-color: var(--default-frame-color);
     bottom: 0;
@@ -1213,7 +1219,7 @@ body {
 }
 
 .photograph .contenttext_pos {
-    margin-top: 300px;
+    margin-top: var(--ps-spacing-72);
     width: var(--ric-column-width-6);
     text-align: center;
     margin-inline-start: auto;

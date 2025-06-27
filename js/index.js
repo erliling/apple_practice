@@ -103,9 +103,12 @@ function moveslider(scrollwrapper, images, maskslide, stickycontainer) {
     const rect = scrollwrapper.getBoundingClientRect();
     const recttop = -rect.top;
     const scrollheight = window.innerHeight;
+    console.log(recttop, scrollheight);
+    // const scrollheight = 1050;
     
     if (recttop <= scrollheight) {
         // 1st pic
+        console.log("1st pic");
 
         const progress = Math.min(Math.max(recttop / scrollheight, 0), 1);
         // console.log("recttop1: " + recttop);
@@ -120,6 +123,7 @@ function moveslider(scrollwrapper, images, maskslide, stickycontainer) {
 
     } else if ((recttop > scrollheight) && (recttop <= 2*scrollheight) && (reveal1 > 0)) {
         // work around
+        console.log("work around1");
 
         const progress = Math.min(Math.max(recttop / scrollheight, 0), 1);
         reveal1 = 100 - progress * 100;
@@ -130,8 +134,9 @@ function moveslider(scrollwrapper, images, maskslide, stickycontainer) {
     
     } else if ((recttop > scrollheight) && (recttop <= 2*scrollheight) && (reveal1 <= 0)) {
         // 2nd pic
+        console.log("2nd pic");
 
-        // console.log("reveal1: "+ reveal1);
+        console.log("reveal1: "+ reveal1);
         const adjusttop = recttop - scrollheight;
         const progress = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
         reveal2 = 100 - progress * 100;
@@ -142,6 +147,7 @@ function moveslider(scrollwrapper, images, maskslide, stickycontainer) {
 
     } else if ((recttop > 2*scrollheight) && (recttop <= 3*scrollheight) && (reveal2 > 0)) {
         // work around
+        console.log("world around 2");
 
         const adjusttop = recttop - scrollheight;
         const progress = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
@@ -160,8 +166,9 @@ function moveslider(scrollwrapper, images, maskslide, stickycontainer) {
     } else if ((recttop > 2*scrollheight) && (reveal2 <= 0)) {
         // 3rd pic
         // shrink via scroll to the top
+        console.log("3rd pic");
+        console.log(reveal2);
 
-        // console.log('here');
         // imagecontent.style.transform = `scale(0.7)`;
         const adjusttop = recttop - scrollheight*2;
         const progress = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
@@ -176,7 +183,7 @@ function moveslider(scrollwrapper, images, maskslide, stickycontainer) {
 
         // min scale is 0.8, max scale is 1
         
-        let adjustprogress = 1 - 0.2 * progress;
+        // let adjustprogress = 1 - 0.2 * progress;
         // console.log('adjustprogress2: ' + adjustprogress);
         // if (adjustprogress > 0.98) {
         //     adjustprogress = 1;
@@ -184,7 +191,38 @@ function moveslider(scrollwrapper, images, maskslide, stickycontainer) {
         // stickycontainer.style.transform = `scale(${adjustprogress})`;
 
         // not shrink the img, but enlarge the frame around it
+        //rect left, width: 100
+        //rect right, width: 100
+        //rect bottom, height: 100
+        //corner bottom left, left: 90px, bottom: 100px
+        //corner bottom right, right: 90px, bottom: 100px
+        const rect_left = document.querySelector('.photograph .stickycontainer .frame .rect.left');
+        const rect_right = document.querySelector('.photograph .stickycontainer .frame .rect.right');
+        const rect_bottom = document.querySelector('.photograph .stickycontainer .frame .rect.bottom');
+        const corner_bot_left = document.querySelector('.photograph .stickycontainer .frame .corner.bottom.left');
+        const corner_bot_right = document.querySelector('.photograph .stickycontainer .frame .corner.bottom.right');
 
+        // create 10 - 100 width
+        // let speed = 1;
+        let new_progress = Math.pow(progress, 0.2);
+
+        let left_width = 10 + 90 * new_progress;
+        rect_left.style.width = `${left_width}px`;
+
+        let right_width = 10 + 90 * new_progress;
+        rect_right.style.width = `${right_width}px`;
+
+        let bottom_width = 10 + 90 * new_progress;
+        rect_bottom.style.height = `${bottom_width}px`;
+
+        let corner_lr = 90 * new_progress;
+        let corner_bottom = 100 * new_progress;
+
+        corner_bot_left.style.left = `${corner_lr}px`;
+        corner_bot_left.style.bottom = `${corner_bottom}px`;
+
+        corner_bot_right.style.right = `${corner_lr}px`;
+        corner_bot_right.style.bottom = `${corner_bottom}px`;
     }
     
 }
