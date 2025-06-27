@@ -1065,18 +1065,15 @@ body {
 }
 /* scroll container */
 .photograph .scrollwrapper {
-    height: 300vh;
-    /* 1050 * 2 */
-    /* height: 2100px; */
+    /* margin-top: 112px; */
+    height: 400vh;
 
     position: relative;
 }
 /* scroll sticky item */
 .photograph .stickycontainer {
     position: sticky;
-    /* top: -150px; */
     top: calc(50vh - var(--gallery-height)/2 + var(--r-localnav-height)/2);
-    /* height: 100vh; */
     height: var(--gallery-height);
 }
 /* scroll sticky item inside, relative */
@@ -1122,6 +1119,7 @@ body {
 }
 .photograph .stickycontainer .image1 {
     background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/photographic-styles/hero_style1__ejjuw3sw3t0m_large_2x.jpg);
+    
 }
 .photograph .stickycontainer .image2 {
     background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/photographic-styles/hero_style2__gbh1d5shzmie_large_2x.jpg);

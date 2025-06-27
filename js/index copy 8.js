@@ -103,21 +103,18 @@ function moveslider(scrollwrapper, images, maskslide, stickycontainer) {
     const rect = scrollwrapper.getBoundingClientRect();
     const recttop = -rect.top;
     const scrollheight = window.innerHeight;
+    console.log(recttop, scrollheight);
     // const scrollheight = 1050;
     let top = window.innerHeight * 0.5 - 1050/2 + 52/2;
-    console.log(recttop, scrollheight);
+    // console.log(top);
     
-    
-    let adjust_recttop = recttop + top;
-    // console.log(adjust_recttop, scrollheight);
-
-    if ((adjust_recttop <= scrollheight)) {
+    if ((recttop > top * -1) && (recttop <= scrollheight)) {
         // 1st pic
         console.log("1st pic");
 
         // rectop has to start from 0, otherwise progress won't start from 0
-        // let adjustrecttop = recttop + top;
-        const progress = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
+        let adjustrecttop = recttop + top;
+        const progress = Math.min(Math.max(adjustrecttop / scrollheight, 0), 1);
         // console.log("recttop1: " + recttop);
         console.log("progress1: " + progress);
         // console.log("scrollheight: " + scrollheight);
@@ -128,24 +125,24 @@ function moveslider(scrollwrapper, images, maskslide, stickycontainer) {
         maskslide.style.left = `${moveoffset}px`;
         images[1].style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
 
-    } else if ((adjust_recttop > scrollheight) && (adjust_recttop <= 2*scrollheight) && (reveal1 > 0)) {
+    } else if ((recttop > scrollheight) && (recttop <= 2*scrollheight) && (reveal1 > 0)) {
         // work around
         console.log("work around1");
 
-        // let adjustrecttop = recttop + top;
-        const progress = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
+        let adjustrecttop = recttop + top;
+        const progress = Math.min(Math.max(adjustrecttop / scrollheight, 0), 1);
         reveal1 = 100 - progress * 100;
         const imgWidth = images[1].getBoundingClientRect().width;
         const moveoffset = imgWidth * reveal1 * 0.01;
         maskslide.style.left = `${moveoffset}px`;
         images[1].style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
     
-    } else if ((adjust_recttop > scrollheight) && (adjust_recttop <= 2*scrollheight) && (reveal1 <= 0)) {
+    } else if ((recttop > scrollheight) && (recttop <= 2*scrollheight) && (reveal1 <= 0)) {
         // 2nd pic
         console.log("2nd pic");
 
         console.log("reveal1: "+ reveal1);
-        const adjusttop = adjust_recttop - scrollheight;
+        const adjusttop = recttop - scrollheight + top;
         const progress = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
         reveal2 = 100 - progress * 100;
         const imgWidth = images[2].getBoundingClientRect().width;
@@ -153,11 +150,11 @@ function moveslider(scrollwrapper, images, maskslide, stickycontainer) {
         maskslide.style.left = `${moveoffset}px`;
         images[2].style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
 
-    } else if ((adjust_recttop > 2*scrollheight) && (adjust_recttop <= 3*scrollheight) && (reveal2 > 0)) {
+    } else if ((recttop > 2*scrollheight) && (recttop <= 3*scrollheight) && (reveal2 > 0)) {
         // work around
         console.log("world around 2");
 
-        const adjusttop = adjust_recttop - scrollheight;
+        const adjusttop = recttop - scrollheight + top;
         const progress = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
         reveal2 = 100 - progress * 100;
         const imgWidth = images[2].getBoundingClientRect().width;
@@ -171,14 +168,14 @@ function moveslider(scrollwrapper, images, maskslide, stickycontainer) {
         // const adjustprogress = 1 - 0.2 * progress;
         // console.log('adjustprogress: ' + adjustprogress);
         // imagecontent.style.transform = `scale(${adjustprogress})`;
-    } else if ((adjust_recttop > 2*scrollheight) && (reveal2 <= 0)) {
+    } else if ((recttop > 2*scrollheight) && (reveal2 <= 0)) {
         // 3rd pic
         // shrink via scroll to the top
         console.log("3rd pic");
         console.log(reveal2);
 
         // imagecontent.style.transform = `scale(0.7)`;
-        const adjusttop = adjust_recttop - scrollheight*2;
+        const adjusttop = recttop - scrollheight*2 + top;
         const progress = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
         
         // const wholeprogress = Math.min(Math.max(recttop / rectheight, 0), 1);
