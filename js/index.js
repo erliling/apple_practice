@@ -96,102 +96,125 @@ function disolvescroll(piccontainer, pics) {
 }
 
 
+
 let reveal1 = 100;
 let reveal2 = 100;
+let progress1 = 0;
+let progress2 = 0;
+let progress3 = 0;
+
 function moveslider(scrollwrapper, images, maskslide) {
 
     const rect = scrollwrapper.getBoundingClientRect();
     const recttop = -rect.top;
     const scrollheight = window.innerHeight;
     let top = window.innerHeight * 0.5 - 1050/2 + 52/2;
-    console.log(recttop, scrollheight);
-    
-    
+    // console.log(recttop, scrollheight);
     let adjust_recttop = recttop + top;
+    console.log(adjust_recttop, scrollheight);
 
     if (adjust_recttop <= scrollheight) {
-        // 1st pic
         console.log("1st pic");
 
+        if ((progress2 < 1) && (progress2 > 0)) {
+            const adjusttop = adjust_recttop - scrollheight;
+            progress2 = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
+            revealimage(reveal2, progress2, images[2], maskslide);
+        }
+
         // rectop has to start from 0, otherwise progress won't start from 0
-        // let adjustrecttop = recttop + top;
-        const progress = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
-        // console.log("recttop1: " + recttop);
-        console.log("progress1: " + progress);
-        // console.log("scrollheight: " + scrollheight);
-        reveal1 = 100 - progress * 100;
-        const imgWidth = images[1].getBoundingClientRect().width;
-        const moveoffset = imgWidth * reveal1 * 0.01;
-        // const adjustmoveoffset = moveoffset * imagescale;
-        maskslide.style.left = `${moveoffset}px`;
-        images[1].style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
+        progress1 = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
+        console.log("progress1: " + progress1);
+        
+        revealimage(reveal1, progress1, images[1], maskslide);
 
     } else if ((adjust_recttop > scrollheight) && (adjust_recttop <= 2*scrollheight)) {
         // 2nd pic
         console.log("2nd pic");
 
-        console.log("reveal1: "+ reveal1);
+        if (progress1 < 1) {
+            progress1 = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
+            revealimage(reveal1, progress1, images[1], maskslide);
+        }
+
+        // console.log("reveal1: "+ reveal1);
         const adjusttop = adjust_recttop - scrollheight;
-        const progress = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
-        reveal2 = 100 - progress * 100;
-        const imgWidth = images[2].getBoundingClientRect().width;
-        const moveoffset = imgWidth * reveal2 * 0.01;
-        maskslide.style.left = `${moveoffset}px`;
-        images[2].style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
+        progress2 = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
+        console.log("progress2: " + progress2);
+        
+        revealimage(reveal2, progress2, images[2], maskslide);
 
     } else if (adjust_recttop > 2*scrollheight) {
-        // 3rd pic
-        // shrink via scroll to the top
         console.log("3rd pic");
-        console.log(reveal2);
 
-        // imagecontent.style.transform = `scale(0.7)`;
+        if (progress2 < 1) {
+            const adjusttop = adjust_recttop - scrollheight;
+            progress2 = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
+            revealimage(reveal2, progress2, images[2], maskslide);
+        }
+
+        // console.log("reveal2: "+ reveal2);
         const adjusttop = adjust_recttop - scrollheight*2;
-        const progress = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
+        progress3 = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
         
-        // const wholeprogress = Math.min(Math.max(recttop / rectheight, 0), 1);
-
         // let slider move from 0 to -20
-        const moveoffset = -20 * progress;
+        const moveoffset = -20 * progress3;
         maskslide.style.left = `${moveoffset}px`;
-        
-        // not shrink the img, but enlarge the frame around it
-        //rect left, width: 100
-        //rect right, width: 100
-        //rect bottom, height: 100
-        //corner bottom left, left: 90px, bottom: 100px
-        //corner bottom right, right: 90px, bottom: 100px
-        const rect_left = document.querySelector('.photograph .stickycontainer .frame .rect.left');
-        const rect_right = document.querySelector('.photograph .stickycontainer .frame .rect.right');
-        const rect_bottom = document.querySelector('.photograph .stickycontainer .frame .rect.bottom');
-        const corner_bot_left = document.querySelector('.photograph .stickycontainer .frame .corner.bottom.left');
-        const corner_bot_right = document.querySelector('.photograph .stickycontainer .frame .corner.bottom.right');
 
-        // create 10 - 100 width
-        let new_progress = Math.pow(progress, 0.2);
-
-        let left_width = 10 + 90 * new_progress;
-        rect_left.style.width = `${left_width}px`;
-
-        let right_width = 10 + 90 * new_progress;
-        rect_right.style.width = `${right_width}px`;
-
-        let bottom_width = 10 + 90 * new_progress;
-        rect_bottom.style.height = `${bottom_width}px`;
-
-        let corner_lr = 90 * new_progress;
-        let corner_bottom = 100 * new_progress;
-
-        corner_bot_left.style.left = `${corner_lr}px`;
-        corner_bot_left.style.bottom = `${corner_bottom}px`;
-
-        corner_bot_right.style.right = `${corner_lr}px`;
-        corner_bot_right.style.bottom = `${corner_bottom}px`;
+        // enlargeframe(progress);
     }
-    
+}
+
+function enlargeframe(progress) {
+    // not shrink the img, but enlarge the frame around it
+    //rect left, width: 100
+    //rect right, width: 100
+    //rect bottom, height: 100
+    //corner bottom left, left: 90px, bottom: 100px
+    //corner bottom right, right: 90px, bottom: 100px
+    const rect_left = document.querySelector('.photograph .stickycontainer .frame .rect.left');
+    const rect_right = document.querySelector('.photograph .stickycontainer .frame .rect.right');
+    const rect_bottom = document.querySelector('.photograph .stickycontainer .frame .rect.bottom');
+    const corner_bot_left = document.querySelector('.photograph .stickycontainer .frame .corner.bottom.left');
+    const corner_bot_right = document.querySelector('.photograph .stickycontainer .frame .corner.bottom.right');
+
+    // create 10 - 100 width
+    let new_progress = Math.pow(progress, 0.2);
+
+    let left_width = 10 + 90 * new_progress;
+    rect_left.style.width = `${left_width}px`;
+
+    let right_width = 10 + 90 * new_progress;
+    rect_right.style.width = `${right_width}px`;
+
+    let bottom_width = 10 + 90 * new_progress;
+    rect_bottom.style.height = `${bottom_width}px`;
+
+    let corner_lr = 90 * new_progress;
+    let corner_bottom = 100 * new_progress;
+
+    corner_bot_left.style.left = `${corner_lr}px`;
+    corner_bot_left.style.bottom = `${corner_bottom}px`;
+
+    corner_bot_right.style.right = `${corner_lr}px`;
+    corner_bot_right.style.bottom = `${corner_bottom}px`;
+}
+
+function revealimage(reveal, progress, imgobj, maskslide) {
+
+    reveal = 100 - progress * 100;
+    console.log("reveal: "+ reveal);
+
+    const imgWidth = imgobj.getBoundingClientRect().width;
+    const moveoffset = imgWidth * reveal * 0.01;
+
+    // + 20 cause want to hide it in the beginning
+    maskslide.style.left = `${moveoffset + 10}px`;
+    imgobj.style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
 }
 
 function getminimagewidth() {
+
     // get width-8 property in css
     const vw = window.innerWidth / 100;
 
