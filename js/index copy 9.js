@@ -44,7 +44,7 @@ window.onload = function () {
     // shrink img via scroll
     window.addEventListener('scroll', () => {
         
-        moveslider(scrollwrapper, images, maskslide);
+        moveslider(scrollwrapper, images, maskslide, stickycontainer);
 
         disolvescroll(piccontainer, pics);
 
@@ -98,18 +98,20 @@ function disolvescroll(piccontainer, pics) {
 
 let reveal1 = 100;
 let reveal2 = 100;
-function moveslider(scrollwrapper, images, maskslide) {
+function moveslider(scrollwrapper, images, maskslide, stickycontainer) {
 
     const rect = scrollwrapper.getBoundingClientRect();
     const recttop = -rect.top;
     const scrollheight = window.innerHeight;
+    // const scrollheight = 1050;
     let top = window.innerHeight * 0.5 - 1050/2 + 52/2;
     console.log(recttop, scrollheight);
     
     
     let adjust_recttop = recttop + top;
+    // console.log(adjust_recttop, scrollheight);
 
-    if (adjust_recttop <= scrollheight) {
+    if ((adjust_recttop <= scrollheight)) {
         // 1st pic
         console.log("1st pic");
 
@@ -126,7 +128,19 @@ function moveslider(scrollwrapper, images, maskslide) {
         maskslide.style.left = `${moveoffset}px`;
         images[1].style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
 
-    } else if ((adjust_recttop > scrollheight) && (adjust_recttop <= 2*scrollheight)) {
+    } else if ((adjust_recttop > scrollheight) && (adjust_recttop <= 2*scrollheight) && (reveal1 > 0)) {
+        // work around
+        console.log("work around1");
+
+        // let adjustrecttop = recttop + top;
+        const progress = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
+        reveal1 = 100 - progress * 100;
+        const imgWidth = images[1].getBoundingClientRect().width;
+        const moveoffset = imgWidth * reveal1 * 0.01;
+        maskslide.style.left = `${moveoffset}px`;
+        images[1].style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
+    
+    } else if ((adjust_recttop > scrollheight) && (adjust_recttop <= 2*scrollheight) && (reveal1 <= 0)) {
         // 2nd pic
         console.log("2nd pic");
 
@@ -139,7 +153,25 @@ function moveslider(scrollwrapper, images, maskslide) {
         maskslide.style.left = `${moveoffset}px`;
         images[2].style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
 
-    } else if (adjust_recttop > 2*scrollheight) {
+    } else if ((adjust_recttop > 2*scrollheight) && (adjust_recttop <= 3*scrollheight) && (reveal2 > 0)) {
+        // work around
+        console.log("world around 2");
+
+        const adjusttop = adjust_recttop - scrollheight;
+        const progress = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
+        reveal2 = 100 - progress * 100;
+        const imgWidth = images[2].getBoundingClientRect().width;
+        const moveoffset = imgWidth * reveal2 * 0.01;
+        maskslide.style.left = `${moveoffset}px`;
+        images[2].style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
+
+        // const wholeprogress = Math.min(Math.max(recttop / rectheight, 0), 1);
+        
+        // console.log('progress: ' + progress);
+        // const adjustprogress = 1 - 0.2 * progress;
+        // console.log('adjustprogress: ' + adjustprogress);
+        // imagecontent.style.transform = `scale(${adjustprogress})`;
+    } else if ((adjust_recttop > 2*scrollheight) && (reveal2 <= 0)) {
         // 3rd pic
         // shrink via scroll to the top
         console.log("3rd pic");
@@ -155,6 +187,17 @@ function moveslider(scrollwrapper, images, maskslide) {
         const moveoffset = -20 * progress;
         maskslide.style.left = `${moveoffset}px`;
         
+        // console.log('progress2: ' + progress);
+
+        // min scale is 0.8, max scale is 1
+        
+        // let adjustprogress = 1 - 0.2 * progress;
+        // console.log('adjustprogress2: ' + adjustprogress);
+        // if (adjustprogress > 0.98) {
+        //     adjustprogress = 1;
+        // }
+        // stickycontainer.style.transform = `scale(${adjustprogress})`;
+
         // not shrink the img, but enlarge the frame around it
         //rect left, width: 100
         //rect right, width: 100
@@ -168,6 +211,7 @@ function moveslider(scrollwrapper, images, maskslide) {
         const corner_bot_right = document.querySelector('.photograph .stickycontainer .frame .corner.bottom.right');
 
         // create 10 - 100 width
+        // let speed = 1;
         let new_progress = Math.pow(progress, 0.2);
 
         let left_width = 10 + 90 * new_progress;
