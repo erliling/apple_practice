@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relative Overlap Example</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+      }
+      .box {
+        width: 150px;
+        height: 150px;
+        padding: 20px;
+        border: 2px solid #333;
+        text-align: center;
+        font-size: 1.2em;
+        line-height: 150px; /* Vertically center text */
+        box-sizing: border-box; /* Include padding/border in width/height */
+      }
+
+      .box1 {
+        background-color: lightblue;
+        position: relative; /* Make it relative */
+        left: 20px; /* Move 20px to the right from its normal spot */
+        top: 20px; /* Move 20px down from its normal spot */
+        z-index: 2; /* Bring this one on top */
+      }
+
+      .box2 {
+        background-color: lightcoral;
+        position: relative; /* Make it relative */
+        left: -20px; /* Move 20px to the left from its normal spot */
+        top: -20px; /* Move 20px up from its normal spot */
+        margin-top: -50px; /* To bring it closer initially for easier overlap */
+        z-index: 1; /* Keep this one below */
+      }
+
+      .container {
+        border: 2px dashed gray;
+        padding: 50px;
+        margin-bottom: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Relative Boxes Overlapping</h2>
+      <div class="box box1">Box 1 (z-index: 2)</div>
+      <div class="box box2">Box 2 (z-index: 1)</div>
+      <div class="box box3">Box 3 (Normal Flow)</div>
+    </div>
+  </body>
+</html>

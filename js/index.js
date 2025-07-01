@@ -13,6 +13,8 @@ window.onload = function () {
     window.addEventListener('resize', () => {
         carsouselcontentcontainer.style.height = `${carouselcontent.offsetHeight}px`;
         minimagewidth = getminimagewidth();
+        
+        resizeslider(images, maskslide);
     })
 
     const container = document.getElementsByClassName('stickycontainer')[0];
@@ -158,10 +160,11 @@ function moveslider(scrollwrapper, images, maskslide) {
         progress3 = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
         
         // let slider move from 0 to -20
-        const moveoffset = -20 * progress3;
+        let new_progress = Math.pow(progress3, 0.2);
+        const moveoffset = -20 * new_progress;
         maskslide.style.left = `${moveoffset}px`;
 
-        // enlargeframe(progress);
+        enlargeframe(progress3);
     }
 }
 
@@ -178,9 +181,10 @@ function enlargeframe(progress) {
     const corner_bot_left = document.querySelector('.photograph .stickycontainer .frame .corner.bottom.left');
     const corner_bot_right = document.querySelector('.photograph .stickycontainer .frame .corner.bottom.right');
 
-    // create 10 - 100 width
+    // progress 0 - 1, increase more in the beginning
     let new_progress = Math.pow(progress, 0.2);
 
+    // create 10 - 100 width
     let left_width = 10 + 90 * new_progress;
     rect_left.style.width = `${left_width}px`;
 
@@ -200,6 +204,18 @@ function enlargeframe(progress) {
     corner_bot_right.style.bottom = `${corner_bottom}px`;
 }
 
+function resizeslider(images, maskslide) {
+    // const images = document.querySelectorAll('.photograph .stickycontainer .image');
+    // console.log('resizeslider: ' + reveal1);
+    if (reveal1 == 100) {
+        const imgWidth = images[0].getBoundingClientRect().width;
+        const moveoffset = imgWidth * reveal1 * 0.01;
+        maskslide.style.left = `${moveoffset}px`;
+
+        // console.log('resizeslider: ' + moveoffset);
+    }
+}
+
 function revealimage(reveal, progress, imgobj, maskslide) {
 
     reveal = 100 - progress * 100;
@@ -209,11 +225,12 @@ function revealimage(reveal, progress, imgobj, maskslide) {
     const moveoffset = imgWidth * reveal * 0.01;
 
     // hide maskslide in the beginning, maskslide is outside of img
-    maskslide.style.left = `${moveoffset + 20}px`;
+    maskslide.style.left = `${moveoffset}px`;
     imgobj.style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
 }
 
 function getminimagewidth() {
+    // console.log('resize');
 
     // get width-8 property in css
     const vw = window.innerWidth / 100;
