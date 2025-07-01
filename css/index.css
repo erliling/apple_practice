@@ -1085,7 +1085,7 @@ body {
     display: grid;
 
     margin-inline: auto;
-    padding-inline: auto;
+    /* padding-inline: auto; */
 }
 .photograph .stickycontainer .image {
 

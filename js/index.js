@@ -208,8 +208,8 @@ function revealimage(reveal, progress, imgobj, maskslide) {
     const imgWidth = imgobj.getBoundingClientRect().width;
     const moveoffset = imgWidth * reveal * 0.01;
 
-    // + 20 cause want to hide it in the beginning
-    maskslide.style.left = `${moveoffset + 10}px`;
+    // hide maskslide in the beginning, maskslide is outside of img
+    maskslide.style.left = `${moveoffset + 20}px`;
     imgobj.style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
 }
 
