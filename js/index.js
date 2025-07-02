@@ -36,7 +36,7 @@ window.onload = function () {
     // wipe scroll
     const scrollwrapper = document.querySelector('.photograph .scrollwrapper');
     const images = document.querySelectorAll('.photograph .stickycontainer .image');
-    const maskslide = document.querySelector('.photograph .stickycontainer .maskslide');
+    const overlay = document.querySelector('.photograph .stickycontainer .frame');
     const stickycontainer = document.querySelector('.photograph .stickycontainer');
     
     // disolve scroll
@@ -48,6 +48,7 @@ window.onload = function () {
         
         // moveslider(scrollwrapper, images, maskslide);
 
+        moveslider_apple(scrollwrapper, images, overlay);
         disolvescroll(piccontainer, pics);
 
         // Get scroll progress between 0 and 1
@@ -176,7 +177,7 @@ function moveslider(scrollwrapper, images, maskslide) {
     }
 }
 
-function moveslider_apple(scrollwrapper, images, maskslide) {
+function moveslider_apple(scrollwrapper, images, overlay) {
     const rect = scrollwrapper.getBoundingClientRect();
     const recttop = -rect.top;
     const scrollheight = window.innerHeight;
@@ -191,12 +192,16 @@ function moveslider_apple(scrollwrapper, images, maskslide) {
         progress1 = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
         // console.log("progress1: " + progress1);
         
-        reveal = 100 - progress * 100;
+        reveal1 = 100 - progress1 * 100;
         // console.log("reveal: "+ reveal);
 
         const imgWidth = imgobj.getBoundingClientRect().width;
-        const moveoffset = imgWidth * reveal * 0.01;
+        const moveoffset = imgWidth * reveal1 * 0.01;
         imgobj.style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
+
+        // transform: matrix(1, 0, 0, 1, -1163.62, 0);
+        const adjustmoveoffset = moveoffset - imgWidth;
+        overlay.style.transform = `matrix(1, 0, 0, 1, ${adjustmoveoffset}, 0)`;
     }
 }
 
