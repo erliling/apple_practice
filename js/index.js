@@ -46,7 +46,7 @@ window.onload = function () {
     // shrink img via scroll
     window.addEventListener('scroll', () => {
         
-        moveslider(scrollwrapper, images, maskslide);
+        // moveslider(scrollwrapper, images, maskslide);
 
         disolvescroll(piccontainer, pics);
 
@@ -173,6 +173,30 @@ function moveslider(scrollwrapper, images, maskslide) {
         maskslide.style.left = `${moveoffset}px`;
 
         enlargeframe(progress3);
+    }
+}
+
+function moveslider_apple(scrollwrapper, images, maskslide) {
+    const rect = scrollwrapper.getBoundingClientRect();
+    const recttop = -rect.top;
+    const scrollheight = window.innerHeight;
+    let top = window.innerHeight * 0.5 - 1050/2 + 52/2;
+    let adjust_recttop = recttop + top;
+    const imgobj = images[1];
+
+    if (adjust_recttop <= scrollheight) {
+        console.log("1st pic");
+
+        // rectop has to start from 0, otherwise progress won't start from 0
+        progress1 = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
+        // console.log("progress1: " + progress1);
+        
+        reveal = 100 - progress * 100;
+        // console.log("reveal: "+ reveal);
+
+        const imgWidth = imgobj.getBoundingClientRect().width;
+        const moveoffset = imgWidth * reveal * 0.01;
+        imgobj.style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
     }
 }
 
