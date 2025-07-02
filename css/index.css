@@ -12,8 +12,8 @@
     --default-highlight-text-color: #fff;
     --default-link-color: #2997ff;
     --default-btn-bg-color: #0071E3;
-    /* --default-frame-color: rgb(0, 0, 0); */
-    --default-frame-color: pink;
+    --default-frame-color: rgb(0, 0, 0);
+    /* --default-frame-color: pink; */
     --welcome-apple-headline-height: 54px;
     --icon-background-color: rgba(66, 66, 69, 0.7);
     --colornav-item-size: 36px;

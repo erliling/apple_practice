@@ -145,6 +145,13 @@ function moveslider(scrollwrapper, images, maskslide) {
         console.log("progress2: " + progress2);
         
         revealimage(reveal2, progress2, images[2], maskslide);
+        
+        console.log("progress3: " + progress3);
+        if ((progress3 < 1) && (progress3 > 0)) {
+            const adjusttop = adjust_recttop - scrollheight*2;
+            progress3 = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
+            enlargeframe(progress3);
+        }
 
     } else if (adjust_recttop > 2*scrollheight) {
         console.log("3rd pic");
@@ -158,6 +165,7 @@ function moveslider(scrollwrapper, images, maskslide) {
         // console.log("reveal2: "+ reveal2);
         const adjusttop = adjust_recttop - scrollheight*2;
         progress3 = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
+        console.log("progress3: " + progress3);
         
         // let slider move from 0 to -20
         let new_progress = Math.pow(progress3, 0.2);
