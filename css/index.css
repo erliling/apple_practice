@@ -1093,6 +1093,8 @@ body {
     left: 0;
     top: 0;
     margin-top: calc(var(--gallery-height) * -1); */
+
+    overflow: hidden;
 }
 .photograph .stickycontainer .image {
 

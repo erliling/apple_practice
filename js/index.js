@@ -14,7 +14,7 @@ window.onload = function () {
         carsouselcontentcontainer.style.height = `${carouselcontent.offsetHeight}px`;
         minimagewidth = getminimagewidth();
         
-        resizeslider(images, maskslide);
+        // resizeslider(images, maskslide);
     })
 
     const container = document.getElementsByClassName('stickycontainer')[0];
@@ -222,6 +222,7 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist) {
             let adjust_adjust_rectop = adjust_recttop - 2*scrollheight;
             progress3 = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
             shrinkimglist(progress3, imglist);
+            expandimg(progress3, images);
         }
 
     } else if (adjust_recttop > 2*scrollheight) {
@@ -239,7 +240,7 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist) {
         // when the third img completely revealed
         if (progress2 == 1) {
             shrinkimglist(progress3, imglist);
-            // expandimg(progress3, images);
+            expandimg(progress3, images);
         }
 
     }
@@ -265,6 +266,7 @@ function expandimg(progress, images) {
     if (adjust_progress <= 1.14275) {
         images.forEach((image, index) => {
             image.style.transform = `matrix(${adjust_progress}, 0, 0, ${adjust_progress}, 0, 0)`;
+            image.style.clipPath = `inset(0 0 0 0)`;
         });
         
     }
@@ -277,6 +279,7 @@ function revealimg(imgobj, progress, overlay, imgnum) {
     const moveoffset = imgWidth * reveal * 0.01;
     // Everything to the left of that 709.207px mark will be completely hidden.
     imgobj.style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
+    imgobj.style.transform = `matrix(1, 0, 0, 1, 0, 0)`;
 
     // transform: matrix(1, 0, 0, 1, -1163.62, 0);
     const adjustmoveoffset = moveoffset - imgWidth - imgnum * imgWidth;
