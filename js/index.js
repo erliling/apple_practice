@@ -211,7 +211,7 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist) {
 
         revealimg(images[2], progress2, overlay, 1);
 
-        // when slide to second img, reveal the left of the first img
+        // when slide to second img, remove the left of the first img
         if (progress1 < 1) {
             progress1 = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
             revealimg(images[1], progress1, overlay, 0);
@@ -223,14 +223,22 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist) {
         let adjust_adjust_rectop = adjust_recttop - 2*scrollheight;
         progress3 = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
 
-        // if (progress3)
-        // shrinkimglist(progress3, imglist);
+        // move frame more to the left, -10px
 
-        // when slide to third img, reveal the left of the second img
+        // overlay.style.transform = `matrix(1, 0, 0, 1, ${adjustmoveoffset}, 0)`;
+
+        // if (progress3)
+        
+
+        // when slide to third img, remove the left of the second img
         if (progress2 < 1) {
             let adjust_adjust_rectop = adjust_recttop - scrollheight;
             progress2 = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
             revealimg(images[2], progress2, overlay, 1);
+        }
+        // when the third img completely revealed
+        if (progress2 == 1) {
+            shrinkimglist(progress3, imglist);
         }
 
     }
@@ -241,7 +249,7 @@ function shrinkimglist(progress, imglist) {
 
     const adjust_progress = 1 - progress;
     // console.log ("adjust progress: " + adjust_progress);
-    if (adjust_progress >= 0.87) {
+    if (adjust_progress >= 0.85) {
         imglist.style.transform = `matrix(${adjust_progress}, 0, 0, ${adjust_progress}, 0, 0)`;
     }
 
