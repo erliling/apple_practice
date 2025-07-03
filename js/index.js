@@ -36,6 +36,7 @@ window.onload = function () {
     // wipe scroll
     const scrollwrapper = document.querySelector('.photograph .scrollwrapper');
     const images = document.querySelectorAll('.photograph .stickycontainer .image');
+    const imglist = document.querySelector('.photograph .stickycontainer .imglist');
     const overlay = document.querySelector('.photograph .stickycontainer .frame');
     const stickycontainer = document.querySelector('.photograph .stickycontainer');
     
@@ -48,7 +49,7 @@ window.onload = function () {
         
         // moveslider(scrollwrapper, images, maskslide);
 
-        moveslider_apple(scrollwrapper, images, overlay);
+        moveslider_apple(scrollwrapper, images, overlay, imglist);
         disolvescroll(piccontainer, pics);
 
         // Get scroll progress between 0 and 1
@@ -177,13 +178,12 @@ function moveslider(scrollwrapper, images, maskslide) {
     }
 }
 
-function moveslider_apple(scrollwrapper, images, overlay) {
+function moveslider_apple(scrollwrapper, images, overlay, imglist) {
     const rect = scrollwrapper.getBoundingClientRect();
     const recttop = -rect.top;
     const scrollheight = window.innerHeight;
     let top = window.innerHeight * 0.5 - 1050/2 + 52/2;
     let adjust_recttop = recttop + top;
-    const imgobj = images[1];
 
     if (adjust_recttop <= scrollheight) {
         console.log("1st pic");
@@ -192,17 +192,79 @@ function moveslider_apple(scrollwrapper, images, overlay) {
         progress1 = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
         // console.log("progress1: " + progress1);
         
-        reveal1 = 100 - progress1 * 100;
         // console.log("reveal: "+ reveal);
 
-        const imgWidth = imgobj.getBoundingClientRect().width;
-        const moveoffset = imgWidth * reveal1 * 0.01;
-        imgobj.style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
+        revealimg(images[1], progress1, overlay, 0);
 
-        // transform: matrix(1, 0, 0, 1, -1163.62, 0);
-        const adjustmoveoffset = moveoffset - imgWidth;
-        overlay.style.transform = `matrix(1, 0, 0, 1, ${adjustmoveoffset}, 0)`;
+        // when slide back, hide the second img complete
+        if ((progress2 < 1) && (progress2 > 0)) {
+            const adjusttop = adjust_recttop - scrollheight;
+            progress2 = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
+            revealimg(images[2], progress2, overlay, 1);
+        }
+
+    } else if ((adjust_recttop > scrollheight) && (adjust_recttop <= 2*scrollheight)) {
+        console.log("2nd pic");
+        let adjust_adjust_rectop = adjust_recttop - scrollheight;
+        progress2 = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
+        // reveal2 = 100 - progress2 * 100;
+
+        revealimg(images[2], progress2, overlay, 1);
+
+        // when slide to second img, reveal the left of the first img
+        if (progress1 < 1) {
+            progress1 = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
+            revealimg(images[1], progress1, overlay, 0);
+        }
+
+    } else if (adjust_recttop > 2*scrollheight) {
+        console.log("3rd pic");
+
+        let adjust_adjust_rectop = adjust_recttop - 2*scrollheight;
+        progress3 = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
+
+        // if (progress3)
+        // shrinkimglist(progress3, imglist);
+
+        // when slide to third img, reveal the left of the second img
+        if (progress2 < 1) {
+            let adjust_adjust_rectop = adjust_recttop - scrollheight;
+            progress2 = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
+            revealimg(images[2], progress2, overlay, 1);
+        }
+
     }
+}
+
+function shrinkimglist(progress, imglist) {
+    // transform: matrix(0.875083, 0, 0, 0.875083, 0, 0);
+
+    const adjust_progress = 1 - progress;
+    // console.log ("adjust progress: " + adjust_progress);
+    if (adjust_progress >= 0.87) {
+        imglist.style.transform = `matrix(${adjust_progress}, 0, 0, ${adjust_progress}, 0, 0)`;
+    }
+
+}
+
+function expandimg() {
+    // transform: matrix(1.14275, 0, 0, 1.14275, 0, 0);
+
+}
+
+function revealimg(imgobj, progress, overlay, imgnum) {
+    const reveal = 100 - progress * 100;
+
+    const imgWidth = imgobj.getBoundingClientRect().width;
+    const moveoffset = imgWidth * reveal * 0.01;
+    // Everything to the left of that 709.207px mark will be completely hidden.
+    imgobj.style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
+
+    // transform: matrix(1, 0, 0, 1, -1163.62, 0);
+    const adjustmoveoffset = moveoffset - imgWidth - imgnum * imgWidth;
+    // console.log("adjustmoveoffset: " + adjustmoveoffset);
+    // overlay continue moves to the left with a negative offset
+    overlay.style.transform = `matrix(1, 0, 0, 1, ${adjustmoveoffset}, 0)`;
 }
 
 function enlargeframe(progress) {
