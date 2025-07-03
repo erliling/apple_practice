@@ -15,6 +15,7 @@ window.onload = function () {
         minimagewidth = getminimagewidth();
         
         // resizeslider(images, maskslide);
+        resizeframe(images, overlay);
     })
 
     const container = document.getElementsByClassName('stickycontainer')[0];
@@ -286,6 +287,18 @@ function revealimg(imgobj, progress, overlay, imgnum) {
     // console.log("adjustmoveoffset: " + adjustmoveoffset);
     // overlay continue moves to the left with a negative offset
     overlay.style.transform = `matrix(1, 0, 0, 1, ${adjustmoveoffset}, 0)`;
+}
+
+function resizeframe(images, overlay) {
+    // const images = document.querySelectorAll('.photograph .stickycontainer .image');
+    // console.log('resizeslider: ' + reveal1);
+    if (reveal2 == 100) {
+        const imgWidth = images[0].getBoundingClientRect().width;
+        const moveoffset = imgWidth * -1;
+        overlay.style.transform = `matrix(1, 0, 0, 1, ${moveoffset}, 0)`;
+
+        // console.log('resizeslider: ' + moveoffset);
+    }
 }
 
 function enlargeframe(progress) {
