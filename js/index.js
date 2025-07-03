@@ -196,7 +196,7 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist) {
 
         revealimg(images[1], progress1, overlay, 0);
 
-        // when slide back, hide the second img complete
+        // when slide back, hide the second img completely
         if ((progress2 < 1) && (progress2 > 0)) {
             const adjusttop = adjust_recttop - scrollheight;
             progress2 = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
@@ -217,18 +217,18 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist) {
             revealimg(images[1], progress1, overlay, 0);
         }
 
+        // when slide back, expand frame to 1
+        if ((progress3 < 1) && (progress3 > 0)) {
+            let adjust_adjust_rectop = adjust_recttop - 2*scrollheight;
+            progress3 = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
+            shrinkimglist(progress3, imglist);
+        }
+
     } else if (adjust_recttop > 2*scrollheight) {
         console.log("3rd pic");
 
         let adjust_adjust_rectop = adjust_recttop - 2*scrollheight;
         progress3 = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
-
-        // move frame more to the left, -10px
-
-        // overlay.style.transform = `matrix(1, 0, 0, 1, ${adjustmoveoffset}, 0)`;
-
-        // if (progress3)
-        
 
         // when slide to third img, remove the left of the second img
         if (progress2 < 1) {
@@ -239,6 +239,7 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist) {
         // when the third img completely revealed
         if (progress2 == 1) {
             shrinkimglist(progress3, imglist);
+            // expandimg(progress3, images);
         }
 
     }
@@ -247,7 +248,9 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist) {
 function shrinkimglist(progress, imglist) {
     // transform: matrix(0.875083, 0, 0, 0.875083, 0, 0);
 
-    const adjust_progress = 1 - progress;
+    // use pow to shrink slower in the beginning
+    const adjust_progress = 1 - Math.pow(progress, 2);
+
     // console.log ("adjust progress: " + adjust_progress);
     if (adjust_progress >= 0.85) {
         imglist.style.transform = `matrix(${adjust_progress}, 0, 0, ${adjust_progress}, 0, 0)`;
@@ -255,9 +258,16 @@ function shrinkimglist(progress, imglist) {
 
 }
 
-function expandimg() {
+function expandimg(progress, images) {
     // transform: matrix(1.14275, 0, 0, 1.14275, 0, 0);
 
+    const adjust_progress = 1 + Math.pow(progress, 2);
+    if (adjust_progress <= 1.14275) {
+        images.forEach((image, index) => {
+            image.style.transform = `matrix(${adjust_progress}, 0, 0, ${adjust_progress}, 0, 0)`;
+        });
+        
+    }
 }
 
 function revealimg(imgobj, progress, overlay, imgnum) {
