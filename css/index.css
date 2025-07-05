@@ -36,6 +36,7 @@
     --gallery-width: min(1680px,calc(100vw - 15px));
     --gallery-height: 1050px;
     --r-localnav-height: 52px;
+    --border-size: 6px;
 
 
     --ps-spacing-24: 24px;
@@ -1078,6 +1079,25 @@ body {
 
     /* background-color: pink; */
 }
+.photograph .stickycontainer .frameadjust {
+    /* width: calc(100% + var(--border-size));
+    height: calc(100% + var(--border-size)); */
+
+    /* width: calc(var(--gallery-width) + var(--border-size));
+    height: calc(var(--gallery-height) + var(--border-size)); */
+
+    /* let the frame closely cover outside of the image */
+    width: calc(var(--gallery-width) - var(--border-size));
+    height: calc(var(--gallery-height) + var(--border-size));
+
+    margin-inline: auto;
+
+    border: var(--border-size) solid #000;
+
+    /* use position relative to overlap instead of position absolute */
+    position: relative;
+    z-index: 3;
+}
 .photograph .stickycontainer .imglist {
     
     width: var(--gallery-width);
@@ -1095,6 +1115,12 @@ body {
     margin-top: calc(var(--gallery-height) * -1); */
 
     overflow: hidden;
+
+    /* use position relative to overlap instead of position absolute */
+    z-index: 2;
+    /* move up, actually it's the height of the frameadjust */
+    margin-top: calc(-1 * var(--gallery-height) - var(--border-size));
+    /* margin-top: calc(-1 * var(--gallery-height)); */
 }
 .photograph .stickycontainer .image {
 

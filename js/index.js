@@ -39,6 +39,8 @@ window.onload = function () {
     const images = document.querySelectorAll('.photograph .stickycontainer .image');
     const imglist = document.querySelector('.photograph .stickycontainer .imglist');
     const overlay = document.querySelector('.photograph .stickycontainer .frame');
+    const overlayadjust = document.querySelector('.photograph .stickycontainer .frameadjust');
+
     const stickycontainer = document.querySelector('.photograph .stickycontainer');
     
     // disolve scroll
@@ -50,7 +52,7 @@ window.onload = function () {
         
         // moveslider(scrollwrapper, images, maskslide);
 
-        moveslider_apple(scrollwrapper, images, overlay, imglist);
+        moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust);
         disolvescroll(piccontainer, pics);
 
         // Get scroll progress between 0 and 1
@@ -179,7 +181,7 @@ function moveslider(scrollwrapper, images, maskslide) {
     }
 }
 
-function moveslider_apple(scrollwrapper, images, overlay, imglist) {
+function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust) {
     const rect = scrollwrapper.getBoundingClientRect();
     const recttop = -rect.top;
     const scrollheight = window.innerHeight;
@@ -222,7 +224,7 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist) {
         if ((progress3 < 1) && (progress3 > 0)) {
             let adjust_adjust_rectop = adjust_recttop - 2*scrollheight;
             progress3 = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
-            shrinkimglist(progress3, imglist);
+            shrinkimglist(progress3, imglist, overlayadjust);
             expandimg(progress3, images);
         }
 
@@ -240,14 +242,14 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist) {
         }
         // when the third img completely revealed
         if (progress2 == 1) {
-            shrinkimglist(progress3, imglist);
+            shrinkimglist(progress3, imglist, overlayadjust);
             expandimg(progress3, images);
         }
 
     }
 }
 
-function shrinkimglist(progress, imglist) {
+function shrinkimglist(progress, imglist, overlayadjust) {
     // transform: matrix(0.875083, 0, 0, 0.875083, 0, 0);
 
     // use pow to shrink slower in the beginning
@@ -256,6 +258,7 @@ function shrinkimglist(progress, imglist) {
     // console.log ("adjust progress: " + adjust_progress);
     if (adjust_progress >= 0.85) {
         imglist.style.transform = `matrix(${adjust_progress}, 0, 0, ${adjust_progress}, 0, 0)`;
+        overlayadjust.style.transform = `matrix(${adjust_progress}, 0, 0, ${adjust_progress}, 0, 0)`;
     }
 
 }
