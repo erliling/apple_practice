@@ -1067,14 +1067,14 @@ body {
 }
 /* scroll container */
 .photograph .scrollwrapper {
-    height: 400vh;
+    height: 330vh;
 
     position: relative;
 }
 /* scroll sticky item */
 .photograph .stickycontainer {
     position: sticky;
-    top: calc(50vh - var(--gallery-height)/2 + var(--r-localnav-height)/2);
+    top: calc(50vh - var(--gallery-height)/2 + var(--r-localnav-height)/2 - 50px);
     height: var(--gallery-height);
 
     /* background-color: pink; */
