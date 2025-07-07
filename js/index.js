@@ -16,7 +16,7 @@ window.onload = function () {
         
         // resizeslider(images, maskslide);
         // const imglist = document.querySelector('.photograph .stickycontainer .imglist');
-        // resizeframe(imglist, overlay);
+        resizeframe(images, slides, overlay);
     })
 
     const container = document.getElementsByClassName('stickycontainer')[0];
@@ -38,6 +38,7 @@ window.onload = function () {
     // wipe scroll
     const scrollwrapper = document.querySelector('.photograph .scrollwrapper');
     const images = document.querySelectorAll('.photograph .stickycontainer .image');
+    const slides = document.querySelectorAll('.photograph .stickycontainer .slide');
     const imglist = document.querySelector('.photograph .stickycontainer .imglist');
     const overlay = document.querySelector('.photograph .stickycontainer .frame');
     const overlayadjust = document.querySelector('.photograph .stickycontainer .frameadjust');
@@ -110,6 +111,7 @@ let reveal2 = 100;
 let progress1 = 0;
 let progress2 = 0;
 let progress3 = 0;
+let scale = 1;
 
 function moveslider(scrollwrapper, images, maskslide) {
 
@@ -260,6 +262,7 @@ function shrinkimglist(progress, imglist, overlayadjust) {
     if (adjust_progress >= 0.85) {
         imglist.style.transform = `matrix(${adjust_progress}, 0, 0, ${adjust_progress}, 0, 0)`;
         overlayadjust.style.transform = `matrix(${adjust_progress}, 0, 0, ${adjust_progress}, 0, 0)`;
+        scale = adjust_progress;
     }
 
 }
@@ -273,6 +276,7 @@ function expandimg(progress, images) {
             image.style.transform = `matrix(${adjust_progress}, 0, 0, ${adjust_progress}, 0, 0)`;
             image.style.clipPath = `inset(0 0 0 0)`;
         });
+        
         
     }
 }
@@ -293,15 +297,21 @@ function revealimg(imgobj, progress, overlay, imgnum) {
     overlay.style.transform = `matrix(1, 0, 0, 1, ${adjustmoveoffset}, 0)`;
 }
 
-function resizeframe(imglist, overlay) {
-    // const images = document.querySelectorAll('.photograph .stickycontainer .image');
-    // console.log('resizeslider: ' + reveal1);
+function resizeframe(images, slides, overlay) {
     if (reveal2 == 100) {
-        const imgWidth = imglist.getBoundingClientRect().width;
-        const moveoffset = imgWidth * -1;
-        overlay.style.transform = `matrix(1, 0, 0, 1, ${moveoffset}px, 0)`;
+        // const reveal = 100 - progress3 * 100;
+        const imgWidth = images[1].getBoundingClientRect().width;
+        // const slideWidth = slides[1].getBoundingClientRect().width;
+        // const moveoffset = imgWidth * reveal * 0.01;
 
-        // console.log('resizeslider: ' + moveoffset);
+        // const adjustmoveoffset = (moveoffset - imgWidth - 2 * imgWidth) * scale;
+        
+        // slides.forEach((slide, index) => {
+        //     const imgWidth = images[index].getBoundingClientRect().width;
+        //     slide.style.width = `${imgWidth}px`;
+        // })
+        const adjustmoveoffset = -2 * imgWidth -10 ;
+        // overlay.style.transform = `matrix(1, 0, 0, 1, ${adjustmoveoffset}, 0)`;
     }
 }
 
