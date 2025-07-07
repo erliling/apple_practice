@@ -310,8 +310,10 @@ function resizeframe(images, slides, overlay) {
         //     const imgWidth = images[index].getBoundingClientRect().width;
         //     slide.style.width = `${imgWidth}px`;
         // })
-        const adjustmoveoffset = -2 * imgWidth -10 ;
-        // overlay.style.transform = `matrix(1, 0, 0, 1, ${adjustmoveoffset}, 0)`;
+        const adjustradius = 0.06 * imgWidth;
+        const adjustmoveoffset = -2 * imgWidth - 0.5 * adjustradius;
+        // const adjustmoveoffset = -2 * imgWidth;
+        overlay.style.transform = `matrix(1, 0, 0, 1, 0, 0)`;
     }
 }
 
