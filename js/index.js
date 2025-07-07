@@ -313,6 +313,9 @@ function resizeframe(images, slides, overlay) {
         const adjustradius = 0.06 * imgWidth;
         const adjustmoveoffset = -2 * imgWidth - 0.5 * adjustradius;
         // const adjustmoveoffset = -2 * imgWidth;
+
+
+        // reset slide to slide one, so it will always align to the left
         overlay.style.transform = `matrix(1, 0, 0, 1, 0, 0)`;
     }
 }
