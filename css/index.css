@@ -1087,16 +1087,18 @@ body {
     height: calc(var(--gallery-height) + var(--border-size)); */
 
     /* let the frame closely cover outside of the image */
-    width: calc(var(--gallery-width) - var(--border-size));
+    /* width: calc(var(--gallery-width) - 2*var(--border-size)); */
+    /* width: 100%; */
     height: calc(var(--gallery-height) + var(--border-size));
 
-    margin-inline: auto;
+    /* margin-inline: auto; */
 
     border: var(--border-size) solid #000;
 
     /* use position relative to overlap instead of position absolute */
     position: relative;
     z-index: 3;
+
 }
 .photograph .stickycontainer .imglist {
     
