@@ -184,6 +184,9 @@ function moveslider(scrollwrapper, images, maskslide) {
     }
 }
 
+let currentprogress = 0;
+let prevprogress = 0;
+
 function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust) {
     const rect = scrollwrapper.getBoundingClientRect();
     const recttop = -rect.top;
@@ -191,65 +194,112 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
     let top = window.innerHeight * 0.5 - 1050/2 + 52/2;
     let adjust_recttop = recttop + top;
 
-    if (adjust_recttop <= scrollheight) {
-        console.log("1st pic");
+    const imagenum = Array.from(images).length;
 
-        // rectop has to start from 0, otherwise progress won't start from 0
-        progress1 = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
-        // console.log("progress1: " + progress1);
+    images.forEach((image, index) => {
+        if ((index == 0) && (adjust_recttop <= scrollheight)) {
+            console.log("1st pic");
+            currentprogress = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
+            revealimg(images[index + 1], currentprogress, overlay, index);
+
+            prevprogress = currentprogress;
+            
+        } else if ((index == (imagenum - 1)) && (adjust_recttop > index * scrollheight)) {
+            console.log("last pic");
+            
+
+            let adjust_adjust_rectop = adjust_recttop - index * scrollheight;
+            currentprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
+
+            if (prevprogress < 1) {
+                let adjust_adjust_rectop = adjust_recttop - (index - 1) * scrollheight;
+                prevprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
+                revealimg(images[index], prevprogress, overlay, index - 1);
+            }
+
+            if (prevprogress == 1) {
+                shrinkimglist(currentprogress, imglist, overlayadjust);
+                expandimg(currentprogress, images);
+            }
+        } else if ((adjust_recttop > (index) * scrollheight) && (adjust_recttop <= (index+1) * scrollheight)) {
+            console.log("middle pic");
+            
+
+            let adjust_adjust_rectop = adjust_recttop - index * scrollheight;
+            currentprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
+            revealimg(images[index + 1], currentprogress, overlay, index);
+
+            // if (prevprogress < 1) {
+            //     prevprogress = Math.min(Math.max(adjust_recttop / index * scrollheight, 0), 1);
+            //     revealimg(images[index], prevprogress, overlay, index - 1);
+            // }
+
+            prevprogress = currentprogress;
+        }
+
+    });
+
+
+
+    // if (adjust_recttop <= scrollheight) {
+    //     console.log("1st pic");
+
+    //     // rectop has to start from 0, otherwise progress won't start from 0
+    //     progress1 = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
+    //     // console.log("progress1: " + progress1);
         
-        // console.log("reveal: "+ reveal);
+    //     // console.log("reveal: "+ reveal);
 
-        revealimg(images[1], progress1, overlay, 0);
+    //     revealimg(images[1], progress1, overlay, 0);
 
-        // when slide back, hide the second img completely
-        if ((progress2 < 1) && (progress2 > 0)) {
-            const adjusttop = adjust_recttop - scrollheight;
-            progress2 = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
-            revealimg(images[2], progress2, overlay, 1);
-        }
+    //     // when slide back, hide the second img completely
+    //     if ((progress2 < 1) && (progress2 > 0)) {
+    //         const adjusttop = adjust_recttop - scrollheight;
+    //         progress2 = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
+    //         revealimg(images[2], progress2, overlay, 1);
+    //     }
 
-    } else if ((adjust_recttop > scrollheight) && (adjust_recttop <= 2*scrollheight)) {
-        console.log("2nd pic");
-        let adjust_adjust_rectop = adjust_recttop - scrollheight;
-        progress2 = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
-        // reveal2 = 100 - progress2 * 100;
+    // } else if ((adjust_recttop > scrollheight) && (adjust_recttop <= 2*scrollheight)) {
+    //     console.log("2nd pic");
+    //     let adjust_adjust_rectop = adjust_recttop - scrollheight;
+    //     progress2 = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
+    //     // reveal2 = 100 - progress2 * 100;
 
-        revealimg(images[2], progress2, overlay, 1);
+    //     revealimg(images[2], progress2, overlay, 1);
 
-        // when slide to second img, remove the left of the first img
-        if (progress1 < 1) {
-            progress1 = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
-            revealimg(images[1], progress1, overlay, 0);
-        }
+    //     // when slide to second img, remove the left of the first img
+    //     if (progress1 < 1) {
+    //         progress1 = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
+    //         revealimg(images[1], progress1, overlay, 0);
+    //     }
 
-        // when slide back, expand frame to 1
-        if ((progress3 < 1) && (progress3 > 0)) {
-            let adjust_adjust_rectop = adjust_recttop - 2*scrollheight;
-            progress3 = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
-            shrinkimglist(progress3, imglist, overlayadjust);
-            expandimg(progress3, images);
-        }
+    //     // when slide back, expand frame to 1
+    //     if ((progress3 < 1) && (progress3 > 0)) {
+    //         let adjust_adjust_rectop = adjust_recttop - 2*scrollheight;
+    //         progress3 = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
+    //         shrinkimglist(progress3, imglist, overlayadjust);
+    //         expandimg(progress3, images);
+    //     }
 
-    } else if (adjust_recttop > 2*scrollheight) {
-        console.log("3rd pic");
+    // } else if (adjust_recttop > 2*scrollheight) {
+    //     console.log("3rd pic");
 
-        let adjust_adjust_rectop = adjust_recttop - 2*scrollheight;
-        progress3 = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
+    //     let adjust_adjust_rectop = adjust_recttop - 2*scrollheight;
+    //     progress3 = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
 
-        // when slide to third img, remove the left of the second img
-        if (progress2 < 1) {
-            let adjust_adjust_rectop = adjust_recttop - scrollheight;
-            progress2 = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
-            revealimg(images[2], progress2, overlay, 1);
-        }
-        // when the third img completely revealed
-        if (progress2 == 1) {
-            shrinkimglist(progress3, imglist, overlayadjust);
-            expandimg(progress3, images);
-        }
+    //     // when slide to third img, remove the left of the second img
+    //     if (progress2 < 1) {
+    //         let adjust_adjust_rectop = adjust_recttop - scrollheight;
+    //         progress2 = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
+    //         revealimg(images[2], progress2, overlay, 1);
+    //     }
+    //     // when the third img completely revealed
+    //     if (progress2 == 1) {
+    //         shrinkimglist(progress3, imglist, overlayadjust);
+    //         expandimg(progress3, images);
+    //     }
 
-    }
+    // }
 }
 
 function shrinkimglist(progress, imglist, overlayadjust) {
