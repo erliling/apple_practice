@@ -186,6 +186,8 @@ function moveslider(scrollwrapper, images, maskslide) {
 
 let currentprogress = 0;
 let prevprogress = 0;
+let middleprevprogress = 0;
+let previndex = 0;
 
 function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust) {
     const rect = scrollwrapper.getBoundingClientRect();
@@ -211,12 +213,14 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
             let adjust_adjust_rectop = adjust_recttop - index * scrollheight;
             currentprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
 
+            // scroll forward, continue remove prev image
             if (prevprogress < 1) {
                 let adjust_adjust_rectop = adjust_recttop - (index - 1) * scrollheight;
                 prevprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
                 revealimg(images[index], prevprogress, overlay, index - 1);
             }
 
+            // after remove prev image, start to shrink
             if (prevprogress == 1) {
                 shrinkimglist(currentprogress, imglist, overlayadjust);
                 expandimg(currentprogress, images);
@@ -224,82 +228,32 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
         } else if ((adjust_recttop > (index) * scrollheight) && (adjust_recttop <= (index+1) * scrollheight)) {
             console.log("middle pic");
             
+            // console.log("prevprogress: " + prevprogress);
+            // if ((index == 1) && (middleprevprogress == 0)) {
+            //     middleprevprogress = prevprogress;
+            // } else if ((index > 1) && (index != previndex)) {
+            //     middleprevprogress = currentprogress;
+            // }
 
             let adjust_adjust_rectop = adjust_recttop - index * scrollheight;
             currentprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
             revealimg(images[index + 1], currentprogress, overlay, index);
 
-            // if (prevprogress < 1) {
-            //     prevprogress = Math.min(Math.max(adjust_recttop / index * scrollheight, 0), 1);
-            //     revealimg(images[index], prevprogress, overlay, index - 1);
+            // scroll forward, continue remove prev image
+            // if (middleprevprogress < 1) {
+            //     let adjust_adjust_rectop = adjust_recttop - (index - 1 ) * scrollheight;
+            //     middleprevprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
+            //     console.log("middleprevprogress: " + middleprevprogress);
+            //     revealimg(images[index], middleprevprogress, overlay, index - 1);
             // }
 
+            // previndex = index;
+            
             prevprogress = currentprogress;
         }
 
     });
 
-
-
-    // if (adjust_recttop <= scrollheight) {
-    //     console.log("1st pic");
-
-    //     // rectop has to start from 0, otherwise progress won't start from 0
-    //     progress1 = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
-    //     // console.log("progress1: " + progress1);
-        
-    //     // console.log("reveal: "+ reveal);
-
-    //     revealimg(images[1], progress1, overlay, 0);
-
-    //     // when slide back, hide the second img completely
-    //     if ((progress2 < 1) && (progress2 > 0)) {
-    //         const adjusttop = adjust_recttop - scrollheight;
-    //         progress2 = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
-    //         revealimg(images[2], progress2, overlay, 1);
-    //     }
-
-    // } else if ((adjust_recttop > scrollheight) && (adjust_recttop <= 2*scrollheight)) {
-    //     console.log("2nd pic");
-    //     let adjust_adjust_rectop = adjust_recttop - scrollheight;
-    //     progress2 = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
-    //     // reveal2 = 100 - progress2 * 100;
-
-    //     revealimg(images[2], progress2, overlay, 1);
-
-    //     // when slide to second img, remove the left of the first img
-    //     if (progress1 < 1) {
-    //         progress1 = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
-    //         revealimg(images[1], progress1, overlay, 0);
-    //     }
-
-    //     // when slide back, expand frame to 1
-    //     if ((progress3 < 1) && (progress3 > 0)) {
-    //         let adjust_adjust_rectop = adjust_recttop - 2*scrollheight;
-    //         progress3 = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
-    //         shrinkimglist(progress3, imglist, overlayadjust);
-    //         expandimg(progress3, images);
-    //     }
-
-    // } else if (adjust_recttop > 2*scrollheight) {
-    //     console.log("3rd pic");
-
-    //     let adjust_adjust_rectop = adjust_recttop - 2*scrollheight;
-    //     progress3 = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
-
-    //     // when slide to third img, remove the left of the second img
-    //     if (progress2 < 1) {
-    //         let adjust_adjust_rectop = adjust_recttop - scrollheight;
-    //         progress2 = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
-    //         revealimg(images[2], progress2, overlay, 1);
-    //     }
-    //     // when the third img completely revealed
-    //     if (progress2 == 1) {
-    //         shrinkimglist(progress3, imglist, overlayadjust);
-    //         expandimg(progress3, images);
-    //     }
-
-    // }
 }
 
 function shrinkimglist(progress, imglist, overlayadjust) {
@@ -326,8 +280,6 @@ function expandimg(progress, images) {
             image.style.transform = `matrix(${adjust_progress}, 0, 0, ${adjust_progress}, 0, 0)`;
             image.style.clipPath = `inset(0 0 0 0)`;
         });
-        
-        
     }
 }
 
@@ -342,6 +294,8 @@ function revealimg(imgobj, progress, overlay, imgnum) {
 
     // transform: matrix(1, 0, 0, 1, -1163.62, 0);
     const adjustmoveoffset = moveoffset - imgWidth - imgnum * imgWidth;
+    // console.log("moveoffset: " + moveoffset);
+    // console.log("imgnum: " + imgnum);
     // console.log("adjustmoveoffset: " + adjustmoveoffset);
     // overlay continue moves to the left with a negative offset
     overlay.style.transform = `matrix(1, 0, 0, 1, ${adjustmoveoffset}, 0)`;
