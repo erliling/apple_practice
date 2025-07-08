@@ -221,35 +221,47 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
             }
 
             // after remove prev image, start to shrink
-            if (prevprogress == 1) {
-                shrinkimglist(currentprogress, imglist, overlayadjust);
-                expandimg(currentprogress, images);
-            }
+            // if (prevprogress == 1) {
+            //     shrinkimglist(currentprogress, imglist, overlayadjust);
+            //     expandimg(currentprogress, images);
+            // }
         } else if ((adjust_recttop > (index) * scrollheight) && (adjust_recttop <= (index+1) * scrollheight)) {
             console.log("middle pic");
+
+            // ??? reset middleprevprogress in case scroll back
+            // middleprevprogress = 0;
             
             // console.log("prevprogress: " + prevprogress);
-            // if ((index == 1) && (middleprevprogress == 0)) {
-            //     middleprevprogress = prevprogress;
-            // } else if ((index > 1) && (index != previndex)) {
-            //     middleprevprogress = currentprogress;
-            // }
+            // console.log("middleprevprogress1: " + middleprevprogress);
+            // console.log("index1: " + index);
+            if ((index == 1) && (middleprevprogress == 0)) {
+                console.log("go inside1");
+                middleprevprogress = prevprogress;
+            } else if ((index > 1) && (index != previndex)) {
+                console.log("go inside2");
+                middleprevprogress = currentprogress;
+            }
 
             let adjust_adjust_rectop = adjust_recttop - index * scrollheight;
             currentprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
             revealimg(images[index + 1], currentprogress, overlay, index);
 
             // scroll forward, continue remove prev image
-            // if (middleprevprogress < 1) {
-            //     let adjust_adjust_rectop = adjust_recttop - (index - 1 ) * scrollheight;
-            //     middleprevprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
-            //     console.log("middleprevprogress: " + middleprevprogress);
-            //     revealimg(images[index], middleprevprogress, overlay, index - 1);
-            // }
+            if (middleprevprogress < 1) {
+                let adjust_adjust_rectop = adjust_recttop - (index - 1 ) * scrollheight;
+                middleprevprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
+                // console.log("middleprevprogress: " + middleprevprogress);
+                // console.log("index: " + index);
+                revealimg(images[index], middleprevprogress, overlay, index - 1);
+                console.log("clippath: " + images[index].style.clipPath);
+            }
 
-            // previndex = index;
+            previndex = index;
             
-            prevprogress = currentprogress;
+            // if (index == (imagenum - 2)) {
+                // middleprevprogress = 0;
+                prevprogress = currentprogress;
+            // }
         }
 
     });
