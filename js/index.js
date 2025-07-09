@@ -201,6 +201,10 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
     images.forEach((image, index) => {
         if ((index == 0) && (adjust_recttop <= scrollheight)) {
             console.log("1st pic");
+
+            // reset middleprevprogress
+            middleprevprogress = 0;
+            
             currentprogress = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
             revealimg(images[index + 1], currentprogress, overlay, index);
 
@@ -209,6 +213,8 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
         } else if ((index == (imagenum - 1)) && (adjust_recttop > index * scrollheight)) {
             console.log("last pic");
             
+            // reset middleprevprogress
+            middleprevprogress = 0;
 
             let adjust_adjust_rectop = adjust_recttop - index * scrollheight;
             currentprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
@@ -232,7 +238,7 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
             // middleprevprogress = 0;
             
             // console.log("prevprogress: " + prevprogress);
-            // console.log("middleprevprogress1: " + middleprevprogress);
+            console.log("middleprevprogress1: " + middleprevprogress);
             // console.log("index1: " + index);
             if ((index == 1) && (middleprevprogress == 0)) {
                 console.log("go inside1");
@@ -247,13 +253,13 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
             revealimg(images[index + 1], currentprogress, overlay, index);
 
             // scroll forward, continue remove prev image
-            if (middleprevprogress < 1) {
+            if ((middleprevprogress != 0) && (middleprevprogress < 1)) {
                 let adjust_adjust_rectop = adjust_recttop - (index - 1 ) * scrollheight;
                 middleprevprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
-                // console.log("middleprevprogress: " + middleprevprogress);
+                console.log("middleprevprogress2: " + middleprevprogress);
                 // console.log("index: " + index);
                 revealimg(images[index], middleprevprogress, overlay, index - 1);
-                console.log("clippath: " + images[index].style.clipPath);
+                // console.log("clippath: " + images[index].style.clipPath);
             }
 
             previndex = index;
