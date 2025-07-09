@@ -265,22 +265,27 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
             revealimg(images[index + 1], currentprogress, overlay, index);
 
             // scroll forward, continue remove prev image
-            if ((middleprevprogress != 0) && (middleprevprogress < 1)) {
-                let adjust_adjust_rectop = adjust_recttop - (index - 1 ) * scrollheight;
-                middleprevprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
-                console.log("middleprevprogress2: " + middleprevprogress);
-                // console.log("index: " + index);
-                revealimg(images[index], middleprevprogress, overlay, index - 1);
-                // console.log("clippath: " + images[index].style.clipPath);
+            if (lastscrolltop2 < currentScroll2) {
+                if ((middleprevprogress != 0) && (middleprevprogress < 1)) {
+                    // let adjust_adjust_rectop = adjust_recttop - (index - 1 ) * scrollheight;
+                    // middleprevprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
+                    // console.log("middleprevprogress2: " + middleprevprogress);
+                    // console.log("index: " + index);
+                    middleprevprogress = 1;
+                    revealimg(images[index], middleprevprogress, overlay, index - 1);
+                    // console.log("clippath: " + images[index].style.clipPath);
+                }
             }
+            
 
             
             // scroll back, continue hide the next image
             if (lastscrolltop2 > currentScroll2) {
                 if ((middlenextprogress < 1) && (middlenextprogress > 0)) {
-                    let adjust_adjust_rectop = adjust_recttop - (index) * scrollheight;
-                    middlenextprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
-                    console.log("middlenextprogress2: " + middlenextprogress);
+                    // let adjust_adjust_rectop = adjust_recttop - (index) * scrollheight;
+                    // middlenextprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
+                    middlenextprogress = 0;
+                    // console.log("middlenextprogress2: " + middlenextprogress);
                     revealimg(images[index + 1], middlenextprogress, overlay, index);
                 }
             }
