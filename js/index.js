@@ -190,6 +190,8 @@ let middleprevprogress = 0;
 let middlenextprogress = 0;
 let previndex = 0;
 let lastscrolltop2 = 0;
+let lastprevprogress = 0;
+let firstprevprogress = 1;
 
 function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust) {
     const rect = scrollwrapper.getBoundingClientRect();
@@ -212,9 +214,31 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
             // reset middleprevprogress
             middleprevprogress = 0;
             middlenextprogress = 0;
+
+            console.log("prevprogress: " + prevprogress);
+            console.log("firstpreprogress0: " + firstprevprogress);
+            if (lastscrolltop2 > currentScroll2) { 
+                if ((index == 0) && (firstprevprogress == 1)) {
+                    firstprevprogress = prevprogress;
+                    console.log("firstpreprogress1: " + firstprevprogress);
+                }
+            }
             
             currentprogress = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
             revealimg(images[index + 1], currentprogress, overlay, index);
+
+
+            // scroll back, continue hide the next image
+            if (lastscrolltop2 > currentScroll2) {
+                if ((firstprevprogress < 1) && (firstprevprogress > 0)) {
+                    // let adjust_adjust_rectop = adjust_recttop - (index) * scrollheight;
+                    // middlenextprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
+                    firstprevprogress = 0;
+                    console.log("firstpreprogress2: " + firstprevprogress);
+                    revealimg(images[index + 2], firstprevprogress, overlay, index+1);
+                }
+            }
+
 
             prevprogress = currentprogress;
             
@@ -224,14 +248,16 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
             // reset middleprevprogress
             middleprevprogress = 0;
             middlenextprogress = 0;
+            firstprevprogress = 1;
 
             let adjust_adjust_rectop = adjust_recttop - index * scrollheight;
             currentprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
 
             // scroll forward, continue remove prev image
             if (prevprogress < 1) {
-                let adjust_adjust_rectop = adjust_recttop - (index - 1) * scrollheight;
-                prevprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
+                // let adjust_adjust_rectop = adjust_recttop - (index - 1) * scrollheight;
+                // prevprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
+                prevprogress = 1;
                 revealimg(images[index], prevprogress, overlay, index - 1);
             }
 
@@ -243,22 +269,27 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
         } else if ((adjust_recttop > (index) * scrollheight) && (adjust_recttop <= (index+1) * scrollheight)) {
             console.log("middle pic");
             
+            // reset firstprevprogress
+            firstprevprogress = 1;
+
             // console.log("prevprogress: " + prevprogress);
-            console.log("middleprevprogress1: " + middleprevprogress);
-            console.log("middlenextprogress1: " + middlenextprogress);
+            // console.log("middleprevprogress1: " + middleprevprogress);
+            // console.log("middlenextprogress1: " + middlenextprogress);
             // console.log("index1: " + index);
             if ((index == 1) && (middleprevprogress == 0)) {
-                console.log("go inside1");
+                // console.log("go inside1");
                 middleprevprogress = prevprogress;
             } else if ((index == imagenum - 2) && (middlenextprogress == 0)) {
-                console.log("go inside3");
+                // console.log("go inside3");
                 middlenextprogress = prevprogress;
             } else if ((index > 1) && (index != previndex)) {
-                console.log("go inside2");
+                // console.log("go inside2");
                 middleprevprogress = currentprogress;
+            } 
+            
+            if ((index == imagenum - 2) && (lastprevprogress == 0)) {
+                lastprevprogress = prevprogress;
             }
-
-
 
             let adjust_adjust_rectop = adjust_recttop - index * scrollheight;
             currentprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
@@ -277,20 +308,27 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
                 }
             }
             
-
-            
             // scroll back, continue hide the next image
             if (lastscrolltop2 > currentScroll2) {
                 if ((middlenextprogress < 1) && (middlenextprogress > 0)) {
-                    // let adjust_adjust_rectop = adjust_recttop - (index) * scrollheight;
-                    // middlenextprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
-                    middlenextprogress = 0;
-                    // console.log("middlenextprogress2: " + middlenextprogress);
+                    let adjust_adjust_rectop = adjust_recttop - (index) * scrollheight;
+                    middlenextprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
+                    // middlenextprogress = 0;
+                    console.log("middlenextprogress2: " + middlenextprogress);
+                    console.log("index: " + index);
                     revealimg(images[index + 1], middlenextprogress, overlay, index);
                 }
             }
 
-            lastscrolltop2 = currentScroll2;
+            // scroll back, continue expand frame
+            // if (lastscrolltop2 > currentScroll2) {
+            //     if ((lastprevprogress < 1) && (lastprevprogress > 0)) {
+            //         lastprevprogress = 0;
+            //         shrinkimglist(lastprevprogress, imglist, overlayadjust);
+            //         expandimg(lastprevprogress, images);
+            //     }
+            // }
+
 
             previndex = index;
             
@@ -298,6 +336,8 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
         }
 
     });
+
+    lastscrolltop2 = currentScroll2;
 
 }
 
