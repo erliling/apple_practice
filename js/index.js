@@ -190,7 +190,7 @@ let middleprevprogress = 0;
 let middlenextprogress = 0;
 let previndex = 0;
 let lastscrolltop2 = 0;
-let lastprevprogress = 0;
+let lastprevprogress = 1;
 let firstprevprogress = 1;
 
 function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust) {
@@ -214,6 +214,7 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
             // reset middleprevprogress
             middleprevprogress = 0;
             middlenextprogress = 0;
+            lastprevprogress = 1;
 
             console.log("prevprogress: " + prevprogress);
             console.log("firstpreprogress0: " + firstprevprogress);
@@ -249,6 +250,7 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
             middleprevprogress = 0;
             middlenextprogress = 0;
             firstprevprogress = 1;
+            lastprevprogress = 1;
 
             let adjust_adjust_rectop = adjust_recttop - index * scrollheight;
             currentprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
@@ -262,10 +264,10 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
             }
 
             // after remove prev image, start to shrink
-            // if (prevprogress == 1) {
-            //     shrinkimglist(currentprogress, imglist, overlayadjust);
-            //     expandimg(currentprogress, images);
-            // }
+            if (prevprogress == 1) {
+                shrinkimglist(currentprogress, imglist, overlayadjust);
+                expandimg(currentprogress, images);
+            }
         } else if ((adjust_recttop > (index) * scrollheight) && (adjust_recttop <= (index+1) * scrollheight)) {
             console.log("middle pic");
             
@@ -287,7 +289,7 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
                 middleprevprogress = currentprogress;
             } 
             
-            if ((index == imagenum - 2) && (lastprevprogress == 0)) {
+            if ((index == imagenum - 2) && (lastprevprogress == 1)) {
                 lastprevprogress = prevprogress;
             }
 
@@ -321,13 +323,13 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
             }
 
             // scroll back, continue expand frame
-            // if (lastscrolltop2 > currentScroll2) {
-            //     if ((lastprevprogress < 1) && (lastprevprogress > 0)) {
-            //         lastprevprogress = 0;
-            //         shrinkimglist(lastprevprogress, imglist, overlayadjust);
-            //         expandimg(lastprevprogress, images);
-            //     }
-            // }
+            if (lastscrolltop2 > currentScroll2) {
+                if ((lastprevprogress <= 1) && (lastprevprogress > 0)) {
+                    lastprevprogress = 0;
+                    shrinkimglist(lastprevprogress, imglist, overlayadjust);
+                    expandimg(lastprevprogress, images);
+                }
+            }
 
 
             previndex = index;
