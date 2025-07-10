@@ -213,6 +213,17 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
             middlenextprogress = 0;
             lastprevprogress = 1;
 
+            // reset n - 1 images clippath
+            if (lastscrolltop2 < currentScroll2) {
+                images.forEach((image, index) => {
+                    if (index > 1) {
+                        const imgWidth = image.getBoundingClientRect().width;
+                        // const adjustmoveoffset = moveoffset - imgWidth - imgnum * imgWidth;
+                        image.style.clipPath = `inset(0 0 0 ${imgWidth}px)`;
+                    }
+                });
+            }
+
             // console.log("prevprogress: " + prevprogress);
             // console.log("firstpreprogress0: " + firstprevprogress);
             if (lastscrolltop2 > currentScroll2) { 
