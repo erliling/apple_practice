@@ -1064,10 +1064,12 @@ body {
 .photograph {
     padding: 0px 0 216px;
     position: relative;
+
+    --image-num: 6;
 }
 /* scroll container */
 .photograph .scrollwrapper {
-    height: 350vh;
+    height: calc(120vh * var(--image-num));
 
     position: relative;
 }
@@ -1150,15 +1152,6 @@ body {
 
     clip-path: inset(0 0 0 100%);
 }
-.photograph .stickycontainer .maskslide {
-    width: 20px;
-    height: 100%;
-    background-color: var(--default-background-color);
-
-    position: absolute;
-    top: 0;
-    /* left: 100%; */
-}
 
 .photograph .stickycontainer .frame {
     position: absolute;
@@ -1166,7 +1159,7 @@ body {
     left: 0;
     /* top: 0; */
 
-    width: calc(var(--gallery-width)*3 + 1px);
+    width: calc(var(--gallery-width) * var(--image-num) + 1px);
     height: 100%;
 
     display: flex;
