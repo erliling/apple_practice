@@ -187,17 +187,18 @@ function disolvescroll(piccontainer, pics) {
 // previous scroll top
 let lastscrolltop2 = 0;
 
+let previndex = 0;
+
 let currentprogress = 0;
 let prevprogress = 0;
 
-let firstprevprogress = 1;
-let revealthirdimgflag = 1;
+// let firstprevprogress = 1;
+let firstprevflag = 1;
 
+let middleprevflag = 0;
+let middlenextflag = 0;
 
-let middleprevprogress = 0;
-let middlenextprogress = 0;
-let previndex = 0;
-let lastnextprogress = 1;
+let lastnextflag = 1;
 
 function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust) {
     const rect = scrollwrapper.getBoundingClientRect();
@@ -216,7 +217,7 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
             console.log("1st pic");
 
             // reset middle progresses
-            resetmiddleprogresses();
+            resetmiddleflag();
 
             // when scroll down
             // reset n - 2 images clippath
@@ -232,10 +233,10 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
             // set value for firstprevprogress the first time
             // when the index + 2 haven't finished hiding, completely hide here
             if (lastscrolltop2 > currentScroll2) { 
-                if (revealthirdimgflag == 1) {
+                if (firstprevflag == 1) {
                     if ((prevprogress < 1) && (prevprogress > 0)) {
                         revealimg(images[index + 2], 0, overlay, index+1);
-                        revealthirdimgflag = 0;
+                        firstprevflag = 0;
                     }
                 }
 
@@ -256,7 +257,7 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
             console.log("last pic");
             
             // reset middle progress
-            resetmiddleprogresses();
+            resetmiddleflag();
 
             let adjust_adjust_rectop = adjust_recttop - index * scrollheight;
             currentprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
@@ -277,11 +278,8 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
         } else if ((adjust_recttop > (index) * scrollheight) && (adjust_recttop <= (index+1) * scrollheight)) {
             console.log("middle pic: " + index);
             
-            // reset first progress
-            // resetfirstprogress();
-
             // reset flag
-            revealthirdimgflag = 1;
+            resetfirstflag();
 
             let adjust_adjust_rectop = adjust_recttop - index * scrollheight;
             currentprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
@@ -289,72 +287,71 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
 
 
             // when scroll down
-            // set middleprevprogress value
+            // continue reveal prev images
             if (lastscrolltop2 < currentScroll2) {
-                if ((index == 1) && (middleprevprogress == 0)) {
+                if ((index == 1) && (middleprevflag == 0)) {
                     // second img, handle scroll forward, get value from prevprogress (across block)
-                    middleprevprogress = prevprogress;
+                    if ((prevprogress > 0) && (prevprogress < 1)) {
+                        revealimg(images[index], 1, overlay, index - 1);
+                        middleprevflag = 1;
+                    }
                 } else if ((index > 1) && (index != previndex)) {
+                    middleprevflag = 0;
                     // every time when the index changes, get value from prevprogress (inside block)
-                    middleprevprogress = prevprogress;
+                    if ((prevprogress > 0) && (prevprogress < 1)) {
+                        revealimg(images[index], 1, overlay, index - 1);
+                        middleprevflag = 1;
+                    }
                 }
-
-                if ((middleprevprogress != 0) && (middleprevprogress < 1)) {
-                    middleprevprogress = 1;
-                    revealimg(images[index], middleprevprogress, overlay, index - 1);
-                }
+                
             }
-
             
             // when scroll up
+            // continue hide next images
             if (lastscrolltop2 >= currentScroll2) {
-                if ((index == imagenum - 2) && (middlenextprogress == 0)) {
+                if ((index == imagenum - 2) && (middlenextflag == 0)) {
                     // second to last img, handle scroll backward, get value from prevprogress (across block)
-                    middlenextprogress = prevprogress;
+                    if ((prevprogress < 1) && (prevprogress > 0)) {
+                        revealimg(images[index + 2], 0, overlay, index+1);
+                        middlenextflag = 1;
+                    }
                 } else if ((index >= 1) && (index < (imagenum - 2) && (index != previndex))) {
+                    middlenextflag = 0;
                     // every time when the index changes, get value from prevprogress (inside block)
-                    middlenextprogress = prevprogress;
+                    if ((prevprogress < 1) && (prevprogress > 0)) {
+                        revealimg(images[index + 2], 0, overlay, index+1);
+                        middlenextflag = 1;
+                    }
                 } 
 
-                if ((index == imagenum - 2) && (lastnextprogress == 1)) {
-                    lastnextprogress = prevprogress;
+                if ((index == imagenum - 2) && (lastnextflag == 1)) {
+                    // second to last img, continue expand frame
+                    if ((prevprogress <= 1) && (prevprogress > 0)) {
+                        shrinkimglist(0, imglist, overlayadjust);
+                        expandimg(0, images);
+                    }
                 }
-
-                // continue hide the next image
-                if ((middlenextprogress < 1) && (middlenextprogress > 0) && (index != previndex)) {
-                    // let adjust_adjust_rectop = adjust_recttop - (index) * scrollheight;
-                    middlenextprogress = 0;
-                    revealimg(images[index + 2], middlenextprogress, overlay, index+1);
-                }
-
-                // continue expand frame
-                if ((lastnextprogress <= 1) && (lastnextprogress > 0)) {
-                    lastnextprogress = 0;
-                    shrinkimglist(lastnextprogress, imglist, overlayadjust);
-                    expandimg(lastnextprogress, images);
-                }
+                
             }
             
-
             previndex = index;
             
             prevprogress = currentprogress;
         }
-
     });
 
     lastscrolltop2 = currentScroll2;
 
 }
 
-function resetfirstprogress() {
-    firstprevprogress = 1;
+function resetfirstflag() {
+    firstprevflag = 1;
 }
 
-function resetmiddleprogresses() {
-    middleprevprogress = 0;
-    middlenextprogress = 0;
-    lastnextprogress = 1;
+function resetmiddleflag() {
+    middleprevflag = 0;
+    middlenextflag = 0;
+    lastnextflag = 1;
 }
 
 function resetimgclippath(images) {
