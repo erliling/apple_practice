@@ -1079,18 +1079,10 @@ body {
     top: calc(50vh - var(--gallery-height)/2 + var(--r-localnav-height)/2 - 50px);
     height: var(--gallery-height);
 
-    /* background-color: pink; */
 }
 .photograph .stickycontainer .frameadjust {
-    /* width: calc(100% + var(--border-size));
-    height: calc(100% + var(--border-size)); */
-
-    /* width: calc(var(--gallery-width) + var(--border-size));
-    height: calc(var(--gallery-height) + var(--border-size)); */
 
     /* let the frame closely cover outside of the image */
-    /* width: calc(var(--gallery-width) - 2*var(--border-size)); */
-    /* width: 100%; */
     height: calc(var(--gallery-height) + var(--border-size));
 
     /* margin-inline: auto; */
@@ -1100,7 +1092,6 @@ body {
     /* use position relative to overlap instead of position absolute */
     position: relative;
     z-index: 3;
-
 }
 .photograph .stickycontainer .imglist {
     
@@ -1110,13 +1101,8 @@ body {
     display: grid;
 
     margin-inline: auto;
-    /* padding-inline: auto; */
 
     position: relative;
-    /* z-index: 1;
-    left: 0;
-    top: 0;
-    margin-top: calc(var(--gallery-height) * -1); */
 
     overflow: hidden;
 
@@ -1124,18 +1110,16 @@ body {
     z-index: 2;
     /* move up, actually it's the height of the frameadjust */
     margin-top: calc(-1 * var(--gallery-height) - var(--border-size));
-    /* margin-top: calc(-1 * var(--gallery-height)); */
 }
 .photograph .stickycontainer .image {
 
     grid-area: 1/1;
 
-    width: 100%;
-    height: 100%;
+    /* width: 100%;
+    height: 100%; */
 
     background-repeat: no-repeat;
     background-position: 50%;
-    /* background-size: cover; */
     background-size: 1680px 1050px;
 }
 .photograph .stickycontainer .image1 {
@@ -1155,16 +1139,12 @@ body {
 
 .photograph .stickycontainer .frame {
     position: absolute;
-    /* z-index: 2; */
     left: 0;
-    /* top: 0; */
 
     width: calc(var(--gallery-width) * var(--image-num) + 1px);
     height: 100%;
 
     display: flex;
-    /* flex-direction: column; */
-    
 }
 .photograph .stickycontainer .frame .slide {
     width: calc(var(--gallery-width) + 1px);
@@ -1181,7 +1161,6 @@ body {
 }
 .photograph .stickycontainer .frame .corner.top {
     top: 0;
-    /* padding-top: 4px; */
 }
 .photograph .stickycontainer .frame .corner.top.left {
     left: 0;
@@ -1195,7 +1174,6 @@ body {
 }
 .photograph .stickycontainer .frame .corner.bottom {
     bottom: 0;
-    /* padding-bottom: 4px; */
 }
 .photograph .stickycontainer .frame .corner.bottom.right {
     right: 0;
