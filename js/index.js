@@ -184,20 +184,18 @@ function disolvescroll(piccontainer, pics) {
 //     }
 // }
 
-// previous scroll top
+// previous scroll top, pair with currentScroll2
 let lastscrolltop2 = 0;
-
+// pair with index
 let previndex = 0;
 
 let currentprogress = 0;
 let prevprogress = 0;
 
-// let firstprevprogress = 1;
+// for reveal prev images or hide next images
 let firstprevflag = 1;
-
 let middleprevflag = 0;
 let middlenextflag = 0;
-
 let lastnextflag = 1;
 
 function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust) {
