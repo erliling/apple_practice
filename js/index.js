@@ -36,7 +36,6 @@ window.onload = function () {
     const sectiontitlecontent2 = document.getElementsByClassName('sectiontitlecontent2')[0];
     const sectiontitlecontent3 = document.getElementsByClassName('sectiontitlecontent2')[1];
 
-    
 
     // const stickycontainer1 = document.querySelector('.videoaudio .stickycontainer1');
 
@@ -62,9 +61,9 @@ window.onload = function () {
         
         // moveslider(scrollwrapper, images, maskslide);
 
-        shrinkscroll1(container, img, sectiontitlecontent2, frame, screen, lastScrollTop);
+        shrinkscroll1(container, img, sectiontitlecontent2, frame, screen);
         
-        shrinkscroll2(container2, img2, sectiontitlecontent3, frame2, screen2, lastScrollTop);
+        shrinkscroll2(container2, img2, sectiontitlecontent3, frame2, screen2);
 
         wipescroll(scrollwrapper, images, overlay, imglist, overlayadjust);
 
@@ -74,7 +73,8 @@ window.onload = function () {
 
 let lastScrollTop = 0;
 
-function shrinkscroll1(container, img, sectiontitlecontent2, frame, screen, lastScrollTop) {
+
+function shrinkscroll1(container, img, sectiontitlecontent2, frame, screen) {
     console.log("enter videoaudio");
     
     // Get scroll progress between 0 and 1
@@ -98,7 +98,9 @@ function shrinkscroll1(container, img, sectiontitlecontent2, frame, screen, last
     changetop(screen, img);
 }
 
-function shrinkscroll2(container2, img2, sectiontitlecontent3, frame2, screen2, lastScrollTop) {
+let lastScrollTop2 = 0;
+
+function shrinkscroll2(container2, img2, sectiontitlecontent3, frame2, screen2) {
     // console.log("enter camera2");
     
     // Get scroll progress between 0 and 1
@@ -112,9 +114,9 @@ function shrinkscroll2(container2, img2, sectiontitlecontent3, frame2, screen2, 
 
     // if scroll down, at some point makes the frame appear; vice versa
     const currentScroll = window.scrollY;
-    changedisplay2(frame2, scale2, currentScroll, lastScrollTop, screen2);
+    changedisplay2(frame2, scale2, currentScroll, lastScrollTop2, screen2);
     // keep data for next call
-    lastScrollTop = currentScroll;
+    lastScrollTop2 = currentScroll;
 
     // keep the device wrapper always in the middle of screen before scroll away
     // the div's position: sticky, and its container doesn't have overflow: scroll
@@ -143,8 +145,6 @@ function disolvescroll(piccontainer, pics) {
         pics[2].style.opacity = "1";
     }
 }
-
-
 
 // let reveal1 = 100;
 // let reveal2 = 100;
@@ -578,13 +578,13 @@ function changeopacity(progress, sectiontitlecontent2) {
 }
 
 function changedisplay(frame, scale, currentScroll, lastScrollTop) {
-    console.log('lasttop: ' + lastScrollTop);
-    console.log('currenttop: ' + currentScroll);
+    // console.log('lasttop: ' + lastScrollTop);
+    // console.log('currenttop: ' + currentScroll);
     if ((currentScroll > lastScrollTop) && (scale < 1.4)) {
         frame.style.display = 'block';
     }
     if ((currentScroll < lastScrollTop) && (scale > 1.4)) {
-        console.log('none');
+        // console.log('none');
         frame.style.display = 'none';
     }
 }
