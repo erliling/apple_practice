@@ -253,7 +253,7 @@ function wipescroll(scrollwrapper, images, overlay, imglist, overlayadjust) {
 
     images.forEach((image, index) => {
         if ((index == 0) && (adjust_recttop <= scrollheight)) {
-            // console.log("1st pic");
+            console.log("1st pic");
 
             // reset middle progresses
             resetmiddleflag();
@@ -293,7 +293,7 @@ function wipescroll(scrollwrapper, images, overlay, imglist, overlayadjust) {
             prevprogress = currentprogress;
             
         } else if ((index == (imagenum - 1)) && (adjust_recttop > index * scrollheight)) {
-            // console.log("last pic");
+            console.log("last pic");
             
             // reset middle progress
             resetmiddleflag();
@@ -315,7 +315,7 @@ function wipescroll(scrollwrapper, images, overlay, imglist, overlayadjust) {
                 expandimg(currentprogress, images);
             }
         } else if ((adjust_recttop > (index) * scrollheight) && (adjust_recttop <= (index+1) * scrollheight)) {
-            // console.log("middle pic: " + index);
+            console.log("middle pic: " + index);
             
             // reset flag
             resetfirstflag();
@@ -351,7 +351,7 @@ function wipescroll(scrollwrapper, images, overlay, imglist, overlayadjust) {
                 if ((index == imagenum - 2) && (middlenextflag == 0)) {
                     // second to last img, handle scroll backward, get value from prevprogress (across block)
                     if ((prevprogress < 1) && (prevprogress > 0)) {
-                        revealimg(images[index + 2], 0, overlay, index+1);
+                        revealimg(images[index + 1], 0, overlay, index);
                         middlenextflag = 1;
                     }
                 } else if ((index >= 1) && (index < (imagenum - 2) && (index != previndex))) {
