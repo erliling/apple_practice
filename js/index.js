@@ -73,7 +73,6 @@ window.onload = function () {
 
 let lastScrollTop = 0;
 
-
 function shrinkscroll1(container, img, sectiontitlecontent2, frame, screen) {
     console.log("enter videoaudio");
     
@@ -590,13 +589,13 @@ function changedisplay(frame, scale, currentScroll, lastScrollTop) {
 }
 function changedisplay2(frame2, scale2, currentScroll, lastScrollTop) {
 
-    console.log('lasttop2: ' + lastScrollTop);
-    console.log('currenttop2: ' + currentScroll);
+    // console.log('lasttop2: ' + lastScrollTop);
+    // console.log('currenttop2: ' + currentScroll);
     if ((currentScroll > lastScrollTop) && (scale2 < 3.4)) {
         frame2.style.display = 'block';
     }
     if ((currentScroll < lastScrollTop) && (scale2 > 3.4)) {
-        console.log('none2');
+        // console.log('none2');
         frame2.style.display = 'none';
     }
 }
