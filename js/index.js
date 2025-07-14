@@ -29,13 +29,16 @@ window.onload = function () {
 
     const screen = document.getElementsByClassName('screen')[0];
     const screen2 = document.getElementsByClassName('screen')[1];
+    
     const frame = document.getElementsByClassName('frame')[0];
     const frame2 = document.getElementsByClassName('frame')[1];
     
     const sectiontitlecontent2 = document.getElementsByClassName('sectiontitlecontent2')[0];
     const sectiontitlecontent3 = document.getElementsByClassName('sectiontitlecontent2')[1];
 
-    let lastScrollTop = 0;
+    
+
+    // const stickycontainer1 = document.querySelector('.videoaudio .stickycontainer1');
 
     // wipe scroll
     const scrollwrapper = document.querySelector('.photograph .scrollwrapper');
@@ -51,21 +54,29 @@ window.onload = function () {
     const piccontainer = document.querySelector('.photograph .textpic .piccontainer');
     const pics = document.querySelectorAll('.photograph .textpic .pic');
 
+    // stickycontainer1.addEventListener('scroll', () => {
+    //     // shrinkscroll1(container, img, sectiontitlecontent2, frame, screen, lastScrollTop);
+    // });
+
     window.addEventListener('scroll', () => {
         
         // moveslider(scrollwrapper, images, maskslide);
 
-        moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust);
+        shrinkscroll1(container, img, sectiontitlecontent2, frame, screen, lastScrollTop);
+        
+        shrinkscroll2(container2, img2, sectiontitlecontent3, frame2, screen2, lastScrollTop);
+
+        wipescroll(scrollwrapper, images, overlay, imglist, overlayadjust);
 
         disolvescroll(piccontainer, pics);
-
-        wipescroll1(container, img, sectiontitlecontent2, frame, screen, lastScrollTop);
-        
-        wipescroll2(container2, img2, sectiontitlecontent3, frame2, screen2, lastScrollTop);
     }); 
 }
 
-function wipescroll1(container, img, sectiontitlecontent2, frame, screen, lastScrollTop) {
+let lastScrollTop = 0;
+
+function shrinkscroll1(container, img, sectiontitlecontent2, frame, screen, lastScrollTop) {
+    console.log("enter videoaudio");
+    
     // Get scroll progress between 0 and 1
     const progress = getprogress(container);
 
@@ -87,7 +98,9 @@ function wipescroll1(container, img, sectiontitlecontent2, frame, screen, lastSc
     changetop(screen, img);
 }
 
-function wipescroll2(container2, img2, sectiontitlecontent3, frame2, screen2, lastScrollTop) {
+function shrinkscroll2(container2, img2, sectiontitlecontent3, frame2, screen2, lastScrollTop) {
+    // console.log("enter camera2");
+    
     // Get scroll progress between 0 and 1
     const progress2 = getprogress(container2);
 
@@ -110,6 +123,8 @@ function wipescroll2(container2, img2, sectiontitlecontent3, frame2, screen2, la
 }
 
 function disolvescroll(piccontainer, pics) {
+    // console.log("enter photography2");
+
     const rect = piccontainer.getBoundingClientRect();
     const recttop = -rect.top;
     const scrollheight = window.innerHeight;
@@ -223,7 +238,9 @@ let middleprevflag = 0;
 let middlenextflag = 0;
 let lastnextflag = 1;
 
-function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust) {
+function wipescroll(scrollwrapper, images, overlay, imglist, overlayadjust) {
+    // console.log("enter photography");
+
     const rect = scrollwrapper.getBoundingClientRect();
     const recttop = -rect.top;
     const scrollheight = window.innerHeight;
@@ -237,7 +254,7 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
 
     images.forEach((image, index) => {
         if ((index == 0) && (adjust_recttop <= scrollheight)) {
-            console.log("1st pic");
+            // console.log("1st pic");
 
             // reset middle progresses
             resetmiddleflag();
@@ -277,7 +294,7 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
             prevprogress = currentprogress;
             
         } else if ((index == (imagenum - 1)) && (adjust_recttop > index * scrollheight)) {
-            console.log("last pic");
+            // console.log("last pic");
             
             // reset middle progress
             resetmiddleflag();
@@ -299,7 +316,7 @@ function moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust
                 expandimg(currentprogress, images);
             }
         } else if ((adjust_recttop > (index) * scrollheight) && (adjust_recttop <= (index+1) * scrollheight)) {
-            console.log("middle pic: " + index);
+            // console.log("middle pic: " + index);
             
             // reset flag
             resetfirstflag();
@@ -561,19 +578,25 @@ function changeopacity(progress, sectiontitlecontent2) {
 }
 
 function changedisplay(frame, scale, currentScroll, lastScrollTop) {
+    console.log('lasttop: ' + lastScrollTop);
+    console.log('currenttop: ' + currentScroll);
     if ((currentScroll > lastScrollTop) && (scale < 1.4)) {
         frame.style.display = 'block';
     }
     if ((currentScroll < lastScrollTop) && (scale > 1.4)) {
+        console.log('none');
         frame.style.display = 'none';
     }
 }
 function changedisplay2(frame2, scale2, currentScroll, lastScrollTop) {
 
+    console.log('lasttop2: ' + lastScrollTop);
+    console.log('currenttop2: ' + currentScroll);
     if ((currentScroll > lastScrollTop) && (scale2 < 3.4)) {
         frame2.style.display = 'block';
     }
     if ((currentScroll < lastScrollTop) && (scale2 > 3.4)) {
+        console.log('none2');
         frame2.style.display = 'none';
     }
 }

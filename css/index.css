@@ -742,7 +742,13 @@ body {
     background-color: var(--default-background-color);
 }
 
-
+.videoaudio .stickycontainer1 {
+    /* overflow-y: scroll; */
+    
+}
+.videoaudio .stickycontainer1::-webkit-scrollbar { 
+    /* display: none;  */
+};
 
 .videoaudio .columntext2 {
     text-align: center;
@@ -752,7 +758,6 @@ body {
     flex-direction: column;
     align-items: center;
     row-gap: 100px;
-
 }
 .videoaudio .textcolumngrid {
     text-align: left;
@@ -2772,7 +2777,7 @@ a.a2 {
 }
 /* #endregion carousel*/
 
-/* #region stickyscroll */
+/* #region wipescroll */
 .stickycontainer {
     /* scrollable space */
     position: relative;
