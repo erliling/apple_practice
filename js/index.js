@@ -19,6 +19,8 @@ window.onload = function () {
         resizeframe(overlay);
     })
 
+
+    // shrink img via scroll
     const container = document.getElementsByClassName('stickycontainer')[0];
     const container2 = document.getElementsByClassName('stickycontainer')[1];
 
@@ -49,39 +51,62 @@ window.onload = function () {
     const piccontainer = document.querySelector('.photograph .textpic .piccontainer');
     const pics = document.querySelectorAll('.photograph .textpic .pic');
 
-    // shrink img via scroll
     window.addEventListener('scroll', () => {
         
         // moveslider(scrollwrapper, images, maskslide);
 
         moveslider_apple(scrollwrapper, images, overlay, imglist, overlayadjust);
+
         disolvescroll(piccontainer, pics);
 
-        // Get scroll progress between 0 and 1
-        const progress = getprogress(container);
-        const progress2 = getprogress(container2);
-
-        // change img's scale and return scale value
-        let scale = changescale(progress, img);
-        let scale2 = changescale2(progress2, img2);
-
-        // change img's opacity
-        changeopacity(progress, sectiontitlecontent2);
-        changeopacity(progress2, sectiontitlecontent3);
-    
-        // if scroll down, at some point makes the frame appear; vice versa
-        const currentScroll = window.scrollY;
-        changedisplay(frame, scale, currentScroll, lastScrollTop);
-        changedisplay2(frame2, scale2, currentScroll, lastScrollTop, screen2);
-        // keep data for next call
-        lastScrollTop = currentScroll;
-    
-        // keep the device wrapper always in the middle of screen before scroll away
-        // the div's position: sticky, and its container doesn't have overflow: scroll
-        // so the div's top is relative to the viewport not the whole sticky container
-        changetop(screen, img);
-        changetop2(screen2, img2);
+        wipescroll1(container, img, sectiontitlecontent2, frame, screen, lastScrollTop);
+        
+        wipescroll2(container2, img2, sectiontitlecontent3, frame2, screen2, lastScrollTop);
     }); 
+}
+
+function wipescroll1(container, img, sectiontitlecontent2, frame, screen, lastScrollTop) {
+    // Get scroll progress between 0 and 1
+    const progress = getprogress(container);
+
+    // change img's scale and return scale value
+    let scale = changescale(progress, img);
+
+    // change img's opacity
+    changeopacity(progress, sectiontitlecontent2);
+
+    // if scroll down, at some point makes the frame appear; vice versa
+    const currentScroll = window.scrollY;
+    changedisplay(frame, scale, currentScroll, lastScrollTop);
+    // keep data for next call
+    lastScrollTop = currentScroll;
+
+    // keep the device wrapper always in the middle of screen before scroll away
+    // the div's position: sticky, and its container doesn't have overflow: scroll
+    // so the div's top is relative to the viewport not the whole sticky container
+    changetop(screen, img);
+}
+
+function wipescroll2(container2, img2, sectiontitlecontent3, frame2, screen2, lastScrollTop) {
+    // Get scroll progress between 0 and 1
+    const progress2 = getprogress(container2);
+
+    // change img's scale and return scale value
+    let scale2 = changescale2(progress2, img2);
+
+    // change img's opacity
+    changeopacity(progress2, sectiontitlecontent3);
+
+    // if scroll down, at some point makes the frame appear; vice versa
+    const currentScroll = window.scrollY;
+    changedisplay2(frame2, scale2, currentScroll, lastScrollTop, screen2);
+    // keep data for next call
+    lastScrollTop = currentScroll;
+
+    // keep the device wrapper always in the middle of screen before scroll away
+    // the div's position: sticky, and its container doesn't have overflow: scroll
+    // so the div's top is relative to the viewport not the whole sticky container
+    changetop2(screen2, img2);
 }
 
 function disolvescroll(piccontainer, pics) {
