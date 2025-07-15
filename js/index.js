@@ -36,6 +36,9 @@ window.onload = function () {
     const sectiontitlecontent2 = document.getElementsByClassName('sectiontitlecontent2')[0];
     const sectiontitlecontent3 = document.getElementsByClassName('sectiontitlecontent2')[1];
 
+    const videoaudio = document.querySelector('.videoaudio');
+    const navheight = 0;
+    const camera2 = document.querySelector('.camera2');
 
     // const stickycontainer1 = document.querySelector('.videoaudio .stickycontainer1');
 
@@ -48,27 +51,51 @@ window.onload = function () {
     const overlayadjust = document.querySelector('.photograph .stickycontainer .frameadjust');
 
     const stickycontainer = document.querySelector('.photograph .stickycontainer');
-    
+    const photograph = document.querySelector('.photograph');
+
     // disolve scroll
     const piccontainer = document.querySelector('.photograph .textpic .piccontainer');
     const pics = document.querySelectorAll('.photograph .textpic .pic');
 
     // stickycontainer1.addEventListener('scroll', () => {
-    //     // shrinkscroll1(container, img, sectiontitlecontent2, frame, screen, lastScrollTop);
+    //     shrinkscroll1(container, img, sectiontitlecontent2, frame, screen);
+    // });
+
+    // videoaudio.addEventListener('wheel', () => {
+    //     console.log("here videoaudio");
+    //     shrinkscroll1(container, img, sectiontitlecontent2, frame, screen);
     // });
 
     window.addEventListener('scroll', () => {
         
         // moveslider(scrollwrapper, images, maskslide);
 
-        shrinkscroll1(container, img, sectiontitlecontent2, frame, screen);
+        scrollinsection(container, img, sectiontitlecontent2, frame, screen, videoaudio, navheight, shrinkscroll1);
+        scrollinsection(container2, img2, sectiontitlecontent3, frame2, screen2, camera2, navheight, shrinkscroll2);
+        scrollinsection2(scrollwrapper, images, overlay, imglist, overlayadjust, piccontainer, pics, photograph, navheight, wipescroll, disolvescroll);
         
-        shrinkscroll2(container2, img2, sectiontitlecontent3, frame2, screen2);
-
-        wipescroll(scrollwrapper, images, overlay, imglist, overlayadjust);
-
-        disolvescroll(piccontainer, pics);
     }); 
+}
+
+function scrollinsection2(scrollwrapper, images, overlay, imglist, overlayadjust, piccontainer, pics, section, navheight, callbackfunction, callbackfunction2) {
+    const scrollY = window.scrollY;
+    const sectionTop = section.offsetTop - navheight; // Adjust for fixed header
+    const sectionBottom = section.offsetTop + section.offsetHeight - navheight;
+
+    if (scrollY >= sectionTop && scrollY < sectionBottom) {
+        callbackfunction(scrollwrapper, images, overlay, imglist, overlayadjust);
+        callbackfunction2(piccontainer, pics);
+    }
+}
+
+function scrollinsection(container, img, sectiontitlecontent2, frame, screen, section, navheight, callbackfunction) {
+    const scrollY = window.scrollY;
+    const sectionTop = section.offsetTop - navheight; // Adjust for fixed header
+    const sectionBottom = section.offsetTop + section.offsetHeight - navheight;
+
+    if (scrollY >= sectionTop && scrollY < sectionBottom) {
+        callbackfunction(container, img, sectiontitlecontent2, frame, screen);
+    }
 }
 
 let lastScrollTop = 0;
@@ -100,7 +127,7 @@ function shrinkscroll1(container, img, sectiontitlecontent2, frame, screen) {
 let lastScrollTop2 = 0;
 
 function shrinkscroll2(container2, img2, sectiontitlecontent3, frame2, screen2) {
-    // console.log("enter camera2");
+    console.log("enter camera2");
     
     // Get scroll progress between 0 and 1
     const progress2 = getprogress(container2);
@@ -238,7 +265,7 @@ let middlenextflag = 0;
 let lastnextflag = 1;
 
 function wipescroll(scrollwrapper, images, overlay, imglist, overlayadjust) {
-    // console.log("enter photography");
+    console.log("enter photography");
 
     const rect = scrollwrapper.getBoundingClientRect();
     const recttop = -rect.top;
@@ -253,7 +280,7 @@ function wipescroll(scrollwrapper, images, overlay, imglist, overlayadjust) {
 
     images.forEach((image, index) => {
         if ((index == 0) && (adjust_recttop <= scrollheight)) {
-            console.log("1st pic");
+            // console.log("1st pic");
 
             // reset middle progresses
             resetmiddleflag();
@@ -293,7 +320,7 @@ function wipescroll(scrollwrapper, images, overlay, imglist, overlayadjust) {
             prevprogress = currentprogress;
             
         } else if ((index == (imagenum - 1)) && (adjust_recttop > index * scrollheight)) {
-            console.log("last pic");
+            // console.log("last pic");
             
             // reset middle progress
             resetmiddleflag();
@@ -315,7 +342,7 @@ function wipescroll(scrollwrapper, images, overlay, imglist, overlayadjust) {
                 expandimg(currentprogress, images);
             }
         } else if ((adjust_recttop > (index) * scrollheight) && (adjust_recttop <= (index+1) * scrollheight)) {
-            console.log("middle pic: " + index);
+            // console.log("middle pic: " + index);
             
             // reset flag
             resetfirstflag();

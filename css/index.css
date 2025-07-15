@@ -741,6 +741,12 @@ body {
     z-index: 2;
     background-color: var(--default-background-color);
 }
+/* .videoaudio_scroll {
+    overflow-y: scroll;
+}
+.videoaudio_scroll { 
+    display: none; 
+} */
 
 .videoaudio .stickycontainer1 {
     /* overflow-y: scroll; */
@@ -2797,10 +2803,10 @@ a.a2 {
     opacity: 1;
     transition: opacity 0.2s ease-out;
 
-    /* mask - text - frame - screen */
+    /* text - mask - frame - screen */
     z-index: 4;
 }
-.videoaudio .stickycontainer .gradientoverlay {
+.stickycontainer .gradientoverlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -2811,7 +2817,7 @@ a.a2 {
     /* use image-mask will cause z-index issue */
     background: linear-gradient(rgba(0, 0, 0, 0.4), transparent);
 
-    /* mask - text - frame - screen */
+    /* text - mask - frame - screen */
     z-index: 3;
 }
 .stickycontainer .devicewrapper {
@@ -2820,7 +2826,7 @@ a.a2 {
     /* initial location to the top */
     top: 0;
 }
-.videoaudio .stickycontainer .device {
+.stickycontainer .device {
     /* for position frame and screen */
     position: relative;
 
