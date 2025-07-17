@@ -268,20 +268,15 @@ body {
 
 /* #region material*/
 .material {
-    padding: 160px 0 216px;
+    padding: var(--section-padding) 0 var(--section-padding-bar);
     margin-bottom: 0;
-    /* background-color: orange; */
-    /* position: relative; */
-
-    /* width: min(21.875vw - var(--global-scrollbar-width)/12*3,420px); */
 }
 .material:not(:has(.all-access-pass:not(.aap-timer))).no-pad, .material:not(:has(.all-access-pass:not(.aap-timer))).no-pad-bottom {
     padding-bottom: 0;
 }
 
 .material .gradient-wrapper {
-    /* height: 550px; */
-    background: radial-gradient(100% 50% at center, #2c201a, #000);;
+    background: radial-gradient(100% 50% at center, #2c201a, #000);
 }
 
 /* #endregion material*/
