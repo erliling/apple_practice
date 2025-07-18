@@ -523,22 +523,18 @@ body {
 
 /* #region camera*/
 .camera {
-    padding: 160px 0 0;
+    padding: var(--section-padding) 0 0;
     margin-bottom: 0;
 
+    /* for sticky access bar */
     position: relative;
 }
 .camera .banner {
-    /* width: 100%; */
     margin-bottom: 160px;
-
-}
-.camera .banner picture {
-    /* position: relative; */
 }
 .camera .banner picture img {
     width: 100%;
-    /* height: auto; */
+    height: auto;
 }
 .camera .gradient-wrapper {
     padding-bottom: 216px;
@@ -562,8 +558,14 @@ body {
     column-gap: 100px;
 
     margin-top: 96px;
+    padding: 40px 40px 0 100px;
+    /* padding-top: 40px;
+    padding-left: 100px;
+    padding-right: 40px; */
+    
     width: var(--bento-width);
     max-width: 1036px;
+
     border-radius: 28px;
     background: #000;
     overflow: hidden;
@@ -574,14 +576,11 @@ body {
     color: var(--default-text-color);
     line-height: 1.125;
     letter-spacing: .004em;
+    
     margin-top: 0.6em;
     margin-bottom: 0.6em;
 }
-.camera .playbaraccesscontainer .playbarright_modify {
-    /* display: flex;
-    justify-content: space-evenly;
-    align-items: center; */
-}
+
 /* #endregion camera*/
 
 /* #region videoaudio*/
