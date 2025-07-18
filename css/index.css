@@ -382,10 +382,14 @@ body {
 
     border-radius: 20px;
 }
+/* frame still in doc flow */
 .ai .tabgroup .tabcontent .grid .tile picture {
+    /* position: absolute; */
     margin-top: 40px;
+    /* frame in front, weird but works */
     z-index: 2;
 }
+/* innerpic float as absolute */
 .ai .tabgroup .tabcontent .grid .tile .innerpic {
     position: absolute;
     top: 2.1%;
@@ -395,11 +399,6 @@ body {
     border-radius: 20px;
 }
 
-.ai .tabgroup .tabcontent .grid .tile figure{
-    padding: 0;
-    margin: 0;
-}
-
 .ai .tabgroup .tabcontent .grid .tile span {
     margin-top: 40px;
     margin-bottom: 40px;
@@ -407,8 +406,8 @@ body {
     width: 65%;
     text-align: center;
 
-    flex-grow: 0;
-    flex-shrink: 0;
+    /* flex-grow: 0;
+    flex-shrink: 0; */
 }
 .ai .tabgroup .tabcontent .grid .tile1 {
     grid-area: tile1;
@@ -437,6 +436,14 @@ body {
 }
 .ai .tabgroup .tabcontent3 h3 {
     opacity: 0;
+}
+
+/* .ai .tabgroup .tabcontent .grid .tile img{
+    border: none;
+} */
+.ai .tabgroup .tabcontent .grid .tile figure{
+    padding: 0;
+    margin: 0;
 }
 .ai .tabgroup .tabcontent1 .tile .figure1{
     background-size: 700px 104px;
@@ -490,12 +497,6 @@ body {
     background-size: 209px 430px;
     width: 209px;
     height: 430px;
-    /* background-size: contain;
-    height: 200%;
-    width: 100%;
-    background-position: 50%;
-    position: static;
-    margin: 0; */
     background-repeat: no-repeat;
 
     background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/apple-intelligence/siri_instructions__d51kwie6zoae_large_2x.jpg);
@@ -512,9 +513,12 @@ body {
 .ai .privacy .titlecontent {
     max-width: 33.3%;
     text-align: center;
-    
 }
-
+.ai .privacy a::after {
+    content: ">";
+    vertical-align: -1px;
+    padding-inline-start: 0.24em;
+}
 /* #endregion ai*/
 
 /* #region camera*/
