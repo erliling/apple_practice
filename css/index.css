@@ -228,14 +228,14 @@ body {
 
 /* #endregion carousel*/
 
-/* #region carousel2*/
-.imageswitcher {
+/* #region Phonecategory*/
+.Phonecategory {
     padding: var(--section-padding) 0 var(--section-padding-bar);
     
     /* for playbaraccesscontainer */
     position: relative;
 }
-.imageswitcher .carsouselcontentcontainer {
+.Phonecategory .imgswitchercontentcontainer {
     position: relative;
     height: 680px;
 
@@ -244,27 +244,7 @@ body {
     justify-content: center;
     
 }
-.imageswitcher .carouselcontent {
-    position: absolute;
 
-    /* height: fit-content; */
-}
-
-.imageswitcher .carouselcontent1 {
-    z-index: 1;
-}
-.imageswitcher .carouselcontent2 {
-    z-index: 0;
-}
-.imageswitcher .carouselcontent3 {
-    z-index: 0;
-}
-.imageswitcher .carouselcontent4 {
-    z-index: 0;
-}
-.imageswitcher .carouselcontent5 {
-    z-index: 0;
-}
 /* #endregion carousel2*/
 
 /* #region material*/
@@ -708,15 +688,13 @@ body {
 
 /* #region camera2*/
 .camera2 {
-    /* margin-top: 160px; */
-    /* padding: 160px 0 216px; */
-    padding: 0px 0 216px;
+    padding: 0px 0 var(--section-padding-bar);
     position: relative;
 }
 .camera2 .spacer {
-    
+    /* hide the head of image in the beginning */
     width: 100%;
-    height: 160px;
+    height: var(--section-padding);
     background-color: var(--default-background-color);
 
     position: absolute;
@@ -734,12 +712,12 @@ body {
 }
 
 .camera2 .stickycontainer .device .frame {
-
+    /* move image to the center */
     transform: translateX(4%) translateY(-30%) ;
     transition: transform 0.2s ease-out;
 }
 .camera2 .stickycontainer .device .screen {
-
+    /* move image to the center */
     transform: translateX(4%) translateY(-30%) ;
     transition: transform 0.2s ease-out;
 }
@@ -749,86 +727,43 @@ body {
 }
 
 .camera2 .viewcontent {
-
+    /* horizontally align */
     display: flex;
-    align-items: center;
     justify-content: center;
 }
+
 .camera2 .viewcontent .contentlayout {
     margin-top: 128px;
 
     display: flex;
-    align-items: center;
-    /* justify-content: center; */
     flex-direction: column;
+    /* align-items: center; */
 
     width: var(--ric-column-width-8);
 
     position: relative;
-
 }
 
-.camera2 .carsouselcontentcontainer {
-    /* margin-top: 50px; */
+.camera2 .imgswitchercontent {
+    /* position: absolute; */
+    /* top: 0; */
 
-    
-    /* width: 100%; */
-    /* height: auto;
-    overflow: hidden; */
-    /* aspect-ratio: 1.3333333333; */
-    /* display: block; */
+    /* horizontal center */
+    /* left: 50%;
+    transform: translateX(-50%); */
 
-    /* overflow: hidden; */
-    /* display: table; */
-    
-}
-/* .camera2 .carsouselcontentcontainer::after {
-    content:  '';
-    display: block;
-    height: 776px;
-} */
-.camera2 .carouselcontent {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-
-    width: 100%;
-    height: auto;
+    /* width: 100%;
+    height: auto; */
 
     /* aspect-ratio: 1.3337628866; */
     
 }
-.camera2 .carouselcontent picture {
-    /* width: 100%;
-    height: 100%;
-    object-fit: cover; */
-
-}
-.camera2 .carouselcontent img {
-    /* width: 100%;
-    height: auto; */
+.camera2 .imgswitchercontent img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* position: absolute; */
+    height: auto;
+    /* object-fit: cover; */
 }
 
-.camera2 .carouselcontent1 {
-    z-index: 1;
-}
-.camera2 .carouselcontent2 {
-    z-index: 0;
-}
-.camera2 .carouselcontent3 {
-    z-index: 0;
-}
-.camera2 .carouselcontent4 {
-    z-index: 0;
-}
-.camera2 .carouselcontent5 {
-    z-index: 0;
-}
 .camera2 .viewcontent .playbarcontent {
     position: relative;
     top: 20px;
@@ -859,25 +794,32 @@ body {
 }
 .camera2 .textpiccontainer {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
+
+    
 }
 .camera2 .textpic {
-    /* --bento-width: min(72.9166666667vw - var(--global-scrollbar-width) / 12 * 10, 1400px); */
-    
     display: flex;
     align-items: center;
-    /* justify-content: center; */
+
     column-gap: 100px;
 
     margin-top: 96px;
-    /* width: var(--bento-width); */
+
     width: var(--ric-column-width-12);
-    margin-inline-start: var(--ric-column-width-2);
-    max-width: 1036px;
-    border-radius: 28px;
+    margin-inline-start: var(--ric-column-width-3);
+
+    /* max-width: 1036px; */
     background: #000;
-    overflow: hidden;
+    /* overflow: hidden; */
+}
+.camera2 .textpic .textarea {
+    width: var(--ric-column-width-3);
+}
+.camera2 .textpic .imgarea img{
+    width: 100%;
+    height: auto;
 }
 /* #endregion camera2*/
 
@@ -2505,7 +2447,7 @@ a.arrow::after {
 /* #endregion comparedropdown*/
 
 /* #region bigcarousel */
-.bigcarousel .carouselcontent {
+.bigcarousel .imgswitchercontent {
     margin: 0 auto;
     display: grid;
     grid-gap: 20px;
@@ -2516,7 +2458,7 @@ a.arrow::after {
     padding: 0 max(6.25vw,(100vw - 1680px)/2,env(safe-area-inset-left),env(safe-area-inset-right));
     
 }
-.bigcarousel .carouselcontent .tile {
+.bigcarousel .imgswitchercontent .tile {
     display: flex;
     
     background-color: var(--default-background-color);
@@ -2529,7 +2471,7 @@ a.arrow::after {
 
     overflow: hidden;
 }
-.bigcarousel .carouselcontent .tile h2 {
+.bigcarousel .imgswitchercontent .tile h2 {
     width: 400px;
     padding: 48px;
     
@@ -2537,7 +2479,7 @@ a.arrow::after {
     font-size: 28px;
     position: absolute;
 }
-.bigcarousel .carouselcontent .tile figure {
+.bigcarousel .imgswitchercontent .tile figure {
     margin-top: 0;
     margin-left: 0;
     margin-bottom: 0;
@@ -2546,7 +2488,7 @@ a.arrow::after {
     width: 100%;
     height: 100%;
 }
-.bigcarousel .carouselcontent .tile picture {
+.bigcarousel .imgswitchercontent .tile picture {
     display: block;
     width: 1260px;
     height: 680px;
@@ -2640,6 +2582,30 @@ a.arrow::after {
     fill: rgba(255,255,255,0.8);
 }
 /* #endregion carousel*/
+
+/* #region imgswitcher*/
+.imgswitchercontent {
+    position: absolute;
+
+    /* height: fit-content; */
+}
+
+.imgswitchercontent1 {
+    z-index: 1;
+}
+.imgswitchercontent2 {
+    z-index: 0;
+}
+.imgswitchercontent3 {
+    z-index: 0;
+}
+.imgswitchercontent4 {
+    z-index: 0;
+}
+.imgswitchercontent5 {
+    z-index: 0;
+}
+/* #endregion imgswitcher*/
 
 /* #region wipescroll */
 .stickycontainer {

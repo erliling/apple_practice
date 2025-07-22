@@ -1,7 +1,7 @@
 
 window.onload = function () {
-    const carsouselcontentcontainer = document.querySelector('.camera2 .carsouselcontentcontainer');
-    const carouselcontent = document.querySelector('.camera2 .carouselcontent');
+    const carsouselcontentcontainer = document.querySelector('.camera2 .imgswitchercontentcontainer');
+    const carouselcontent = document.querySelector('.camera2 .imgswitchercontent');
 
     // get the min width of shrinking image
     let minimagewidth = getminimagewidth();
