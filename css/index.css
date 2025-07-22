@@ -895,19 +895,46 @@ body {
     clip-path: inset(0 0 0 100%);
 }
 
+/* .photograph .stickycontainer .image {
+
+    grid-area: 1/1;
+
+    width: 100%;
+    height: auto;
+    max-width: 1680px;
+    max-height: 1050px;
+
+    object-fit: cover;
+    object-position: center center;
+
+}
+.photograph .stickycontainer .image2 {
+    clip-path: inset(0 0 0 100%);
+}
+
+.photograph .stickycontainer .image3 {
+    clip-path: inset(0 0 0 100%);
+} */
+
 .photograph .stickycontainer .frame {
     position: absolute;
     left: 0;
 
     width: calc(var(--gallery-width) * var(--image-num) + 1px);
+    /* height: calc(var(--gallery-height) + 1px); */
     height: 100%;
 
     display: flex;
+
+    
 }
 .photograph .stickycontainer .frame .slide {
     width: calc(var(--gallery-width) + 1px);
-    height: 100%;
+    /* height: 100%; */
+    /* aspect-ratio: calc(1680/1050); */
     position: relative;
+
+    /* --default-frame-color: pink; */
 }
 .photograph .stickycontainer .frame .corner {
     --radius: 0.06;
