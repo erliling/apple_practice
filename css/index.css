@@ -825,7 +825,7 @@ body {
 
 /* #region photograph */
 .photograph {
-    padding: 0px 0 216px;
+    padding: 0px 0 var(--section-padding-bar);
     position: relative;
 
     --image-num: 6;
@@ -839,16 +839,13 @@ body {
 /* scroll sticky item */
 .photograph .stickycontainer {
     position: sticky;
-    top: calc(50vh - var(--gallery-height)/2 + var(--r-localnav-height)/2 - 50px);
+    top: calc(50vh - var(--gallery-height)/2 + var(--r-localnav-height)/2);
     height: var(--gallery-height);
-
 }
 .photograph .stickycontainer .frameadjust {
 
     /* let the frame closely cover outside of the image */
     height: calc(var(--gallery-height) + var(--border-size));
-
-    /* margin-inline: auto; */
 
     border: var(--border-size) solid #000;
 
@@ -871,15 +868,13 @@ body {
 
     /* use position relative to overlap instead of position absolute */
     z-index: 2;
-    /* move up, actually it's the height of the frameadjust */
+    /* because relative pos overlap, need move up, actually it's the 
+    height of the frameadjust */
     margin-top: calc(-1 * var(--gallery-height) - var(--border-size));
 }
 .photograph .stickycontainer .image {
 
     grid-area: 1/1;
-
-    /* width: 100%;
-    height: 100%; */
 
     background-repeat: no-repeat;
     background-position: 50%;
