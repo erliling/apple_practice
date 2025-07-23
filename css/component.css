@@ -625,7 +625,7 @@ a.arrow::after {
 }
 .dissolvescroll .piccontainer {
     grid-area: iphone;
-    position: relative;
+    /* position: relative; */
 
     /* transform: translateX(50%); */
     /* left: 25%; */
