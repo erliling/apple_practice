@@ -1,0 +1,807 @@
+/* #region generalcomp */
+.primarybtn {
+    background-color: var(--default-btn-bg-color);
+    color: var(--default-text-color);
+
+    width: var(--sk-button-width);
+    min-width: calc(var(--sk-button-min-width-basis) - var(--sk-button-padding-horizontal) * 2);
+    padding-inline: calc(var(--sk-button-padding-horizontal) - var(--sk-button-border-width));
+    padding-block: calc(var(--sk-button-padding-vertical) - var(--sk-button-border-width));
+
+    border-radius: var(--sk-button-border-radius);
+
+    text-align: center;
+}
+.primarybtn.nobg {
+    background-color: transparent;
+}
+
+/* #endregion generalcomp */
+
+/* #region generallayout */
+.viewportcontent {
+    width: 87.5%;
+    max-width: 1680px;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+}
+
+.largecenter {
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+}
+
+/* #endregion generallayout */
+
+/* #region generaltext*/
+
+.smallcaption {
+    font-size: 12px ;
+    line-height: 1.333;
+    letter-spacing: -0.01em;
+    color: var(--default-gray-text-color);
+}
+.smallcaption strong{
+    /* font-size: 12px ;
+    line-height: 1.333;
+    letter-spacing: -0.01em; */
+    color: var(--default-text-color);
+}
+.sectiontitlecontent {
+    
+}
+.sectiontitlecontent .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 0 80px;
+}
+.sectiontitlecontent .title h1 {
+    color: var(--default-text-color);
+    font-size: 56px;
+    font-weight: 600;
+}
+/* .sectiontitlecontent .title a {
+    font-size: 16px;
+    color: var(--default-link-color);
+} */
+.sectiontitlecontent2 {
+    /* text-align: center; */
+}
+.sectiontitlecontent2 h1 {
+    text-align: center;
+
+    color: var(--default-text-color);
+    font-size: 80px;
+    line-height: 1.05;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+}
+
+.glowsectiontitlecontent {
+    color: #c8c2bd;
+
+    font-size: 80px;
+    line-height: 1.05;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+}
+.glowsectiontitlecontent_position {
+    
+    text-align: center;
+
+    /* height: fit-content; */
+    margin-bottom: 120px;
+
+    position: relative;
+}
+.glowsectiontitlecontent svg {
+    display: none;
+}
+.glowsectiontitlecontent .glowtext {
+    /* color: rgba(0, 0, 0, 0); */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+}
+.glowsectiontitlecontent .glowtext .filter {
+    filter: url(#glow-1);
+    color: #fffaf6;
+    padding: 80px 0;
+    margin: -80px 0;
+}
+
+
+.sectiontitlecontent3 {
+    color: var(--default-text-color);
+    font-size: 48px;
+    line-height: 1.083;
+    font-weight: 600;
+    letter-spacing: -0.003em;
+}
+.sectiontitlecontent4 {
+    color: var(--default-text-color);
+    font-size: 64px;
+    line-height: 1.0635;
+    font-weight: 600;
+    letter-spacing: -0.009em;
+}
+
+.contenttext {
+    color: var(--default-gray-text-color);
+    font-size: 20px;
+    line-height: 1.39;
+    font-weight: 600;
+    letter-spacing: 0.011em;
+}
+.contenttext strong {
+    color: var(--default-text-color);
+    font-weight: 600;
+}
+.contenttext2 {
+    color: #868693;
+    font-size: 14px;
+    line-height: 1.286;
+    font-weight: 600;
+    letter-spacing: -0.016em;
+}
+.contenttext2 strong {
+    color: var(--default-text-color);
+    font-weight: 600;
+}
+.contenttext3 {
+    color: #868693;
+    font-size: 14px;
+    line-height: 1.286;
+    /* font-weight: 600; */
+    letter-spacing: -0.016em;
+}
+.contenttext4 {
+    color: var(--default-text-color);
+    font-size: 20px;
+    line-height: 1.286;
+    font-weight: 300;
+    letter-spacing: -0.016em;
+}
+.contenttext9 {
+    color: var(--default-text-color);
+    font-size: 20px;
+    line-height: 1.39;
+    font-weight: 600;
+    letter-spacing: 0.011em;
+}
+.contenttext5 {
+    color: var(--default-gray-text-color);
+    font-size: 32px;
+    line-height: 1.125;
+    font-weight: 600;
+    letter-spacing: 0.004em;
+}
+.contenttext7 {
+    color: var(--default-text-color);
+    font-size: 28px;
+    line-height: 1.1429;
+    font-weight: 600;
+    letter-spacing: 0.007em;
+}
+.contenttext5 strong {
+    color: var(--default-text-color);
+    font-weight: 600;
+}
+.contenttext6 {
+    color: var(--default-gray-text-color);
+    font-size: 40px;
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: 0em;
+}
+.contenttext6 strong {
+    color: var(--default-text-color);
+    font-weight: 600;
+}
+h1.title {
+    font-size: 56px;
+    line-height: 1.071;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    color: var(--default-text-color);
+}
+
+a {
+    font-size: 16px;
+    color: var(--default-link-color);
+}
+a.a2 {
+    font-size: 20px;
+    line-height: 1.38;
+    font-weight: 600;
+
+}
+a.arrow::after {
+    content: ">";
+    vertical-align: -1px;
+    padding-inline-start: 0.24em;
+}
+.textcolumn {
+    /* display: block; */
+    /* --ric-column-width-3: min(21.8749vw - var(--global-scrollbar-width) / 12 * 3, 420px); */
+    --ric-column-width-3: min((100vw - var(--global-scrollbar-width)) / 12 * 3, 420px);
+    width: 60%;
+    columns: 2;
+    column-gap: 40px;
+
+    column-width: var(--ric-column-width-3);
+}
+
+.columncontainer {
+}
+.columncontainer .columncontent {
+    columns: 2;
+    column-gap: 100px;
+
+    padding-inline-start: min(7.2916666667vw - var(--global-scrollbar-width) / 12 * 1, 140px);
+    padding-inline-end: min(7.2916666667vw - var(--global-scrollbar-width) / 12 * 1, 140px);
+    margin-inline-start: min(7.2916666667vw - var(--global-scrollbar-width) / 12 * 1, 140px);
+    margin-inline-end: min(7.2916666667vw - var(--global-scrollbar-width) / 12 * 1, 140px);
+}
+
+/* #endregion generaltext*/
+
+/* #region comparedropdown*/
+.comparedropdown {
+    width: var(--ric-column-width-10);
+
+    background-image: linear-gradient(180deg,#0e0e0e 30%,rgba(14,14,14,0) 80%);
+    border-radius: 20px;
+    padding-top: 72px;
+
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+
+    padding-inline: var(--ric-column-width-1);
+    box-sizing: border-box;
+}
+.comparedropdown .dropdown {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--default-text-color);
+    position: relative;
+
+    width: max-content;
+
+    /* padding-inline: var(--ric-column-width-1); */
+}
+.comparedropdown .dropdown select {
+    height: 40px;
+    padding: 0 42px 0 22px;
+    border: 1px solid var(--default-gray-text-color);
+    border-radius: 20px;
+    background-color: var(--default-background-color);
+
+    font-size: 24px;
+    line-height: 1.1666;
+    font-weight: 600;
+    letter-spacing: 0.009em;
+    color: var(--default-text-color);
+
+    appearance: none;
+
+    margin-left: 20px;
+}
+.comparedropdown .dropdown .downarrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    inset-inline-end: 1.2rem;
+
+}
+.comparedropdown .dropdown .downarrow::after {
+    content: ">";
+}
+.comparedropdown .info {
+    margin-top: var(--ps-spacing-56);
+
+    display: none;
+}
+.comparedropdown .info.show {
+    display: flex;
+    column-gap: var(--ric-column-width-1);
+}
+.comparedropdown .info .tile {
+    width: var(--ric-column-width-2);
+}
+.comparedropdown .contenttext strong {
+    background-image: linear-gradient(270deg,#f5e3d9 40%,#fdc9ae);
+    background-clip: text;
+    /* -webkit-background-clip: text; */
+    color: transparent;
+
+    font-size: 28px;
+    line-height: 1.1429;
+    font-weight: 600;
+    letter-spacing: 0.007em;
+    display: block;
+    margin: 4px 0;
+}
+
+/* #endregion comparedropdown*/
+
+/* #region bigcarousel */
+.bigcarousel .carouselcontent {
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 20px;
+    grid-auto-flow: column;
+    position: relative;
+
+    width: fit-content;
+    padding: 0 max(6.25vw,(100vw - 1680px)/2,env(safe-area-inset-left),env(safe-area-inset-right));
+    
+}
+.bigcarousel .carouselcontent .tile {
+    display: flex;
+    
+    background-color: var(--default-background-color);
+
+    width: var(--shared-media-gallery-width);
+    min-height: var(--shared-media-gallery-height);
+    border-radius: 40px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+.bigcarousel .carouselcontent .tile h2 {
+    width: 400px;
+    padding: 48px;
+    
+    color: var(--default-highlight-text-color);
+    font-size: 28px;
+    position: absolute;
+}
+.bigcarousel .carouselcontent .tile figure {
+    margin-top: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+    margin-right: 0;
+
+    width: 100%;
+    height: 100%;
+}
+.bigcarousel .carouselcontent .tile picture {
+    display: block;
+    width: 1260px;
+    height: 680px;
+}
+/* #endregion bigcarousel */
+
+/* #region carousel*/
+.carousel3 {
+    overflow-x: scroll;
+    scrollbar-width: none;
+}
+.carousel3 .carouselgrid {
+    --content-inset: min(7.2916666667vw - var(--global-scrollbar-width)/12*1,140px);
+    --xsmall-gutter-additions: 0px;
+    --responsive-gutter-width: calc(var(--content-inset) + 50vw - min(87.5vw, 1680px) * 0.5 + var(--xsmall-gutter-additions) * 0.5);
+
+    display: grid;
+    /* margin-inline-start: auto;
+    margin-inline-end: auto; */
+    /* grid-template-columns: none; */
+    grid-auto-flow: column;
+    column-gap: 24px;
+
+    /* width: min(1680px, 87.5%); */
+    /* min-width: fit-content; */
+    padding: 0 var(--responsive-gutter-width);
+    
+}
+.carousel3 .carouselgrid .tile {
+    width: 550px;
+    /* height: fit-content; */
+    /* background-color: #a3735e; */
+    /* border-radius: 40px; */
+
+}
+.carousel3 .carouselgrid .tile figure {
+    margin-top: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+    margin-right: 0;
+
+}
+.carousel3 .carouselgrid .tile figure img{
+    width: 100%;
+    height: 100%;
+
+    border-radius: 32px;
+}
+.carousel3 h2 {
+    --caption-width: 416px;
+    --caption-offset: 34px;
+
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0);
+    background: linear-gradient(90deg,#efcdbb,#dab8a4 50%,#a3735e calc(100% - 5px),rgba(0,0,0,0) calc(100% - 4px));
+    background-clip: text;
+    width: calc(var(--caption-width) - var(--caption-offset));
+
+    padding-inline: 34px 5px;
+    padding-top: 32px;
+    padding-bottom: 20px;
+}
+.carousel3nav .btngroup {
+    --responsive-content-width: min(1680px, 87.5%);
+    --responsive-gutter-width: calc(50% - var(--responsive-content-width) / 2);
+    width: var(--responsive-content-width);
+    height: 36px;
+    padding-top: 64px;
+    /* inset-inline-start: var(--responsive-gutter-width); */
+    margin-left: var(--responsive-gutter-width);
+    /* background-color: #fff; */
+
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    column-gap: 20px;
+}
+.carousel3nav .btngroup button {
+    width: 36px;
+    height: 36px;
+    background-color: rgba(66, 66, 69, 0.72);
+    
+    border-radius: 100px;
+}
+.carousel3nav .btngroup button:disabled {
+    opacity: 0.36;
+    pointer-events: none;
+    /* background-color: orange; */
+}
+.carousel3nav .btngroup button svg {
+    fill: rgba(255,255,255,0.8);
+}
+/* #endregion carousel*/
+
+/* #region imgswitcher*/
+.imgswitchercontent {
+    position: absolute;
+
+    /* height: fit-content; */
+}
+
+.imgswitchercontent1 {
+    z-index: 1;
+}
+.imgswitchercontent2 {
+    z-index: 0;
+}
+.imgswitchercontent3 {
+    z-index: 0;
+}
+.imgswitchercontent4 {
+    z-index: 0;
+}
+.imgswitchercontent5 {
+    z-index: 0;
+}
+/* #endregion imgswitcher*/
+
+/* #region wipescroll */
+.stickycontainer {
+    /* scrollable space */
+    position: relative;
+    height: 120vh;
+
+}
+.stickycontainer .sectiontitlecontent2 {
+    width: 100%;
+    
+    /* keep the text in the middle of viewport, 
+    but it will move up as the sticky banner moves up */
+    position: absolute;
+    top: calc(100vh*0.6);
+    text-align: center;
+
+    /* text will turn transparent as scroll down */
+    opacity: 1;
+    transition: opacity 0.2s ease-out;
+
+    /* text - mask - frame - screen */
+    z-index: 4;
+}
+.stickycontainer .gradientoverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* make the mask covered a little from the top, then transparent in the end */
+    /* use image-mask will cause z-index issue */
+    background: linear-gradient(rgba(0, 0, 0, 0.4), transparent);
+
+    /* text - mask - frame - screen */
+    z-index: 3;
+}
+.stickycontainer .devicewrapper {
+    /* sticky device's wrapper */
+    position: sticky;
+    /* initial location to the top */
+    top: 0;
+}
+.stickycontainer .device {
+    /* for position frame and screen */
+    position: relative;
+
+    /* scale from the middle */
+    transform-origin: center center;
+    transition: transform 0.2s ease-out;
+}
+
+.stickycontainer .device .frame {
+    /* frame will appear later as scroll */
+    display: none;
+
+    aspect-ratio: 2.17;
+    
+    position: absolute;
+
+    /* the device wrapper has a width in the beginning, 
+    then it will be width * scale as scroll, so frame inherits 
+    the width when set to 100% */
+    width: 100%;
+
+    /* mask - text - frame - screen */
+    z-index: 2;
+}
+.stickycontainer .device .screen {
+    /* adjust the pic in order to fit the frame */
+    position: absolute;
+    top: 8px;
+    left: 1.68%;
+    width: 96.63%;
+    border-radius: 8% / 10%;
+
+    overflow: hidden;
+}
+
+.stickycontainer .device picture {
+    margin: 0;
+    padding: 0;
+}
+.stickycontainer .device img{
+    width: 100%;
+    height: 100%;
+}
+
+/* #endregion stickyscroll */
+
+/* #region playbar*/
+.playbaraccesscontainer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    /* margin: 0; */
+
+    z-index: 99;
+
+    pointer-events: none;
+
+    /* background-color: rgba(255, 255, 255, 0.3) */
+}
+
+.playbarcontent {
+    display: flex;
+    align-items: center;
+
+    /* width: 100px;
+    height: 50px;
+    background-color: #fff; */
+
+
+    position: sticky;
+    bottom: 30px;
+
+    margin-top: 30px;
+    margin-bottom: 100px;
+    
+    /* will-change: transform; */
+}
+
+.playbarcontent .playbarleft {
+    background-color: var(--icon-background-color);
+    backdrop-filter: blur(7px);
+
+    width: 56px;
+    height: 56px;
+
+    border-radius: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.playbarcontent .playbarleft svg {
+    fill: var(--default-icon-color);
+}
+
+.playbaraccesscontainer .playbarcontent_modify {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 12px;
+}
+
+.playbaraccesscontainer .playbarcontent .label {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    color: var(--default-text-color);
+}
+
+.playbaraccesscontainer .playbarcontent .label .checkedlabel {
+    display: inline;
+}
+
+.playbaraccesscontainer .playbarcontent .label span {
+    display: none;
+}
+
+.playbarcontent .playbarright {
+    display: flex;
+    align-items: center;
+
+    background-color: var(--icon-background-color);
+    backdrop-filter: blur(7px);
+    /* width: 56px; */
+    height: 56px;
+    width: fit-content;
+
+    border-radius: 50px;
+
+    display: flex;
+    column-gap: 20px;
+
+    padding: 20px;
+    box-sizing: border-box;
+    margin-left: 20px;
+    
+}
+
+.playbarcontent .playbarright_modify {
+    margin-left: 0;
+}
+
+.playbarcontent .playbarright .bigbtn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50px;
+
+    /* margin-inline-end: 10px; */
+
+    background-color: var(--default-btn-bg-color);
+}
+
+.playbarcontent .playbarright .bigbtn svg {
+    fill: var(--default-icon-color);
+}
+
+.playbarcontent .playbarright .longdot {
+    background-color: var(--default-icon-color);
+    width: 46px;
+    height: 8px;
+    /* padding: 8px; */
+    border-radius: 50px;
+
+    box-sizing: border-box;
+}
+.playbarcontent .playbarright .dot {
+    background-color: var(--default-icon-color);
+    width: 8px;
+    height: 8px;
+    /* padding: 8px; */
+    border-radius: 50px;
+
+    box-sizing: border-box;
+}
+
+.playbarcontent .playbarright .bigdotborder {
+    border: 2px solid rgba(0, 0, 0, 0);
+    border-radius: 50%;
+
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    
+    
+    /* padding: calc(var(--colornav-item-size)/2 - var(--colornav-swatch-size)/2 - 2px); */
+    box-sizing: border-box;
+
+    /* position: relative; */
+}
+
+.playbarcontent .playbarright .checkedbigdotborder {
+    border-color: rgb(245, 245, 247);
+}
+
+.playbarcontent .playbarright .bigdot {
+    background-color: var(--default-icon-color);
+    width: 28px;
+    height: 28px;
+    border-radius: 50px;
+
+    box-sizing: border-box;
+
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.playbarcontent .playbarright .bigdot::after {
+    content: "";
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+
+    display: block;
+
+    background-image: conic-gradient(from 90deg,rgba(255,255,255,0.08) 0deg,rgba(255,255,255,0.48) 64.8deg,rgba(255,255,255,0.48) 115.2deg,rgba(255,255,255,0.08) 180deg,rgba(255,255,255,0) 208.8deg,rgba(255,255,255,0) 331.2deg,rgba(255,255,255,0.08) 360deg)
+    ;
+    mask-image: radial-gradient(circle at 50% 50%,transparent calc(var(--colornav-swatch-size)/2 - 1.5px),black calc(var(--colornav-swatch-size)/2 - 0.5px));
+
+    
+}
+.playbarcontent .playbarright .bigdot1 {
+    background: conic-gradient(from 0deg at 50% 50%,#202121 0%,#dbdad7 25%,#a6a198 50%,#a8907e 75%,#202121 100%);
+    
+}
+.playbarcontent .playbarright .bigdot2 {
+    background: #181919;
+    /* background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 100%; */
+}
+.playbarcontent .playbarright .bigdot3 {
+    background: #d3d1cd;
+    /* background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 100%; */
+}
+.playbarcontent .playbarright .bigdot4 {
+    background: #959086;
+    /* background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 100%; */
+}
+.playbarcontent .playbarright .bigdot5 {
+    background: #977e6b;
+    /* background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 100%; */
+}
+.playbarcontent .playbarright .bigdot6 {
+    background: #6f976b;
+    /* background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 100%; */
+}
+
+
+/* #endregion playbar*/

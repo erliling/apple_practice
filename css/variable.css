@@ -1,0 +1,79 @@
+/* #region variables*/
+:root {
+    /* global page*/
+    --default-background-color: rgb(0, 0, 0);
+    --global-section-background-color-alt-dark: rgb(29, 29, 31);
+    --global-section-background-color-alt: rgb(245,245,247);
+    --default-background-light-color: #1d1d1f;
+    --welcome-apple-headline-height: 54px;
+
+
+    /* global text */
+    --default-text-color: #f5f5f7;
+    --default-gray-text-color: #86868b;
+    --default-highlight-text-color: #fff;
+    --default-link-color: #2997ff;
+
+    /* global comp */
+    --default-gray-border-color: #4b4b4e;
+    --default-icon-color: #f5f5f7;
+    --default-btn-bg-color: #0071E3;
+    --default-frame-color: rgb(0, 0, 0);
+    --icon-background-color: rgba(66, 66, 69, 0.7);
+    --colornav-item-size: 36px;
+    --colornav-swatch-size: 28px;
+    --colornav-swatch-size2: 12px;
+    --gallery-width: min(1680px,calc(100vw - 15px));
+    --gallery-height: 1050px;
+    --radius: 0.042;
+    --sk-button-width: auto;
+    --sk-button-min-width-basis: 70px;
+    --sk-button-padding-horizontal: 22px;
+    --sk-button-padding-vertical: 12px;
+    --sk-button-border-width: 1px;
+    --sk-button-border-radius: 980px;
+    --r-localnav-height: 52px;
+    --border-size: 6px;
+    --global-scrollbar-width: 15px;
+    --shared-media-gallery-responsive-content-absolute-max-width: 1680px;
+    --shared-media-gallery-height: 680px;
+    --shared-media-gallery-responsive-content-absolute-min-width: 280px;
+    --shared-media-gallery-viewport-content: max(87.5vw - var(--global-scrollbar-width),var(--shared-media-gallery-responsive-content-absolute-min-width));
+    --shared-media-gallery-width: min(var(--shared-media-gallery-viewport-content), var(--shared-media-gallery-responsive-content-absolute-max-width));
+    --shared-media-gallery-padding: max(6.25vw, (100vw - var(--shared-media-gallery-responsive-content-absolute-max-width)) / 2, env(safe-area-inset-left), env(safe-area-inset-right));
+    --accordion-side-padding-large: 90px;
+    --accordion-fluid-padding: 7.15%;
+    --accordion-side-padding-xlarge: 120px;
+
+    /* padding gap spacing */
+    --section-padding: 160px;
+    --section-padding-bar: 216px;
+    --ps-spacing-24: 24px;
+    --ps-spacing-32: 32px;
+    --ps-spacing-40: 40px;
+    --ps-spacing-48: 48px;
+    --ps-spacing-56: 56px;
+    --ps-spacing-64: 64px;
+    --ps-spacing-72: 72px;
+    --ps-spacing-80: 80px;
+    --ps-spacing-96: 96px;
+    --ric-grid-gap: 20px;
+
+
+    /* responsive */
+    --ric-column-width-0: 0;
+    --ric-column-width-1: min(7.2915666667vw - var(--global-scrollbar-width) / 12 * 1, 140px);
+    --ric-column-width-2: min(14.5832333333vw - var(--global-scrollbar-width) / 12 * 2, 280px);
+    --ric-column-width-3: min(21.8749vw - var(--global-scrollbar-width) / 12 * 3, 420px);
+    --ric-column-width-4: min(29.1665666667vw - var(--global-scrollbar-width) / 12 * 4, 560px);
+    --ric-column-width-5: min(36.4582333333vw - var(--global-scrollbar-width) / 12 * 5, 700px);
+    --ric-column-width-6: min(43.7499vw - var(--global-scrollbar-width) / 12 * 6, 840px);
+    --ric-column-width-7: min(51.0415666667vw - var(--global-scrollbar-width) / 12 * 7, 980px);
+    --ric-column-width-8: min(58.3332333333vw - var(--global-scrollbar-width) / 12 * 8, 1120px);
+    --ric-column-width-9: min(65.6249vw - var(--global-scrollbar-width) / 12 * 9, 1260px);
+    --ric-column-width-10: min(72.9165666667vw - var(--global-scrollbar-width) / 12 * 10, 1400px);
+    --ric-column-width-11: min(80.2082333333vw - var(--global-scrollbar-width) / 12 * 11, 1540px);
+    --ric-column-width-12: min(87.4999vw - var(--global-scrollbar-width) / 12 * 12, 1680px);
+    --ric-column-width-3point5: min(25.5208333333vw - var(--global-scrollbar-width)/12*3.5,490px);
+}  
+/* #endregion variables*/
