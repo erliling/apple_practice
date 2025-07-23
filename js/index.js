@@ -54,8 +54,8 @@ window.onload = function () {
     const photograph = document.querySelector('.photograph');
 
     // disolve scroll
-    const piccontainer = document.querySelector('.photograph .textpic .piccontainer');
-    const pics = document.querySelectorAll('.photograph .textpic .pic');
+    const piccontainer = document.querySelector('.dissolvescroll .piccontainer');
+    const pics = document.querySelectorAll('.dissolvescroll .pic');
 
     // stickycontainer1.addEventListener('scroll', () => {
     //     shrinkscroll1(container, img, sectiontitlecontent2, frame, screen);
