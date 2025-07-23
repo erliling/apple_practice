@@ -56,6 +56,7 @@ window.onload = function () {
     // disolve scroll
     const piccontainer = document.querySelector('.dissolvescroll .piccontainer');
     const pics = document.querySelectorAll('.dissolvescroll .pic');
+    const texts = document.querySelectorAll('.dissolvescroll .text');
 
     // stickycontainer1.addEventListener('scroll', () => {
     //     shrinkscroll1(container, img, sectiontitlecontent2, frame, screen);
@@ -72,19 +73,19 @@ window.onload = function () {
 
         scrollinsection(container, img, sectiontitlecontent2, frame, screen, videoaudio, navheight, shrinkscroll1);
         scrollinsection(container2, img2, sectiontitlecontent3, frame2, screen2, camera2, navheight, shrinkscroll2);
-        scrollinsection2(scrollwrapper, images, overlay, imglist, overlayadjust, piccontainer, pics, photograph, navheight, wipescroll, disolvescroll);
+        scrollinsection2(scrollwrapper, images, overlay, imglist, overlayadjust, piccontainer, pics, texts, photograph, navheight, wipescroll, disolvescroll);
         
     }); 
 }
 
-function scrollinsection2(scrollwrapper, images, overlay, imglist, overlayadjust, piccontainer, pics, section, navheight, callbackfunction, callbackfunction2) {
+function scrollinsection2(scrollwrapper, images, overlay, imglist, overlayadjust, piccontainer, pics, texts, section, navheight, callbackfunction, callbackfunction2) {
     const scrollY = window.scrollY;
     const sectionTop = section.offsetTop - navheight; // Adjust for fixed header
     const sectionBottom = section.offsetTop + section.offsetHeight - navheight;
 
     if (scrollY >= sectionTop && scrollY < sectionBottom) {
         callbackfunction(scrollwrapper, images, overlay, imglist, overlayadjust);
-        callbackfunction2(piccontainer, pics);
+        callbackfunction2(piccontainer, pics, texts);
     }
 }
 
@@ -150,7 +151,7 @@ function shrinkscroll2(container2, img2, sectiontitlecontent3, frame2, screen2) 
     changetop2(screen2, img2);
 }
 
-function disolvescroll(piccontainer, pics) {
+function disolvescroll(piccontainer, pics, texts) {
     // console.log("enter photography2");
 
     const rect = piccontainer.getBoundingClientRect();
@@ -161,14 +162,25 @@ function disolvescroll(piccontainer, pics) {
         pics[0].style.opacity = "1";
         pics[1].style.opacity = "0";
         pics[2].style.opacity = "0";
+
+        texts[1].style.opacity = "0.5";
+        texts[2].style.opacity = "0.5";
+
     } else if ((recttop > 0.5*scrollheight) && (recttop <= 1.5*scrollheight)) {
         pics[0].style.opacity = "0";
         pics[1].style.opacity = "1";
         pics[2].style.opacity = "0";
+
+        texts[1].style.opacity = "1";
+        texts[2].style.opacity = "0.5";
+
     } else if (recttop > 1.5*scrollheight) {
         pics[0].style.opacity = "0";
         pics[1].style.opacity = "0";
         pics[2].style.opacity = "1";
+
+        texts[1].style.opacity = "1";
+        texts[2].style.opacity = "1";
     }
 }
 

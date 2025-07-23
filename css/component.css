@@ -587,8 +587,9 @@ a.arrow::after {
     margin-inline: auto;
 
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto auto;
     grid-template-areas: "copy-top iphone" "copy-middle iphone" "copy-bottom iphone";
+    grid-column-gap: var(--ric-column-width-1);
 }
 .dissolvescroll .text {
     width: var(--ric-column-width-4);
@@ -601,15 +602,21 @@ a.arrow::after {
     
     /* one viewport height, totally will be 3 */
     height: 100vh;
+
+    transition: opacity .6s ease-out;
 }
 .dissolvescroll .text1 {
     grid-area: copy-top;
 }
 .dissolvescroll .text2 {
     grid-area: copy-middle;
+    
+    opacity: 0.5;
 }
 .dissolvescroll .text3 {
     grid-area: copy-bottom;
+
+    opacity: 0.5;
 }
 .dissolvescroll .text h3 {
     font-size: 40px;
@@ -618,17 +625,28 @@ a.arrow::after {
 }
 .dissolvescroll .piccontainer {
     grid-area: iphone;
+    position: relative;
+
+    /* transform: translateX(50%); */
+    /* left: 25%; */
+
+    /* display: flex; */
+    /* justify-content: flex-end; */
 }
 .dissolvescroll .piccontent {
     position: sticky;
-    top: 52px;
+    top: var(--ps-spacing-56);
 
+    width: var(--ric-column-width-3);
     /* --aspect-ratio: 0.4837209302; */
 
     display: grid;
-    justify-content: end;
+    /* justify-content: end; */
     /* justify-items: end; */
-    align-items: center;
+    /* align-items: center; */
+
+    /* margin-top: var(--ps-spacing-56); */
+    /* margin-bottom: var(--ps-spacing-56); */
 }
 .dissolvescroll .pic {
     grid-area: 1/1;
