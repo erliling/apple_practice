@@ -1,22 +1,4 @@
-/* #region generalcomp */
-.primarybtn {
-    background-color: var(--default-btn-bg-color);
-    color: var(--default-text-color);
 
-    width: var(--sk-button-width);
-    min-width: calc(var(--sk-button-min-width-basis) - var(--sk-button-padding-horizontal) * 2);
-    padding-inline: calc(var(--sk-button-padding-horizontal) - var(--sk-button-border-width));
-    padding-block: calc(var(--sk-button-padding-vertical) - var(--sk-button-border-width));
-
-    border-radius: var(--sk-button-border-radius);
-
-    text-align: center;
-}
-.primarybtn.nobg {
-    background-color: transparent;
-}
-
-/* #endregion generalcomp */
 
 /* #region generallayout */
 .viewportcontent {
@@ -248,6 +230,25 @@ a.arrow::after {
 }
 
 /* #endregion generaltext*/
+
+/* #region primarybtn */
+.primarybtn {
+    background-color: var(--default-btn-bg-color);
+    color: var(--default-text-color);
+
+    width: var(--sk-button-width);
+    min-width: calc(var(--sk-button-min-width-basis) - var(--sk-button-padding-horizontal) * 2);
+    padding-inline: calc(var(--sk-button-padding-horizontal) - var(--sk-button-border-width));
+    padding-block: calc(var(--sk-button-padding-vertical) - var(--sk-button-border-width));
+
+    border-radius: var(--sk-button-border-radius);
+
+    text-align: center;
+}
+.primarybtn.nobg {
+    background-color: transparent;
+}
+/* #endregion primarybtn */
 
 /* #region comparedropdown*/
 .comparedropdown {
@@ -581,11 +582,9 @@ a.arrow::after {
 
 /* #region dissolvescroll */
 .dissolvescroll {
-
     width: var(--ric-column-width-9);
 
-    margin-inline-start: auto;
-    margin-inline-end: auto;
+    margin-inline: auto;
 
     display: grid;
     grid-template-columns: auto 1fr;
@@ -600,6 +599,7 @@ a.arrow::after {
     flex-direction: column;
     row-gap: 24px;
     
+    /* one viewport height, totally will be 3 */
     height: 100vh;
 }
 .dissolvescroll .text1 {
@@ -618,19 +618,16 @@ a.arrow::after {
 }
 .dissolvescroll .piccontainer {
     grid-area: iphone;
-    /* justify-self: end; */
 }
 .dissolvescroll .piccontent {
     position: sticky;
     top: 52px;
-    /* height: calc(100vh - 52px); */
 
-    --aspect-ratio: 0.4837209302;
-    /* min-height: calc(var(--ric-column-width-3)/var(--aspect-ratio)); */
-    /* min-height: 600px; */
+    /* --aspect-ratio: 0.4837209302; */
 
     display: grid;
-    justify-items: end;
+    justify-content: end;
+    /* justify-items: end; */
     align-items: center;
 }
 .dissolvescroll .pic {
@@ -640,16 +637,10 @@ a.arrow::after {
 }
 .dissolvescroll .pic img{
     width: 100%;
-    /* object-fit: contain; */
+    height: auto;
 }
 .dissolvescroll .pic1 {
     opacity: 1;
-}
-.dissolvescroll .pic2 {
-    opacity: 0;
-}
-.dissolvescroll .pic3 {
-    opacity: 0;
 }
 /* #endregion dissolvescroll */
 
