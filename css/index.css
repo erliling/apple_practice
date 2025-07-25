@@ -1256,8 +1256,9 @@ body {
 .upgrade .littlegrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    width: 100%;
     gap: 16px;
+
+    width: 100%;
 
     padding-top: var(--ps-spacing-72);
     padding-inline: var(--ric-column-width-1);
@@ -1265,8 +1266,9 @@ body {
 }
 .upgrade .littlegrid .tile {
     padding: 28px;
+    
     background-color: var(--default-background-color);
-    /* background-color: pink; */
+
     min-height: 300px;
     border-radius: 18px;
 
@@ -1278,9 +1280,25 @@ body {
 
     text-align: center;
 
-    overflow: hidden;
+    /* overflow: hidden; */
+}
+.upgrade .littlegrid .specialtile {
+    padding: 0;
+
+    background-color: transparent;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    row-gap: 18px;
+
+    text-align: left;
+
+    min-height: 0;
+
 }
 .upgrade .littlegrid .tile1 {
+    /* the first grid row is */
     grid-column: span 2;
 
     align-items: flex-start;
@@ -1290,6 +1308,7 @@ body {
     align-items: flex-end;
 }
 .upgrade .littlegrid .tile .icon {
+    /* battery icon */
     background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/product-stories/upgrade/inline-compare/battery__fv8w2lr5h1qy_xlarge_2x.jpg);
     background-size: 60px 31px;
     background-repeat: no-repeat;
@@ -1299,19 +1318,7 @@ body {
     display: inline-block;
     vertical-align: -1px;
 }
-.upgrade .littlegrid .specialtile {
-    background-color: transparent;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    
-    row-gap: 18px;
-
-    text-align: left;
-
-    min-height: 0;
-}
 .upgrade .littlegrid .tile .imgcontainer {
     position: relative;
     width: 100%;
