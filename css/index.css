@@ -1318,11 +1318,22 @@ body {
     display: inline-block;
     vertical-align: -1px;
 }
-
+.upgrade .littlegrid .tile3 picture{
+    display: inline-block;
+}
 
 .upgrade .littlegrid .pictile {
     padding-bottom: 0;
 }
+.upgrade .littlegrid .pictile picture {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.upgrade .littlegrid .pictile picture img {
+    width: 100%;
+}
+
 .upgrade .littlegrid .tile .imgcontainer {
     position: relative;
     width: 100%;
@@ -1331,6 +1342,22 @@ body {
     overflow: hidden;
     /* margin: 0; */
 }
+.upgrade .littlegrid .tile4 picture {
+
+    /* fv */
+    width: 230px;
+    /* height: 200px; */
+    /* height: calc(476px/2); */
+}
+
+.upgrade .littlegrid .tile5 picture {
+    
+    /* fv */
+    width: 240px;
+    /* height: 200px; */
+    /* height: calc(686px/2); */
+}
+
 .upgrade .littlegrid .tile .specialfig {
     position: absolute;
     /* top: 0; */
