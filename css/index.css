@@ -1325,6 +1325,9 @@ body {
 .upgrade .littlegrid .pictile {
     padding-bottom: 0;
 }
+.upgrade .littlegrid .pictile .contenttext {
+    padding-top: 28px;
+}
 .upgrade .littlegrid .pictile picture {
     position: absolute;
     left: 50%;
