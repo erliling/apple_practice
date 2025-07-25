@@ -1178,8 +1178,6 @@ body {
 /* #region signal */
 .signal {
     padding: var(--section-padding) 0 0;
-
-    /* background: linear-gradient(180deg,rgb(0,0,0),rgb(0,0,0) 60%,rgb(19,19,19) 80%); */
 }
 .signal .titleinfo.contenttext {
     margin-top: var(--ps-spacing-40);
@@ -1194,8 +1192,6 @@ body {
     column-gap: var(--ric-column-width-1);
     row-gap: var(--ps-spacing-96);
 
-    /* margin-inline: var(--ric-column-width-1); */
-
     width: var(--ric-column-width-8);
     margin-top: var(--ps-spacing-96);
 
@@ -1204,12 +1200,8 @@ body {
 }
 
 .signal .pictextgrid p {
-    margin: 0;
-    padding: 0;
-}
-.signal .pictextgrid .contenttext{
-    /* text-align: left;
-    max-width: 100%; */
+    /* margin: 0;
+    padding: 0; */
 }
 .signal .pictextgrid .tile1 {
     grid-area: tile1;
@@ -1220,12 +1212,12 @@ body {
     row-gap: var(--ps-spacing-40);
 }
 .signal .pictextgrid picture {
+    /* fv */
     max-width: 416px;
 }
 .signal .pictextgrid img {
-    /* width: 416px; */
     width: 100%;
-    height: 100%;
+    height: auto;
 }
 .signal .pictextgrid .tile2 {
     grid-area: tile2;
@@ -1240,21 +1232,13 @@ body {
 .signal .pictextgrid .tile4 {
     grid-area: tile4;
 }
-.signal a {
-    /* display: inline-block; */
-    /* vertical-align: top; */
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
+.signal .pictextgrid a {
+    font-size: 20px;
+    font-weight: 600;
 }
-/* .signal a::after {
-    vertical-align: -1px;
-
-    content: ">";
-    padding-inline-start: .24em;
-} */
 .signal .bottominfo.contenttext {
     margin-top: var(--ps-spacing-40);
+    
     width: var(--ric-column-width-6);
     
     margin-inline-start: var(--ric-column-width-2);
