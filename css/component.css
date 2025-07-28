@@ -662,6 +662,85 @@ a.arrow::after {
 }
 /* #endregion dissolvescroll */
 
+/* #region accordion */
+/* accordion left side */
+.accordion .accordiontext {
+    /* fv */
+    width: 350px;
+    padding-left: clamp(var(--accordion-side-padding-large),var(--accordion-fluid-padding),var(--accordion-side-padding-xlarge));
+    padding-right: clamp(var(--accordion-side-padding-large),var(--accordion-fluid-padding),var(--accordion-side-padding-xlarge));
+}
+.accordion .accordiontext .item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: var(--ps-spacing-24);
+
+    border-bottom: 1px solid var(--default-gray-text-color);
+
+    padding: var(--ps-spacing-24) 0;
+}
+.accordion .accordiontext .item .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.accordion .accordiontext .item .title h3 {
+    font-size: 28px;
+    line-height: 1.1428;
+    font-weight: 600;
+    color: var(--default-text-color);
+}
+.accordion .accordiontext .item .title .icon {
+    /* display: flex;
+    align-items: center; */
+}
+.accordion .accordiontext .item .title svg {
+    width: 2em;
+    stroke-width: 2.25;
+    color: var(--default-gray-text-color);
+}
+/* toggle inside text */
+.accordion .accordiontext .item .contenttext {
+    display: none;
+}
+.accordion .accordiontext .item .contenttext.expand {
+    display: block;
+}
+
+/* accordion right side */
+.accordion .imgcontainer {
+
+    /* width: 100%; */
+    position: relative;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* A value of 1 means this item will take up 1 portion (or share) of any available extra space */
+    flex-grow: 1;
+}
+.accordion .imgcontainer picture {
+    position: absolute;
+
+    opacity: 0;
+}
+.accordion .imgcontainer picture img {
+    width: 100%;
+    height: auto;
+}
+.accordion .imgcontainer picture.expand {
+    opacity: 1;
+}
+.accordion .imgcontainer .specialpic {
+    width: 140%;
+}
+.accordion .imgcontainer .specialpic.expand {
+    left: 0;
+}
+/* #endregion accordion */
+
 /* #region playbar*/
 .playbaraccesscontainer {
     display: flex;
