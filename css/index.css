@@ -1510,14 +1510,17 @@ body {
 }
 .apple .carousel3 .carouselgrid .tile {
     /* fv */
+    /* 372 or 405 */
     width: 372px;
     /* aspect-ratio: 1.15; */
-    /* min-height: 250px; */
+    /* min-height: 184px; */
+    /* box-sizing: border-box; */
 
     background-color: var(--default-background-color);
     border-radius: 28px;
    
     padding: 36px 28px 28px 36px;
+    /* padding: 60px 8.333%; */
     /* padding: 28px; */
     /* padding-right: 28px;
     padding-bottom: 28px; */
