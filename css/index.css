@@ -1481,11 +1481,11 @@ body {
 /* #region significant */
 .significant {
     padding: var(--section-padding) 0 0;
-    background-color: var(--global-section-background-color-alt-dark);
 
+    background-color: var(--global-section-background-color-alt-dark);
 }
 .significant .card {
-    padding: 96px 0;
+    padding: var(--ps-spacing-96) 0;
 
     background-color: var(--default-background-color);
     border-radius: 28px;
@@ -1494,7 +1494,10 @@ body {
 
     overflow: hidden;
 }
+
+/* accordion left side */
 .significant .card .accordion {
+    /* fv */
     width: 350px;
     padding-left: clamp(var(--accordion-side-padding-large),var(--accordion-fluid-padding),var(--accordion-side-padding-xlarge));
     padding-right: clamp(var(--accordion-side-padding-large),var(--accordion-fluid-padding),var(--accordion-side-padding-xlarge));
@@ -1503,14 +1506,15 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    row-gap: 24px;
+    row-gap: var(--ps-spacing-24);
 
     border-bottom: 1px solid var(--default-gray-text-color);
 
-    padding: 24px 0;
+    padding: var(--ps-spacing-24) 0;
 }
 .significant .card .accordion .item .title {
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 .significant .card .accordion .item .title h3 {
@@ -1520,15 +1524,15 @@ body {
     color: var(--default-text-color);
 }
 .significant .card .accordion .item .title .icon {
-    /* vertical-align: middle; */
-    display: flex;
-    align-items: center;
+    /* display: flex;
+    align-items: center; */
 }
 .significant .card .accordion .item .title svg {
     width: 2em;
     stroke-width: 2.25;
     color: var(--default-gray-text-color);
 }
+/* toggle inside text */
 .significant .card .accordion .item .contenttext {
     display: none;
 }
@@ -1536,6 +1540,7 @@ body {
     display: block;
 }
 
+/* accordion right side */
 .significant .card .imgcontainer {
 
     /* width: 100%; */
@@ -1545,20 +1550,26 @@ body {
     align-items: center;
     justify-content: center;
 
+    /* A value of 1 means this item will take up 1 portion (or share) of any available extra space */
     flex-grow: 1;
 }
 .significant .card .imgcontainer picture {
     position: absolute;
-    /* top: 0; */
 
     opacity: 0;
+}
+.significant .card .imgcontainer picture img {
+    width: 100%;
+    height: auto;
 }
 .significant .card .imgcontainer picture.expand {
     opacity: 1;
 }
+.significant .card .imgcontainer .specialpic {
+    width: 140%;
+}
 .significant .card .imgcontainer .specialpic.expand {
     left: 0;
-    /* top: 0; */
 }
 /* #endregion significant */
 
