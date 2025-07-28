@@ -1449,7 +1449,6 @@ body {
 }
 .values .sectiontitlecontent2 h1 {
     text-align: left;
-
 }
 
 .values .valuecontainer {
@@ -1457,33 +1456,25 @@ body {
 
     display: flex;
     flex-direction: column;
-    row-gap: 128px;
+    row-gap: var(--ps-spacing-128);
 }
 .values .valuecontainer .row {
+    /* each row contains title, little grid, link */
     display: flex;
     flex-direction: column;
-    row-gap: 48px;
+    row-gap: var(--ps-spacing-48);
 }
 .values .valuecontainer .littlegrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    width: 100%;
-    /* gap: 16px; */
-    column-gap: var(--ric-column-width-1);
+    /* width: 100%; */
+    grid-column-gap: var(--ric-column-width-1);
 }
 .values .valuecontainer .littlegrid .tile {
-    /* margin-top: 24px; */
     display: flex;
     flex-direction: column;
-    row-gap: 24px;
-
+    row-gap: var(--ps-spacing-24);
 }
-/* .values .valuecontainer a::after {
-    vertical-align: -1px;
-
-    content: ">";
-    padding-inline-start: .24em;
-} */
 
 /* #endregion values */
 
