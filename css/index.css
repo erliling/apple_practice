@@ -1510,13 +1510,15 @@ body {
 }
 .apple .carousel3 .carouselgrid .tile {
     /* fv */
-    width: 405px;
-    min-height: 217px;
+    width: 372px;
+    /* aspect-ratio: 1.15; */
+    /* min-height: 250px; */
 
     background-color: var(--default-background-color);
     border-radius: 28px;
    
-    padding: 0 28px 28px 0;
+    padding: 36px 28px 28px 36px;
+    /* padding: 28px; */
     /* padding-right: 28px;
     padding-bottom: 28px; */
 
@@ -1525,14 +1527,14 @@ body {
     justify-content: space-between;
 }
 .apple .carousel3 .carouselgrid .tile .cardcontent {
-    padding: 28px 76px 52px 32px;
+    padding: 0 76px 0px 0px;
     /* padding-top: 28px; */
     /* padding-bottom: 52px; */
     /* padding-inline-start: 32px;
     padding-inline-end: 76px; */
 }
 .apple .carousel3 .carouselgrid .tile h3 {
-    padding: 10px 0 20px 0;
+    padding: 4px 0 10px 0;
 }
 .apple .carousel3 .carouselgrid .tile .btncontainer {
     display: flex;
