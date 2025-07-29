@@ -1555,6 +1555,7 @@ body {
 /* #region compare */
 .compare {
     padding: var(--section-padding) 0 var(--section-padding-bar);
+
     background-color: var(--global-section-background-color-alt-dark);
 
     position: relative;
@@ -1562,14 +1563,18 @@ body {
 .compare .comparecard {
     background-color: var(--default-background-color);
     border-radius: 28px;
-    padding-top: 120px;
-    padding-bottom: 120px;
+
+    padding: 120px 0;
+    /* padding-top: 120px;
+    padding-bottom: 120px; */
 }
 .compare .comparecard ul {
     display: flex;
+    /* horizontal align */
     justify-content: center;
 }
 .compare .comparecard ul li {
+    /* fv */
     width: 470px;
 }
 .compare .comparecard li .bigpictext {
@@ -1578,12 +1583,13 @@ body {
     row-gap: 20px;
     align-items: center;
 
-    padding-inline: 52px;
-    padding-bottom: 52px;
+    padding: 0 52px 52px 52px;
+    /* padding-inline: 52px;
+    padding-bottom: 52px; */
     border-bottom: 1px solid var(--default-gray-border-color);
 }
 .compare .comparecard li .bigpictext .playbarcontent_modify {
-    position: static;
+    /* position: static; */
     margin: 0;
 }
 .compare .comparecard li .bigpictext .playbarright_modify {
@@ -1604,7 +1610,6 @@ body {
 .compare .comparecard li .smallpictext {
     display: flex;
     flex-direction: column;
-    /* justify-content: space-around; */
     row-gap: 40px;
 
     padding-top: 52px;
@@ -1618,8 +1623,6 @@ body {
 .compare .comparecard li .smallpictext .row .smallcaption {
     text-align: center;
 }
-
-
 /* #endregion compare */
 
 /* #region bottomnav */
