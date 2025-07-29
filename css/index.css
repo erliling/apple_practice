@@ -1631,7 +1631,6 @@ body {
 }
 .bottomnav ul {
     display: flex;
-
 }
 .bottomnav ul li {
     display: flex;
@@ -1639,17 +1638,17 @@ body {
     row-gap: 10px;
 
     color: var(--default-text-color);
-
 }
 .bottomnav ul li .graytext {
     color: var(--default-gray-text-color);
     font-weight: 300;
 }
 .bottomnav ul .li1 {
-    padding-right: 88px;
+    /* padding-right: 88px; */
 }
 .bottomnav ul .li2 {
-    padding-right: 44px;
+    padding: 0 44px 0 88px;
+    /* padding-right: 44px; */
 }
 /* #endregion bottomnav */
 
