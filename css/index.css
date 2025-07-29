@@ -1655,15 +1655,15 @@ body {
 /* #region footercontainer */
 footer {
     background-color: var(--global-section-background-color-alt-dark);
-    /* background-color: rgb(96, 38, 48); */
- 
 }
 .footcontainer {
+    /* fv */
     max-width: 980px;
     padding: 0 22px;
     margin: 0 auto;
 }
 .footcontainer .text {
+    /* top 17, bottom 11 */
     padding: 17px 0 11px;
     
     border-bottom: 1px solid var(--default-gray-border-color);
@@ -1674,7 +1674,6 @@ footer {
     row-gap: 10px;
 
     padding-bottom: 10px;
-
 }
 .footcontainer .text ul li a {
     font-size: 12px;
@@ -1689,16 +1688,12 @@ footer {
     list-style-type: decimal;
     /* list-style-position: inside; */
     padding-left: 10px;
-
 }
 .footcontainer .text ol li p{
-    /* display: flex;
-    flex-direction: column;
-    row-gap: 10px; */
     padding-bottom: 10px;
 }
 
-.footcontainer .breadcrumb .mask1 {
+/* .footcontainer .breadcrumb .mask1 {
     background-color: #2997ff;
     width: 28px;
     height: 28px;
@@ -1728,8 +1723,6 @@ footer {
     background-image: conic-gradient(from 90deg,rgba(255,255,255,0.08) 0deg,rgba(255,255,255,0.48) 64.8deg,rgba(255,255,255,0.48) 115.2deg,rgba(255,255,255,0.08) 180deg,rgba(255,255,255,0) 208.8deg,rgba(255,255,255,0) 331.2deg,rgba(255,255,255,0.08) 360deg)
     ;
     mask-image: radial-gradient(circle at 50% 50%,transparent calc(var(--colornav-swatch-size)/2 - 1.5px),black calc(var(--colornav-swatch-size)/2 - 0.5px));
-    /* mask-image: url(https://www.apple.com/ac/globalfooter/8/en_US/assets/ac-footer/breadcrumbs/separator/icon_large.svg); */
-    
 }
 
 .footcontainer .breadcrumb .mask2::before {
@@ -1743,11 +1736,7 @@ footer {
     background-image: conic-gradient(from 90deg,rgba(255,255,255,0.08) 0deg,rgba(255,255,255,0.48) 64.8deg,rgba(255,255,255,0.48) 115.2deg,rgba(255,255,255,0.08) 180deg,rgba(255,255,255,0) 208.8deg,rgba(255,255,255,0) 331.2deg,rgba(255,255,255,0.08) 360deg)
     ;
     mask-image: url(../image/icon_large.svg);
-    /* mask-image: radial-gradient(circle at 100% 100%,transparent calc(var(--colornav-swatch-size)/2 - 1.5px),black calc(var(--colornav-swatch-size)/2 - 0.5px)); */
-}
-
-
-
+} */
 
 .footcontainer .breadcrumb ul {
     display: flex;
@@ -1755,25 +1744,17 @@ footer {
     padding: 17px 0;
 
     color: #ffffffaa;
-
-}
-.footcontainer .breadcrumb ul li {
-    /* background: pink; */
 }
 .footcontainer .breadcrumb ul li::after {
+    margin-inline-start: 10px;
+
     content: " ";
     width: 6px;
     height: 11px;
     display: inline-block;
     background-color: rgba(255, 255, 255, 0.4);
-
-    margin-inline-start: 10px;
-    /* margin-top: .175em; */
-
-    /* background-image: url(https://www.apple.com/ac/globalfooter/8/en_US/assets/ac-footer/breadcrumbs/separator/icon_large.svg); */
-    /* mask-image: url(https://www.apple.com/ac/globalfooter/8/en_US/assets/ac-footer/breadcrumbs/separator/icon_large.svg); */
+    
     mask-image: url(../image/icon_large.svg);
-    /* -webkit-mask-image: url(https://www.apple.com/ac/globalfooter/8/en_US/assets/ac-footer/breadcrumbs/separator/icon_large.svg); */
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center;
@@ -1782,12 +1763,6 @@ footer {
     -webkit-mask-position: center;
 
     vertical-align: middle;
-    /* display: block; */
-
-    /* background-image: conic-gradient(from 90deg,rgba(255,255,255,0.08) 0deg,rgba(255,255,255,0.48) 64.8deg,rgba(255,255,255,0.48) 115.2deg,rgba(255,255,255,0.08) 180deg,rgba(255,255,255,0) 208.8deg,rgba(255,255,255,0) 331.2deg,rgba(255,255,255,0.08) 360deg) */
-    ;
-    /* mask-image: radial-gradient(circle at 50% 50%,transparent calc(var(--colornav-swatch-size)/2 - 1.5px),black calc(var(--colornav-swatch-size)/2 - 0.5px)); */
-
 }
 .footcontainer .breadcrumb ul li:last-child:after {
     content: "";
@@ -1798,29 +1773,18 @@ footer {
     color: #ffffffaa;
     /* text-decoration: underline; */
 }
-.footcontainer .breadcrumb ul li .icon {
-    /* display: inline-block;
-    width: 6px;
-    height: 11px;
-    background-color: rgba(255,255,255,.4);
-    mask-image: url(https://www.apple.com/ac/globalfooter/8/en_US/assets/ac-footer/breadcrumbs/separator/icon_large.svg); */
-    /* -webkit-mask-image: url(https://www.apple.com/ac/globalfooter/8/en_US/assets/ac-footer/breadcrumbs/separator/icon_large.svg); */
-}
 .footcontainer .content {
     color: #ffffffaa;
 }
 .footcontainer .content ul {
     display: flex;
 }
-
 .footcontainer .content ul li {
     display: flex;
     flex-direction: column;
     row-gap: 20px;
     flex-basis: 25%;
-
 }
-
 .footcontainer .content ul li .row {
     display: flex;
     flex-direction: column;
@@ -1830,12 +1794,12 @@ footer {
     font-weight: 600;
     color: #ffffffcc;
 }
+
 .footcontainer .bottom {
     padding: 37px 0 0px;
 }
 .footcontainer .bottom .linktext {
     padding-bottom: 11px;
-
 }
 .footcontainer .bottom .linktext a {
     font-size: 12px ;
@@ -1852,26 +1816,21 @@ footer {
     justify-content: space-between;
 }
 
-.footcontainer .bottom .bottomtext .left ul {
-    display: flex;
-}
 .footcontainer .bottom .bottomtext .leftitem {
     display: flex;
     column-gap: 20px;
+}
+.footcontainer .bottom .bottomtext .left ul {
+    display: flex;
 }
 .footcontainer .bottom .bottomtext a {
     display: inline-block;
     font-size: 12px;
     color: #ffffffcc;
 
-    cursor: pointer;
+    /* cursor: pointer; */
 
     padding: 0 8px;
-
-    /* padding-inline-end: 8px; */
-    /* border-right: 1px solid #ffffffcc; */
-
-    /* text-decoration: underline; */
 }
 .footcontainer .bottom .bottomtext a:hover {
     text-decoration: underline;
@@ -1880,24 +1839,16 @@ footer {
     content: "";
     height: 10px;
     width: 1px;
+    display: inline-block;
     background-color: var(--default-gray-text-color);
 
-    position: absolute;
-    margin: 3px 0;
-    /* margin-right: 4px; */
-
+    vertical-align: middle;
+    /* position: absolute;
+    margin: 3px 0; */
 }
 .footcontainer .bottom .bottomtext li:last-child:after {
     content: "";
     width: 0;
-    /* height: 10px;
-    width: 1px;
-    background-color: var(--default-gray-text-color);
-
-    position: absolute;
-    margin: 3px 0; */
-    /* margin-right: 4px; */
-
 }
 /* #endregion footercontainer */
 
