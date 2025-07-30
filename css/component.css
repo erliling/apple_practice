@@ -264,7 +264,7 @@ a.arrow::after {
     
     position: relative;
 
-    width: max-content;
+    /* width: max-content; */
 }
 .comparedropdown .dropdown select {
     height: 40px;
@@ -273,25 +273,32 @@ a.arrow::after {
     border-radius: 20px;
     background-color: var(--default-background-color);
 
-    font-size: 24px;
+    font-size: var(--ps-spacing-24);
     line-height: 1.1666;
     font-weight: 600;
     letter-spacing: 0.009em;
     color: var(--default-text-color);
 
+    /* hide default arrow */
     appearance: none;
 
-    margin-left: 20px;
+    /* margin-left: 20px; */
 }
 .comparedropdown .dropdown .downarrow {
-    position: absolute;
-    top: 50%;
+    margin-left: -50px;
+    /* position: absolute; */
+    /* top: 50%;
     transform: translateY(-50%);
-    inset-inline-end: 1.2rem;
-
+    inset-inline-end: 1.2rem; */
+   
+}
+.comparedropdown .dropdown .downarrow svg {
+    width: 1em;
+    height: auto;
+    stroke-width: 2.25;
 }
 .comparedropdown .dropdown .downarrow::after {
-    content: ">";
+    /* content: ">"; */
 }
 .comparedropdown .info {
     margin-top: var(--ps-spacing-56);
@@ -315,6 +322,7 @@ a.arrow::after {
     line-height: 1.1429;
     font-weight: 600;
     letter-spacing: 0.007em;
+    
     display: block;
     margin: 4px 0;
 }
