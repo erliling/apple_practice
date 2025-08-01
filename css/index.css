@@ -140,13 +140,8 @@ body {
 }
 
 .carousel .content {
-    width: 100%;
-    height: var(--shared-media-gallery-height);
+    /* width: 100%; */
     padding-bottom: 30px;
-
-    overflow-x: scroll;
-    overflow-y: hidden;
-    scrollbar-width: none;
 }
 
 /* #endregion carousel*/
@@ -181,6 +176,10 @@ body {
 
 .material .gradient-wrapper {
     background: radial-gradient(100% 50% at center, #2c201a, #000);
+}
+.material .columncontainer_position {
+    margin: var(--ps-spacing-96) 0;
+    /* margin-bottom: var(--ps-spacing-96); */
 }
 
 /* #endregion material*/
@@ -1160,7 +1159,7 @@ body {
     /* margin-inline: auto; */
     width: 100%;
 }
-.customize .carousel3 .tile h2 {
+.customize .smallcarousel .tile h2 {
     color: var(--default-gray-text-color);
 
     width: var(--caption-width);
@@ -1503,12 +1502,12 @@ body {
 
     background-color: var(--global-section-background-color-alt-dark);
 }
-.apple .carousel3 .carouselgrid {
+.apple .smallcarousel .carouselgrid {
     --responsive-gutter-width: calc(50% - min(1680px, 87.5%) /2);
 
     padding: 0 0 0 var(--responsive-gutter-width);
 }
-.apple .carousel3 .carouselgrid .tile {
+.apple .smallcarousel .carouselgrid .tile {
     /* fv */
     /* 372 or 405 */
     width: 372px;
@@ -1529,22 +1528,22 @@ body {
     flex-direction: column;
     justify-content: space-between;
 }
-.apple .carousel3 .carouselgrid .tile .cardcontent {
+.apple .smallcarousel .carouselgrid .tile .cardcontent {
     padding: 0 76px 0px 0px;
     /* padding-top: 28px; */
     /* padding-bottom: 52px; */
     /* padding-inline-start: 32px;
     padding-inline-end: 76px; */
 }
-.apple .carousel3 .carouselgrid .tile h3 {
+.apple .smallcarousel .carouselgrid .tile h3 {
     padding: 4px 0 10px 0;
 }
-.apple .carousel3 .carouselgrid .tile .btncontainer {
+.apple .smallcarousel .carouselgrid .tile .btncontainer {
     display: flex;
     justify-content: flex-end;
     /* align-items: flex-end; */
 }
-.apple .carousel3 .carouselgrid .tile .btn {
+.apple .smallcarousel .carouselgrid .tile .btn {
     width: 36px;
     height: 36px;
     border-radius: 50%;

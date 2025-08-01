@@ -330,7 +330,15 @@ a.arrow::after {
 /* #endregion comparedropdown*/
 
 /* #region bigcarousel */
+.bigcarousel {
+    height: var(--shared-media-gallery-height);
+
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scrollbar-width: none;
+}
 .bigcarousel .carouselcontent {
+
     display: grid;
     grid-auto-flow: column;
     grid-column-gap: var(--ps-spacing-24);
@@ -396,93 +404,86 @@ a.arrow::after {
 }
 /* #endregion bigcarousel */
 
-/* #region carousel*/
-.carousel3 {
+/* #region smallcarousel*/
+.smallcarousel {
     overflow-x: scroll;
     scrollbar-width: none;
 }
-.carousel3 .carouselgrid {
-    --content-inset: min(7.2916666667vw - var(--global-scrollbar-width)/12*1,140px);
-    --xsmall-gutter-additions: 0px;
-    --responsive-gutter-width: calc(var(--content-inset) + 50vw - min(87.5vw, 1680px) * 0.5 + var(--xsmall-gutter-additions) * 0.5);
-
+.smallcarousel .carouselgrid {
     display: grid;
-    /* margin-inline-start: auto;
-    margin-inline-end: auto; */
-    /* grid-template-columns: none; */
     grid-auto-flow: column;
-    column-gap: 24px;
+    column-gap: var(--ps-spacing-24);
 
-    /* width: min(1680px, 87.5%); */
-    /* min-width: fit-content; */
+    width: fit-content;
+    /* big padding */
     padding: 0 var(--responsive-gutter-width);
-    
 }
-.carousel3 .carouselgrid .tile {
+.smallcarousel .carouselgrid .tile {
+    /* fv */
     width: 550px;
-    /* height: fit-content; */
-    /* background-color: #a3735e; */
-    /* border-radius: 40px; */
-
 }
-.carousel3 .carouselgrid .tile figure {
+.smallcarousel .carouselgrid .tile figure {
     margin-top: 0;
     margin-left: 0;
     margin-bottom: 0;
     margin-right: 0;
-
 }
-.carousel3 .carouselgrid .tile figure img{
+.smallcarousel .carouselgrid .tile figure img{
     width: 100%;
-    height: 100%;
+    height: auto;
 
-    border-radius: 32px;
+    /* only for image so can't apply to tile */
+    border-radius: var(--border-radius);
 }
-.carousel3 h2 {
+.smallcarousel h2 {
     --caption-width: 416px;
     --caption-offset: 34px;
 
     font-size: 20px;
-    color: rgba(0, 0, 0, 0);
+    /* color: rgba(0, 0, 0, 0); */
+    color: transparent;
     background: linear-gradient(90deg,#efcdbb,#dab8a4 50%,#a3735e calc(100% - 5px),rgba(0,0,0,0) calc(100% - 4px));
     background-clip: text;
-    width: calc(var(--caption-width) - var(--caption-offset));
 
-    padding-inline: 34px 5px;
+    /* fv */
+    width: calc(var(--caption-width) - var(--caption-offset));
+    padding: 32px 5px 20px 34px;
+    /* padding-inline: 34px 5px;
     padding-top: 32px;
-    padding-bottom: 20px;
+    padding-bottom: 20px; */
 }
-.carousel3nav .btngroup {
+.smallcarouselnav .btngroup {
     --responsive-content-width: min(1680px, 87.5%);
     --responsive-gutter-width: calc(50% - var(--responsive-content-width) / 2);
+
     width: var(--responsive-content-width);
+    /* fv */
     height: 36px;
     padding-top: 64px;
-    /* inset-inline-start: var(--responsive-gutter-width); */
     margin-left: var(--responsive-gutter-width);
-    /* background-color: #fff; */
 
     display: flex;
     align-items: center;
+    /* put nav btns to the right */
     justify-content: end;
-    column-gap: 20px;
+    column-gap: var(--ps-spacing-24);
 }
-.carousel3nav .btngroup button {
+.smallcarouselnav .btngroup button {
+    /* fv */
     width: 36px;
     height: 36px;
     background-color: rgba(66, 66, 69, 0.72);
     
     border-radius: 100px;
 }
-.carousel3nav .btngroup button:disabled {
+.smallcarouselnav .btngroup button:disabled {
     opacity: 0.36;
     pointer-events: none;
-    /* background-color: orange; */
 }
-.carousel3nav .btngroup button svg {
+.smallcarouselnav .btngroup button svg {
     fill: rgba(255,255,255,0.8);
 }
-/* #endregion carousel*/
+/* #endregion smallcarousel*/
 
 /* #region imgswitcher*/
 .imgswitchercontent {

@@ -6,6 +6,9 @@
     --global-section-background-color-alt: rgb(245,245,247);
     --default-background-light-color: #1d1d1f;
     --welcome-apple-headline-height: 54px;
+    --radius: 0.042;
+    --border-size: 6px;
+    --border-radius: 32px;
 
     /* global text */
     --default-text-color: #f5f5f7;
@@ -24,7 +27,6 @@
     --colornav-swatch-size2: 12px;
     --gallery-width: min(1680px,calc(100vw - 15px));
     --gallery-height: 1050px;
-    --radius: 0.042;
     --sk-button-width: auto;
     --sk-button-min-width-basis: 70px;
     --sk-button-padding-horizontal: 22px;
@@ -32,7 +34,6 @@
     --sk-button-border-width: 1px;
     --sk-button-border-radius: 980px;
     --r-localnav-height: 52px;
-    --border-size: 6px;
     --global-scrollbar-width: 15px;
     --shared-media-gallery-responsive-content-absolute-max-width: 1680px;
     --shared-media-gallery-height: 680px;
@@ -86,5 +87,8 @@
     --ric-column-width-11: min(80.2082333333vw - var(--global-scrollbar-width) / 12 * 11, 1540px);
     --ric-column-width-12: min(87.4999vw - var(--global-scrollbar-width) / 12 * 12, 1680px);
     --ric-column-width-3point5: min(25.5208333333vw - var(--global-scrollbar-width)/12*3.5,490px);
+    --content-inset: var(--ric-column-width-1);
+    --xsmall-gutter-additions: 0px;
+    --responsive-gutter-width: calc(var(--content-inset) + 50vw - min(87.5vw, 1680px) * 0.5 + var(--xsmall-gutter-additions) * 0.5);
 }  
 /* #endregion variables*/
