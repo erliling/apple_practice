@@ -544,14 +544,13 @@ a.arrow::after {
 }
 /* #endregion imgswitcher*/
 
-/* #region wipescroll */
-.stickycontainer {
+/* #region shrinkscroll */
+.shrinkscroll .stickycontainer {
     /* scrollable space */
     position: relative;
     height: 120vh;
-
 }
-.stickycontainer .sectiontitlecontent2 {
+.shrinkscroll .stickycontainer .sectiontitlecontent2 {
     width: 100%;
     
     /* keep the text in the middle of viewport, 
@@ -567,7 +566,8 @@ a.arrow::after {
     /* text - mask - frame - screen */
     z-index: 4;
 }
-.stickycontainer .gradientoverlay {
+.shrinkscroll .stickycontainer .gradientoverlay {
+    /* mask for gradually turning to bright */
     position: absolute;
     top: 0;
     left: 0;
@@ -581,13 +581,14 @@ a.arrow::after {
     /* text - mask - frame - screen */
     z-index: 3;
 }
-.stickycontainer .devicewrapper {
+.shrinkscroll .stickycontainer .devicewrapper {
+    /* pair with stickycontainer, will stick on top */
     /* sticky device's wrapper */
     position: sticky;
     /* initial location to the top */
     top: 0;
 }
-.stickycontainer .device {
+.shrinkscroll .stickycontainer .device {
     /* for position frame and screen */
     position: relative;
 
@@ -596,7 +597,7 @@ a.arrow::after {
     transition: transform 0.2s ease-out;
 }
 
-.stickycontainer .device .frame {
+.shrinkscroll .stickycontainer .device .frame {
     /* frame will appear later as scroll */
     display: none;
 
@@ -612,7 +613,7 @@ a.arrow::after {
     /* mask - text - frame - screen */
     z-index: 2;
 }
-.stickycontainer .device .screen {
+.shrinkscroll .stickycontainer .device .screen {
     /* adjust the pic in order to fit the frame */
     position: absolute;
     top: 8px;
@@ -623,16 +624,17 @@ a.arrow::after {
     overflow: hidden;
 }
 
-.stickycontainer .device picture {
+.shrinkscroll .stickycontainer .device picture {
     margin: 0;
     padding: 0;
 }
-.stickycontainer .device img{
+.shrinkscroll .stickycontainer .device img{
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
+    aspect-ratio: 2.17;
 }
 
-/* #endregion stickyscroll */
+/* #endregion shrinkscroll */
 
 /* #region dissolvescroll */
 .dissolvescroll {
