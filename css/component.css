@@ -620,11 +620,19 @@ a.arrow::after {
     position: absolute;
     left: 0;
 
+    /* z-index: 5; */
+    /* move the frame to the same pos as imglist */
+    /* left: calc((100vw - var(--gallery-width))/2 - 10px); */
+    /* transform: translateX(-50%); */
+    /* margin-top: calc(-1 * var(--gallery-height) - var(--border-size)); */
+
     width: calc(var(--gallery-width) * var(--image-num));
     height: calc(var(--gallery-height));
     /* height: 100%; */
 
     display: flex;
+
+    --default-frame-color: pink;
 }
 .wipescroll .stickycontainer .frame .slide {
     width: calc(var(--gallery-width) );

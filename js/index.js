@@ -350,7 +350,7 @@ function wipescroll(scrollwrapper, images, overlay, imglist, overlayadjust) {
 
             // after remove prev image, start to shrink
             if (prevprogress == 1) {
-                shrinkimglist(currentprogress, imglist, overlayadjust);
+                shrinkimglist(currentprogress, imglist, overlayadjust, overlay);
                 expandimg(currentprogress, images);
             }
         } else if ((adjust_recttop > (index) * scrollheight) && (adjust_recttop <= (index+1) * scrollheight)) {
@@ -405,7 +405,7 @@ function wipescroll(scrollwrapper, images, overlay, imglist, overlayadjust) {
                 if ((index == imagenum - 2) && (lastnextflag == 1)) {
                     // second to last img, continue expand frame
                     if ((prevprogress <= 1) && (prevprogress > 0)) {
-                        shrinkimglist(0, imglist, overlayadjust);
+                        shrinkimglist(0, imglist, overlayadjust, overlay);
                         expandimg(0, images);
                     }
                 }
@@ -441,13 +441,49 @@ function resetimgclippath(images) {
     });
 }
 
-function shrinkimglist(progress, imglist, overlayadjust) {
+function getTranslateX(element) {
+    // 1. Get the computed style object for the element
+    const style = window.getComputedStyle(element);
+    
+    // 2. Get the full transform string
+    const transformValue = style.getPropertyValue('transform');
+  
+    // 3. If there's no transform, return 0
+    if (transformValue === 'none' || !transformValue) {
+      return 0;
+    }
+  
+    // 4. Use a regular expression to extract the numbers from the matrix() string
+    // This regex works for both matrix() and matrix3d()
+    const matrix = transformValue.match(/matrix(3d)?\(([^)]+)\)/);
+  
+    // If no matrix is found, return 0
+    if (!matrix) {
+      return 0;
+    }
+
+    // 5. Parse the comma-separated string of values into an array of numbers
+    const values = matrix[2].split(', ').map(Number);
+
+    // 6. Return the correct value based on the matrix type
+    // In a 2D matrix(a, b, c, d, tx, ty), translateX (tx) is the 5th value (index 4)
+    // In a 3D matrix3d(a, b, c, d, e, f, g, h, i, j, k, l, tx, ty, tz, w), translateX (tx) is the 13th value (index 12)
+    if (matrix[1] === '3d') {
+        return values[12] || 0;
+    } else {
+        return values[4] || 0;
+    }
+}
+
+function shrinkimglist(progress, imglist, overlayadjust, overlay) {
     // transform: matrix(0.875083, 0, 0, 0.875083, 0, 0);
 
     // use pow to shrink slower in the beginning
     const adjust_progress = 1 - Math.pow(progress, 2);
+    // const overlayX = getTranslateX(overlay);
     if (adjust_progress >= 0.85) {
         imglist.style.transform = `matrix(${adjust_progress}, 0, 0, ${adjust_progress}, 0, 0)`;
+        // overlay.style.transform = `matrix(${adjust_progress}, 0, 0, ${adjust_progress}, ${overlayX}, 0)`;
         overlayadjust.style.transform = `matrix(${adjust_progress}, 0, 0, ${adjust_progress}, 0, 0)`;
     }
 }
