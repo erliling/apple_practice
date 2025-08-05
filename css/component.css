@@ -708,7 +708,6 @@ a.arrow::after {
 
 /* #endregion wipescroll */
 
-
 /* #region shrinkscroll */
 .shrinkscroll .stickycontainer {
     /* scrollable space */
@@ -803,12 +802,12 @@ a.arrow::after {
 
 /* #region dissolvescroll */
 .dissolvescroll {
-    width: var(--ric-column-width-9);
+    width: var(--ric-column-width-8);
 
     margin-inline: auto;
 
     display: grid;
-    grid-template-columns: auto auto;
+    /* grid-template-columns: auto auto; */
     grid-template-areas: "copy-top iphone" "copy-middle iphone" "copy-bottom iphone";
     grid-column-gap: var(--ric-column-width-1);
 }
@@ -816,15 +815,20 @@ a.arrow::after {
     width: var(--ric-column-width-4);
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    row-gap: 24px;
+    row-gap: var(--ps-spacing-24);
     
     /* one viewport height, totally will be 3 */
     height: 100vh;
 
     transition: opacity .6s ease-out;
+}
+.dissolvescroll .text h3 {
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--default-text-color);
 }
 .dissolvescroll .text1 {
     grid-area: copy-top;
@@ -839,67 +843,58 @@ a.arrow::after {
 
     opacity: 0.5;
 }
-.dissolvescroll .text h3 {
-    font-size: 40px;
-    font-weight: 600;
-    color: var(--default-text-color);
-}
 .dissolvescroll .piccontainer {
     grid-area: iphone;
-    /* position: relative; */
-
-    /* transform: translateX(50%); */
-    /* left: 25%; */
-
-    /* display: flex; */
-    /* justify-content: flex-end; */
 }
 .dissolvescroll .piccontent {
     position: sticky;
     top: var(--ps-spacing-56);
 
-    width: var(--ric-column-width-3);
-    /* --aspect-ratio: 0.4837209302; */
+    /* width: var(--ric-column-width-3); */
 
     display: grid;
-    /* justify-content: end; */
-    /* justify-items: end; */
-    /* align-items: center; */
-
-    /* margin-top: var(--ps-spacing-56); */
-    /* margin-bottom: var(--ps-spacing-56); */
 }
 .dissolvescroll .pic {
     grid-area: 1/1;
+
     opacity: 0;
     transition: opacity .6s ease-out;
+}
+.dissolvescroll .pic1 {
+    opacity: 1;
 }
 .dissolvescroll .pic img{
     width: 100%;
     height: auto;
 }
-.dissolvescroll .pic1 {
-    opacity: 1;
-}
+
 /* #endregion dissolvescroll */
 
 /* #region accordion */
 /* accordion left side */
+.accordion {
+    /* width: 100%; */
+
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: var(--ps-spacing-24);
+    grid-template-areas: "textarea picarea";
+}
 .accordion .accordiontext {
+    grid-area: textarea;
+
     /* fv */
     width: 350px;
-    padding-left: clamp(var(--accordion-side-padding-large),var(--accordion-fluid-padding),var(--accordion-side-padding-xlarge));
-    padding-right: clamp(var(--accordion-side-padding-large),var(--accordion-fluid-padding),var(--accordion-side-padding-xlarge));
+    padding: 0 clamp(var(--accordion-side-padding-large),var(--accordion-fluid-padding),var(--accordion-side-padding-xlarge));
 }
 .accordion .accordiontext .item {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     row-gap: var(--ps-spacing-24);
 
-    border-bottom: 1px solid var(--default-gray-text-color);
-
     padding: var(--ps-spacing-24) 0;
+
+    border-bottom: 1px solid var(--default-gray-text-color);
 }
 .accordion .accordiontext .item .title {
     display: flex;
@@ -911,10 +906,6 @@ a.arrow::after {
     line-height: 1.1428;
     font-weight: 600;
     color: var(--default-text-color);
-}
-.accordion .accordiontext .item .title .icon {
-    /* display: flex;
-    align-items: center; */
 }
 .accordion .accordiontext .item .title svg {
     width: 2em;
@@ -931,34 +922,29 @@ a.arrow::after {
 
 /* accordion right side */
 .accordion .imgcontainer {
+    grid-area: picarea;
 
-    /* width: 100%; */
     position: relative;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    /* A value of 1 means this item will take up 1 portion (or share) of any available extra space */
-    flex-grow: 1;
 }
 .accordion .imgcontainer picture {
+    /* grid-area: 1/1; */
     position: absolute;
 
     opacity: 0;
 }
 .accordion .imgcontainer picture img {
-    width: 100%;
-    height: auto;
+    /* don't let image shrink and expand */
+    /* width: 100%;
+    height: auto; */
 }
 .accordion .imgcontainer picture.expand {
     opacity: 1;
 }
 .accordion .imgcontainer .specialpic {
-    width: 140%;
+    /* width: 180%; */
 }
 .accordion .imgcontainer .specialpic.expand {
-    left: 0;
+    /* left: 0; */
 }
 /* #endregion accordion */
 

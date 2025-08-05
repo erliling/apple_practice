@@ -1287,7 +1287,7 @@ body {
     background-color: var(--default-background-color);
     border-radius: 28px;
 
-    display: flex;
+    /* display: flex; */
 
     overflow: hidden;
 }
