@@ -1056,8 +1056,8 @@ a.arrow::after {
 
 /* playbar type2 */
 .playbarcontent .playbarright .bigbtn {
-    width: 36px;
-    height: 36px;
+    width: var(--colornav-item-size);
+    height: var(--colornav-item-size);
     border-radius: 50px;
 
     background-color: var(--default-btn-bg-color);
@@ -1085,9 +1085,10 @@ a.arrow::after {
 
 .playbarcontent .playbarright .bigdotborder {
     border: 2px solid rgba(0, 0, 0, 0);
+    box-sizing: border-box;
     
-    width: 36px;
-    height: 36px;
+    width: var(--colornav-item-size);
+    height: var(--colornav-item-size);
     border-radius: 50px;
 
     display: inline-flex;
@@ -1095,7 +1096,6 @@ a.arrow::after {
     justify-content: center;
 
     /* padding: calc(var(--colornav-item-size)/2 - var(--colornav-swatch-size)/2 - 2px); */
-    box-sizing: border-box;
 }
 
 .playbarcontent .playbarright .checkedbigdotborder {
@@ -1104,17 +1104,18 @@ a.arrow::after {
 
 .playbarcontent .playbarright .bigdot {
     background-color: var(--default-icon-color);
-    width: 28px;
-    height: 28px;
+
+    width: var(--colornav-swatch-size);
+    height: var(--colornav-swatch-size);
     border-radius: 50px;
+    /* box-sizing: border-box; */
 
-    box-sizing: border-box;
-
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-size: 100%;
+    /* background-repeat: no-repeat; */
+    /* background-position: 50%; */
+    /* background-size: 100%; */
 }
 
+/* add a half moon effect */
 .playbarcontent .playbarright .bigdot::after {
     content: "";
     width: inherit;
@@ -1123,15 +1124,11 @@ a.arrow::after {
 
     display: block;
 
-    background-image: conic-gradient(from 90deg,rgba(255,255,255,0.08) 0deg,rgba(255,255,255,0.48) 64.8deg,rgba(255,255,255,0.48) 115.2deg,rgba(255,255,255,0.08) 180deg,rgba(255,255,255,0) 208.8deg,rgba(255,255,255,0) 331.2deg,rgba(255,255,255,0.08) 360deg)
-    ;
+    background-image: conic-gradient(from 90deg,rgba(255,255,255,0.08) 0deg,rgba(255,255,255,0.48) 64.8deg,rgba(255,255,255,0.48) 115.2deg,rgba(255,255,255,0.08) 180deg,rgba(255,255,255,0) 208.8deg,rgba(255,255,255,0) 331.2deg,rgba(255,255,255,0.08) 360deg);
     mask-image: radial-gradient(circle at 50% 50%,transparent calc(var(--colornav-swatch-size)/2 - 1.5px),black calc(var(--colornav-swatch-size)/2 - 0.5px));
-
-    
 }
 .playbarcontent .playbarright .bigdot1 {
     background: conic-gradient(from 0deg at 50% 50%,#202121 0%,#dbdad7 25%,#a6a198 50%,#a8907e 75%,#202121 100%);
-    
 }
 .playbarcontent .playbarright .bigdot2 {
     background: #181919;
