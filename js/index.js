@@ -61,9 +61,15 @@ window.onload = function () {
         // shrink scroll
         scrollinsection(container, img, sectiontitlecontent2, frame, screen, videoaudio, navheight, shrinkscroll1);
         scrollinsection(container2, img2, sectiontitlecontent3, frame2, screen2, camera2, navheight, shrinkscroll2);
+
         // wipe scroll and dissolve scroll
         scrollinsection2(scrollwrapper, images, overlay, imglist, overlayadjust, piccontainer, pics, texts, photograph, navheight, wipescroll, disolvescroll);
-        
+
+        // wipe scroll
+
+
+        // dissolve scroll
+
     }); 
 }
 
@@ -88,6 +94,7 @@ function resizeframe(overlay) {
 }
 
 function scrollinsection(container, img, sectiontitlecontent2, frame, screen, section, navheight, callbackfunction) {
+    // make sure scroll into the region
     const scrollY = window.scrollY;
     const sectionTop = section.offsetTop - navheight; // Adjust for fixed header
     const sectionBottom = section.offsetTop + section.offsetHeight - navheight;
@@ -96,18 +103,6 @@ function scrollinsection(container, img, sectiontitlecontent2, frame, screen, se
         callbackfunction(container, img, sectiontitlecontent2, frame, screen);
     }
 }
-
-function scrollinsection2(scrollwrapper, images, overlay, imglist, overlayadjust, piccontainer, pics, texts, section, navheight, callbackfunction, callbackfunction2) {
-    const scrollY = window.scrollY;
-    const sectionTop = section.offsetTop - navheight; // Adjust for fixed header
-    const sectionBottom = section.offsetTop + section.offsetHeight - navheight;
-
-    if (scrollY >= sectionTop && scrollY < sectionBottom) {
-        callbackfunction(scrollwrapper, images, overlay, imglist, overlayadjust);
-        callbackfunction2(piccontainer, pics, texts);
-    }
-}
-
 
 let lastScrollTop = 0;
 
@@ -120,22 +115,22 @@ function shrinkscroll1(container, img, sectiontitlecontent2, frame, screen) {
     // change img's scale and return scale value
     let scale = changescale(progress, img);
 
-    // change img's opacity
+    // change text's opacity
     changeopacity(progress, sectiontitlecontent2);
 
     // if scroll down, at some point makes the frame appear; vice versa
     const currentScroll = window.scrollY;
-    changedisplay(frame, scale, currentScroll, lastScrollTop);
-    // keep data for next call
+    changedisplay(frame, scale, currentScroll, lastScrollTop, 1.4);
+    // keep data for next call; for checking scroll up or down
     lastScrollTop = currentScroll;
 
     // keep the device wrapper always in the middle of screen before scroll away
     // the div's position: sticky, and its container doesn't have overflow: scroll
-    // so the div's top is relative to the viewport not the whole sticky container
+    // so the div's top is relative to the viewport, not the whole sticky container
     changetop(screen, img);
 }
 
-let lastScrollTop2 = 0;
+// let lastScrollTop2 = 0;
 
 function shrinkscroll2(container2, img2, sectiontitlecontent3, frame2, screen2) {
     console.log("enter camera2");
@@ -151,15 +146,27 @@ function shrinkscroll2(container2, img2, sectiontitlecontent3, frame2, screen2) 
 
     // if scroll down, at some point makes the frame appear; vice versa
     const currentScroll = window.scrollY;
-    changedisplay2(frame2, scale2, currentScroll, lastScrollTop2, screen2);
+    changedisplay(frame2, scale2, currentScroll, lastScrollTop, 3.4);
     // keep data for next call
-    lastScrollTop2 = currentScroll;
+    lastScrollTop = currentScroll;
 
     // keep the device wrapper always in the middle of screen before scroll away
     // the div's position: sticky, and its container doesn't have overflow: scroll
     // so the div's top is relative to the viewport not the whole sticky container
     changetop2(screen2, img2);
 }
+
+function scrollinsection2(scrollwrapper, images, overlay, imglist, overlayadjust, piccontainer, pics, texts, section, navheight, callbackfunction, callbackfunction2) {
+    const scrollY = window.scrollY;
+    const sectionTop = section.offsetTop - navheight; // Adjust for fixed header
+    const sectionBottom = section.offsetTop + section.offsetHeight - navheight;
+
+    if (scrollY >= sectionTop && scrollY < sectionBottom) {
+        callbackfunction(scrollwrapper, images, overlay, imglist, overlayadjust);
+        callbackfunction2(piccontainer, pics, texts);
+    }
+}
+
 
 function disolvescroll(piccontainer, pics, texts) {
     // console.log("enter photography2");
@@ -452,18 +459,13 @@ function revealimg(imgobj, progress, overlay, movedimgnum) {
 }
 
 function getprogress(container) {
+    // is negative when entering the region
     const containerTop = container.getBoundingClientRect().top;
-    // const containerHeight = container.offsetHeight;
     const windowHeight = window.innerHeight;
     
-    // minimagewidth = getminimagewidth();
-    // const imgwidth = img.getBoundingClientRect().width;
-
-    // Get scroll progress between 0 and 1
-    // const progress = Math.min(Math.max(-containerTop / containerHeight, 0), 1);
-
     // Progress from 0 to 1 during the shrink phase (first viewport height of stickycontainer)
     const progress = Math.min(Math.max(-containerTop / windowHeight, 0), 1);
+    // console.log(containerTop);
     return progress;
 }
 
@@ -472,6 +474,7 @@ function changescale(progress, img) {
     // Scale from 1.5 to 0.5 as you scroll through the container
     let scale = 1.5 - progress * 1;
     if (scale < 0.57) {
+        // stop shrinking
         scale = 0.57;
     }
     img.style.transform = `scale(${scale})`;
@@ -481,53 +484,56 @@ function changescale(progress, img) {
 
 function changescale2(progress, img) {
 
-    // const progress = getprogress(container);
+    // move image and scale at the same time, range 0~4
     let translateX = 4 - (1-progress) * 4;
 
     // create a 0.5 to 3.5 scale
     let scale = 3.5 - progress * 3;
-    // 0.57 is the min scale
+
     if (scale < 0.57) {
+        // stop shrinking
         scale = 0.57;
     }
-    img.style.transform = `scale(${scale}) translateX(-${translateX}%)`;
+    // img.style.transform = `scale(${scale}) translateX(-${translateX}%)`;
+    img.style.transform = `scale(${scale})`;
     
     return scale;
 }
 
 function changeopacity(progress, sectiontitlecontent2) {
+    // progress grows, opacity opposite
     sectiontitlecontent2.style.opacity = 1-progress;
 }
 
-function changedisplay(frame, scale, currentScroll, lastScrollTop) {
-    // console.log('lasttop: ' + lastScrollTop);
-    // console.log('currenttop: ' + currentScroll);
-    if ((currentScroll > lastScrollTop) && (scale < 1.4)) {
+function changedisplay(frame, scale, currentScroll, lastScrollTop, scalelimit) {
+    // scroll down
+    if ((currentScroll > lastScrollTop) && (scale < scalelimit)) {
         frame.style.display = 'block';
     }
-    if ((currentScroll < lastScrollTop) && (scale > 1.4)) {
-        // console.log('none');
+    // scroll up
+    if ((currentScroll < lastScrollTop) && (scale > scalelimit)) {
         frame.style.display = 'none';
     }
 }
-function changedisplay2(frame2, scale2, currentScroll, lastScrollTop) {
 
-    // console.log('lasttop2: ' + lastScrollTop);
-    // console.log('currenttop2: ' + currentScroll);
-    if ((currentScroll > lastScrollTop) && (scale2 < 3.4)) {
-        frame2.style.display = 'block';
-    }
-    if ((currentScroll < lastScrollTop) && (scale2 > 3.4)) {
-        // console.log('none2');
-        frame2.style.display = 'none';
-    }
-}
+// function changedisplay2(frame2, scale2, currentScroll, lastScrollTop) {
+
+//     if ((currentScroll > lastScrollTop) && (scale2 < 3.4)) {
+//         frame2.style.display = 'block';
+//     }
+//     if ((currentScroll < lastScrollTop) && (scale2 > 3.4)) {
+//         frame2.style.display = 'none';
+//     }
+// }
 
 function changetop(screen, img) {
+    // top get larger when the spacing between top of viewpoint and image gets larger
     let topvalue = (window.innerHeight - screen.getBoundingClientRect().height)/2;
     img.style.top = `${topvalue}px`;
 }
 function changetop2(screen, img) {
+    // let topvalue = (window.innerHeight - screen.getBoundingClientRect().height)/2;
+    // the original image is taller, so make it more lower, can't be in the image middle
     let topvalue = (window.innerHeight - screen.getBoundingClientRect().height + 0.7*screen.getBoundingClientRect().height)/2;
     img.style.top = `${topvalue}px`;
 }
