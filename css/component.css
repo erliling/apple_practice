@@ -488,6 +488,7 @@ a.arrow::after {
 /* #region imgswitcher*/
 .imgswitchercontentcontainer {
     position: relative;
+    height: fit-content;
 
     display: flex;
     align-items: center;
@@ -512,6 +513,10 @@ a.arrow::after {
 }
 .imgswitchercontent5 {
     z-index: 0;
+}
+.imgswitchercontentcontainer img {
+    width: 100%;
+    height: auto;
 }
 
 .imgswitchernavbtn.playbarcontent {

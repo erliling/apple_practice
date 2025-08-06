@@ -1,21 +1,20 @@
 
 window.onload = function () {
+    // resizing
     const carsouselcontentcontainer = document.querySelector('.camera2 .imgswitchercontentcontainer');
     const carouselcontent = document.querySelector('.camera2 .imgswitchercontent');
 
     // get the min width of shrinking image
-    let minimagewidth = getminimagewidth();
+    // let minimagewidth;
 
     // set the height of carousel img's outside container, which used to be 0
-    carsouselcontentcontainer.style.height = `${carouselcontent.offsetHeight}px`;
+    // carsouselcontentcontainer.style.height = `${carouselcontent.offsetHeight}px`;
 
     // update the height and min width values when resized
     window.addEventListener('resize', () => {
-        carsouselcontentcontainer.style.height = `${carouselcontent.offsetHeight}px`;
-        minimagewidth = getminimagewidth();
+        // carsouselcontentcontainer.style.height = `${carouselcontent.offsetHeight}px`;
+        // minimagewidth = getminimagewidth();
         
-        // resizeslider(images, maskslide);
-        // const imglist = document.querySelector('.photograph .stickycontainer .imglist');
         resizeframe(overlay);
     })
 
@@ -77,6 +76,19 @@ window.onload = function () {
         
     }); 
 }
+
+// function getminimagewidth() {
+//     const vw = window.innerWidth / 100;
+
+//     const root = document.documentElement;
+//     const scrollbarWidthStr = getComputedStyle(root).getPropertyValue('--global-scrollbar-width');
+//     const scrollbarWidth = parseFloat(scrollbarWidthStr); 
+
+//     const calcValue = 58.3332333333 * vw - (scrollbarWidth / 12 * 8);
+//     const minImageWidth = Math.min(calcValue, 1120);
+
+//     return minImageWidth;
+// }
 
 function scrollinsection2(scrollwrapper, images, overlay, imglist, overlayadjust, piccontainer, pics, texts, section, navheight, callbackfunction, callbackfunction2) {
     const scrollY = window.scrollY;
@@ -587,21 +599,7 @@ function resizeframe(overlay) {
 //     imgobj.style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
 // }
 
-function getminimagewidth() {
-    // console.log('resize');
 
-    // get width-8 property in css
-    const vw = window.innerWidth / 100;
-
-    const root = document.documentElement;
-    const scrollbarWidthStr = getComputedStyle(root).getPropertyValue('--global-scrollbar-width');
-    const scrollbarWidth = parseFloat(scrollbarWidthStr); 
-
-    const calcValue = 58.3332333333 * vw - (scrollbarWidth / 12 * 8);
-    const minImageWidth = Math.min(calcValue, 1120);
-
-    return minImageWidth;
-}
 
 function getprogress(container) {
     const containerTop = container.getBoundingClientRect().top;

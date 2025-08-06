@@ -674,11 +674,7 @@ body {
     /* aspect-ratio: 1.3337628866; */
     
 }
-.camera2 .imgswitchercontent img {
-    width: 100%;
-    height: auto;
-    /* object-fit: cover; */
-}
+
 
 
 .camera2 .textpiccontainer {
