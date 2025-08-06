@@ -525,6 +525,7 @@ a.arrow::after {
 
     display: flex;
     flex-direction: column;
+    align-items: center;
     row-gap: var(--ps-spacing-24);
 }
 .imgswitchernavbtn.playbarcontent .playbarright {
