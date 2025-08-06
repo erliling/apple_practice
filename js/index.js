@@ -1,8 +1,8 @@
 
 window.onload = function () {
     // resizing
-    const carsouselcontentcontainer = document.querySelector('.camera2 .imgswitchercontentcontainer');
-    const carouselcontent = document.querySelector('.camera2 .imgswitchercontent');
+    // const carsouselcontentcontainer = document.querySelector('.camera2 .imgswitchercontentcontainer');
+    // const carouselcontent = document.querySelector('.camera2 .imgswitchercontent');
 
     // get the min width of shrinking image
     // let minimagewidth;
@@ -39,39 +39,29 @@ window.onload = function () {
     const navheight = 0;
     const camera2 = document.querySelector('.camera2');
 
-    // const stickycontainer1 = document.querySelector('.videoaudio .stickycontainer1');
 
     // wipe scroll
     const scrollwrapper = document.querySelector('.photograph .scrollwrapper');
     const images = document.querySelectorAll('.photograph .stickycontainer .image');
-    const slides = document.querySelectorAll('.photograph .stickycontainer .slide');
     const imglist = document.querySelector('.photograph .stickycontainer .imglist');
     const overlay = document.querySelector('.photograph .stickycontainer .frame');
     const overlayadjust = document.querySelector('.photograph .stickycontainer .frameadjust');
 
-    const stickycontainer = document.querySelector('.photograph .stickycontainer');
     const photograph = document.querySelector('.photograph');
+
 
     // disolve scroll
     const piccontainer = document.querySelector('.dissolvescroll .piccontainer');
     const pics = document.querySelectorAll('.dissolvescroll .pic');
     const texts = document.querySelectorAll('.dissolvescroll .text');
 
-    // stickycontainer1.addEventListener('scroll', () => {
-    //     shrinkscroll1(container, img, sectiontitlecontent2, frame, screen);
-    // });
-
-    // videoaudio.addEventListener('wheel', () => {
-    //     console.log("here videoaudio");
-    //     shrinkscroll1(container, img, sectiontitlecontent2, frame, screen);
-    // });
 
     window.addEventListener('scroll', () => {
         
-        // moveslider(scrollwrapper, images, maskslide);
-
+        // shrink scroll
         scrollinsection(container, img, sectiontitlecontent2, frame, screen, videoaudio, navheight, shrinkscroll1);
         scrollinsection(container2, img2, sectiontitlecontent3, frame2, screen2, camera2, navheight, shrinkscroll2);
+        // wipe scroll and dissolve scroll
         scrollinsection2(scrollwrapper, images, overlay, imglist, overlayadjust, piccontainer, pics, texts, photograph, navheight, wipescroll, disolvescroll);
         
     }); 
@@ -90,14 +80,10 @@ window.onload = function () {
 //     return minImageWidth;
 // }
 
-function scrollinsection2(scrollwrapper, images, overlay, imglist, overlayadjust, piccontainer, pics, texts, section, navheight, callbackfunction, callbackfunction2) {
-    const scrollY = window.scrollY;
-    const sectionTop = section.offsetTop - navheight; // Adjust for fixed header
-    const sectionBottom = section.offsetTop + section.offsetHeight - navheight;
-
-    if (scrollY >= sectionTop && scrollY < sectionBottom) {
-        callbackfunction(scrollwrapper, images, overlay, imglist, overlayadjust);
-        callbackfunction2(piccontainer, pics, texts);
+function resizeframe(overlay) {
+    if (prevprogress == 1) {
+        // reset slide to slide one, so it will always align to the left when resizing
+        overlay.style.transform = `matrix(1, 0, 0, 1, 0, 0)`;
     }
 }
 
@@ -110,6 +96,18 @@ function scrollinsection(container, img, sectiontitlecontent2, frame, screen, se
         callbackfunction(container, img, sectiontitlecontent2, frame, screen);
     }
 }
+
+function scrollinsection2(scrollwrapper, images, overlay, imglist, overlayadjust, piccontainer, pics, texts, section, navheight, callbackfunction, callbackfunction2) {
+    const scrollY = window.scrollY;
+    const sectionTop = section.offsetTop - navheight; // Adjust for fixed header
+    const sectionBottom = section.offsetTop + section.offsetHeight - navheight;
+
+    if (scrollY >= sectionTop && scrollY < sectionBottom) {
+        callbackfunction(scrollwrapper, images, overlay, imglist, overlayadjust);
+        callbackfunction2(piccontainer, pics, texts);
+    }
+}
+
 
 let lastScrollTop = 0;
 
@@ -195,84 +193,6 @@ function disolvescroll(piccontainer, pics, texts) {
         texts[2].style.opacity = "1";
     }
 }
-
-// let reveal1 = 100;
-// let reveal2 = 100;
-// let progress1 = 0;
-// let progress2 = 0;
-// let progress3 = 0;
-// let scale = 1;
-
-// function moveslider(scrollwrapper, images, maskslide) {
-
-//     const rect = scrollwrapper.getBoundingClientRect();
-//     const recttop = -rect.top;
-//     const scrollheight = window.innerHeight;
-//     let top = window.innerHeight * 0.5 - 1050/2 + 52/2;
-//     // console.log(recttop, scrollheight);
-//     let adjust_recttop = recttop + top;
-//     console.log(adjust_recttop, scrollheight);
-
-//     if (adjust_recttop <= scrollheight) {
-//         console.log("1st pic");
-
-//         if ((progress2 < 1) && (progress2 > 0)) {
-//             const adjusttop = adjust_recttop - scrollheight;
-//             progress2 = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
-//             revealimage(reveal2, progress2, images[2], maskslide);
-//         }
-
-//         // rectop has to start from 0, otherwise progress won't start from 0
-//         progress1 = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
-//         console.log("progress1: " + progress1);
-        
-//         revealimage(reveal1, progress1, images[1], maskslide);
-
-//     } else if ((adjust_recttop > scrollheight) && (adjust_recttop <= 2*scrollheight)) {
-//         // 2nd pic
-//         console.log("2nd pic");
-
-//         if (progress1 < 1) {
-//             progress1 = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
-//             revealimage(reveal1, progress1, images[1], maskslide);
-//         }
-
-//         // console.log("reveal1: "+ reveal1);
-//         const adjusttop = adjust_recttop - scrollheight;
-//         progress2 = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
-//         console.log("progress2: " + progress2);
-        
-//         revealimage(reveal2, progress2, images[2], maskslide);
-        
-//         console.log("progress3: " + progress3);
-//         if ((progress3 < 1) && (progress3 > 0)) {
-//             const adjusttop = adjust_recttop - scrollheight*2;
-//             progress3 = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
-//             enlargeframe(progress3);
-//         }
-
-//     } else if (adjust_recttop > 2*scrollheight) {
-//         console.log("3rd pic");
-
-//         if (progress2 < 1) {
-//             const adjusttop = adjust_recttop - scrollheight;
-//             progress2 = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
-//             revealimage(reveal2, progress2, images[2], maskslide);
-//         }
-
-//         // console.log("reveal2: "+ reveal2);
-//         const adjusttop = adjust_recttop - scrollheight*2;
-//         progress3 = Math.min(Math.max(adjusttop / scrollheight, 0), 1);
-//         console.log("progress3: " + progress3);
-        
-//         // let slider move from 0 to -20
-//         let new_progress = Math.pow(progress3, 0.2);
-//         const moveoffset = -20 * new_progress;
-//         maskslide.style.left = `${moveoffset}px`;
-
-//         enlargeframe(progress3);
-//     }
-// }
 
 // previous scroll top, pair with currentScroll2
 let lastscrolltop2 = 0;
@@ -530,76 +450,6 @@ function revealimg(imgobj, progress, overlay, movedimgnum) {
     // overlay continue moves to the left with a negative offset
     overlay.style.transform = `matrix(1, 0, 0, 1, ${adjustmoveoffset}, 0)`;
 }
-
-function resizeframe(overlay) {
-    if (prevprogress == 1) {
-        // reset slide to slide one, so it will always align to the left
-        overlay.style.transform = `matrix(1, 0, 0, 1, 0, 0)`;
-    }
-}
-
-// function enlargeframe(progress) {
-//     // not shrink the img, but enlarge the frame around it
-//     //rect left, width: 100
-//     //rect right, width: 100
-//     //rect bottom, height: 100
-//     //corner bottom left, left: 90px, bottom: 100px
-//     //corner bottom right, right: 90px, bottom: 100px
-//     const rect_left = document.querySelector('.photograph .stickycontainer .frame .rect.left');
-//     const rect_right = document.querySelector('.photograph .stickycontainer .frame .rect.right');
-//     const rect_bottom = document.querySelector('.photograph .stickycontainer .frame .rect.bottom');
-//     const corner_bot_left = document.querySelector('.photograph .stickycontainer .frame .corner.bottom.left');
-//     const corner_bot_right = document.querySelector('.photograph .stickycontainer .frame .corner.bottom.right');
-
-//     // progress 0 - 1, increase more in the beginning
-//     let new_progress = Math.pow(progress, 0.2);
-
-//     // create 10 - 100 width
-//     let left_width = 10 + 90 * new_progress;
-//     rect_left.style.width = `${left_width}px`;
-
-//     let right_width = 10 + 90 * new_progress;
-//     rect_right.style.width = `${right_width}px`;
-
-//     let bottom_width = 10 + 90 * new_progress;
-//     rect_bottom.style.height = `${bottom_width}px`;
-
-//     let corner_lr = 90 * new_progress;
-//     let corner_bottom = 100 * new_progress;
-
-//     corner_bot_left.style.left = `${corner_lr}px`;
-//     corner_bot_left.style.bottom = `${corner_bottom}px`;
-
-//     corner_bot_right.style.right = `${corner_lr}px`;
-//     corner_bot_right.style.bottom = `${corner_bottom}px`;
-// }
-
-// function resizeslider(images, maskslide) {
-//     // const images = document.querySelectorAll('.photograph .stickycontainer .image');
-//     // console.log('resizeslider: ' + reveal1);
-//     if (reveal1 == 100) {
-//         const imgWidth = images[0].getBoundingClientRect().width;
-//         const moveoffset = imgWidth * reveal1 * 0.01;
-//         maskslide.style.left = `${moveoffset}px`;
-
-//         // console.log('resizeslider: ' + moveoffset);
-//     }
-// }
-
-// function revealimage(reveal, progress, imgobj, maskslide) {
-
-//     reveal = 100 - progress * 100;
-//     console.log("reveal: "+ reveal);
-
-//     const imgWidth = imgobj.getBoundingClientRect().width;
-//     const moveoffset = imgWidth * reveal * 0.01;
-
-//     // hide maskslide in the beginning, maskslide is outside of img
-//     maskslide.style.left = `${moveoffset}px`;
-//     imgobj.style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
-// }
-
-
 
 function getprogress(container) {
     const containerTop = container.getBoundingClientRect().top;
