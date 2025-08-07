@@ -93,6 +93,15 @@ function resizeframe(overlay) {
     }
 }
 
+function resetimgclippath(images) {
+    images.forEach((image, index) => {
+        if (index > 1) {
+            const imgWidth = image.getBoundingClientRect().width;
+            image.style.clipPath = `inset(0 0 0 ${imgWidth}px)`;
+        }
+    });
+}
+
 function scrollinsection(container, img, sectiontitlecontent2, frame, screen, section, navheight, callbackfunction) {
     // make sure scroll into the region
     const scrollY = window.scrollY;
@@ -189,6 +198,7 @@ function scrollsection4(piccontainer, pics, texts, section, navheight) {
 
 
 // previous scroll top, pair with currentScroll2
+
 let lastscrolltop2 = 0;
 
 // pair with index
@@ -369,7 +379,6 @@ function wipescroll(scrollwrapper, images, overlay, imglist, overlayadjust) {
     lastscrolltop2 = currentScroll2;
 }
 
-
 function disolvescroll(piccontainer, pics, texts) {
     console.log("enter photography2");
 
@@ -448,15 +457,6 @@ function resetmiddleregionflag() {
 
 function resetlastregionflag() {
     lastnextflag = 1;
-}
-
-function resetimgclippath(images) {
-    images.forEach((image, index) => {
-        if (index > 1) {
-            const imgWidth = image.getBoundingClientRect().width;
-            image.style.clipPath = `inset(0 0 0 ${imgWidth}px)`;
-        }
-    });
 }
 
 function shrinkimglist(progress, imglist, overlayadjust, overlay) {
