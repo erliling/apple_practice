@@ -190,6 +190,7 @@ function scrollsection4(piccontainer, pics, texts, section, navheight) {
 
 // previous scroll top, pair with currentScroll2
 let lastscrolltop2 = 0;
+
 // pair with index
 let previndex = 0;
 
@@ -197,9 +198,12 @@ let currentprogress = 0;
 let prevprogress = 0;
 
 // for reveal prev images or hide next images
+// for first region
 let firstprevflag = 1;
+// for middle region
 let middleprevflag = 0;
 let middlenextflag = 0;
+// for last region
 let lastnextflag = 1;
 
 function wipescroll(scrollwrapper, images, overlay, imglist, overlayadjust) {
@@ -226,32 +230,29 @@ function wipescroll(scrollwrapper, images, overlay, imglist, overlayadjust) {
     // number of images
     const imagenum = Array.from(images).length;
 
+    // normal reveal, index + 1
+    // scroll up, index + 2
+    // scroll down, index
     images.forEach((image, index) => {
         if ((index == 0) && (adjust_recttop <= scrollheight)) {
-            // first image region
+            // first region
             // console.log("1st pic");
 
             // reset middle progresses
-            resetmiddleflag();
+            resetmiddleregionflag();
+            resetlastregionflag();
             
             // step 1, normal reveal
             currentprogress = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
             revealimg(images[index + 1], currentprogress, overlay, index);
 
-            // step 2, fixing resizing issues
-            // when scroll down
-            // reset n - 2 images clippath the same length as image
-            // otherwise it won't change via resizing, 
-            // when scroll up then go back, it might leave extra clip
-            if (lastscrolltop2 < currentScroll2) {
-                // resetimgclippath(images);
-            }
-
-            // step 3, 
+            // step 2, hide the rest of index+2 image (third image)
             // when scroll up
-            // set value for firstprevprogress the first time
-            // when the index + 2 haven't finished hiding, completely hide here
+            // progress smaller is hide, larger is show
             if (lastscrolltop2 > currentScroll2) { 
+                // firstprevflag = 1 by default
+                // only do this once when the first time enter into the first region from middle region 
+                // cz later prevprogress will be in block prevprogress not across block
                 if (firstprevflag == 1) {
                     if ((prevprogress < 1) && (prevprogress > 0)) {
                         revealimg(images[index + 2], 0, overlay, index+1);
@@ -263,81 +264,97 @@ function wipescroll(scrollwrapper, images, overlay, imglist, overlayadjust) {
             prevprogress = currentprogress;
             
         } else if ((index == (imagenum - 1)) && (adjust_recttop > index * scrollheight)) {
+            // last region
             // console.log("last pic");
             
             // reset middle progress
-            resetmiddleflag();
+            resetmiddleregionflag();
+            resetlastregionflag();
 
+            // step 1, last image no reveal
             let adjust_adjust_rectop = adjust_recttop - index * scrollheight;
             currentprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
 
-            // continue remove prev image
+            // step 2, show the rest of index image (last image)
+            // when scroll down
+            // progress smaller is hide, larger is show
             if (lastscrolltop2 < currentScroll2) {
                 if (prevprogress < 1) {
+                    revealimg(images[index], 1, overlay, index - 1);
                     prevprogress = 1;
-                    revealimg(images[index], prevprogress, overlay, index - 1);
                 }
             }
 
+            // step 3, shrink frame and expand image
             // after remove prev image, start to shrink
             if (prevprogress == 1) {
                 shrinkimglist(currentprogress, imglist, overlayadjust, overlay);
                 expandimg(currentprogress, images);
             }
         } else if ((adjust_recttop > (index) * scrollheight) && (adjust_recttop <= (index+1) * scrollheight)) {
+            // middle region
             // console.log("middle pic: " + index);
             
             // reset flag
-            resetfirstflag();
+            resetfirstregionflag();
+            // resetlastregionflag();
 
+            // step 1, normal reveal
             let adjust_adjust_rectop = adjust_recttop - index * scrollheight;
             currentprogress = Math.min(Math.max(adjust_adjust_rectop / scrollheight, 0), 1);
             revealimg(images[index + 1], currentprogress, overlay, index);
 
-
+            // step 2, show the rest of index image (prev imcompleted image)
             // when scroll down
             // continue reveal prev images
+            // progress smaller is hide, larger is show
             if (lastscrolltop2 < currentScroll2) {
                 if ((index == 1) && (middleprevflag == 0)) {
                     // second img, handle scroll forward, get value from prevprogress (across block)
                     if ((prevprogress > 0) && (prevprogress < 1)) {
                         revealimg(images[index], 1, overlay, index - 1);
+                        // only use once when across block, otherwise the value comes from inside block
                         middleprevflag = 1;
                     }
                 } else if ((index > 1) && (index != previndex)) {
-                    middleprevflag = 0;
+                    // middleprevflag = 0;
                     // every time when the index changes, get value from prevprogress (inside block)
                     if ((prevprogress > 0) && (prevprogress < 1)) {
                         revealimg(images[index], 1, overlay, index - 1);
-                        middleprevflag = 1;
+                        // middleprevflag = 1;
                     }
                 }
                 
             }
             
+            // step 3, hide the rest of index+1 or +2 image (next imcompleted image)
             // when scroll up
             // continue hide next images
+            // progress smaller is hide, larger is show
             if (lastscrolltop2 >= currentScroll2) {
                 if ((index == imagenum - 2) && (middlenextflag == 0)) {
-                    // second to last img, handle scroll backward, get value from prevprogress (across block)
+                    // second to last img, get value from prevprogress (across block)
                     if ((prevprogress < 1) && (prevprogress > 0)) {
-                        revealimg(images[index + 1], 0, overlay, index);
+                        revealimg(images[index + 2], 0, overlay, index);
+                        // only use once when across block
                         middlenextflag = 1;
                     }
                 } else if ((index >= 1) && (index < (imagenum - 2) && (index != previndex))) {
-                    middlenextflag = 0;
+                    // middlenextflag = 0;
                     // every time when the index changes, get value from prevprogress (inside block)
                     if ((prevprogress < 1) && (prevprogress > 0)) {
                         revealimg(images[index + 2], 0, overlay, index+1);
-                        middlenextflag = 1;
+                        // middlenextflag = 1;
                     }
                 } 
 
+                // continue shrink and expand the rest of frame and img
                 if ((index == imagenum - 2) && (lastnextflag == 1)) {
                     // second to last img, continue expand frame
                     if ((prevprogress <= 1) && (prevprogress > 0)) {
                         shrinkimglist(0, imglist, overlayadjust, overlay);
                         expandimg(0, images);
+                        lastnextflag = 0;
                     }
                 }
                 
@@ -386,13 +403,50 @@ function disolvescroll(piccontainer, pics, texts) {
     }
 }
 
-function resetfirstflag() {
+// function getTranslateX(element) {
+//     // 1. Get the computed style object for the element
+//     const style = window.getComputedStyle(element);
+    
+//     // 2. Get the full transform string
+//     const transformValue = style.getPropertyValue('transform');
+  
+//     // 3. If there's no transform, return 0
+//     if (transformValue === 'none' || !transformValue) {
+//       return 0;
+//     }
+  
+//     // 4. Use a regular expression to extract the numbers from the matrix() string
+//     // This regex works for both matrix() and matrix3d()
+//     const matrix = transformValue.match(/matrix(3d)?\(([^)]+)\)/);
+  
+//     // If no matrix is found, return 0
+//     if (!matrix) {
+//       return 0;
+//     }
+
+//     // 5. Parse the comma-separated string of values into an array of numbers
+//     const values = matrix[2].split(', ').map(Number);
+
+//     // 6. Return the correct value based on the matrix type
+//     // In a 2D matrix(a, b, c, d, tx, ty), translateX (tx) is the 5th value (index 4)
+//     // In a 3D matrix3d(a, b, c, d, e, f, g, h, i, j, k, l, tx, ty, tz, w), translateX (tx) is the 13th value (index 12)
+//     if (matrix[1] === '3d') {
+//         return values[12] || 0;
+//     } else {
+//         return values[4] || 0;
+//     }
+// }
+
+function resetfirstregionflag() {
     firstprevflag = 1;
 }
 
-function resetmiddleflag() {
+function resetmiddleregionflag() {
     middleprevflag = 0;
     middlenextflag = 0;
+}
+
+function resetlastregionflag() {
     lastnextflag = 1;
 }
 
@@ -405,49 +459,14 @@ function resetimgclippath(images) {
     });
 }
 
-function getTranslateX(element) {
-    // 1. Get the computed style object for the element
-    const style = window.getComputedStyle(element);
-    
-    // 2. Get the full transform string
-    const transformValue = style.getPropertyValue('transform');
-  
-    // 3. If there's no transform, return 0
-    if (transformValue === 'none' || !transformValue) {
-      return 0;
-    }
-  
-    // 4. Use a regular expression to extract the numbers from the matrix() string
-    // This regex works for both matrix() and matrix3d()
-    const matrix = transformValue.match(/matrix(3d)?\(([^)]+)\)/);
-  
-    // If no matrix is found, return 0
-    if (!matrix) {
-      return 0;
-    }
-
-    // 5. Parse the comma-separated string of values into an array of numbers
-    const values = matrix[2].split(', ').map(Number);
-
-    // 6. Return the correct value based on the matrix type
-    // In a 2D matrix(a, b, c, d, tx, ty), translateX (tx) is the 5th value (index 4)
-    // In a 3D matrix3d(a, b, c, d, e, f, g, h, i, j, k, l, tx, ty, tz, w), translateX (tx) is the 13th value (index 12)
-    if (matrix[1] === '3d') {
-        return values[12] || 0;
-    } else {
-        return values[4] || 0;
-    }
-}
-
 function shrinkimglist(progress, imglist, overlayadjust, overlay) {
     // transform: matrix(0.875083, 0, 0, 0.875083, 0, 0);
 
     // use pow to shrink slower in the beginning
     const adjust_progress = 1 - Math.pow(progress, 2);
-    // const overlayX = getTranslateX(overlay);
+
     if (adjust_progress >= 0.85) {
         imglist.style.transform = `matrix(${adjust_progress}, 0, 0, ${adjust_progress}, 0, 0)`;
-        // overlay.style.transform = `matrix(${adjust_progress}, 0, 0, ${adjust_progress}, ${overlayX}, 0)`;
         overlayadjust.style.transform = `matrix(${adjust_progress}, 0, 0, ${adjust_progress}, 0, 0)`;
     }
 }
@@ -457,6 +476,7 @@ function expandimg(progress, images) {
 
     // to expand slow in the begginning
     const adjust_progress = 1 + Math.pow(progress, 2);
+
     if (adjust_progress <= 1.14275) {
         images.forEach((image, index) => {
             image.style.transform = `matrix(${adjust_progress}, 0, 0, ${adjust_progress}, 0, 0)`;
@@ -466,6 +486,8 @@ function expandimg(progress, images) {
 }
 
 function revealimg(imgobj, progress, overlay, movedimgnum) {
+    // progress smaller is hide, larger is show
+    // reveal smaller is show, larger is hide
     const reveal = 100 - progress * 100;
 
     const imgWidth = imgobj.getBoundingClientRect().width;
@@ -473,12 +495,14 @@ function revealimg(imgobj, progress, overlay, movedimgnum) {
 
     // for image
     // Everything to the left of moveoffset mark will be completely hidden.
+    // moveoffset smaller is show, larger is hide
     imgobj.style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
     imgobj.style.transform = `matrix(1, 0, 0, 1, 0, 0)`;
 
-    // for overlay
-    // start from translatex = 0
-    const adjustmoveoffset = moveoffset - (movedimgnum + 1) * imgWidth;
+    // for overlay, moves as image reveals
+    // start from translatex = 0, continue move to left as reveal images
+    // const adjustmoveoffset = moveoffset - (movedimgnum + 1) * imgWidth;
+    const adjustmoveoffset = - movedimgnum * imgWidth + (moveoffset - imgWidth);
     // overlay continue moves to the left with a negative offset
     overlay.style.transform = `matrix(1, 0, 0, 1, ${adjustmoveoffset}, 0)`;
 }
