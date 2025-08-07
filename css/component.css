@@ -604,8 +604,10 @@ a.arrow::after {
     grid-area: 1/1;
 
     background-repeat: no-repeat;
-    background-position: 50%;
-    background-size: var(--gallery-width) var(--gallery-height);
+    /* background-position: 50%; */
+    background-position: center;
+    background-size: cover;
+    /* background-size: var(--gallery-width) var(--gallery-height); */
 }
 .wipescroll .stickycontainer .image1 {
     background-image: url(https://www.apple.com/v/iphone-16-pro/f/images/overview/photographic-styles/hero_style1__ejjuw3sw3t0m_large_2x.jpg);
@@ -621,6 +623,7 @@ a.arrow::after {
 
     clip-path: inset(0 0 0 100%);
 }
+
 
 .wipescroll .stickycontainer .frame {
     position: absolute;
