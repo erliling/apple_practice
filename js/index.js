@@ -207,32 +207,47 @@ function wipescroll(scrollwrapper, images, overlay, imglist, overlayadjust) {
 
     const rect = scrollwrapper.getBoundingClientRect();
     const recttop = -rect.top;
+    // 1vh
     const scrollheight = window.innerHeight;
-    let top = window.innerHeight * 0.5 - 1050/2 + 52/2;
-    let adjust_recttop = recttop + top;
 
-    const imagenum = Array.from(images).length;
+    //  --r-localnav-height: 52px;
+    //  --gallery-height: 1050px;
+    // const rootStyles = window.getComputedStyle(document.documentElement);
+    // const galleryheight = rootStyles.getPropertyValue('--gallery-height');
+    // const navheight = rootStyles.getPropertyValue('--r-localnav-height');
+    // let top = (window.innerHeight  - parseFloat(galleryheight) + parseFloat(navheight)) * 0.5;
+    // let top = (window.innerHeight  - 1050 + 52) * 0.5;
+    // let adjust_recttop = recttop + top;
+    let adjust_recttop = recttop;
 
-    // current scroll top
+    // current scroll top, for deciding up or down
     const currentScroll2 = window.scrollY;
+
+    // number of images
+    const imagenum = Array.from(images).length;
 
     images.forEach((image, index) => {
         if ((index == 0) && (adjust_recttop <= scrollheight)) {
+            // first image region
             // console.log("1st pic");
 
             // reset middle progresses
             resetmiddleflag();
-
-            // when scroll down
-            // reset n - 2 images clippath
-            //fixing resizing issues
-            if (lastscrolltop2 < currentScroll2) {
-                resetimgclippath(images);
-            }
             
+            // step 1, normal reveal
             currentprogress = Math.min(Math.max(adjust_recttop / scrollheight, 0), 1);
             revealimg(images[index + 1], currentprogress, overlay, index);
 
+            // step 2, fixing resizing issues
+            // when scroll down
+            // reset n - 2 images clippath the same length as image
+            // otherwise it won't change via resizing, 
+            // when scroll up then go back, it might leave extra clip
+            if (lastscrolltop2 < currentScroll2) {
+                // resetimgclippath(images);
+            }
+
+            // step 3, 
             // when scroll up
             // set value for firstprevprogress the first time
             // when the index + 2 haven't finished hiding, completely hide here
@@ -243,16 +258,6 @@ function wipescroll(scrollwrapper, images, overlay, imglist, overlayadjust) {
                         firstprevflag = 0;
                     }
                 }
-
-                // if ((index == 0) && (firstprevprogress == 1)) {
-                //     firstprevprogress = prevprogress;
-                // }
-                // if ((firstprevprogress < 1) && (firstprevprogress > 0)) {
-                //     // only once
-                //     // this need to be reset in the next condition
-                //     firstprevprogress = 0;
-                //     revealimg(images[index + 2], firstprevprogress, overlay, index+1);
-                // }
             }
 
             prevprogress = currentprogress;
@@ -345,12 +350,11 @@ function wipescroll(scrollwrapper, images, overlay, imglist, overlayadjust) {
     });
 
     lastscrolltop2 = currentScroll2;
-
 }
 
 
 function disolvescroll(piccontainer, pics, texts) {
-    // console.log("enter photography2");
+    console.log("enter photography2");
 
     const rect = piccontainer.getBoundingClientRect();
     const recttop = -rect.top;
