@@ -19,7 +19,7 @@ window.onload = function () {
     })
 
 
-    // shrink img via scroll
+    // shrink scroll
     const container = document.getElementsByClassName('stickycontainer')[0];
     const container2 = document.getElementsByClassName('stickycontainer')[1];
 
@@ -93,14 +93,15 @@ function resizeframe(overlay) {
     }
 }
 
-function resetimgclippath(images) {
-    images.forEach((image, index) => {
-        if (index > 1) {
-            const imgWidth = image.getBoundingClientRect().width;
-            image.style.clipPath = `inset(0 0 0 ${imgWidth}px)`;
-        }
-    });
-}
+// reset the rest of clip path under the reveal one
+// function resetimgclippath(images) {
+//     images.forEach((image, index) => {
+//         if (index > 1) {
+//             const imgWidth = image.getBoundingClientRect().width;
+//             image.style.clipPath = `inset(0 0 0 ${imgWidth}px)`;
+//         }
+//     });
+// }
 
 function scrollinsection(container, img, sectiontitlecontent2, frame, screen, section, navheight, callbackfunction) {
     // make sure scroll into the region
@@ -496,7 +497,11 @@ function revealimg(imgobj, progress, overlay, movedimgnum) {
     // for image
     // Everything to the left of moveoffset mark will be completely hidden.
     // moveoffset smaller is show, larger is hide
-    imgobj.style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
+    if (moveoffset == imgWidth) {
+        imgobj.style.clipPath = `inset(0 0 0 100%)`;
+    } else {
+        imgobj.style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
+    }
     imgobj.style.transform = `matrix(1, 0, 0, 1, 0, 0)`;
 
     // for overlay, moves as image reveals
