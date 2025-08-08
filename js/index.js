@@ -491,25 +491,28 @@ function revealimg(imgobj, progress, overlay, movedimgnum) {
     // reveal smaller is show, larger is hide
     const reveal = 100 - progress * 100;
 
-    const imgWidth = imgobj.getBoundingClientRect().width;
-    const moveoffset = imgWidth * reveal * 0.01;
+    if (imgobj != undefined) {
+        const imgWidth = imgobj.getBoundingClientRect().width;
+        const moveoffset = imgWidth * reveal * 0.01;
 
-    // for image
-    // Everything to the left of moveoffset mark will be completely hidden.
-    // moveoffset smaller is show, larger is hide
-    if (moveoffset == imgWidth) {
-        imgobj.style.clipPath = `inset(0 0 0 100%)`;
-    } else {
-        imgobj.style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
+        // for image
+        // Everything to the left of moveoffset mark will be completely hidden.
+        // moveoffset smaller is show, larger is hide
+        if (moveoffset == imgWidth) {
+            imgobj.style.clipPath = `inset(0 0 0 100%)`;
+        } else {
+            imgobj.style.clipPath = `inset(0 0 0 ${moveoffset}px)`;
+        }
+        imgobj.style.transform = `matrix(1, 0, 0, 1, 0, 0)`;
+
+        // for overlay, moves as image reveals
+        // start from translatex = 0, continue move to left as reveal images
+        // const adjustmoveoffset = moveoffset - (movedimgnum + 1) * imgWidth;
+        const adjustmoveoffset = - movedimgnum * imgWidth + (moveoffset - imgWidth);
+        // overlay continue moves to the left with a negative offset
+        overlay.style.transform = `matrix(1, 0, 0, 1, ${adjustmoveoffset}, 0)`;
     }
-    imgobj.style.transform = `matrix(1, 0, 0, 1, 0, 0)`;
-
-    // for overlay, moves as image reveals
-    // start from translatex = 0, continue move to left as reveal images
-    // const adjustmoveoffset = moveoffset - (movedimgnum + 1) * imgWidth;
-    const adjustmoveoffset = - movedimgnum * imgWidth + (moveoffset - imgWidth);
-    // overlay continue moves to the left with a negative offset
-    overlay.style.transform = `matrix(1, 0, 0, 1, ${adjustmoveoffset}, 0)`;
+    
 }
 
 function getprogress(container) {

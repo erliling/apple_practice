@@ -553,9 +553,12 @@ a.arrow::after {
 /* #region wipescroll */
 /* scroll container */
 .wipescroll .scrollwrapper {
+    --image-num: 9;
+
     position: relative;
 
-    height: calc(120vh * var(--image-num));
+    /* height: calc(120vh * var(--image-num)); */
+    height: calc(110vh * var(--image-num));
 }
 /* scroll sticky item */
 .wipescroll .stickycontainer {
@@ -568,11 +571,13 @@ a.arrow::after {
 .wipescroll .stickycontainer .frameadjust {
 
     /* let the adjustframe closely cover outside of the image */
-    width: var(--gallery-width);
+    width: calc(var(--gallery-width) - 20px);
     height: calc(var(--gallery-height));
     margin: 0 auto;
 
-    border: 10px solid #000;
+    border: 10px solid black;
+    /* padding-left: -10px; */
+    /* box-sizing: border-box; */
 
     /* use position relative to overlap instead of position absolute */
     position: relative;
@@ -641,7 +646,7 @@ a.arrow::after {
 
     display: flex;
 
-    --default-frame-color: pink;
+    /* --default-frame-color: pink; */
 }
 .wipescroll .stickycontainer .frame .slide {
     width: calc(var(--gallery-width) );

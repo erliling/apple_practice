@@ -712,8 +712,6 @@ body {
 .photograph {
     padding: 0px 0 var(--section-padding-bar);
     position: relative;
-
-    --image-num: 6;
 }
 
 .photograph .contenttext_pos {
