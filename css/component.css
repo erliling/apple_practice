@@ -241,6 +241,10 @@ a.arrow::after {
 .primarybtn.nobg {
     background-color: transparent;
 }
+.primarybtn:hover {
+    color: var(--default-text-color);
+    background-color: var(--default-link-color);
+}
 /* #endregion primarybtn */
 
 /* #region comparedropdown*/
