@@ -18,6 +18,9 @@ window.onload = function () {
         resizeframe(overlay);
     })
 
+    // show nav scroll
+    const welcome = document.querySelector('.welcome');
+    const fixednav = document.querySelector('.fixednav');
 
     // shrink scroll
     const container = document.getElementsByClassName('stickycontainer')[0];
@@ -57,6 +60,21 @@ window.onload = function () {
 
 
     window.addEventListener('scroll', () => {
+        // show nav scroll
+        scrollwelcomesection(welcome, navheight, fixednav);
+        // if (isinsection(welcome, navheight)) {
+        //     // console.log('here');
+        //     const distancetobottom = welcome.offsetTop + welcome.offsetHeight - navheight - window.scrollY;
+        //     if ((distancetobottom < 100) && (!isnavshow)) {
+        //         // fixednav.style.display = 'block';
+        //         fixednav.style.height = '52px';
+        //         isnavshow = true;
+        //     } 
+        //     if ((distancetobottom >= 100) && (isnavshow)) {
+        //         fixednav.style.height = '0';
+        //         isnavshow = false;
+        //     }
+        // }
         
         // shrink scroll
         scrollinsection(container, img, sectiontitlecontent2, frame, screen, videoaudio, navheight, shrinkscroll1);
@@ -102,6 +120,33 @@ function resizeframe(overlay) {
 //         }
 //     });
 // }
+
+function isinsection(section, navheight) {
+    const scrollY = window.scrollY;
+    const sectionTop = section.offsetTop - navheight; // Adjust for fixed header
+    const sectionBottom = section.offsetTop + section.offsetHeight - navheight;
+
+    if (scrollY >= sectionTop && scrollY < sectionBottom) {
+        return true;
+    }
+}
+
+let isnavshow = false;
+function scrollwelcomesection (welcome, navheight, fixednav) {
+    if (isinsection(welcome, navheight)) {
+        // console.log('here');
+        const distancetobottom = welcome.offsetTop + welcome.offsetHeight - navheight - window.scrollY;
+        if ((distancetobottom < 100) && (!isnavshow)) {
+            // fixednav.style.display = 'block';
+            fixednav.style.height = '52px';
+            isnavshow = true;
+        } 
+        if ((distancetobottom >= 100) && (isnavshow)) {
+            fixednav.style.height = '0';
+            isnavshow = false;
+        }
+    }
+}
 
 function scrollinsection(container, img, sectiontitlecontent2, frame, screen, section, navheight, callbackfunction) {
     // make sure scroll into the region
