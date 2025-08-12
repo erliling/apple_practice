@@ -33,6 +33,12 @@ body {
 .navcls ul li a svg {
     fill: rgba(255, 255, 255, 0.8);
 }
+.navcls ul li a:hover {
+    color: var(--default-highlight-text-color);
+}
+.navcls ul li a:hover svg {
+    fill: var(--default-highlight-text-color);
+}
 
 
 .fixednav {
