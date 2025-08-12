@@ -1,0 +1,37 @@
+@keyframes flyin-fade {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .flyout-menu {
+    display: flex;
+  }
+  
+  .flyout-column {
+   
+
+    /* Initial state: hidden and slightly moved down */
+    opacity: 0;
+    transform: translateY(10px);
+    
+    /* Set up the animation properties, but don't run it yet */
+    animation-name: flyin-fade;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-play-state: paused; /* The animation will wait until we trigger it */
+    
+    /* Use your calculated variable for the delay */
+    animation-delay: var(--r-globalnav-flyout-group-delay);
+  }
+  
+  /* The trigger: when the parent has the .is-open class, play the animation on its children */
+  .flyout-menu.is-open .flyout-column {
+    animation-play-state: running;
+  }
