@@ -13,6 +13,7 @@ body {
 
     position: relative;
 
+    background-color: var(--default-background-light-color2);
 }
 .navcls ul {
     width: 100%;
@@ -66,7 +67,7 @@ body {
     /* display: none; */
 
     max-height: 0;
-    transition: max-height 0.5s ease-out;
+    transition: max-height 0.5s ease-in-out;
     overflow: hidden;
 }
 
