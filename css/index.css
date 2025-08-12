@@ -9,22 +9,34 @@ body {
 /* #region nav*/
 .navcls {
     width: 100%;
-    height: 44px;
+    height: var(--r-nav-height);
+
+    position: relative;
+
 }
 .navcls ul {
+    width: 100%;
+    max-width: 1024px;
+    /* padding-inline-start: max(22px,var(--r-globalnav-safe-area-inset-start));
+    padding-inline-end: max(22px,var(--r-globalnav-safe-area-inset-end)); */
+    padding-inline-start: 22px;
+    padding-inline-end: 22px;
+
     height: 100%;
-    /* margin: 0 auto; */
+    margin: 0 auto;
     /* overflow: hidden; */
 
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
+    justify-content: space-between;
 
-    column-gap: clamp(5px, 3vw, 40px);
+    /* column-gap: clamp(5px, 3vw, 40px); */
 }
 .navcls ul li {
     display: flex;
     /* justify-content: center; */
     align-items: center;
+
 }
 .navcls ul li a {
     color: rgba(255, 255, 255, 0.8);
@@ -41,6 +53,54 @@ body {
 }
 
 
+.navcls ul .store .secondmenu {
+    
+    position: absolute;
+    left: 0;
+    top: var(--r-nav-height);
+
+    width: 100%;
+    /* height: 500px; */
+
+    background-color: var(--default-background-light-color);
+    display: none;
+}
+.navcls ul .store .secondmenu ul {
+    width: 100%;
+    max-width: 1024px;
+    padding-inline-start: 22px;
+    padding-inline-end: 22px;
+
+    display: flex;
+    column-gap: var(--ps-spacing-40);
+    justify-content: flex-start;
+
+    margin-bottom: var(--ps-spacing-56);
+}
+.navcls ul .store .secondmenu ul li {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: start;
+    row-gap: var(--ps-spacing-12);
+}
+.navcls ul .store .secondmenu ul li .graytext {
+    font-size: 12px;
+    line-height: 40px;
+    font-weight: 400;
+}
+.navcls ul .store .secondmenu ul li a {
+    font-weight: 600;
+}
+.navcls ul .store .secondmenu ul li .contenttext7 a{
+    color: var(--default-text-color);
+    font-size: var(--text-size-28);
+    line-height: 1.1429;
+    font-weight: 600;
+    letter-spacing: 0.007em;
+}
+
+
 .fixednav {
     width: 100%;
     /* height: var(--r-localnav-height); */
@@ -48,6 +108,7 @@ body {
     background-color: var(--background-transparent-color);
     backdrop-filter: blur(7px);
     border-bottom: 1px solid var(--default-gray-border-color);
+    box-sizing: border-box;
 
     z-index: 999;
 
@@ -58,6 +119,7 @@ body {
     height: 0;
     transition: height 0.3s ease-out;
     overflow: hidden;
+
 }
 .fixednav .content {
     /* fv */

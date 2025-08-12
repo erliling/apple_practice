@@ -34,8 +34,11 @@
     --sk-button-padding-vertical: 12px;
     --sk-button-border-width: 1px;
     --sk-button-border-radius: 980px;
+    --r-nav-height: 44px;
     --r-localnav-height: 52px;
     --global-scrollbar-width: 15px;
+    --r-globalnav-safe-area-inset-start: var(--sk-safe-area-inset-start, env(safe-area-inset-left));
+    --r-globalnav-safe-area-inset-end: var(--sk-safe-area-inset-end, env(safe-area-inset-right));
     --shared-media-gallery-responsive-content-absolute-max-width: 1680px;
     --shared-media-gallery-height: 680px;
     --shared-media-gallery-responsive-content-absolute-min-width: 280px;
