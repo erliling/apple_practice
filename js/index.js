@@ -139,10 +139,12 @@ function scrollwelcomesection (welcome, navheight, fixednav) {
         if ((distancetobottom < 100) && (!isnavshow)) {
             // fixednav.style.display = 'block';
             fixednav.style.height = '52px';
+            fixednav.style.borderBottomWidth = '1px';
             isnavshow = true;
         } 
         if ((distancetobottom >= 100) && (isnavshow)) {
             fixednav.style.height = '0';
+            fixednav.style.borderBottomWidth = '0px';
             isnavshow = false;
         }
     }

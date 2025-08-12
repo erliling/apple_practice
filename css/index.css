@@ -107,7 +107,7 @@ body {
 
     background-color: var(--background-transparent-color);
     backdrop-filter: blur(7px);
-    border-bottom: 1px solid var(--default-gray-border-color);
+    border-bottom: 0px solid var(--default-gray-border-color);
     box-sizing: border-box;
 
     z-index: 999;
@@ -117,7 +117,7 @@ body {
 
     /* display: none; */
     height: 0;
-    transition: height 0.3s ease-out;
+    transition: all 0.3s ease-out;
     overflow: hidden;
 
 }
