@@ -42,11 +42,6 @@ window.onload = function () {
           });
         });
         flymenu.style.setProperty('max-height', '0');
-
-        // flycolumns.forEach((column, index) => {
-        //     column.style.setProperty('opacity', 0);
-        //     column.style.setProperty('transform', 'translateY(50px)');
-        // });
     })
 
     // resizing
