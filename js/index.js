@@ -1,5 +1,32 @@
 
 window.onload = function () {
+    // flymenu
+    const flymenu = document.querySelector('.secondmenu');
+    const flycolumns = flymenu.querySelectorAll('.flyout-column');
+    const storeitem = document.querySelector('.navcls .store');
+
+    // Set the total number of elevated groups for the calculation
+    flymenu.style.setProperty('--r-globalnav-flyout-elevated-group-count', 1); // Example: 1 elevated group
+
+    // Loop through each column and set its unique number
+    flycolumns.forEach((column, index) => {
+        column.style.setProperty('--r-globalnav-flyout-group-number', index + 1);
+    });
+
+    storeitem.addEventListener('mouseenter', () => {
+        flymenu.classList.add('is-open');
+        flymenu.style.setProperty('max-height', '500px');
+    })
+    storeitem.addEventListener('mouseleave', () => {
+        flymenu.classList.remove('is-open');
+        flymenu.style.setProperty('max-height', '0');
+
+        // flycolumns.forEach((column, index) => {
+        //     column.style.setProperty('opacity', 0);
+        //     column.style.setProperty('transform', 'translateY(50px)');
+        // });
+    })
+
     // resizing
     // const carsouselcontentcontainer = document.querySelector('.camera2 .imgswitchercontentcontainer');
     // const carouselcontent = document.querySelector('.camera2 .imgswitchercontent');

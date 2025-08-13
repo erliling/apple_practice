@@ -71,12 +71,6 @@ body {
     overflow: hidden;
 }
 
-.navcls ul .store:hover .secondmenu {
-    max-height: 500px;
-    /* max-height: fit-content; */
-    /* max-height: auto; */
-}
-
 .navcls ul .store .secondmenu ul {
     width: 100%;
     max-width: 1024px;
@@ -97,6 +91,7 @@ body {
     row-gap: var(--ps-spacing-12);
 }
 .navcls ul .store .secondmenu ul li .graytext {
+    color: var(--default-gray-text-color);
     font-size: 12px;
     line-height: 40px;
     font-weight: 400;
@@ -113,6 +108,49 @@ body {
 }
 
 
+.navcls ul .store:hover .secondmenu {
+    /* max-height: 500px; */
+    /* animation: flyin-fade 2s infinite linear; */
+}
+
+@keyframes flyin-fade {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+.navcls .store .secondmenu .flyout-column {
+    --r-globalnav-flyout-group-delay: 
+    min( (var(--r-globalnav-flyout-elevated-group-count) * 80ms) 
+    + ((var(--r-globalnav-flyout-group-number) - var(--r-globalnav-flyout-elevated-group-count)) * 40ms), 
+    var(--r-globalnav-flyout-group-number) * 80ms );
+
+    /* Initial state: hidden and slightly moved down */
+    opacity: 0;
+    transform: translateY(50px);
+    
+    /* Set up the animation properties, but don't run it yet */
+    animation-name: flyin-fade;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-play-state: paused; /* The animation will wait until we trigger it */
+    
+    /* Use your calculated variable for the delay */
+    animation-delay: var(--r-globalnav-flyout-group-delay);
+}
+
+ /* The trigger: when the parent has the .is-open class, play the animation on its children */
+ .navcls .store .secondmenu.is-open .flyout-column {
+    animation-play-state: running;
+}
+
+  
 .fixednav {
     width: 100%;
     /* height: var(--r-localnav-height); */
