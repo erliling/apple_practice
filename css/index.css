@@ -125,29 +125,34 @@ body {
   }
   
 .navcls .store .secondmenu .flyout-column {
-    --r-globalnav-flyout-group-delay: 
-    min( (var(--r-globalnav-flyout-elevated-group-count) * 80ms) 
-    + ((var(--r-globalnav-flyout-group-number) - var(--r-globalnav-flyout-elevated-group-count)) * 40ms), 
-    var(--r-globalnav-flyout-group-number) * 80ms );
+   
 
     /* Initial state: hidden and slightly moved down */
     opacity: 0;
     transform: translateY(50px);
+    
+    
+}
+
+ /* The trigger: when the parent has the .is-open class, play the animation on its children */
+ .navcls .store .secondmenu .flyout-column.is-open {
+    /* animation-play-state: running; */
+
+    --r-globalnav-flyout-group-delay: 
+    min( (var(--r-globalnav-flyout-elevated-group-count) * 80ms) 
+    + ((var(--r-globalnav-flyout-group-number) - var(--r-globalnav-flyout-elevated-group-count)) * 40ms), 
+    var(--r-globalnav-flyout-group-number) * 80ms );
     
     /* Set up the animation properties, but don't run it yet */
     animation-name: flyin-fade;
     animation-duration: 0.3s;
     animation-timing-function: ease-out;
     animation-fill-mode: forwards;
-    animation-play-state: paused; /* The animation will wait until we trigger it */
+    /* The animation will wait until we trigger it */
+    /* animation-play-state: paused;  */
     
     /* Use your calculated variable for the delay */
     animation-delay: var(--r-globalnav-flyout-group-delay);
-}
-
- /* The trigger: when the parent has the .is-open class, play the animation on its children */
- .navcls .store .secondmenu.is-open .flyout-column {
-    animation-play-state: running;
 }
 
   

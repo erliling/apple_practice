@@ -14,11 +14,17 @@ window.onload = function () {
     });
 
     storeitem.addEventListener('mouseenter', () => {
-        flymenu.classList.add('is-open');
+        // flymenu.classList.add('is-open');
+        flycolumns.forEach((column, index) => {
+            column.classList.add('is-open');
+        });
         flymenu.style.setProperty('max-height', '500px');
     })
     storeitem.addEventListener('mouseleave', () => {
-        flymenu.classList.remove('is-open');
+        // flymenu.classList.remove('is-open');
+        flycolumns.forEach((column, index) => {
+            column.classList.remove('is-open');
+        });
         flymenu.style.setProperty('max-height', '0');
 
         // flycolumns.forEach((column, index) => {
