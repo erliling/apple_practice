@@ -14,7 +14,10 @@
   }
   
   .flyout-column {
-   
+    --r-globalnav-flyout-group-delay: 
+    min( (var(--r-globalnav-flyout-elevated-group-count) * 80ms) 
+    + ((var(--r-globalnav-flyout-group-number) - var(--r-globalnav-flyout-elevated-group-count)) * 40ms), 
+    var(--r-globalnav-flyout-group-number) * 80ms );
 
     /* Initial state: hidden and slightly moved down */
     opacity: 0;
