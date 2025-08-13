@@ -11,12 +11,23 @@ window.onload = function () {
     // Loop through each column and set its unique number
     flycolumns.forEach((column, index) => {
         column.style.setProperty('--r-globalnav-flyout-group-number', index + 1);
+
+        const items = column.querySelectorAll('.flyout-item');
+        items.forEach((item, index) => {
+            // Set a unique CSS variable for each item based on its position (0, 1, 2, ...)
+            item.style.setProperty('--flyout-item-number', index);
+          });
     });
 
     storeitem.addEventListener('mouseenter', () => {
         // flymenu.classList.add('is-open');
         flycolumns.forEach((column, index) => {
             column.classList.add('is-open');
+            const items = column.querySelectorAll('.flyout-item');
+            items.forEach((item, index) => {
+                // Set a unique CSS variable for each item based on its position (0, 1, 2, ...)
+                item.classList.add('is-open');
+          });
         });
         flymenu.style.setProperty('max-height', '500px');
     })
@@ -24,6 +35,11 @@ window.onload = function () {
         // flymenu.classList.remove('is-open');
         flycolumns.forEach((column, index) => {
             column.classList.remove('is-open');
+            const items = column.querySelectorAll('.flyout-item');
+            items.forEach((item, index) => {
+                // Set a unique CSS variable for each item based on its position (0, 1, 2, ...)
+                item.classList.remove('is-open');
+          });
         });
         flymenu.style.setProperty('max-height', '0');
 

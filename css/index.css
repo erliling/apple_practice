@@ -116,7 +116,7 @@ body {
 @keyframes flyin-fade {
     from {
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(-10px);
     }
     to {
       opacity: 1;
@@ -125,13 +125,9 @@ body {
   }
   
 .navcls .store .secondmenu .flyout-column {
-   
-
     /* Initial state: hidden and slightly moved down */
     opacity: 0;
-    transform: translateY(50px);
-    
-    
+    transform: translateY(-10px);
 }
 
  /* The trigger: when the parent has the .is-open class, play the animation on its children */
@@ -145,7 +141,7 @@ body {
     
     /* Set up the animation properties, but don't run it yet */
     animation-name: flyin-fade;
-    animation-duration: 0.3s;
+    animation-duration: 0.2s;
     animation-timing-function: ease-out;
     animation-fill-mode: forwards;
     /* The animation will wait until we trigger it */
@@ -154,7 +150,28 @@ body {
     /* Use your calculated variable for the delay */
     animation-delay: var(--r-globalnav-flyout-group-delay);
 }
-
+@keyframes flyin-item-fade {
+    from {
+      opacity: 0;
+      /* transform: translateY(10px); */
+    }
+    to {
+      opacity: 1;
+      /* transform: translateY(0); */
+    }
+  }
+.navcls .store .secondmenu .flyout-column .flyout-item {
+    /* Initial state: hidden and slightly moved down */
+    opacity: 0;
+    /* transform: translateY(50px); */
+}
+.navcls .store .secondmenu .flyout-column .flyout-item.is-open {
+    animation-name: flyin-item-fade;
+    animation-duration: 0.2s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-delay: calc(var(--r-globalnav-flyout-group-delay) + var(--flyout-item-number, 0) * 40ms);
+}
   
 .fixednav {
     width: 100%;
