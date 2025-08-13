@@ -11,11 +11,18 @@ window.onload = function () {
     });
 
     // A function to open and close the menu
-    function toggleMenu() {
-    menu.classList.toggle('is-open');
+    function addMenu() {
+        menu.classList.add('is-open');
     }
-
+    function removeMenu() {
+        menu.classList.remove('is-open');
+        columns.forEach((column, index) => {
+            column.style.setProperty('opacity', 0);
+            column.style.setProperty('transform', 'translateY(10px)');
+            });
+    }
     // Attach to a button or hover event to trigger the animation
-    document.getElementById('toggle-menu-button').addEventListener('click', toggleMenu);
+    document.getElementById('toggle-menu-button').addEventListener('mouseenter', addMenu);
+    document.getElementById('toggle-menu-button').addEventListener('mouseleave', removeMenu);
 }
 
