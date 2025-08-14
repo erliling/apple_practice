@@ -2,6 +2,7 @@
 window.onload = function () {
     // flymenu
     const secondmenus = document.querySelectorAll('.secondmenu');
+    const secondmenuoverlay = document.querySelector('.navcls .navoverlay');
 
     secondmenus.forEach((secondmenu, index) => {
         const flycolumns = secondmenu.querySelectorAll('.flyout-column');
@@ -15,7 +16,7 @@ window.onload = function () {
 
         const flymenu = secondmenu.querySelector('.flyout-menu');
         const navitem = secondmenu.parentElement;
-        hoversecondmenuitem(navitem, flycolumns, flymenu, secondmenu);
+        hoversecondmenuitem(navitem, flycolumns, flymenu, secondmenu, secondmenuoverlay);
     })
 
 
@@ -135,7 +136,8 @@ function setsecondmenucolumnnum(flycolumns) {
 //     return minImageWidth;
 // }
 
-function hoversecondmenuitem(navitem, flycolumns, flymenu, secondmenu) {
+function hoversecondmenuitem(navitem, flycolumns, flymenu, secondmenu, secondmenuoverlay) {
+    
     navitem.addEventListener('mouseenter', () => {
         // let flymenuheight = 0;
         
@@ -155,6 +157,8 @@ function hoversecondmenuitem(navitem, flycolumns, flymenu, secondmenu) {
         // console.log(flymenuheight);
         secondmenu.style.setProperty('max-height', `${flymenuheight + 56}px`);
         // secondmenu.style.setProperty('max-height', '500px');
+        // secondmenuoverlay.style.setProperty('display', 'block');
+        secondmenuoverlay.style.setProperty('opacity', 1);
     })
 
     navitem.addEventListener('mouseleave', () => {
@@ -168,6 +172,8 @@ function hoversecondmenuitem(navitem, flycolumns, flymenu, secondmenu) {
         });
         });
         secondmenu.style.setProperty('max-height', '0');
+        // secondmenuoverlay.style.setProperty('display', 'none');
+        secondmenuoverlay.style.setProperty('opacity', 0);
     })
 }
 

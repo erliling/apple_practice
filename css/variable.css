@@ -3,6 +3,7 @@
     /* global page*/
     --default-background-color: rgb(0, 0, 0);
     --background-transparent-color: rgba(0, 0, 0, 0.7);
+    --background-transparent-color2: rgba(0, 0, 0, 0.5);
     --global-section-background-color-alt-dark: rgb(29, 29, 31);
     --global-section-background-color-alt: rgb(245,245,247);
     --default-background-light-color: #1d1d1f;
