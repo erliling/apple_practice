@@ -111,18 +111,6 @@ window.onload = function () {
     }); 
 }
 
-function setsecondmenucolumnnum(flycolumns) {
-    flycolumns.forEach((column, index) => {
-        column.style.setProperty('--r-globalnav-flyout-group-number', index + 1);
-
-        const items = column.querySelectorAll('.flyout-item');
-        items.forEach((item, index) => {
-            // Set a unique CSS variable for each item based on its position (0, 1, 2, ...)
-            item.style.setProperty('--flyout-item-number', index);
-        });
-    });
-}
-
 // function getminimagewidth() {
 //     const vw = window.innerWidth / 100;
 
@@ -135,6 +123,18 @@ function setsecondmenucolumnnum(flycolumns) {
 
 //     return minImageWidth;
 // }
+
+function setsecondmenucolumnnum(flycolumns) {
+    flycolumns.forEach((column, index) => {
+        column.style.setProperty('--r-globalnav-flyout-group-number', index + 1);
+
+        const items = column.querySelectorAll('.flyout-item');
+        items.forEach((item, index) => {
+            // Set a unique CSS variable for each item based on its position (0, 1, 2, ...)
+            item.style.setProperty('--flyout-item-number', index);
+        });
+    });
+}
 
 function hoversecondmenuitem(navitem, flycolumns, flymenu, secondmenu, secondmenuoverlay) {
     
