@@ -1,48 +1,66 @@
 
 window.onload = function () {
     // flymenu
-    const flymenu = document.querySelector('.secondmenu');
-    const flycolumns = flymenu.querySelectorAll('.flyout-column');
-    const storeitem = document.querySelector('.navcls .store');
+    const secondmenus = document.querySelectorAll('.secondmenu');
 
-    // Set the total number of elevated groups for the calculation
-    flymenu.style.setProperty('--r-globalnav-flyout-elevated-group-count', 1); // Example: 1 elevated group
+    secondmenus.forEach((secondmenu, index) => {
+        const flycolumns = secondmenu.querySelectorAll('.flyout-column');
 
-    // Loop through each column and set its unique number
-    flycolumns.forEach((column, index) => {
-        column.style.setProperty('--r-globalnav-flyout-group-number', index + 1);
+        // Set the total number of elevated groups for the calculation
+        secondmenu.style.setProperty('--r-globalnav-flyout-elevated-group-count', 1); // Example: 1 elevated group
 
-        const items = column.querySelectorAll('.flyout-item');
-        items.forEach((item, index) => {
-            // Set a unique CSS variable for each item based on its position (0, 1, 2, ...)
-            item.style.setProperty('--flyout-item-number', index);
-          });
-    });
-
-    storeitem.addEventListener('mouseenter', () => {
-        // flymenu.classList.add('is-open');
+        // Loop through each column and set its unique number
         flycolumns.forEach((column, index) => {
-            column.classList.add('is-open');
+            column.style.setProperty('--r-globalnav-flyout-group-number', index + 1);
+
             const items = column.querySelectorAll('.flyout-item');
             items.forEach((item, index) => {
                 // Set a unique CSS variable for each item based on its position (0, 1, 2, ...)
-                item.classList.add('is-open');
-          });
+                item.style.setProperty('--flyout-item-number', index);
+            });
         });
-        flymenu.style.setProperty('max-height', '500px');
+
+
+        const flymenu = secondmenu.querySelector('.flyout-menu');
+        const navitem = secondmenu.parentElement;
+
+        navitem.addEventListener('mouseenter', () => {
+            // let flymenuheight = 0;
+            
+            // flymenu.classList.add('is-open');
+            flycolumns.forEach((column, index) => {
+                column.classList.add('is-open');
+                const items = column.querySelectorAll('.flyout-item');
+                items.forEach((item, index) => {
+                    // Set a unique CSS variable for each item based on its position (0, 1, 2, ...)
+                    item.classList.add('is-open');
+                    // flymenuheight += item.getBoundingClientRect().height;
+            });
+            });
+
+            // flymenuheight += 
+            const flymenuheight = flymenu.clientHeight;
+            // console.log(flymenuheight);
+            secondmenu.style.setProperty('max-height', `${flymenuheight + 56}px`);
+            // secondmenu.style.setProperty('max-height', '500px');
+        })
+
+        navitem.addEventListener('mouseleave', () => {
+            // flymenu.classList.remove('is-open');
+            flycolumns.forEach((column, index) => {
+                column.classList.remove('is-open');
+                const items = column.querySelectorAll('.flyout-item');
+                items.forEach((item, index) => {
+                    // Set a unique CSS variable for each item based on its position (0, 1, 2, ...)
+                    item.classList.remove('is-open');
+            });
+            });
+            secondmenu.style.setProperty('max-height', '0');
+        })
     })
-    storeitem.addEventListener('mouseleave', () => {
-        // flymenu.classList.remove('is-open');
-        flycolumns.forEach((column, index) => {
-            column.classList.remove('is-open');
-            const items = column.querySelectorAll('.flyout-item');
-            items.forEach((item, index) => {
-                // Set a unique CSS variable for each item based on its position (0, 1, 2, ...)
-                item.classList.remove('is-open');
-          });
-        });
-        flymenu.style.setProperty('max-height', '0');
-    })
+
+
+
 
     // resizing
     // const carsouselcontentcontainer = document.querySelector('.camera2 .imgswitchercontentcontainer');

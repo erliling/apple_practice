@@ -54,7 +54,7 @@ body {
 }
 
 
-.navcls ul .store .secondmenu {
+.navcls ul  .secondmenu {
     
     position: absolute;
     left: 0;
@@ -71,7 +71,7 @@ body {
     overflow: hidden;
 }
 
-.navcls ul .store .secondmenu ul {
+.navcls ul  .secondmenu ul {
     width: 100%;
     max-width: 1024px;
     padding-inline-start: 22px;
@@ -83,23 +83,23 @@ body {
 
     margin-bottom: var(--ps-spacing-56);
 }
-.navcls ul .store .secondmenu ul li {
+.navcls ul  .secondmenu ul li {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: start;
     row-gap: var(--ps-spacing-12);
 }
-.navcls ul .store .secondmenu ul li .graytext {
+.navcls ul  .secondmenu ul li .graytext {
     color: var(--default-gray-text-color);
     font-size: 12px;
     line-height: 40px;
     font-weight: 400;
 }
-.navcls ul .store .secondmenu ul li a {
+.navcls ul  .secondmenu ul li a {
     font-weight: 600;
 }
-.navcls ul .store .secondmenu ul li .contenttext7 a{
+.navcls ul  .secondmenu ul li .contenttext7 a{
     color: var(--default-text-color);
     font-size: var(--text-size-28);
     line-height: 1.1429;
@@ -108,7 +108,7 @@ body {
 }
 
 
-.navcls ul .store:hover .secondmenu {
+.navcls ul :hover .secondmenu {
     /* max-height: 500px; */
     /* animation: flyin-fade 2s infinite linear; */
 }
@@ -124,14 +124,14 @@ body {
     }
   }
   
-.navcls .store .secondmenu .flyout-column {
+.navcls  .secondmenu .flyout-column {
     /* Initial state: hidden and slightly moved down */
     opacity: 0;
     transform: translateY(-10px);
 }
 
  /* The trigger: when the parent has the .is-open class, play the animation on its children */
- .navcls .store .secondmenu .flyout-column.is-open {
+ .navcls  .secondmenu .flyout-column.is-open {
     /* animation-play-state: running; */
 
     --r-globalnav-flyout-group-delay: 
@@ -160,12 +160,12 @@ body {
       /* transform: translateY(0); */
     }
   }
-.navcls .store .secondmenu .flyout-column .flyout-item {
+.navcls  .secondmenu .flyout-column .flyout-item {
     /* Initial state: hidden and slightly moved down */
     opacity: 0;
     /* transform: translateY(50px); */
 }
-.navcls .store .secondmenu .flyout-column .flyout-item.is-open {
+.navcls  .secondmenu .flyout-column .flyout-item.is-open {
     animation-name: flyin-item-fade;
     animation-duration: 0.2s;
     animation-timing-function: ease-out;
