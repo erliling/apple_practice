@@ -174,7 +174,7 @@ body {
 @keyframes flyin-item-fade {
     from {
       opacity: 0;
-      transform: translateY(-15px);
+      transform: translateY(-10px);
     }
     to {
       opacity: 1;
@@ -184,7 +184,7 @@ body {
 .navcls  .secondmenu .flyout-column .flyout-item {
     /* Initial state: hidden and slightly moved down */
     opacity: 0;
-    transform: translateY(-15px);
+    transform: translateY(-10px);
 }
 .navcls  .secondmenu .flyout-column .flyout-item.is-open {
     /* --r-globalnav-flyout-item-delay:
@@ -193,7 +193,7 @@ body {
     var(--flyout-item-number, 0) * 20ms;
 
     animation-name: flyin-item-fade;
-    animation-duration: 0.2s;
+    animation-duration: 0.1s;
     animation-timing-function: ease-out;
     animation-fill-mode: forwards;
     animation-delay: calc(var(--r-globalnav-flyout-group-delay)*2 + var(--r-globalnav-flyout-item-delay) );
