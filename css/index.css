@@ -174,24 +174,29 @@ body {
 @keyframes flyin-item-fade {
     from {
       opacity: 0;
-      /* transform: translateY(10px); */
+      transform: translateY(-15px);
     }
     to {
       opacity: 1;
-      /* transform: translateY(0); */
+      transform: translateY(0);
     }
   }
 .navcls  .secondmenu .flyout-column .flyout-item {
     /* Initial state: hidden and slightly moved down */
     opacity: 0;
-    /* transform: translateY(50px); */
+    transform: translateY(-15px);
 }
 .navcls  .secondmenu .flyout-column .flyout-item.is-open {
+    /* --r-globalnav-flyout-item-delay:
+    min(var(--flyout-item-number, 0) * 60ms - var(--r-globalnav-flyout-group-number) * 20, var(--flyout-item-number, 0) * 60ms); */
+    --r-globalnav-flyout-item-delay:
+    var(--flyout-item-number, 0) * 20ms;
+
     animation-name: flyin-item-fade;
     animation-duration: 0.2s;
     animation-timing-function: ease-out;
     animation-fill-mode: forwards;
-    animation-delay: calc(var(--r-globalnav-flyout-group-delay) + var(--flyout-item-number, 0) * 40ms);
+    animation-delay: calc(var(--r-globalnav-flyout-group-delay)*2 + var(--r-globalnav-flyout-item-delay) );
 }
 
   
