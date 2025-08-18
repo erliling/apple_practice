@@ -13,23 +13,27 @@ window.onload = function () {
         // Loop through each column and set its unique number
         setsecondmenucolumnnum(flycolumns);
 
-
         const flymenu = secondmenu.querySelector('.flyout-menu');
         const navitem = secondmenu.parentElement;
         hoversecondmenuitem(navitem, flycolumns, flymenu, secondmenu, secondmenuoverlay);
     })
 
+    // play video and switch to img
+    const welcomevideo = document.querySelector('.welcome .content .video-wrapper video');
+    const welcomeimg = document.querySelector('.welcome .content .video-wrapper .picture2');
+
+    welcomevideo.addEventListener('ended', () => {
+        welcomevideo.pause();
+        welcomevideo.style.opacity = 0;
+        welcomeimg.style.opacity = 1;
+
+        // Optional: After the transition, hide the video element completely to save resources
+        setTimeout(() => {
+            welcomevideo.style.display = 'none';
+        }, 1000); // Wait for 1 second to match the CSS transition duration
+    })
 
     // resizing
-    // const carsouselcontentcontainer = document.querySelector('.camera2 .imgswitchercontentcontainer');
-    // const carouselcontent = document.querySelector('.camera2 .imgswitchercontent');
-
-    // get the min width of shrinking image
-    // let minimagewidth;
-
-    // set the height of carousel img's outside container, which used to be 0
-    // carsouselcontentcontainer.style.height = `${carouselcontent.offsetHeight}px`;
-
     // update the height and min width values when resized
     window.addEventListener('resize', () => {
         // carsouselcontentcontainer.style.height = `${carouselcontent.offsetHeight}px`;
@@ -82,26 +86,10 @@ window.onload = function () {
     window.addEventListener('scroll', () => {
         // show nav scroll
         scrollwelcomesection(welcome, navheight, fixednav);
-        // if (isinsection(welcome, navheight)) {
-        //     // console.log('here');
-        //     const distancetobottom = welcome.offsetTop + welcome.offsetHeight - navheight - window.scrollY;
-        //     if ((distancetobottom < 100) && (!isnavshow)) {
-        //         // fixednav.style.display = 'block';
-        //         fixednav.style.height = '52px';
-        //         isnavshow = true;
-        //     } 
-        //     if ((distancetobottom >= 100) && (isnavshow)) {
-        //         fixednav.style.height = '0';
-        //         isnavshow = false;
-        //     }
-        // }
         
         // shrink scroll
         scrollinsection(container, img, sectiontitlecontent2, frame, screen, videoaudio, navheight, shrinkscroll1);
         scrollinsection(container2, img2, sectiontitlecontent3, frame2, screen2, camera2, navheight, shrinkscroll2);
-
-        // wipe scroll and dissolve scroll
-        // scrollinsection2(scrollwrapper, images, overlay, imglist, overlayadjust, piccontainer, pics, texts, photograph, navheight, wipescroll, disolvescroll);
 
         // wipe scroll
         scrollsection3(scrollwrapper, images, overlay, imglist, overlayadjust, photograph, navheight);
