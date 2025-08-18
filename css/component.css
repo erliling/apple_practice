@@ -202,8 +202,8 @@ a.a2 {
 }
 a.arrow::after {
     content: ">";
-    vertical-align: middle;
-    /* vertical-align: -1px; */
+    /* vertical-align: middle; */
+    vertical-align: -1px;
     padding-inline-start: 0.24em;
 }
 
