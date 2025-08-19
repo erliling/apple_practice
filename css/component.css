@@ -995,7 +995,7 @@ a.arrow::after {
     position: sticky;
     bottom: var(--ps-spacing-32);
 
-    /* margin-top: var(--ps-spacing-32); */
+    margin-top: var(--ps-spacing-32);
     margin-bottom: var(--ps-spacing-96);
 }
 
