@@ -23,18 +23,31 @@ window.onload = function () {
     const welcomeimg = document.querySelector('.welcome .content .video-wrapper .picture2');
     const welcometitle = document.querySelector('.welcome .content .picture1');
 
-    welcomevideo.addEventListener('play', () => {
-        // welcometitle.style.opacity = 1;
-        // welcometitle.style.transform = 'scale(1)';
-    })
+    const applyscale = ()=> {
+        welcometitle.classList.add('scaledown');
+    }
+    // 1. Check if the video is already playing
+    if (!welcomevideo.paused && !welcomevideo.ended) {
+        // If it is, apply the class immediately
+        applyscale();
+    }
+    // 2. If it's not playing yet, listen for the 'playing' event
+    // The { once: true } ensures the listener runs only once, for good practice
+    welcomevideo.addEventListener('playing', applyscale, { once: true });
+
+    // welcomevideo.addEventListener('playing', () => {
+    //     // welcometitle.style.opacity = 1;
+    //     // welcometitle.style.transform = 'scale(1)';
+       
+    // });
 
     welcomevideo.addEventListener('ended', () => {
         welcomevideo.pause();
         welcomevideo.style.opacity = 0;
         welcomeimg.style.opacity = 1;
 
-        welcometitle.style.opacity = 1;
-        welcometitle.style.transform = 'scale(1)';
+        // welcometitle.style.opacity = 1;
+        // welcometitle.style.transform = 'scale(1)';
 
         // Optional: After the transition, hide the video element completely to save resources
         setTimeout(() => {

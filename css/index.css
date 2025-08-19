@@ -342,9 +342,14 @@ body {
     margin-top: -150px;
 
     opacity: 0;
-    transform: scale(1.1);
+    transform: scale(1.05);
     transform-origin: center;
-    transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+    transition: opacity 1s ease-in-out, transform 2s ease-in-out;
+}
+
+.welcome .content .picture1.scaledown {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .welcome .content .videoarea {
