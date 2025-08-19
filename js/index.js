@@ -21,11 +21,20 @@ window.onload = function () {
     // play video and switch to img
     const welcomevideo = document.querySelector('.welcome .content .video-wrapper video');
     const welcomeimg = document.querySelector('.welcome .content .video-wrapper .picture2');
+    const welcometitle = document.querySelector('.welcome .content .picture1');
+
+    welcomevideo.addEventListener('play', () => {
+        // welcometitle.style.opacity = 1;
+        // welcometitle.style.transform = 'scale(1)';
+    })
 
     welcomevideo.addEventListener('ended', () => {
         welcomevideo.pause();
         welcomevideo.style.opacity = 0;
         welcomeimg.style.opacity = 1;
+
+        welcometitle.style.opacity = 1;
+        welcometitle.style.transform = 'scale(1)';
 
         // Optional: After the transition, hide the video element completely to save resources
         setTimeout(() => {

@@ -340,6 +340,11 @@ body {
     /* overflow: hidden; */
     /* z-index: 99; */
     margin-top: -150px;
+
+    opacity: 0;
+    transform: scale(1.1);
+    transform-origin: center;
+    transition: opacity 2s ease-in-out, transform 2s ease-in-out;
 }
 
 .welcome .content .videoarea {
@@ -391,6 +396,7 @@ body {
     object-fit: cover;
     /* object-position: center center; */
     width: 100%;
+    height: auto;
 }
 
 .welcome .content .spacer {
