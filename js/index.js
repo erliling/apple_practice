@@ -51,7 +51,7 @@ window.onload = function () {
 
         // Optional: After the transition, hide the video element completely to save resources
         setTimeout(() => {
-            welcomevideo.style.display = 'none';
+            // welcomevideo.style.display = 'none';
         }, 1000); // Wait for 1 second to match the CSS transition duration
     })
 
