@@ -365,25 +365,25 @@ body {
 @media screen and (min-width: 0px) {
     .welcome .content .videoarea {
         --videoarea-top: -300px;
-        --videowrapper-width: 1680px;
+        --videowrapper-width: 1588px;
     }
 }
 @media screen and (max-width:1440px) {
     .welcome .content .videoarea {
         --videoarea-top: -200px;
-        --videowrapper-width: 1440px;
+        --videowrapper-width: 1238px;
     }
 }
 @media screen and (max-width:1068px) {
     .welcome .content .videoarea {
         --videoarea-top: -100;
-        --videowrapper-width: 1068px;
+        --videowrapper-width: 836px;
     }
 }
 @media screen and (max-width:734px) {
     .welcome .content .videoarea {
         --videoarea-top: 0;
-        --videowrapper-width: 734px;
+        --videowrapper-width: 568px;
     }
 }
 @media screen and (max-width:480px) {
@@ -405,9 +405,10 @@ body {
 
     /* height: 100vh; */
 
-    display: grid;
+    /* display: flex; */
     /* place-items: center; */
-    /* align-items: center;
+    /* flex-direction: column;
+    align-items: center;
     justify-content: center; */
     position: relative;
 }
@@ -415,7 +416,9 @@ body {
     display: block;
     position: absolute;
     top: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -426,6 +429,11 @@ body {
 }
 
 .welcome .content .video-wrapper .picture2 {
+    /* position: absolute;
+    left: 50%;
+    transform: translateX(-50%); */
+    
+    margin: 0 auto;
     /* display: flex; */
     /* justify-content: center;
     align-items: center; */
