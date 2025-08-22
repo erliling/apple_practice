@@ -33,6 +33,9 @@ body {
     align-items: center;
 
 }
+.navshrink ul li ul {
+    
+}
 .navshrink ul li a {
     color: rgba(255, 255, 255, 0.8);
     font-size: 12px;
