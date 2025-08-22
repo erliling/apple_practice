@@ -31,10 +31,13 @@ body {
 .navshrink ul li {
     display: flex;
     align-items: center;
-
+    justify-content: end;
+    /* justify-content: space-around; */
 }
 .navshrink ul li ul {
-    
+    padding-inline: 0;
+    display: flex;
+    column-gap: var(--ps-spacing-24);
 }
 .navshrink ul li a {
     color: rgba(255, 255, 255, 0.8);
