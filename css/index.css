@@ -26,95 +26,61 @@ body {
     }
 }
 
+.normalnav ul {
+    width: 100%;
+    max-width: 1024px;
+    padding-inline-start: 22px;
+    padding-inline-end: 22px;
+    box-sizing: border-box;
+
+    height: 100%;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: space-between;
+}
+.normalnav ul li {
+    display: flex;
+    align-items: center;
+    /* justify-content: end; */
+    /* justify-content: space-around; */
+}
+.normalnav ul li a {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 12px;
+}
+.normalnav ul li a svg {
+    fill: rgba(255, 255, 255, 0.8);
+}
+.normalnav ul li a:hover {
+    color: var(--default-highlight-text-color);
+}
+.normalnav ul li a:hover svg {
+    fill: var(--default-highlight-text-color);
+}
 .navshrink {
     width: 100%;
     /* height: var(--r-nav-height); */
 
-    
     overflow: hidden;
 
     position: relative;
 
     background-color: var(--default-background-light-color2);
 }
-.navshrink ul {
-    width: 100%;
-    max-width: 1024px;
-    padding-inline-start: 22px;
-    padding-inline-end: 22px;
-    box-sizing: border-box;
-
-    height: 100%;
-    margin: 0 auto;
-
-    display: flex;
-    justify-content: space-between;
-}
-.navshrink ul li {
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    /* justify-content: space-around; */
-}
 .navshrink ul li ul {
     padding-inline: 0;
     display: flex;
     column-gap: var(--ps-spacing-24);
 }
-.navshrink ul li a {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 12px;
-}
-.navshrink ul li a svg {
-    fill: rgba(255, 255, 255, 0.8);
-}
-.navshrink ul li a:hover {
-    color: var(--default-highlight-text-color);
-}
-.navshrink ul li a:hover svg {
-    fill: var(--default-highlight-text-color);
-}
-
 .navcls {
     width: 100%;
     /* height: var(--r-nav-height); */
     /* overflow: hidden; */
 
-
     position: relative;
 
     background-color: var(--default-background-light-color2);
-}
-.navcls ul {
-    width: 100%;
-    max-width: 1024px;
-    padding-inline-start: 22px;
-    padding-inline-end: 22px;
-    box-sizing: border-box;
-
-    height: 100%;
-    margin: 0 auto;
-
-    display: flex;
-    justify-content: space-between;
-}
-.navcls ul li {
-    display: flex;
-    align-items: center;
-
-}
-.navcls ul li a {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 12px;
-}
-.navcls ul li a svg {
-    fill: rgba(255, 255, 255, 0.8);
-}
-.navcls ul li a:hover {
-    color: var(--default-highlight-text-color);
-}
-.navcls ul li a:hover svg {
-    fill: var(--default-highlight-text-color);
 }
 
 /* nav's secondary menu */
