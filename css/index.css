@@ -295,8 +295,9 @@ body {
     font-weight: 600;
 }
 .fixednav ul .selected {
-    /* border-bottom: 1px solid var(--default-highlight-text-color); */
-    border: 1px solid pink;
+    border-bottom: 1px solid var(--default-highlight-text-color);
+    /* border: 1px solid pink; */
+    box-sizing: border-box;
 }
 .fixednav .primarybtn {
     --sk-button-padding-horizontal: 8px;
