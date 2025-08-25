@@ -78,8 +78,8 @@ body {
     padding: 16px 24px 64px 64px;
     box-sizing: border-box;
 
-    color: var(--default-text-color);
     background-color: var(--default-background-light-color2);
+    /* background-color: pink; */
 
     z-index: 1;
 }
@@ -88,10 +88,18 @@ body {
     flex-direction: column;
     row-gap: 20px;
 
+}
+.navshrinkoverlay ul a {
+    color: var(--default-text-color);
+
     font-size: 28px;
     line-height: 1.14;
     font-weight: 600;
     letter-spacing: .007em;
+}
+.navshrinkoverlay ul a:hover {
+    color: var(--default-highlight-text-color);
+
 }
 .navshrinkoverlay ul li {
     width: 100%;
