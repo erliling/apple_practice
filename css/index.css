@@ -97,19 +97,44 @@ body {
     font-weight: 600;
     letter-spacing: .007em;
 }
-.navshrinkoverlay ul a:hover {
-    color: var(--default-highlight-text-color);
 
-}
 .navshrinkoverlay ul li {
     width: 100%;
     display: flex;
+    align-items: center;
     justify-content: space-between;
+
+    cursor: pointer;
 }
+.navshrinkoverlay ul li .toggle svg {
+    opacity: 1;
+    transform: translateX(0);
+
+    /* background-color: pink; */
+
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+}
+
 .navshrinkoverlay ul li a svg {
-    /* fill: rgba(255, 255, 255, 0.8); */
+    fill: rgba(255, 255, 255, 0.8);
     color: var(--default-text-color);
-    /* color: white; */
+    opacity: 0;
+    transform: translateX(-3px);
+
+    transition: opacity 0.3s linear;
+}
+
+.navshrinkoverlay ul li:hover a svg {
+    fill: rgba(255, 255, 255, 0.8);
+    color: var(--default-text-color);
+    opacity: 1;
+    transform: translateX(0);
+}
+.navshrinkoverlay ul li:hover a  {
+    color: var(--default-highlight-text-color);
+
 }
 
 .navshrink ul li ul {
