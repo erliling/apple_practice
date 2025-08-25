@@ -99,7 +99,9 @@ body {
     justify-content: space-between;
 }
 .navshrinkoverlay ul li a svg {
-    fill: rgba(255, 255, 255, 0.8);
+    /* fill: rgba(255, 255, 255, 0.8); */
+    color: var(--default-text-color);
+    /* color: white; */
 }
 
 .navshrink ul li ul {
