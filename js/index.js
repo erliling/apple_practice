@@ -2,6 +2,15 @@
 window.onload = function () {
     // when menuoverlay no page scroll
     // document.body.style.overflow = "hidden";
+    const toggleoverlaybtn = document.querySelector('.navshrink .toggleoverlaybtn');
+    const navshrinkoverlay = document.querySelector('.navshrinkoverlay');
+    const toggleoverlaybtn2 = document.querySelector('.navshrinkoverlay .toggleoverlaybtn2');
+    toggleoverlaybtn.addEventListener('click', () => {
+        navshrinkoverlay.style.display = 'block';
+    });
+    toggleoverlaybtn2.addEventListener('click', () => {
+        navshrinkoverlay.style.display = 'none';
+    });
 
     // flymenu
     const secondmenus = document.querySelectorAll('.secondmenu');

@@ -111,7 +111,7 @@ body {
 
     cursor: pointer;
 }
-.navshrinkoverlay ul li .toggle svg {
+.navshrinkoverlay ul li .toggleoverlaybtn2 svg {
     opacity: 1;
     transform: translateX(6px);
 
