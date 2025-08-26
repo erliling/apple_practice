@@ -3,13 +3,20 @@ window.onload = function () {
     // when menuoverlay no page scroll
     // document.body.style.overflow = "hidden";
     const toggleoverlaybtn = document.querySelector('.navshrink .toggleoverlaybtn');
-    const navshrinkoverlay = document.querySelector('.navshrinkoverlay');
-    const toggleoverlaybtn2 = document.querySelector('.navshrinkoverlay .toggleoverlaybtn2');
+    const navshrinkoverlay = document.querySelector('.navshrink .navshrinkoverlay');
+    const mininav = document.querySelector('.navshrink .mininav');
+    
     toggleoverlaybtn.addEventListener('click', () => {
-        navshrinkoverlay.style.display = 'block';
-    });
-    toggleoverlaybtn2.addEventListener('click', () => {
-        navshrinkoverlay.style.display = 'none';
+        if (hasClass(navshrinkoverlay, 'opened')) {
+            navshrinkoverlay.style.display = 'none';
+            mininav.style.opacity = 1;
+            removeClass(navshrinkoverlay, 'opened');
+        } else {
+            navshrinkoverlay.style.display = 'block';
+            mininav.style.opacity = 0;
+            addClass(navshrinkoverlay, 'opened');
+        }
+        
     });
 
     // flymenu

@@ -70,6 +70,7 @@ body {
 
     display: flex;
     justify-content: space-between;
+    
 }
 .navshrink .toggleoverlaybtn {
     display: inline;
@@ -85,14 +86,14 @@ body {
     column-gap: var(--ps-spacing-24);
 }
 
-.navshrinkoverlay {
+.navshrink .navshrinkoverlay {
     position: fixed;
     width: 100vw;
     height: 100vh;
     left: 0;
-    top: 0;
+    top: var(--r-nav-height);
 
-    padding: 16px 24px 64px 64px;
+    padding: 16px 24px 64px 32px;
     box-sizing: border-box;
 
     background-color: var(--default-background-light-color2);
@@ -105,13 +106,13 @@ body {
     /* opacity: 0; */
     display: none;
 }
-.navshrinkoverlay ul {
+.navshrink .navshrinkoverlay ul {
     display: flex;
     flex-direction: column;
     row-gap: 20px;
 
 }
-.navshrinkoverlay ul a {
+.navshrink .navshrinkoverlay ul a {
     color: var(--default-text-color);
 
     font-size: 28px;
@@ -119,7 +120,7 @@ body {
     font-weight: 600;
     letter-spacing: .007em;
 }
-.navshrinkoverlay ul li {
+.navshrink .navshrinkoverlay ul li {
     width: 100%;
     display: flex;
     align-items: center;
@@ -127,7 +128,7 @@ body {
 
     cursor: pointer;
 }
-.navshrinkoverlay ul li .toggleoverlaybtn2 svg {
+.navshrink .navshrinkoverlay ul li .toggleoverlaybtn2 svg {
     opacity: 1;
     transform: translateX(6px);
 
@@ -137,7 +138,7 @@ body {
     align-items: center;
     justify-content: center; */
 }
-.navshrinkoverlay ul li a svg {
+.navshrink .navshrinkoverlay ul li a svg {
     fill: rgba(255, 255, 255, 0.8);
     color: var(--default-text-color);
     opacity: 0;
@@ -151,13 +152,13 @@ body {
 
     transition: opacity 0.1s ease-in, transform 0.2s ease-in;
 }
-.navshrinkoverlay ul li:hover a svg {
+.navshrink .navshrinkoverlay ul li:hover a svg {
     fill: rgba(255, 255, 255, 0.8);
     color: var(--default-text-color);
     opacity: 1;
     transform: translateX(6px);
 }
-.navshrinkoverlay ul li:hover a  {
+.navshrink .navshrinkoverlay ul li:hover a  {
     color: var(--default-highlight-text-color);
 
 }
