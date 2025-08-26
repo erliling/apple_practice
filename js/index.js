@@ -11,10 +11,12 @@ window.onload = function () {
             navshrinkoverlay.style.display = 'none';
             mininav.style.opacity = 1;
             removeClass(navshrinkoverlay, 'opened');
+            document.body.style.overflow = "auto";
         } else {
             navshrinkoverlay.style.display = 'block';
             mininav.style.opacity = 0;
             addClass(navshrinkoverlay, 'opened');
+            document.body.style.overflow = "hidden";
         }
         
     });
