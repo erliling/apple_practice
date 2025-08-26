@@ -389,10 +389,10 @@ body {
 /* #region ribbon*/
 .ribbon {
     width: 100%;
-    height: 52px;
+    /* height: 52px; */
     background-color: var(--default-background-light-color);
-    padding-block: 12px;
-    box-sizing: border-box;
+    padding-block: 16px;
+    /* box-sizing: border-box; */
     
     display: flex;
     justify-content: center;
