@@ -1,5 +1,8 @@
 
 window.onload = function () {
+    // when menuoverlay no page scroll
+    document.body.style.overflow = "hidden";
+
     // flymenu
     const secondmenus = document.querySelectorAll('.secondmenu');
     const secondmenuoverlay = document.querySelector('.navcls .navoverlay');

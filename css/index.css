@@ -69,8 +69,8 @@ body {
     background-color: var(--default-background-light-color2);
 }
 .navshrinkoverlay {
-    position: absolute;
-    width: 100%;
+    position: fixed;
+    width: 100vw;
     height: 100vh;
     left: 0;
     top: 0;
@@ -81,7 +81,11 @@ body {
     background-color: var(--default-background-light-color2);
     /* background-color: pink; */
 
-    z-index: 1;
+    z-index: 1000;
+    overflow: hidden;
+    overflow-y: auto;
+
+    
 }
 .navshrinkoverlay ul {
     display: flex;
@@ -129,7 +133,7 @@ body {
     align-items: center;
     justify-content: center;
 
-    transition: opacity 0.1s ease-in, transform 0.3s ease-in;
+    transition: opacity 0.1s ease-in, transform 0.2s ease-in;
 }
 
 .navshrinkoverlay ul li:hover a svg {
