@@ -26,19 +26,7 @@ body {
     }
 }
 
-.normalnav ul {
-    width: 100%;
-    max-width: 1024px;
-    padding-inline-start: 22px;
-    padding-inline-end: 22px;
-    box-sizing: border-box;
 
-    height: 100%;
-    margin: 0 auto;
-
-    display: flex;
-    justify-content: space-between;
-}
 .normalnav ul li {
     display: flex;
     align-items: center;
@@ -67,7 +55,36 @@ body {
     position: relative;
 
     background-color: var(--default-background-light-color2);
+
+    display: flex;
 }
+.navshrink ul {
+    width: 100%;
+    /* max-width: 1024px; */
+    padding-inline-start: var(--ps-spacing-24);
+    padding-inline-end: var(--ps-spacing-24);
+    box-sizing: border-box;
+
+    height: 100%;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: space-between;
+}
+.navshrink .toggleoverlaybtn {
+    display: inline;
+    line-height: var(--r-nav-height);
+    padding-inline-end: var(--ps-spacing-24);
+}
+.navshrink .toggleoverlaybtn a svg {
+    color: var(--default-text-color);
+}
+.navshrink ul li ul {
+    padding-inline: 0;
+    display: flex;
+    column-gap: var(--ps-spacing-24);
+}
+
 .navshrinkoverlay {
     position: fixed;
     width: 100vw;
@@ -102,7 +119,6 @@ body {
     font-weight: 600;
     letter-spacing: .007em;
 }
-
 .navshrinkoverlay ul li {
     width: 100%;
     display: flex;
@@ -121,7 +137,6 @@ body {
     align-items: center;
     justify-content: center; */
 }
-
 .navshrinkoverlay ul li a svg {
     fill: rgba(255, 255, 255, 0.8);
     color: var(--default-text-color);
@@ -136,7 +151,6 @@ body {
 
     transition: opacity 0.1s ease-in, transform 0.2s ease-in;
 }
-
 .navshrinkoverlay ul li:hover a svg {
     fill: rgba(255, 255, 255, 0.8);
     color: var(--default-text-color);
@@ -148,11 +162,7 @@ body {
 
 }
 
-.navshrink ul li ul {
-    padding-inline: 0;
-    display: flex;
-    column-gap: var(--ps-spacing-24);
-}
+
 .navcls {
     width: 100%;
     /* height: var(--r-nav-height); */
@@ -161,6 +171,19 @@ body {
     position: relative;
 
     background-color: var(--default-background-light-color2);
+}
+.navcls ul {
+    width: 100%;
+    max-width: 1024px;
+    padding-inline-start: 22px;
+    padding-inline-end: 22px;
+    box-sizing: border-box;
+
+    height: 100%;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: space-between;
 }
 
 /* nav's secondary menu */
