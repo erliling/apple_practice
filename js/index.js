@@ -8,15 +8,15 @@ window.onload = function () {
     
     toggleoverlaybtn.addEventListener('click', () => {
         if (hasClass(toggleoverlaybtn, 'open')) {
-            navshrinkoverlay.style.display = 'none';
-            mininav.style.opacity = 1;
             removeClass(toggleoverlaybtn, 'open');
-            document.body.style.overflow = "auto";
+            // navshrinkoverlay.style.display = 'none';
+            // mininav.style.opacity = 1;
+            // document.body.style.overflow = "auto";
         } else {
-            navshrinkoverlay.style.display = 'block';
-            mininav.style.opacity = 0;
             addClass(toggleoverlaybtn, 'open');
-            document.body.style.overflow = "hidden";
+            // navshrinkoverlay.style.display = 'block';
+            // mininav.style.opacity = 0;
+            // document.body.style.overflow = "hidden";
         }
         
     });

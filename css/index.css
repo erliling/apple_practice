@@ -87,7 +87,7 @@ body {
 
     cursor: pointer;
 
-    --burgerbtn-width: 16px;
+    --burgerbtn-width: 14px;
     --burgerbtn-height: 1px;
     --burgerbtn-radius: 1px;
 }
