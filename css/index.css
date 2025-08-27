@@ -36,6 +36,8 @@ body {
 .normalnav ul li a {
     color: rgba(255, 255, 255, 0.8);
     font-size: 12px;
+
+    height: var(--r-nav-height);
 }
 .normalnav ul li a svg {
     fill: rgba(255, 255, 255, 0.8);
@@ -74,39 +76,72 @@ body {
 }
 .navshrink .toggleoverlaybtn {
     /* display: inline; */
-    line-height: var(--r-nav-height);
+    /* line-height: var(--r-nav-height); */
     padding-inline-end: var(--ps-spacing-24);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    cursor: pointer;
+
+    --burgerbtn-width: 16px;
+    --burgerbtn-height: 1px;
+    --burgerbtn-radius: 1px;
 }
 .navshrink .toggleoverlaybtn .menubtn_burger {
-    width: 50px;
-    height: 6px;
+    width: var(--burgerbtn-width);
+    height: 0;
+
     background-color: var(--default-text-color);
-    border-radius: 5px;
+    border-radius: var(--burgerbtn-radius);
     transition: all 0.3s ease-in-out;
 }
 .navshrink .toggleoverlaybtn .menubtn_burger::before,
 .navshrink .toggleoverlaybtn .menubtn_burger::after {
         content: "";
         position: absolute;
+        left: 0;
         /* left: 15px; */
         /* left: 50%;
         transform: translateX(-50%); */
-        width: 50px;
-        height: 6px;
+        width: var(--burgerbtn-width);
+        height: var(--burgerbtn-height);
         background: #fff;
-        border-radius: 5px;
+        border-radius: var(--burgerbtn-radius);
         transition: all 0.3s ease-in-out;
       }
 
-      /* Position the top bar */
-      .navshrink .toggleoverlaybtn .menubtn_burger::before {
-        /* transform: translateY(-16px); */
-      }
+/* Position the top bar */
+.navshrink .toggleoverlaybtn .menubtn_burger::before {
+transform: translateY(-4px);
+}
 
-      /* Position the bottom bar */
-      .navshrink .toggleoverlaybtn .menubtn_burger::after {
-        transform: translateY(16px);
-      }
+/* Position the bottom bar */
+.navshrink .toggleoverlaybtn .menubtn_burger::after {
+transform: translateY(4px);
+}
+
+/* --- The "Open" State (the cross) --- */
+.navshrink .toggleoverlaybtn.open .menubtn_burger {
+    /* This hides the middle bar by making it invisible */
+    transform: translateX(-50px);
+    background: transparent;
+    box-shadow: none;
+  }
+
+  /* Transform the top bar into the top-right part of the cross */
+  .navshrink .toggleoverlaybtn.open .menubtn_burger::before {
+    transform: rotate(45deg) translate(35px, -35px);
+  }
+
+  /* Transform the bottom bar into the bottom-right part of the cross */
+  .navshrink .toggleoverlaybtn.open .menubtn_burger::after {
+    transform: rotate(-45deg) translate(35px, 35px);
+  }
+
 /* .navshrink .toggleoverlaybtn a svg {
     color: var(--default-text-color);
 } */

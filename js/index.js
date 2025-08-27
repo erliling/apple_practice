@@ -7,15 +7,15 @@ window.onload = function () {
     const mininav = document.querySelector('.navshrink .mininav');
     
     toggleoverlaybtn.addEventListener('click', () => {
-        if (hasClass(navshrinkoverlay, 'opened')) {
+        if (hasClass(toggleoverlaybtn, 'open')) {
             navshrinkoverlay.style.display = 'none';
             mininav.style.opacity = 1;
-            removeClass(navshrinkoverlay, 'opened');
+            removeClass(toggleoverlaybtn, 'open');
             document.body.style.overflow = "auto";
         } else {
             navshrinkoverlay.style.display = 'block';
             mininav.style.opacity = 0;
-            addClass(navshrinkoverlay, 'opened');
+            addClass(toggleoverlaybtn, 'open');
             document.body.style.overflow = "hidden";
         }
         
