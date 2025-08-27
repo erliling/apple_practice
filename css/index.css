@@ -37,7 +37,7 @@ body {
     color: rgba(255, 255, 255, 0.8);
     font-size: 12px;
 
-    height: var(--r-nav-height);
+    /* height: var(--r-nav-height); */
 }
 .normalnav ul li a svg {
     fill: rgba(255, 255, 255, 0.8);
@@ -64,7 +64,7 @@ body {
     width: 100%;
 }
 .navshrink .togglenav .mininav {
-    opacity: 0;
+    /* opacity: 0; */
 }
 .navshrink .togglenav .bignav {
     display: flex;
@@ -87,6 +87,8 @@ body {
     
 }
 .navshrink .toggleoverlaybtn {
+    /* opacity: 0; */
+
     /* display: inline; */
     /* line-height: var(--r-nav-height); */
     padding-inline-end: var(--ps-spacing-24);
