@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* --- Base Styling for the Button and Icon --- */
+      .menu-btn {
+        position: relative;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 80px;
+        height: 80px;
+
+        cursor: pointer;
+        /* transition: all 0.5s ease-in-out; */
+        border: none;
+        background: transparent;
+      }
+
+      /* --- The Middle Bar (the burger) --- */
+      .menu-btn__burger {
+        /* width: 50px; */
+        height: 6px;
+        background: #fff;
+        border-radius: 5px;
+        transition: all 0.3s ease-in-out;
+
+        /* opacity: 0; */
+      }
+
+      /* --- The Top and Bottom Bars (pseudo-elements) --- */
+      .menu-btn__burger::before,
+      .menu-btn__burger::after {
+        content: "";
+        position: absolute;
+        /* left: 15px; */
+        /* left: 50%;
+        transform: translateX(-50%); */
+        width: 50px;
+        height: 6px;
+        background: #fff;
+        border-radius: 5px;
+        transition: all 0.3s ease-in-out;
+      }
+
+      /* Position the top bar */
+      .menu-btn__burger::before {
+        transform: translateY(-16px);
+      }
+
+      /* Position the bottom bar */
+      .menu-btn__burger::after {
+        transform: translateY(16px);
+      }
+
+      /* --- The "Open" State (the cross) --- */
+      .menu-btn.open .menu-btn__burger {
+        /* This hides the middle bar by making it invisible */
+        transform: translateX(-50px);
+        /* background: transparent;
+        box-shadow: none; */
+      }
+
+      /* Transform the top bar into the top-right part of the cross */
+      .menu-btn.open .menu-btn__burger::before {
+        transform: rotate(45deg) translate(35px, -35px);
+      }
+
+      /* Transform the bottom bar into the bottom-right part of the cross */
+      .menu-btn.open .menu-btn__burger::after {
+        transform: rotate(-45deg) translate(35px, 35px);
+      }
+      body {
+        background-color: black;
+      }
+    </style>
+    <script>
+      window.onload = () => {
+        // Get a reference to your button
+        const menuBtn = document.querySelector(".menu-btn");
+
+        // Add a click event listener
+        menuBtn.addEventListener("click", () => {
+          // This single line toggles the "open" class
+          menuBtn.classList.toggle("open");
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <button class="menu-btn">
+      <span class="menu-btn__burger"></span>
+    </button>
+  </body>
+</html>
