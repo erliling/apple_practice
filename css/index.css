@@ -52,13 +52,25 @@ body {
     width: 100%;
     /* height: var(--r-nav-height); */
 
-    overflow: hidden;
+    /* overflow: hidden; */
 
     position: relative;
 
     background-color: var(--default-background-light-color2);
 
     display: flex;
+}
+.navshrink .togglenav {
+    width: 100%;
+}
+.navshrink .togglenav .mininav {
+    opacity: 0;
+}
+.navshrink .togglenav .bignav {
+    display: flex;
+    flex-direction: column;
+
+    /* z-index: 2000; */
 }
 .navshrink ul {
     width: 100%;
