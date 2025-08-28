@@ -52,11 +52,13 @@ body {
 .normalnav ul li a:hover svg {
     fill: var(--default-highlight-text-color);
 }
+
+
 .navshrink {
     width: 100%;
     /* height: var(--r-nav-height); */
 
-    /* overflow: hidden; */
+    overflow: hidden;
 
     position: relative;
 
