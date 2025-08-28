@@ -37,6 +37,10 @@ body {
     color: rgba(255, 255, 255, 0.8);
     font-size: 12px;
 
+    height: 100%;
+    
+    display: flex;
+    align-items: center;
     /* height: var(--r-nav-height); */
 }
 .normalnav ul li a svg {
@@ -283,7 +287,7 @@ transform: translateY(4px);
     pointer-events: none;
 }
 
-.navcls ul  .secondmenu {
+.navcls ul .secondmenu {
     
     position: absolute;
     left: 0;
@@ -302,7 +306,7 @@ transform: translateY(4px);
     /* z-index: 500; */
 }
 
-.navcls ul  .secondmenu ul {
+.navcls ul .secondmenu ul {
     width: 100%;
     max-width: 1024px;
     padding-inline-start: 22px;
@@ -314,23 +318,23 @@ transform: translateY(4px);
 
     margin-bottom: var(--ps-spacing-56);
 }
-.navcls ul  .secondmenu ul li {
+.navcls ul .secondmenu ul li {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: start;
     row-gap: var(--ps-spacing-12);
 }
-.navcls ul  .secondmenu ul li .graytext {
+.navcls ul .secondmenu ul li .graytext {
     color: var(--default-gray-text-color);
     font-size: 12px;
     line-height: 40px;
     font-weight: 400;
 }
-.navcls ul  .secondmenu ul li a {
+.navcls ul .secondmenu ul li a {
     font-weight: 600;
 }
-.navcls ul  .secondmenu ul li .contenttext7 a{
+.navcls ul .secondmenu ul li .contenttext7 a{
     color: var(--default-text-color);
     font-size: var(--text-size-28);
     line-height: 1.1429;
