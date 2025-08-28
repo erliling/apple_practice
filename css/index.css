@@ -54,29 +54,29 @@ body {
 .navshrink .navshrinkoverlay {
     position: fixed;
     width: 100vw;
+    /* height: 100vh; */
     left: 0;
     top: var(--r-nav-height);
 
     padding: 0 24px 0 32px;
     box-sizing: border-box;
 
-    /* background-color: var(--default-background-light-color2); */
+    background-color: var(--default-background-light-color2);
 
     display: flex;
     flex-direction: column;
 
-    z-index: 1000;
+    /* z-index: 1000; */
     overflow-y: auto;
 
     height: 0;
 }
-.navshrink .navshrinkoverlay ul {
+.navshrink .navshrinkoverlay {
     display: flex;
     flex-direction: column;
     row-gap: 40px;
-
 }
-.navshrink .navshrinkoverlay ul a {
+.navshrink .navshrinkoverlay a {
     color: var(--default-text-color);
 
     font-size: 28px;
@@ -84,7 +84,7 @@ body {
     font-weight: 600;
     letter-spacing: .007em;
 }
-.navshrink .navshrinkoverlay ul li {
+.navshrink .navshrinkoverlay li {
     width: 100%;
     display: flex;
     align-items: center;
@@ -92,11 +92,11 @@ body {
 
     cursor: pointer;
 }
-.navshrink .navshrinkoverlay ul li .toggleoverlaybtn2 svg {
+.navshrink .navshrinkoverlay li .toggleoverlaybtn2 svg {
     opacity: 1;
     transform: translateX(6px);
 }
-.navshrink .navshrinkoverlay ul li a svg {
+.navshrink .navshrinkoverlay li a svg {
     fill: rgba(255, 255, 255, 0.8);
     color: var(--default-text-color);
     opacity: 0;
@@ -107,13 +107,13 @@ body {
 
     transition: opacity 0.1s ease-in, transform 0.2s ease-in;
 }
-.navshrink .navshrinkoverlay ul li:hover a svg {
+.navshrink .navshrinkoverlay li:hover a svg {
     fill: rgba(255, 255, 255, 0.8);
     color: var(--default-text-color);
     opacity: 1;
     transform: translateX(6px);
 }
-.navshrink .navshrinkoverlay ul li:hover a  {
+.navshrink .navshrinkoverlay li:hover a  {
     color: var(--default-highlight-text-color);
 
 }
