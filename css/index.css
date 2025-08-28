@@ -6,7 +6,7 @@ body {
     background-color: var(--default-background-color);
 }
 
-/* #region nav*/
+/* #region shrinkednav*/
 @media screen and (min-width: 0px) {
     .navshrink {
         height: 0;
@@ -26,40 +26,10 @@ body {
     }
 }
 
-
-.normalnav ul li {
-    display: flex;
-    align-items: center;
-    /* justify-content: end; */
-    /* justify-content: space-around; */
-}
-.normalnav > ul > li > a {
-    height: 100%;
-    
-    display: flex;
-    align-items: center;
-}
-/* .normalnav ul:not(.flyout-menu) li a { */
-.normalnav ul li a {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 12px;
-    /* height: var(--r-nav-height); */
-}
-
-.normalnav ul li a svg {
-    fill: rgba(255, 255, 255, 0.8);
-}
-.normalnav ul li a:hover {
-    color: var(--default-highlight-text-color);
-}
-.normalnav ul li a:hover svg {
-    fill: var(--default-highlight-text-color);
-}
-
-
 .navshrink {
     width: 100%;
     /* height: var(--r-nav-height); */
+    /* height: 100%; */
 
     overflow: hidden;
 
@@ -250,7 +220,37 @@ transform: translateY(4px);
     color: var(--default-highlight-text-color);
 
 }
+/* #endregion shrinkednav*/
 
+/* #region normalnav*/
+.normalnav ul li {
+    display: flex;
+    align-items: center;
+    /* justify-content: end; */
+    /* justify-content: space-around; */
+}
+.normalnav > ul > li > a {
+    height: 100%;
+    
+    display: flex;
+    align-items: center;
+}
+/* .normalnav ul:not(.flyout-menu) li a { */
+.normalnav ul li a {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 12px;
+    /* height: var(--r-nav-height); */
+}
+
+.normalnav ul li a svg {
+    fill: rgba(255, 255, 255, 0.8);
+}
+.normalnav ul li a:hover {
+    color: var(--default-highlight-text-color);
+}
+.normalnav ul li a:hover svg {
+    fill: var(--default-highlight-text-color);
+}
 
 .navcls {
     width: 100%;
@@ -417,8 +417,9 @@ transform: translateY(4px);
     animation-fill-mode: forwards;
     animation-delay: calc(var(--r-globalnav-flyout-group-delay)*2 + var(--r-globalnav-flyout-item-delay) );
 }
+/* #endregion normalnav*/
 
-  
+/* #region fixednav*/
 .fixednav {
     width: 100%;
     /* height: var(--r-localnav-height); */
@@ -496,7 +497,7 @@ transform: translateY(4px);
     --sk-button-padding-vertical: 8px;
     /* box-sizing: border-box; */
 }
-/* #endregion nav*/
+/* #endregion fixednav*/
 
 /* #region ribbon*/
 .ribbon {

@@ -2,6 +2,7 @@
 window.onload = function () {
     // when menuoverlay no page scroll
     // document.body.style.overflow = "hidden";
+    const navshrink = document.querySelector('.navshrink');
     const toggleoverlaybtn = document.querySelector('.navshrink .toggleoverlaybtn');
     const navshrinkoverlay = document.querySelector('.navshrink .navshrinkoverlay');
     const mininav = document.querySelector('.navshrink .mininav');
@@ -9,13 +10,15 @@ window.onload = function () {
     toggleoverlaybtn.addEventListener('click', () => {
         if (hasClass(toggleoverlaybtn, 'open')) {
             removeClass(toggleoverlaybtn, 'open');
+            navshrink.style.overflow = 'hidden';
+            mininav.style.opacity = 1;
             // navshrinkoverlay.style.display = 'none';
-            // mininav.style.opacity = 1;
             // document.body.style.overflow = "auto";
         } else {
             addClass(toggleoverlaybtn, 'open');
+            navshrink.style.overflow = 'visible';
+            mininav.style.opacity = 0;
             // navshrinkoverlay.style.display = 'block';
-            // mininav.style.opacity = 0;
             // document.body.style.overflow = "hidden";
         }
         
