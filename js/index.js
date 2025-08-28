@@ -12,14 +12,14 @@ window.onload = function () {
             removeClass(toggleoverlaybtn, 'open');
             navshrink.style.overflow = 'hidden';
             mininav.style.opacity = 1;
-            // navshrinkoverlay.style.display = 'none';
-            // document.body.style.overflow = "auto";
+            navshrinkoverlay.style.height = 0;
+            document.body.style.overflow = "auto";
         } else {
             addClass(toggleoverlaybtn, 'open');
             navshrink.style.overflow = 'visible';
             mininav.style.opacity = 0;
-            // navshrinkoverlay.style.display = 'block';
-            // document.body.style.overflow = "hidden";
+            navshrinkoverlay.style.height = '100%';
+            document.body.style.overflow = "hidden";
         }
         
     });
