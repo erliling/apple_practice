@@ -6,6 +6,7 @@ window.onload = function () {
     const toggleoverlaybtn = document.querySelector('.navshrink .toggleoverlaybtn');
     const navshrinkoverlay = document.querySelector('.navshrink .navshrinkoverlay');
     const mininav = document.querySelector('.navshrink .mininav');
+    const navshrinkcontent = document.querySelector('.navshrink .navshrinkcontent');
     // const curtain = document.querySelector('.navshrink .curtain');
     
     toggleoverlaybtn.addEventListener('click', () => {
@@ -14,7 +15,8 @@ window.onload = function () {
             navshrink.style.overflow = 'hidden';
             mininav.style.opacity = 1;
             navshrinkoverlay.style.height = 0;
-            // navshrinkoverlay.style.padding = '0 24px 0 32px';
+            navshrinkcontent.style.overflowY = 'hidden';
+            navshrinkoverlay.style.padding = '0 24px 0 32px';
             // curtain.style.height = 0;
             document.body.style.overflow = "auto";
         } else {
@@ -22,7 +24,8 @@ window.onload = function () {
             navshrink.style.overflow = 'visible';
             mininav.style.opacity = 0;
             navshrinkoverlay.style.height = 'fit-content';
-            // navshrinkoverlay.style.padding = '64px 24px 64px 32px';
+            navshrinkcontent.style.overflowY = 'scroll';
+            navshrinkoverlay.style.padding = '0px 24px 64px 32px';
             // curtain.style.height = '1200px';
             document.body.style.overflow = "hidden";
         }
