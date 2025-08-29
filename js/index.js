@@ -24,6 +24,14 @@ window.onload = function () {
         
     });
 
+    // navshrinkoverlay.addEventListener('mouseenter', () => {
+    //     console.log('enter');
+    //     navshrinkoverlay.classList.add('hover-enabled');
+    // });
+    // navshrinkoverlay.addEventListener('mouseleave', () => {
+    //     navshrinkoverlay.classList.remove('hover-enabled');
+    // });
+
     // flymenu
     const secondmenus = document.querySelectorAll('.secondmenu');
     const secondmenuoverlay = document.querySelector('.navcls .navoverlay');

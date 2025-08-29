@@ -77,15 +77,18 @@ body {
 
     height: 0;
 
-    pointer-events: none;
+    /* pointer-events: none; */
 }
+/* .navshrink .navshrinkoverlay.hover-enabled {
+    pointer-events: all;
+} */
 .navshrink .navshrinkoverlay .firstrow {
     /* width: 100%;
     height: 48px;
     display: block; */
     opacity: 0;
     background-color: transparent;
-    pointer-events: auto;
+    /* pointer-events: auto; */
     
 }
 /* .navshrink .navshrinkoverlay .restmenu {
