@@ -71,6 +71,8 @@ body {
     background-color: var(--default-background-light-color2);
 
     position: relative;
+
+    z-index: 1000;
 }
 .navshrink .togglenav {
     /* fv */
@@ -92,12 +94,14 @@ body {
     top: 0; */
     /* top: var(--r-nav-height); */
 
-    /* padding: 0 24px 0 32px;
-    box-sizing: border-box; */
+    padding: 0 24px 64px 32px;
+    box-sizing: border-box;
 
     display: flex;
     flex-direction: column;
     row-gap: 40px;
+
+    /* box-sizing: border-box; */
 
     /* background-color: var(--background-transparent-color); */
 

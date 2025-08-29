@@ -13,18 +13,16 @@ window.onload = function () {
         if (hasClass(toggleoverlaybtn, 'open')) {
             // control toggle btn
             removeClass(toggleoverlaybtn, 'open');
-            // control dropdown menu
+            // control dropdown menu height
             navshrink.style.overflow = 'hidden';
             navshrinkoverlay.style.height = 0;
+            // navshrinkoverlay.style.padding = '0 24px 0 32px';
 
             // control mininav
             mininav.style.opacity = 1;
 
             // control content div scroll y
             navshrinkcontent.style.overflowY = 'hidden';
-
-            // control dropdown menu layout
-            navshrinkoverlay.style.padding = '0 24px 0 32px';
 
             //control whole page scroll y
             document.body.style.overflowY = "auto";
@@ -33,12 +31,11 @@ window.onload = function () {
 
             navshrink.style.overflow = 'visible';
             navshrinkoverlay.style.height = 'fit-content';
+            // navshrinkoverlay.style.padding = '0px 24px 64px 32px';
 
             mininav.style.opacity = 0;
             
             navshrinkcontent.style.overflowY = 'scroll';
-
-            navshrinkoverlay.style.padding = '0px 24px 64px 32px';
 
             document.body.style.overflowY = "hidden";
         }
