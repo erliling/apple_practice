@@ -60,6 +60,7 @@ body {
     display: flex;
     column-gap: var(--ps-spacing-24);
 }
+
 .navshrink .navshrinkcontent {
     width: 100%;
     height: 100vh;
@@ -72,10 +73,7 @@ body {
     position: relative;
 }
 .navshrink .togglenav {
-    /* width: 100%; */
-
-    /* padding-inline-end: calc(48px + max(0px, var(--r-globalnav-safe-area-inset-end) - 16px));
-        flex: 1 1 0%; */
+    /* fv */
     padding-inline-end: 56px;
 }
 .navshrink .togglenav .mininav {
@@ -86,9 +84,6 @@ body {
     height: 100%;
     display: flex;
     align-items: center;
-}
-.navshrink .togglenav .bignav {
-    /* height: 100%; */
 }
 .navshrink .navshrinkoverlay {
     /* position: fixed;
@@ -174,9 +169,7 @@ body {
 
 }
 
-
 .navshrink .toggleoverlaybtn {
-    /* display: block; */
     /* display: block;
     z-index: 3; */
     width: 44px;
