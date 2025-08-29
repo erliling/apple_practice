@@ -38,6 +38,27 @@ body {
     background-color: var(--default-background-light-color2);
 
     display: flex;
+
+    /* z-index: 2; */
+}
+.navshrink ul {
+    width: 100%;
+    /* max-width: 1024px; */
+    padding-inline-start: var(--ps-spacing-24);
+    padding-inline-end: var(--ps-spacing-24);
+    box-sizing: border-box;
+
+    height: 100%;
+    /* margin: 0 auto; */
+
+    display: flex;
+    justify-content: space-between;
+    
+}
+.navshrink ul li ul {
+    padding-inline: 0;
+    display: flex;
+    column-gap: var(--ps-spacing-24);
 }
 .navshrink .togglenav {
     width: 100%;
@@ -47,24 +68,16 @@ body {
 }
 .navshrink .togglenav .bignav {
     /* height: 100%; */
-    
-
-    /* z-index: 2000; */
-}
-.navshrink .bignav {
-    
 }
 .navshrink .navshrinkoverlay {
-    position: fixed;
+    /* position: fixed;
     width: 100vw;
-    /* height: 100vh; */
     left: 0;
-    top: 0;
+    top: 0; */
     /* top: var(--r-nav-height); */
 
-    /* padding-top: 48px; */
-    padding: 48px 24px 0 32px;
-    box-sizing: border-box;
+    /* padding: 0 24px 0 32px;
+    box-sizing: border-box; */
 
     display: flex;
     flex-direction: column;
@@ -72,30 +85,28 @@ body {
 
     /* background-color: var(--background-transparent-color); */
 
-    z-index: 1000;
-    overflow-y: auto;
+    /* z-index: 1000;
+    overflow-y: auto; */
 
     height: 0;
+    /* z-index: 1000; */
 
     /* pointer-events: none; */
+
+    overflow-y: auto;
 }
-/* .navshrink .navshrinkoverlay.hover-enabled {
-    pointer-events: all;
-} */
-.navshrink .navshrinkoverlay .firstrow {
-    /* width: 100%;
-    height: 48px;
-    display: block; */
-    opacity: 0;
-    background-color: transparent;
-    /* pointer-events: auto; */
-    
-}
-/* .navshrink .navshrinkoverlay .restmenu {
-    background-color: var(--background-transparent-color2);
-} */
-.navshrink .navshrinkoverlay li:not(firstrow) {
-    background-color: var(--background-transparent-color2);
+
+.navshrink .curtain {
+    /* position: fixed;
+    width: 100vw;
+    left: 0;
+    top: 0;
+    height: 0;
+
+    background-color: pink;
+    z-index: -1;
+
+    overflow-y: auto; */
 }
 
 .navshrink .navshrinkoverlay a {
@@ -141,25 +152,7 @@ body {
 }
 
 
-.navshrink ul {
-    width: 100%;
-    /* max-width: 1024px; */
-    padding-inline-start: var(--ps-spacing-24);
-    padding-inline-end: var(--ps-spacing-24);
-    box-sizing: border-box;
-
-    height: 100%;
-    /* margin: 0 auto; */
-
-    display: flex;
-    justify-content: space-between;
-    
-}
 .navshrink .toggleoverlaybtn {
-    /* opacity: 0; */
-
-    /* display: inline; */
-    /* line-height: var(--r-nav-height); */
     padding-inline-end: var(--ps-spacing-24);
 
     display: flex;
@@ -196,17 +189,14 @@ body {
         border-radius: var(--burgerbtn-radius);
         transition: all 0.3s ease-in-out;
       }
-
 /* Position the top bar */
 .navshrink .toggleoverlaybtn .menubtn_burger::before {
 transform: translateY(-4px);
 }
-
 /* Position the bottom bar */
 .navshrink .toggleoverlaybtn .menubtn_burger::after {
 transform: translateY(4px);
 }
-
 /* --- The "Open" State (the cross) --- */
 .navshrink .toggleoverlaybtn.open .menubtn_burger {
     /* This hides the middle bar by making it invisible */
@@ -214,25 +204,15 @@ transform: translateY(4px);
     background: transparent;
     box-shadow: none;
   }
-
   /* Transform the top bar into the top-right part of the cross */
   .navshrink .toggleoverlaybtn.open .menubtn_burger::before {
     transform: rotate(45deg) translate(35px, -35px);
   }
-
   /* Transform the bottom bar into the bottom-right part of the cross */
   .navshrink .toggleoverlaybtn.open .menubtn_burger::after {
     transform: rotate(-45deg) translate(35px, 35px);
   }
 
-/* .navshrink .toggleoverlaybtn a svg {
-    color: var(--default-text-color);
-} */
-.navshrink ul li ul {
-    padding-inline: 0;
-    display: flex;
-    column-gap: var(--ps-spacing-24);
-}
 
 /* #endregion shrinkednav*/
 
