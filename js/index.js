@@ -11,22 +11,35 @@ window.onload = function () {
     
     toggleoverlaybtn.addEventListener('click', () => {
         if (hasClass(toggleoverlaybtn, 'open')) {
+            // control toggle btn
             removeClass(toggleoverlaybtn, 'open');
+            // control dropdown menu
             navshrink.style.overflow = 'hidden';
-            mininav.style.opacity = 1;
             navshrinkoverlay.style.height = 0;
+
+            // control mininav
+            mininav.style.opacity = 1;
+
+            // control content div scroll y
             navshrinkcontent.style.overflowY = 'hidden';
+
+            // control dropdown menu layout
             navshrinkoverlay.style.padding = '0 24px 0 32px';
-            // curtain.style.height = 0;
+
+            //control whole page scroll y
             document.body.style.overflowY = "auto";
         } else {
             addClass(toggleoverlaybtn, 'open');
+
             navshrink.style.overflow = 'visible';
-            mininav.style.opacity = 0;
             navshrinkoverlay.style.height = 'fit-content';
+
+            mininav.style.opacity = 0;
+            
             navshrinkcontent.style.overflowY = 'scroll';
+
             navshrinkoverlay.style.padding = '0px 24px 64px 32px';
-            // curtain.style.height = '1200px';
+
             document.body.style.overflowY = "hidden";
         }
         
