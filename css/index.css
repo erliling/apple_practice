@@ -82,6 +82,11 @@ body {
     /* opacity: 0; */
     height: 44px;
 }
+.navshrink .togglenav .mininav li a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
 .navshrink .togglenav .bignav {
     /* height: 100%; */
 }

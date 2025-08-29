@@ -18,7 +18,7 @@ window.onload = function () {
             navshrinkcontent.style.overflowY = 'hidden';
             navshrinkoverlay.style.padding = '0 24px 0 32px';
             // curtain.style.height = 0;
-            document.body.style.overflow = "auto";
+            document.body.style.overflowY = "auto";
         } else {
             addClass(toggleoverlaybtn, 'open');
             navshrink.style.overflow = 'visible';
@@ -27,7 +27,7 @@ window.onload = function () {
             navshrinkcontent.style.overflowY = 'scroll';
             navshrinkoverlay.style.padding = '0px 24px 64px 32px';
             // curtain.style.height = '1200px';
-            document.body.style.overflow = "hidden";
+            document.body.style.overflowY = "hidden";
         }
         
     });
