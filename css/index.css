@@ -73,8 +73,9 @@ body {
     transition: height 0.3s ease-in-out;
 }
 
-.navshrink .navshrinkcontent {
-
+.navshrink.open .navshrinkcontent {
+    overflow-y: auto;
+    height: 100vh;
 }
 
 .navshrink .togglenav {

@@ -22,14 +22,14 @@ window.onload = function () {
             mininav.style.opacity = 1;
 
             // control content div scroll y
-            navshrinkcontent.style.overflowY = 'hidden';
+            // navshrinkcontent.style.overflowY = 'hidden';
 
             // control whole page scroll y
             document.body.style.overflowY = "auto";
 
             // menu toggle effect
             navshrinkoverlay.style.opacity = 0;
-            navshrinkcontent.style.height = '44px';
+            // navshrinkcontent.style.height = '44px';
 
         } else {
             addClass(navshrink, 'open');
@@ -40,14 +40,23 @@ window.onload = function () {
 
             mininav.style.opacity = 0;
             
-            navshrinkcontent.style.overflowY = 'scroll';
+            // navshrinkcontent.style.overflowY = 'scroll';
 
             document.body.style.overflowY = "hidden";
 
             navshrinkoverlay.style.opacity = 1;
-            navshrinkcontent.style.height = '100vh';
+            // navshrinkcontent.style.height = '100vh';
+            
         }
         
+//         // Listen for the end of the transition
+//     navshrinkcontent.addEventListener('transitionend', () => {
+//     // If the menu is NOT open (meaning it just finished closing)
+//     if (!hasClass(navshrink, 'open')) {
+//         // Set overflow to hidden to prevent scrolling and clean up
+//         navshrinkcontent.style.overflowY = 'hidden';
+//     }
+// });
     });
 
     // flymenu
