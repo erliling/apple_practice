@@ -28,8 +28,6 @@ body {
 
 .navshrink {
     width: 100%;
-    /* height: var(--r-nav-height); */
-    /* height: 100%; */
 
     overflow: hidden;
 
@@ -38,18 +36,14 @@ body {
     background-color: var(--default-background-light-color2);
 
     display: flex;
-
-    /* z-index: 2; */
 }
 .navshrink ul {
     width: 100%;
-    /* max-width: 1024px; */
     padding-inline-start: var(--ps-spacing-24);
     padding-inline-end: var(--ps-spacing-24);
     box-sizing: border-box;
 
     height: 100%;
-    /* margin: 0 auto; */
 
     display: flex;
     justify-content: space-between;
@@ -65,7 +59,6 @@ body {
     width: 100%;
     height: 100vh;
     overflow-x: hidden;
-    /* overflow-y: scroll; */
     overflow-y: hidden;
 
     background-color: var(--default-background-light-color2);
@@ -88,49 +81,13 @@ body {
     align-items: center;
 }
 .navshrink .navshrinkoverlay {
-    /* position: fixed;
-    width: 100vw;
-    left: 0;
-    top: 0; */
-    /* top: var(--r-nav-height); */
-
     padding: 0 24px 64px 32px;
     box-sizing: border-box;
 
     display: flex;
     flex-direction: column;
     row-gap: 40px;
-
-    /* box-sizing: border-box; */
-
-    /* background-color: var(--background-transparent-color); */
-
-    /* z-index: 1000;
-    overflow-y: auto; */
-
-    /* height: 0; */
-    /* z-index: 1000; */
-
-    /* pointer-events: none; */
-
-    /* overflow-y: auto; */
 }
-
-/* .navshrink .curtain {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-
-    width: 100%;
-    height: 100%;
-
-    background-color: pink;
-    z-index: -1;
-
-} */
-
 .navshrink .navshrinkoverlay a {
     color: var(--default-text-color);
 
@@ -234,15 +191,15 @@ transform: translateY(4px);
     transform: translateX(-50px);
     background: transparent;
     box-shadow: none;
-  }
-  /* Transform the top bar into the top-right part of the cross */
-  .navshrink .toggleoverlaybtn.open .menubtn_burger::before {
-    transform: rotate(45deg) translate(35px, -35px);
-  }
-  /* Transform the bottom bar into the bottom-right part of the cross */
-  .navshrink .toggleoverlaybtn.open .menubtn_burger::after {
-    transform: rotate(-45deg) translate(35px, 35px);
-  }
+}
+/* Transform the top bar into the top-right part of the cross */
+.navshrink .toggleoverlaybtn.open .menubtn_burger::before {
+transform: rotate(45deg) translate(35px, -35px);
+}
+/* Transform the bottom bar into the bottom-right part of the cross */
+.navshrink .toggleoverlaybtn.open .menubtn_burger::after {
+transform: rotate(-45deg) translate(35px, 35px);
+}
 
 
 /* #endregion shrinkednav*/
