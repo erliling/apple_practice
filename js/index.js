@@ -10,9 +10,9 @@ window.onload = function () {
     // const curtain = document.querySelector('.navshrink .curtain');
     
     toggleoverlaybtn.addEventListener('click', () => {
-        if (hasClass(toggleoverlaybtn, 'open')) {
+        if (hasClass(navshrink, 'open')) {
             // control toggle btn
-            removeClass(toggleoverlaybtn, 'open');
+            removeClass(navshrink, 'open');
             // control dropdown menu height
             navshrink.style.overflow = 'hidden';
             navshrinkoverlay.style.height = 0;
@@ -23,23 +23,29 @@ window.onload = function () {
 
             // control content div scroll y
             navshrinkcontent.style.overflowY = 'hidden';
+
+            // control whole page scroll y
+            document.body.style.overflowY = "auto";
+
+            // menu toggle effect
+            navshrinkoverlay.style.opacity = 0;
             navshrinkcontent.style.height = '44px';
 
-            //control whole page scroll y
-            document.body.style.overflowY = "auto";
         } else {
-            addClass(toggleoverlaybtn, 'open');
+            addClass(navshrink, 'open');
 
             navshrink.style.overflow = 'visible';
-            // navshrinkoverlay.style.height = 'fit-content';
+            navshrinkoverlay.style.height = 'fit-content';
             // navshrinkoverlay.style.padding = '0px 24px 64px 32px';
-            navshrinkcontent.style.height = '100vh';
 
             mininav.style.opacity = 0;
             
             navshrinkcontent.style.overflowY = 'scroll';
 
             document.body.style.overflowY = "hidden";
+
+            navshrinkoverlay.style.opacity = 1;
+            navshrinkcontent.style.height = '100vh';
         }
         
     });

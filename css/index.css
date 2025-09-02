@@ -70,8 +70,13 @@ body {
     /* height: 100vh; */
     height: 44px;
     /* opacity: 0; */
-    transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transition: height 0.3s ease-in-out;
 }
+
+.navshrink .navshrinkcontent {
+
+}
+
 .navshrink .togglenav {
     /* fv */
     padding-inline-end: 56px;
@@ -92,6 +97,9 @@ body {
     display: flex;
     flex-direction: column;
     row-gap: 40px;
+
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
 }
 .navshrink .navshrinkoverlay a {
     color: var(--default-text-color);
