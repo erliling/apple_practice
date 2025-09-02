@@ -23,6 +23,7 @@ window.onload = function () {
 
             // control content div scroll y
             navshrinkcontent.style.overflowY = 'hidden';
+            navshrinkcontent.style.height = '44px';
 
             //control whole page scroll y
             document.body.style.overflowY = "auto";
@@ -30,8 +31,9 @@ window.onload = function () {
             addClass(toggleoverlaybtn, 'open');
 
             navshrink.style.overflow = 'visible';
-            navshrinkoverlay.style.height = 'fit-content';
+            // navshrinkoverlay.style.height = 'fit-content';
             // navshrinkoverlay.style.padding = '0px 24px 64px 32px';
+            navshrinkcontent.style.height = '100vh';
 
             mininav.style.opacity = 0;
             
