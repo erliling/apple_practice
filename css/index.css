@@ -29,13 +29,16 @@ body {
 .navshrink {
     width: 100%;
 
-    overflow: hidden;
+    /* overflow: hidden; */
 
     position: relative;
 
     background-color: var(--default-background-light-color2);
 
     display: flex;
+}
+.navshrink.open {
+    /* overflow: visible; */
 }
 .navshrink ul {
     width: 100%;
@@ -59,7 +62,7 @@ body {
     width: 100%;
     
     overflow-x: hidden;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
 
     background-color: var(--default-background-light-color2);
 
@@ -74,7 +77,7 @@ body {
 }
 
 .navshrink.open .navshrinkcontent {
-    overflow-y: auto;
+    /* overflow-y: auto; */
     height: 100vh;
 }
 

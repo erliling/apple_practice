@@ -14,7 +14,7 @@ window.onload = function () {
             // control toggle btn
             removeClass(navshrink, 'open');
             // control dropdown menu height
-            navshrink.style.overflow = 'hidden';
+            // navshrink.style.overflow = 'hidden';
             navshrinkoverlay.style.height = 0;
             // navshrinkoverlay.style.padding = '0 24px 0 32px';
 
@@ -34,7 +34,7 @@ window.onload = function () {
         } else {
             addClass(navshrink, 'open');
 
-            navshrink.style.overflow = 'visible';
+            // navshrink.style.overflow = 'visible';
             navshrinkoverlay.style.height = 'fit-content';
             // navshrinkoverlay.style.padding = '0px 24px 64px 32px';
 
