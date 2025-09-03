@@ -49,14 +49,13 @@ window.onload = function () {
 
     // Listen for the end of the transition
     navshrinkcontent.addEventListener('transitionend', () => {
-        // If the menu is NOT open (meaning it just finished closing)
         if (hasClass(navshrink, 'open')) {
-            // Set overflow to hidden to prevent scrolling and clean up
 
         } else if (!hasClass(navshrink, 'open')) {
-            // Set overflow to hidden to prevent scrolling and clean up
+            // not showing shrink nav via expanded
+            // also not make this into transition section
+            // so the height can shrink smoothly
             navshrink.style.overflow = 'hidden';
-
         }
     });
 
