@@ -10,6 +10,7 @@ body {
 @media screen and (min-width: 0px) {
     .navshrink {
         height: 0;
+        overflow: hidden;
     }
     .navcls {
         height: var(--r-nav-height);
@@ -19,6 +20,7 @@ body {
 @media screen and (max-width: 830px) {
     .navshrink {
         height: var(--r-nav-height);
+        /* overflow: auto; */
     }
     .navcls {
         height: 0;
@@ -62,7 +64,7 @@ body {
     width: 100%;
     
     overflow-x: hidden;
-    /* overflow-y: hidden; */
+    overflow-y: hidden;
 
     background-color: var(--default-background-light-color2);
 
@@ -203,18 +205,18 @@ transform: translateY(-4px);
 transform: translateY(4px);
 }
 /* --- The "Open" State (the cross) --- */
-.navshrink .toggleoverlaybtn.open .menubtn_burger {
+.navshrink.open .toggleoverlaybtn .menubtn_burger {
     /* This hides the middle bar by making it invisible */
     transform: translateX(-50px);
     background: transparent;
     box-shadow: none;
 }
 /* Transform the top bar into the top-right part of the cross */
-.navshrink .toggleoverlaybtn.open .menubtn_burger::before {
+.navshrink.open .toggleoverlaybtn .menubtn_burger::before {
 transform: rotate(45deg) translate(35px, -35px);
 }
 /* Transform the bottom bar into the bottom-right part of the cross */
-.navshrink .toggleoverlaybtn.open .menubtn_burger::after {
+.navshrink.open .toggleoverlaybtn .menubtn_burger::after {
 transform: rotate(-45deg) translate(35px, 35px);
 }
 

@@ -13,50 +13,52 @@ window.onload = function () {
         if (hasClass(navshrink, 'open')) {
             // control toggle btn
             removeClass(navshrink, 'open');
+
             // control dropdown menu height
-            // navshrink.style.overflow = 'hidden';
             navshrinkoverlay.style.height = 0;
-            // navshrinkoverlay.style.padding = '0 24px 0 32px';
 
             // control mininav
             mininav.style.opacity = 1;
 
             // control content div scroll y
-            // navshrinkcontent.style.overflowY = 'hidden';
-
+            navshrinkcontent.style.overflowY = 'hidden';
             // control whole page scroll y
             document.body.style.overflowY = "auto";
 
+
             // menu toggle effect
             navshrinkoverlay.style.opacity = 0;
-            // navshrinkcontent.style.height = '44px';
 
         } else {
             addClass(navshrink, 'open');
 
-            // navshrink.style.overflow = 'visible';
+            navshrink.style.overflow = 'visible';
+
             navshrinkoverlay.style.height = 'fit-content';
-            // navshrinkoverlay.style.padding = '0px 24px 64px 32px';
 
             mininav.style.opacity = 0;
-            
-            // navshrinkcontent.style.overflowY = 'scroll';
+
+            navshrinkoverlay.style.opacity = 1;
+
+            navshrinkcontent.style.overflowY = 'auto';
 
             document.body.style.overflowY = "hidden";
 
-            navshrinkoverlay.style.opacity = 1;
-            // navshrinkcontent.style.height = '100vh';
-            
         }
         
-//         // Listen for the end of the transition
-//     navshrinkcontent.addEventListener('transitionend', () => {
-//     // If the menu is NOT open (meaning it just finished closing)
-//     if (!hasClass(navshrink, 'open')) {
-//         // Set overflow to hidden to prevent scrolling and clean up
-//         navshrinkcontent.style.overflowY = 'hidden';
-//     }
-// });
+    });
+
+    // Listen for the end of the transition
+    navshrinkcontent.addEventListener('transitionend', () => {
+        // If the menu is NOT open (meaning it just finished closing)
+        if (hasClass(navshrink, 'open')) {
+            // Set overflow to hidden to prevent scrolling and clean up
+
+        } else if (!hasClass(navshrink, 'open')) {
+            // Set overflow to hidden to prevent scrolling and clean up
+            navshrink.style.overflow = 'hidden';
+
+        }
     });
 
     // flymenu
