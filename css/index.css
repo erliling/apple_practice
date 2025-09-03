@@ -10,32 +10,28 @@ body {
 @media screen and (min-width: 0px) {
     .navshrink {
         height: 0;
+        /* hide shrink nav when expanded */
         overflow: hidden;
     }
     .navcls {
         height: var(--r-nav-height);
-        /* overflow: auto; */
     }
 }
 @media screen and (max-width: 830px) {
     .navshrink {
         height: var(--r-nav-height);
-        /* overflow: auto; */
     }
     .navcls {
         height: 0;
-        /* overflow: hidden; */
     }
 }
 
 .navshrink {
     width: 100%;
 
-    /* overflow: hidden; */
-
     position: relative;
 
-    background-color: var(--default-background-light-color2);
+    /* background-color: var(--default-background-light-color2); */
 
     display: flex;
 }
@@ -44,18 +40,18 @@ body {
 }
 .navshrink ul {
     width: 100%;
+    height: 100%;
+
     padding-inline-start: var(--ps-spacing-24);
     padding-inline-end: var(--ps-spacing-24);
     box-sizing: border-box;
 
-    height: 100%;
-
     display: flex;
     justify-content: space-between;
-    
 }
 .navshrink ul li ul {
     padding-inline: 0;
+
     display: flex;
     column-gap: var(--ps-spacing-24);
 }
@@ -70,17 +66,16 @@ body {
 
     position: relative;
 
-    z-index: 1000;
+    /* z-index: 1000; */
 
-    /* height: 100vh; */
-    height: 44px;
-    /* opacity: 0; */
+    height: var(--r-nav-height);
     transition: height 0.3s ease-in-out;
 }
-
 .navshrink.open .navshrinkcontent {
-    /* overflow-y: auto; */
     height: 100vh;
+
+    /* control shrink content scrolly */
+    overflow-y: auto;
 }
 
 .navshrink .togglenav {
@@ -88,25 +83,39 @@ body {
     padding-inline-end: 56px;
 }
 .navshrink .togglenav .mininav {
-    /* opacity: 0; */
-    height: 44px;
+    height: var(--r-nav-height);
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+.navshrink.open .togglenav .mininav {
+    opacity: 0;
 }
 .navshrink .togglenav .mininav li a {
     height: 100%;
     display: flex;
     align-items: center;
 }
+
 .navshrink .navshrinkoverlay {
+    /* fv */
     padding: 0 24px 64px 32px;
     box-sizing: border-box;
 
     display: flex;
     flex-direction: column;
-    row-gap: 40px;
+    row-gap: var(--ps-spacing-40);
+
+    /* control the overlay's height and opacity */
+    height: 0;
 
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
 }
+.navshrink.open .navshrinkoverlay {
+    height: fit-content;
+    opacity: 1;
+}
+
 .navshrink .navshrinkoverlay a {
     color: var(--default-text-color);
 

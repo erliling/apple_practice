@@ -1,46 +1,45 @@
 
 window.onload = function () {
-    // when menuoverlay no page scroll
-    // document.body.style.overflow = "hidden";
     const navshrink = document.querySelector('.navshrink');
     const toggleoverlaybtn = document.querySelector('.navshrink .toggleoverlaybtn');
     const navshrinkoverlay = document.querySelector('.navshrink .navshrinkoverlay');
     const mininav = document.querySelector('.navshrink .mininav');
     const navshrinkcontent = document.querySelector('.navshrink .navshrinkcontent');
-    // const curtain = document.querySelector('.navshrink .curtain');
     
     toggleoverlaybtn.addEventListener('click', () => {
+        // close menu
         if (hasClass(navshrink, 'open')) {
             // control toggle btn
             removeClass(navshrink, 'open');
 
             // control dropdown menu height
-            navshrinkoverlay.style.height = 0;
+            // navshrinkoverlay.style.height = 0;
 
             // control mininav
-            mininav.style.opacity = 1;
+            // mininav.style.opacity = 1;
 
             // control content div scroll y
-            navshrinkcontent.style.overflowY = 'hidden';
+            // navshrinkcontent.style.overflowY = 'hidden';
             // control whole page scroll y
             document.body.style.overflowY = "auto";
 
-
             // menu toggle effect
-            navshrinkoverlay.style.opacity = 0;
+            // navshrinkoverlay.style.opacity = 0;
 
         } else {
+            // open menu
+
             addClass(navshrink, 'open');
 
             navshrink.style.overflow = 'visible';
 
-            navshrinkoverlay.style.height = 'fit-content';
+            // navshrinkoverlay.style.height = 'fit-content';
 
-            mininav.style.opacity = 0;
+            // mininav.style.opacity = 0;
 
-            navshrinkoverlay.style.opacity = 1;
+            // navshrinkoverlay.style.opacity = 1;
 
-            navshrinkcontent.style.overflowY = 'auto';
+            // navshrinkcontent.style.overflowY = 'auto';
 
             document.body.style.overflowY = "hidden";
 
