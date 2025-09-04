@@ -126,12 +126,6 @@ body {
     letter-spacing: .007em;
 }
 
-.navshrink.open .navshrinkoverlay a{
-    /* opacity: 1; */
-    /* transition: opacity 0.5s cubic-bezier(.4,0,.6,1); */
-
-    
-}
 @keyframes flyin-item-fade2 {
     from {
       opacity: 0;
@@ -149,14 +143,8 @@ body {
     justify-content: space-between;
 
     cursor: pointer;
-
-    /* opacity: 0;
-      transform: translateY(-5px); */
 }
 .navshrink.open .navshrinkoverlay li { 
-    /* opacity: 1;
-      transform: translateY(10px); */
-
     --r-globalnav-flyout-item-delay: var(--flyout-item-number, 0) * 30ms; 
     animation-name: flyin-item-fade2;
     animation-duration: 0.35s;
