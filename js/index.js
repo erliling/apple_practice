@@ -2,16 +2,10 @@
 window.onload = function () {
     const navshrink = document.querySelector('.navshrink');
     const toggleoverlaybtn = document.querySelector('.navshrink .toggleoverlaybtn');
-    const navshrinkoverlay = document.querySelector('.navshrink .navshrinkoverlay');
-    const mininav = document.querySelector('.navshrink .mininav');
     const navshrinkcontent = document.querySelector('.navshrink .navshrinkcontent');
     const navshrinkoverlayitems = document.querySelectorAll('.navshrink .navshrinkoverlay li');
-    
-    //set item number for shrink nav's secondary menu
-    navshrinkoverlayitems.forEach((item, index) => {
-        item.style.setProperty('--flyout-item-number', index);
-    })
-
+    //shrink nav
+    setshrinkmenuitemnum(navshrinkoverlayitems);
 
     toggleoverlaybtn.addEventListener('click', () => {
         // close menu
@@ -35,23 +29,12 @@ window.onload = function () {
 
         } else {
             // open menu
-
             addClass(navshrink, 'open');
 
             navshrink.style.overflow = 'visible';
 
-            // navshrinkoverlay.style.height = 'fit-content';
-
-            // mininav.style.opacity = 0;
-
-            // navshrinkoverlay.style.opacity = 1;
-
-            // navshrinkcontent.style.overflowY = 'auto';
-
             document.body.style.overflowY = "hidden";
-
         }
-        
     });
 
     // Listen for the end of the transition
@@ -66,10 +49,11 @@ window.onload = function () {
         }
     });
 
-    // flymenu
+
+
+    // fix nav, flymenu
     const secondmenus = document.querySelectorAll('.secondmenu');
     const secondmenuoverlay = document.querySelector('.navcls .navoverlay');
-
     secondmenus.forEach((secondmenu, index) => {
         const flycolumns = secondmenu.querySelectorAll('.flyout-column');
 
@@ -84,42 +68,36 @@ window.onload = function () {
         hoversecondmenuitem(navitem, flycolumns, flymenu, secondmenu, secondmenuoverlay);
     })
 
-    // play video and switch to img
+
+
+    // play video/img
     const welcomevideo = document.querySelector('.welcome .content .video-wrapper video');
     const welcomeimg = document.querySelector('.welcome .content .video-wrapper .picture2');
     const welcometitle = document.querySelector('.welcome .content .picture1');
-
-    const applyscale = ()=> {
+    const scalewelcometitledown = ()=> {
         welcometitle.classList.add('scaledown');
     }
     // 1. Check if the video is already playing
     if (!welcomevideo.paused && !welcomevideo.ended) {
         // If it is, apply the class immediately
-        applyscale();
+        scalewelcometitledown();
     }
     // 2. If it's not playing yet, listen for the 'playing' event
     // The { once: true } ensures the listener runs only once, for good practice
-    welcomevideo.addEventListener('playing', applyscale, { once: true });
-
-    // welcomevideo.addEventListener('playing', () => {
-    //     // welcometitle.style.opacity = 1;
-    //     // welcometitle.style.transform = 'scale(1)';
-       
-    // });
+    welcomevideo.addEventListener('playing', scalewelcometitledown, { once: true });
 
     welcomevideo.addEventListener('ended', () => {
         welcomevideo.pause();
         welcomevideo.style.opacity = 0;
         welcomeimg.style.opacity = 1;
 
-        // welcometitle.style.opacity = 1;
-        // welcometitle.style.transform = 'scale(1)';
-
         // Optional: After the transition, hide the video element completely to save resources
         setTimeout(() => {
             welcomevideo.style.display = 'none';
         }, 1000); // Wait for 1 second to match the CSS transition duration
     })
+
+
 
     // resizing
     // update the height and min width values when resized
@@ -130,6 +108,8 @@ window.onload = function () {
         resizeframe(overlay);
     })
 
+
+    
     // show nav scroll
     const welcome = document.querySelector('.welcome');
     const fixednav = document.querySelector('.fixednav');
@@ -185,6 +165,12 @@ window.onload = function () {
         // dissolve scroll
         scrollsection4(piccontainer, pics, texts, photograph, navheight)
     }); 
+}
+
+function setshrinkmenuitemnum(navshrinkoverlayitems) {
+    navshrinkoverlayitems.forEach((item, index) => {
+        item.style.setProperty('--flyout-item-number', index);
+    });
 }
 
 // function getminimagewidth() {
