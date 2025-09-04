@@ -104,7 +104,7 @@ body {
 
     display: flex;
     flex-direction: column;
-    row-gap: var(--ps-spacing-40);
+    row-gap: var(--ps-spacing-24);
 
     /* control the overlay's height and opacity */
     height: 0;
@@ -125,6 +125,23 @@ body {
     font-weight: 600;
     letter-spacing: .007em;
 }
+
+.navshrink.open .navshrinkoverlay a{
+    /* opacity: 1; */
+    /* transition: opacity 0.5s cubic-bezier(.4,0,.6,1); */
+
+    
+}
+@keyframes flyin-item-fade2 {
+    from {
+      opacity: 0;
+      transform: translateY(-15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
 .navshrink .navshrinkoverlay li {
     width: 100%;
     display: flex;
@@ -132,6 +149,20 @@ body {
     justify-content: space-between;
 
     cursor: pointer;
+
+    /* opacity: 0;
+      transform: translateY(-5px); */
+}
+.navshrink.open .navshrinkoverlay li { 
+    /* opacity: 1;
+      transform: translateY(10px); */
+
+    --r-globalnav-flyout-item-delay: var(--flyout-item-number, 0) * 30ms; 
+    animation-name: flyin-item-fade2;
+    animation-duration: 0.35s;
+    animation-timing-function: cubic-bezier(.4,0,.6,1);
+    animation-fill-mode: forwards;
+    animation-delay: calc(var(--r-globalnav-flyout-item-delay));
 }
 .navshrink .navshrinkoverlay li .toggleoverlaybtn2 svg {
     opacity: 1;
@@ -393,7 +424,7 @@ transform: rotate(-45deg) translate(35px, 35px);
     /* Set up the animation properties, but don't run it yet */
     animation-name: flyin-fade;
     animation-duration: 0.1s;
-    animation-timing-function: ease-out;
+    animation-timing-function: cubic-bezier(.4,0,.6,1);
     animation-fill-mode: forwards;
     /* The animation will wait until we trigger it */
     /* animation-play-state: paused;  */
@@ -424,7 +455,7 @@ transform: rotate(-45deg) translate(35px, 35px);
 
     animation-name: flyin-item-fade;
     animation-duration: 0.15s;
-    animation-timing-function: ease-out;
+    animation-timing-function: cubic-bezier(.4,0,.6,1);
     animation-fill-mode: forwards;
     animation-delay: calc(var(--r-globalnav-flyout-group-delay)*2 + var(--r-globalnav-flyout-item-delay) );
 }

@@ -5,7 +5,14 @@ window.onload = function () {
     const navshrinkoverlay = document.querySelector('.navshrink .navshrinkoverlay');
     const mininav = document.querySelector('.navshrink .mininav');
     const navshrinkcontent = document.querySelector('.navshrink .navshrinkcontent');
+    const navshrinkoverlayitems = document.querySelectorAll('.navshrink .navshrinkoverlay li');
     
+    //set item number for shrink nav's secondary menu
+    navshrinkoverlayitems.forEach((item, index) => {
+        item.style.setProperty('--flyout-item-number', index);
+    })
+
+
     toggleoverlaybtn.addEventListener('click', () => {
         // close menu
         if (hasClass(navshrink, 'open')) {
