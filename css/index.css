@@ -137,7 +137,7 @@ body {
       transform: translateY(0px);
     }
   }
-.navshrink .navshrinkoverlay li {
+.navshrink .navshrinkoverlay>li {
     /* fv */
     /* the item length needs to across the whole line for nav buttons */
     width: calc(100vw - 32px - 24px - 30px);
@@ -149,7 +149,7 @@ body {
 
     cursor: pointer;
 }
-.navshrink.open .navshrinkoverlay li { 
+.navshrink.open .navshrinkoverlay>li { 
     --r-globalnav-flyout-item-delay: var(--flyout-item-number, 0) * 30ms; 
     animation-name: flyin-item-fade2;
     animation-duration: 0.35s;
@@ -157,11 +157,11 @@ body {
     animation-fill-mode: forwards;
     animation-delay: calc(var(--r-globalnav-flyout-item-delay));
 }
-.navshrink .navshrinkoverlay li:hover a  {
+.navshrink .navshrinkoverlay>li:hover a  {
     color: var(--default-highlight-text-color);
 
 }
-.navshrink .navshrinkoverlay li a svg {
+.navshrink .navshrinkoverlay>li a svg {
     fill: var(--default-text-color);
     /* color: var(--default-text-color); */
     opacity: 0;
@@ -173,13 +173,51 @@ body {
     justify-content: center;
 
 }
-.navshrink .navshrinkoverlay li:hover a svg {
+.navshrink .navshrinkoverlay>li:hover a svg {
     fill: var(--default-highlight-text-color);
     /* color: var(--default-highlight-text-color); */
     opacity: 1;
     transform: translateX(4px);
 }
+.navshrink .navshrinkoverlay li.smalltext:nth-of-type(9) {
+    padding-top: var(--ps-spacing-48);
+}
+.navshrink .navshrinkoverlay .smalltext a {
+    font-size: 16px;
+}
 
+.navshrink .navshrinkoverlay .textgroup {
+    padding-block: var(--ps-spacing-24);
+}
+.navshrink .navshrinkoverlay>li>ul {
+    display: flex;
+    column-gap: var(--ps-spacing-48);
+    justify-content: flex-start;
+}
+.navshrink .navshrinkoverlay>li>ul li{
+    display: flex;
+    align-items: flex-start;
+}
+.navshrink .navshrinkoverlay>li>ul li ul {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--ps-spacing-16);
+    /* justify-content: flex-start;
+    align-items: flex-start; */
+
+    height: auto;
+
+}
+.navshrink .navshrinkoverlay>li>ul li ul .thintext {
+    padding-block: var(--ps-spacing-12);
+}
+.navshrink .navshrinkoverlay>li>ul li ul .thintext a {
+    font-weight: 400;
+    color: var(--default-gray-text-color);
+}
+.navshrink .navshrinkoverlay>li>ul>li>ul>li a{
+    font-size: 16px;
+}
 
 .navshrink .toggleoverlaybtn {
     /* display: block;
