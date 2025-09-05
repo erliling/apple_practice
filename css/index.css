@@ -179,13 +179,13 @@ body {
     opacity: 1;
     transform: translateX(4px);
 }
+
 .navshrink .navshrinkoverlay li.smalltext:nth-of-type(9) {
     padding-top: var(--ps-spacing-48);
 }
 .navshrink .navshrinkoverlay .smalltext a {
     font-size: 16px;
 }
-
 .navshrink .navshrinkoverlay .textgroup {
     padding-block: var(--ps-spacing-24);
 }
@@ -206,7 +206,6 @@ body {
     align-items: flex-start; */
 
     height: auto;
-
 }
 .navshrink .navshrinkoverlay>li>ul li ul .thintext {
     padding-block: var(--ps-spacing-12);
@@ -218,6 +217,22 @@ body {
 .navshrink .navshrinkoverlay>li>ul>li>ul>li a{
     font-size: 16px;
 }
+
+.navshrink .navshrinkoverlay.navshrinksecondmenu {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+.navshrink.open2 .navshrinkoverlay.navshrinksecondmenu {
+    opacity: 1;
+    height: 100%;
+    overflow: visible;
+}
+.navshrink.open2 .navshrinkoverlay {
+    opacity: 0;
+    height: 0;
+}
+
 
 .navshrink .toggleoverlaybtn {
     /* display: block;
@@ -289,6 +304,7 @@ transform: rotate(45deg) translate(35px, -35px);
 .navshrink.open .toggleoverlaybtn .menubtn_burger::after {
 transform: rotate(-45deg) translate(35px, 35px);
 }
+
 
 
 /* #endregion shrinkednav*/

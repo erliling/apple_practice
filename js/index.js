@@ -34,6 +34,16 @@ window.onload = function () {
             navshrink.style.overflow = 'visible';
 
             document.body.style.overflowY = "hidden";
+
+
+            //shrink nav, secondary menu
+            // const shrinknavmacitem = document.querySelector('.navshrink.open .navshrinkoverlay li.macitem');
+            // shrinknavmacitem.addEventListener('click', () => {
+            //     if (!hasClass(navshrink, 'open2')) {
+            //         addClass(navshrink, 'open2');
+            //         removeClass(navshrink, 'open');
+            //     } 
+            // });
         }
     });
 
@@ -51,7 +61,7 @@ window.onload = function () {
 
 
 
-    // fix nav, flymenu
+    // fix nav, secondary menu
     const secondmenus = document.querySelectorAll('.secondmenu');
     const secondmenuoverlay = document.querySelector('.navcls .navoverlay');
     secondmenus.forEach((secondmenu, index) => {
@@ -109,7 +119,7 @@ window.onload = function () {
     })
 
 
-    
+
     // show nav scroll
     const welcome = document.querySelector('.welcome');
     const fixednav = document.querySelector('.fixednav');
