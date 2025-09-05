@@ -76,6 +76,7 @@ body {
     height: 100vh;
 
     /* control shrink content scrolly */
+    /* if auto, then scroll bar might not appear */
     overflow-y: scroll;
 }
 
@@ -104,7 +105,7 @@ body {
 
     display: flex;
     flex-direction: column;
-    row-gap: var(--ps-spacing-24);
+    /* row-gap: var(--ps-spacing-24); */
 
     /* control the overlay's height and opacity */
     height: 0;
@@ -137,10 +138,14 @@ body {
     }
   }
 .navshrink .navshrinkoverlay li {
-    width: 100%;
+    /* fv */
+    /* the item length needs to across the whole line for nav buttons */
+    width: calc(100vw - 32px - 24px - 30px);
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    padding-block: var(--ps-spacing-12);
 
     cursor: pointer;
 }
@@ -152,31 +157,29 @@ body {
     animation-fill-mode: forwards;
     animation-delay: calc(var(--r-globalnav-flyout-item-delay));
 }
-.navshrink .navshrinkoverlay li .toggleoverlaybtn2 svg {
-    opacity: 1;
-    transform: translateX(6px);
-}
-.navshrink .navshrinkoverlay li a svg {
-    fill: rgba(255, 255, 255, 0.8);
-    color: var(--default-text-color);
-    opacity: 0;
-    transform: translateX(0);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    transition: opacity 0.1s ease-in, transform 0.2s ease-in;
-}
-.navshrink .navshrinkoverlay li:hover a svg {
-    fill: rgba(255, 255, 255, 0.8);
-    color: var(--default-text-color);
-    opacity: 1;
-    transform: translateX(6px);
-}
 .navshrink .navshrinkoverlay li:hover a  {
     color: var(--default-highlight-text-color);
 
 }
+.navshrink .navshrinkoverlay li a svg {
+    fill: var(--default-text-color);
+    /* color: var(--default-text-color); */
+    opacity: 0;
+    transform: translateX(0);
+    transition: opacity 0.2s cubic-bezier(.4,0,.6,1), transform 0.2s cubic-bezier(.4,0,.6,1);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.navshrink .navshrinkoverlay li:hover a svg {
+    fill: var(--default-highlight-text-color);
+    /* color: var(--default-highlight-text-color); */
+    opacity: 1;
+    transform: translateX(4px);
+}
+
 
 .navshrink .toggleoverlaybtn {
     /* display: block;
