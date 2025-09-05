@@ -76,7 +76,7 @@ body {
     height: 100vh;
 
     /* control shrink content scrolly */
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 .navshrink .togglenav {
