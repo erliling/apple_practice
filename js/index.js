@@ -26,6 +26,9 @@ window.onload = function () {
 
             // menu toggle effect
             // navshrinkoverlay.style.opacity = 0;
+            if (hasClass(navshrink, 'open2')) {
+                removeClass(navshrink, 'open2');
+            } 
 
         } else {
             // open menu
@@ -37,13 +40,14 @@ window.onload = function () {
 
 
             //shrink nav, secondary menu
-            // const shrinknavmacitem = document.querySelector('.navshrink.open .navshrinkoverlay li.macitem');
-            // shrinknavmacitem.addEventListener('click', () => {
-            //     if (!hasClass(navshrink, 'open2')) {
-            //         addClass(navshrink, 'open2');
-            //         removeClass(navshrink, 'open');
-            //     } 
-            // });
+            const shrinknavmacitem = document.querySelector('.navshrink.open .navshrinkoverlay li.macitem');
+            shrinknavmacitem.addEventListener('click', () => {
+                if (!hasClass(navshrink, 'open2')) {
+                    addClass(navshrink, 'open2');
+                    // removeClass(navshrink, 'open');
+                } 
+                // console.log('here');
+            });
         }
     });
 
