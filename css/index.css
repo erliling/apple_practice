@@ -225,14 +225,55 @@ body {
     height: 0;
     overflow: hidden;
 }
+
+@keyframes shrinknav-secondmenu {
+    0% {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    30% {
+      opacity: 0;
+      transform: translateX(0px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+  @keyframes shrinknav-secondmenu2 {
+    0% {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+    30% {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+  }
 .navshrink.open2 .navshrinkoverlay.navshrinksecondmenu {
-    opacity: 1;
+    animation-name: shrinknav-secondmenu;
+    animation-duration: 0.4s;
+    animation-timing-function: cubic-bezier(.4, 0, .6, 1);
+    animation-fill-mode: forwards;
+    animation-delay: 0.15s;
+
+    /* opacity: 1; */
     height: 100%;
     overflow: visible;
     /* padding-block: var(--ps-spacing-24); */
 }
 .navshrink.open2 .navshrinkoverlay {
-    opacity: 0;
+    animation-name: shrinknav-secondmenu2;
+    animation-duration: 0.4s;
+    animation-timing-function: cubic-bezier(.4, 0, .6, 1);
+    animation-fill-mode: forwards;
+    animation-delay: 0.15s;
+
+    /* opacity: 0; */
     height: 0;
     /* padding-block: 0; */
 }
