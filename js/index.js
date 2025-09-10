@@ -39,7 +39,7 @@ window.onload = function () {
             document.body.style.overflowY = "hidden";
 
 
-            //shrink nav, secondary menu
+            //shrink nav, secondary menu, mac item
             const shrinknavmacitem = document.querySelector('.navshrink.open .navshrinkoverlay li.macitem');
             shrinknavmacitem.addEventListener('click', () => {
                 if (!hasClass(navshrink, 'open2')) {

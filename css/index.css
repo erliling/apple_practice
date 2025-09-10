@@ -100,7 +100,7 @@ body {
 
 .navshrink .navshrinkoverlay {
     /* fv */
-    padding-block: var(--ps-spacing-24);
+    /* padding-block: var(--ps-spacing-24); */
     padding-left: var(--ps-spacing-48);
     /* padding: 0 24px 64px 32px; */
     box-sizing: border-box;
@@ -229,12 +229,12 @@ body {
     opacity: 1;
     height: 100%;
     overflow: visible;
-    padding-block: var(--ps-spacing-24);
+    /* padding-block: var(--ps-spacing-24); */
 }
 .navshrink.open2 .navshrinkoverlay {
     opacity: 0;
     height: 0;
-    padding-block: 0;
+    /* padding-block: 0; */
 }
 
 
