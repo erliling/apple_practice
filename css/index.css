@@ -238,7 +238,6 @@ body {
     height: 0;
     overflow: hidden;
 }
-
 @keyframes shrinknav-secondmenu {
     0% {
       opacity: 0;
@@ -281,6 +280,14 @@ body {
         transform: translateX(0px);
       } */
 }
+/* .navshrink.open2close .navshrinkoverlay.navshrinksecondmenu {
+    animation-name: shrinknav-secondmenu;
+    animation-direction: reverse;
+    animation-duration: 0.4s;
+    animation-timing-function: cubic-bezier(.4, 0, .6, 1);
+    animation-fill-mode: forwards;
+    animation-delay: 0.15s;
+} */
 .navshrink.open2 .navshrinkoverlay.navshrinksecondmenu {
     animation-name: shrinknav-secondmenu;
     animation-duration: 0.4s;
