@@ -89,9 +89,16 @@ body {
     opacity: 1;
     transition: opacity 0.3s ease-in-out;
 }
+.navshrink .togglenav .mininav .leftarrow {
+    /* opacity: 0;
+    width: 0; */
+}
+
 .navshrink.open .togglenav .mininav {
     opacity: 0;
 }
+
+
 .navshrink .togglenav .mininav li a {
     height: 100%;
     display: flex;
