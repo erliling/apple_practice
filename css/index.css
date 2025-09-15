@@ -274,7 +274,7 @@ body {
     }
   }
   /* second menu open: first menu fade out */
-  @keyframes shrinknav-secondmenu2 {
+  /* @keyframes shrinknav-secondmenu2 {
     0% {
       opacity: 1;
       transform: translateX(0px);
@@ -287,13 +287,13 @@ body {
       opacity: 0;
       transform: translateX(0px);
     }
-  }
+  } */
   .navshrink.open.open2 .navshrinkoverlay.navshrinksecondmenu {
     animation-name: shrinknav-secondmenu;
     animation-duration: 0.4s;
     animation-timing-function: cubic-bezier(.4, 0, .6, 1);
     animation-fill-mode: forwards;
-    animation-delay: 0.15s;
+    animation-delay: 0s;
 
      height: fit-content;
     /* opacity: 1; */
@@ -301,20 +301,22 @@ body {
     /* padding-block: var(--ps-spacing-24); */
 }
 .navshrink.open.open2 .navshrinkoverlay {
-    animation-name: shrinknav-secondmenu2;
+    /* animation-name: shrinknav-secondmenu2;
     animation-duration: 0.4s;
     animation-timing-function: cubic-bezier(.4, 0, .6, 1);
     animation-fill-mode: forwards;
-    animation-delay: 0.15s;
+    animation-delay: 0.15s; */
 
+    /* otherwise opacity=0 will leave the height there */
     height: 0;
+    opacity: 0;
 }
 .navshrink.open.open2 .togglenav .mininav .leftnavicon {
     animation-name: shrinknav-secondmenu;
     animation-duration: 0.4s;
     animation-timing-function: cubic-bezier(.4, 0, .6, 1);
     animation-fill-mode: forwards;
-    animation-delay: 0.15s;
+    animation-delay: 0s;
     /* opacity: 1; */
 }
 
