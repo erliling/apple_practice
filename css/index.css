@@ -251,6 +251,7 @@ body {
     opacity: 0;
     height: 0;
     /* overflow: hidden; */
+    transition: opacity 0.15s ease-in-out;
 }
 
 /* second menu open: second menu a bit bounce */
@@ -349,7 +350,7 @@ body {
       transform: translateX(0px);
     }
   }
-  @keyframes shrinknav-secondmenu5 {
+  /* @keyframes shrinknav-secondmenu5 {
     0% {
         opacity: 1;
         transform: translateX(0px);
@@ -362,7 +363,7 @@ body {
         opacity: 0;
         transform: translateX(0px);
       }
-  }
+  } */
   .navshrink.open.open2close .navshrinkoverlay {
     animation-name: shrinknav-secondmenu3;
     /* animation-direction: reverse; */
@@ -372,11 +373,14 @@ body {
     animation-delay: 0s;
 }
 .navshrink.open.open2close .navshrinkoverlay.navshrinksecondmenu {
-    animation-name: shrinknav-secondmenu5;
+    /* animation-name: shrinknav-secondmenu5;
     animation-duration: 0.4s;
     animation-timing-function: cubic-bezier(.4, 0, .6, 1);
     animation-fill-mode: forwards;
-    animation-delay: 0.15s;
+    animation-delay: 0s; */
+
+    height: 0;
+    overflow: hidden;
 }
 .navshrink.open.open2close .togglenav .mininav .leftnavicon {
     animation-name: shrinknav-secondmenu4;
