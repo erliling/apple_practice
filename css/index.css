@@ -249,6 +249,8 @@ body {
     height: 0;
     overflow: hidden;
 }
+
+/* second menu open: second menu a bit bounce */
 @keyframes shrinknav-secondmenu {
     0% {
       opacity: 0;
@@ -267,6 +269,7 @@ body {
       transform: translateX(0px);
     }
   }
+  /* second menu open: first menu fade out */
   @keyframes shrinknav-secondmenu2 {
     0% {
       opacity: 1;
@@ -274,71 +277,14 @@ body {
     }
     30% {
       opacity: 0;
-      transform: translateX(-20px);
-    }
-    100% {
-      opacity: 0;
-      transform: translateX(-20px);
-    }
-  }
-  @keyframes shrinknav-leftnavicon {
-        from {
-        opacity: 0;
-        transform: translateX(2px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0px);
-      }
-      /* 100% {
-        opacity: 1;
-        transform: translateX(0px);
-      } */
-}
-@keyframes shrinknav-secondmenu3 {
-    0% {
-      opacity: 0;
-      transform: translateX(20px);
-    }
-    30% {
-      opacity: 0.3;
-      transform: translateX(-10px);
-    }
-    100% {
-      opacity: 1;
       transform: translateX(0px);
-    }
-  }
-  @keyframes shrinknav-secondmenu4 {
-    0% {
-      opacity: 1;
-      transform: translateX(0px);
-    }
-    30% {
-      opacity: 0.3;
-      transform: translateX(20px);
     }
     100% {
       opacity: 0;
       transform: translateX(0px);
     }
   }
-.navshrink.open.open2close .navshrinkoverlay {
-    animation-name: shrinknav-secondmenu3;
-    /* animation-direction: reverse; */
-    animation-duration: 0.4s;
-    animation-timing-function: cubic-bezier(.4, 0, .6, 1);
-    animation-fill-mode: forwards;
-    animation-delay: 0s;
-}
-.navshrink.open.open2close .navshrinkoverlay.navshrinksecondmenu {
-    animation-name: shrinknav-secondmenu4;
-    animation-duration: 0.4s;
-    animation-timing-function: cubic-bezier(.4, 0, .6, 1);
-    animation-fill-mode: forwards;
-    animation-delay: 0s;
-}
-.navshrink.open.open2 .navshrinkoverlay.navshrinksecondmenu {
+  .navshrink.open.open2 .navshrinkoverlay.navshrinksecondmenu {
     animation-name: shrinknav-secondmenu;
     animation-duration: 0.4s;
     animation-timing-function: cubic-bezier(.4, 0, .6, 1);
@@ -357,20 +303,70 @@ body {
     animation-fill-mode: forwards;
     animation-delay: 0.15s;
 
-    /* opacity: 0;
-    transition: opacity 0.2s ease-in-out; */
-
-    /* opacity: 0; */
     height: 0;
-    /* padding-block: 0; */
 }
 .navshrink.open.open2 .togglenav .mininav .leftnavicon {
-    animation-name: shrinknav-leftnavicon;
-    animation-duration: 0.25s;
+    animation-name: shrinknav-secondmenu;
+    animation-duration: 0.4s;
     animation-timing-function: cubic-bezier(.4, 0, .6, 1);
     animation-fill-mode: forwards;
     animation-delay: 0.15s;
     /* opacity: 1; */
+}
+
+@keyframes shrinknav-secondmenu3 {
+    0% {
+      opacity: 0;
+      transform: translateX(0px);
+    }
+    30% {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+      90% {
+          opacity: 0.9;
+          transform: translateX(-1px);
+      }
+    100% {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+  @keyframes shrinknav-secondmenu4 {
+    0% {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+    /* 30% {
+      opacity: 0;
+      transform: translateX(10px);
+    } */
+    100% {
+      opacity: 0;
+      transform: translateX(0px);
+    }
+  }
+  .navshrink.open.open2close .navshrinkoverlay {
+    animation-name: shrinknav-secondmenu3;
+    /* animation-direction: reverse; */
+    animation-duration: 0.4s;
+    animation-timing-function: cubic-bezier(.4, 0, .6, 1);
+    animation-fill-mode: forwards;
+    animation-delay: 0s;
+}
+.navshrink.open.open2close .navshrinkoverlay.navshrinksecondmenu {
+    /* animation-name: shrinknav-secondmenu4;
+    animation-duration: 0.4s;
+    animation-timing-function: cubic-bezier(.4, 0, .6, 1);
+    animation-fill-mode: forwards;
+    animation-delay: 0s; */
+}
+.navshrink.open.open2close .togglenav .mininav .leftnavicon {
+    animation-name: shrinknav-secondmenu4;
+    animation-duration: 0.2s;
+    animation-timing-function: cubic-bezier(.4, 0, .6, 1);
+    animation-fill-mode: forwards;
+    animation-delay: 0s;
 }
 
 .navshrink .toggleoverlaybtn {
