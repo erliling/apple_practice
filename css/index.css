@@ -93,14 +93,6 @@ body {
     opacity: 1;
     transition: opacity 0.3s ease-in-out;
 }
-.navshrink .togglenav .mininav .leftarrow {
-    /* opacity: 0;
-    width: 0; */
-}
-
-.navshrink.open .togglenav .mininav {
-    /* opacity: 0; */
-}
 .navshrink.open .togglenav .mininav .navicon {
     opacity: 0;
 }
@@ -317,7 +309,8 @@ body {
     animation-timing-function: cubic-bezier(.4, 0, .6, 1);
     animation-fill-mode: forwards;
     animation-delay: 0s;
-    /* opacity: 1; */
+
+    /* transition: opacity 0.3s ease-in-out; */
 }
 
 @keyframes shrinknav-secondmenu3 {
@@ -338,20 +331,16 @@ body {
       transform: translateX(0px);
     }
   }
-  @keyframes shrinknav-secondmenu4 {
+  /* @keyframes shrinknav-secondmenu4 {
     0% {
       opacity: 1;
       transform: translateX(0px);
     }
-    /* 30% {
-      opacity: 0;
-      transform: translateX(10px);
-    } */
     100% {
       opacity: 0;
       transform: translateX(0px);
     }
-  }
+  } */
   /* @keyframes shrinknav-secondmenu5 {
     0% {
         opacity: 1;
@@ -385,11 +374,15 @@ body {
     overflow: hidden;
 }
 .navshrink.open.open2close .togglenav .mininav .leftnavicon {
-    animation-name: shrinknav-secondmenu4;
+    /* animation-name: shrinknav-secondmenu4;
     animation-duration: 0.2s;
     animation-timing-function: cubic-bezier(.4, 0, .6, 1);
     animation-fill-mode: forwards;
-    animation-delay: 0s;
+    animation-delay: 0s; */
+
+    /* transition: opacity 0.3s ease-in-out; */
+
+    /* opacity: 0; */
 }
 
 .navshrink .toggleoverlaybtn {
