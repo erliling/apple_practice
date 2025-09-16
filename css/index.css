@@ -242,7 +242,7 @@ body {
 
     opacity: 0;
     height: 0;
-    /* overflow: hidden; */
+    overflow: hidden;
     transition: opacity 0.15s ease-in-out;
 }
 
@@ -289,7 +289,7 @@ body {
 
      height: fit-content;
     /* opacity: 1; */
-    /* overflow: visible; */
+    overflow: visible;
     /* padding-block: var(--ps-spacing-24); */
 }
 .navshrink.open.open2 .navshrinkoverlay {
