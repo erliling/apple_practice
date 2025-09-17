@@ -388,8 +388,6 @@ transform: rotate(-45deg) translate(35px, 35px);
 .normalnav ul li {
     display: flex;
     align-items: center;
-    /* justify-content: end; */
-    /* justify-content: space-around; */
 }
 .normalnav > ul > li > a {
     height: 100%;
@@ -397,11 +395,9 @@ transform: rotate(-45deg) translate(35px, 35px);
     display: flex;
     align-items: center;
 }
-/* .normalnav ul:not(.flyout-menu) li a { */
 .normalnav ul li a {
     color: rgba(255, 255, 255, 0.8);
     font-size: 12px;
-    /* height: var(--r-nav-height); */
 }
 
 .normalnav ul li a svg {
@@ -416,8 +412,6 @@ transform: rotate(-45deg) translate(35px, 35px);
 
 .navcls {
     width: 100%;
-    /* height: var(--r-nav-height); */
-    /* overflow: hidden; */
 
     position: relative;
 
@@ -437,7 +431,7 @@ transform: rotate(-45deg) translate(35px, 35px);
     justify-content: space-between;
 }
 
-/* nav's secondary menu */
+/* nav's whole page overlay */
 .navcls .navoverlay {
     position: absolute;
     left: 0;
@@ -454,23 +448,19 @@ transform: rotate(-45deg) translate(35px, 35px);
     pointer-events: none;
 }
 
+/* nav's secondary menu */
 .navcls ul .secondmenu {
-    
     position: absolute;
     left: 0;
     top: var(--r-nav-height);
 
     width: 100%;
-    /* height: 500px; */
 
     background-color: var(--default-background-light-color2);
-    /* display: none; */
 
     max-height: 0;
     transition: max-height 0.5s ease-in-out;
     overflow: hidden;
-
-    /* z-index: 500; */
 }
 
 .navcls ul .secondmenu ul {
@@ -507,12 +497,6 @@ transform: rotate(-45deg) translate(35px, 35px);
     line-height: 1.1429;
     font-weight: 600;
     letter-spacing: 0.007em;
-}
-
-
-.navcls ul :hover .secondmenu {
-    /* max-height: 500px; */
-    /* animation: flyin-fade 2s infinite linear; */
 }
 
 @keyframes flyin-fade {
@@ -552,6 +536,7 @@ transform: rotate(-45deg) translate(35px, 35px);
     /* Use your calculated variable for the delay */
     animation-delay: var(--r-globalnav-flyout-group-delay);
 }
+
 @keyframes flyin-item-fade {
     from {
       opacity: 0;

@@ -76,7 +76,7 @@ window.onload = function () {
 
 
 
-    // fix nav, secondary menu
+    // normal nav, secondary menu
     const secondmenus = document.querySelectorAll('.secondmenu');
     const secondmenuoverlay = document.querySelector('.navcls .navoverlay');
     secondmenus.forEach((secondmenu, index) => {
@@ -226,40 +226,29 @@ function setsecondmenucolumnnum(flycolumns) {
 function hoversecondmenuitem(navitem, flycolumns, flymenu, secondmenu, secondmenuoverlay) {
     
     navitem.addEventListener('mouseenter', () => {
-        // let flymenuheight = 0;
-        
-        // flymenu.classList.add('is-open');
         flycolumns.forEach((column, index) => {
             column.classList.add('is-open');
             const items = column.querySelectorAll('.flyout-item');
             items.forEach((item, index) => {
                 // Set a unique CSS variable for each item based on its position (0, 1, 2, ...)
                 item.classList.add('is-open');
-                // flymenuheight += item.getBoundingClientRect().height;
         });
         });
 
-        // flymenuheight += 
         const flymenuheight = flymenu.clientHeight;
-        // console.log(flymenuheight);
         secondmenu.style.setProperty('max-height', `${flymenuheight + 56}px`);
-        // secondmenu.style.setProperty('max-height', '500px');
-        // secondmenuoverlay.style.setProperty('display', 'block');
         secondmenuoverlay.style.setProperty('opacity', 1);
     })
 
     navitem.addEventListener('mouseleave', () => {
-        // flymenu.classList.remove('is-open');
         flycolumns.forEach((column, index) => {
             column.classList.remove('is-open');
             const items = column.querySelectorAll('.flyout-item');
             items.forEach((item, index) => {
-                // Set a unique CSS variable for each item based on its position (0, 1, 2, ...)
                 item.classList.remove('is-open');
         });
         });
         secondmenu.style.setProperty('max-height', '0');
-        // secondmenuoverlay.style.setProperty('display', 'none');
         secondmenuoverlay.style.setProperty('opacity', 0);
     })
 }
