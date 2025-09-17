@@ -285,13 +285,15 @@ function scrollwelcomesection (welcome, navheight, fixednav) {
     if (isinsection(welcome, navheight)) {
         const distancetobottom = welcome.offsetTop + welcome.offsetHeight - navheight - window.scrollY;
         if ((distancetobottom < 100) && (!isnavshow)) {
-            fixednav.style.height = '52px';
-            fixednav.style.borderBottomWidth = '1px';
+            fixednav.classList.add('open');
+            // fixednav.style.height = '52px';
+            // fixednav.style.borderBottomWidth = '1px';
             isnavshow = true;
         } 
         if ((distancetobottom >= 100) && (isnavshow)) {
-            fixednav.style.height = '0';
-            fixednav.style.borderBottomWidth = '0px';
+            // fixednav.style.height = '0';
+            // fixednav.style.borderBottomWidth = '0px';
+            fixednav.classList.remove('open');
             isnavshow = false;
         }
     }
