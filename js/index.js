@@ -283,10 +283,8 @@ function isinsection(section, navheight) {
 let isnavshow = false;
 function scrollwelcomesection (welcome, navheight, fixednav) {
     if (isinsection(welcome, navheight)) {
-        // console.log('here');
         const distancetobottom = welcome.offsetTop + welcome.offsetHeight - navheight - window.scrollY;
         if ((distancetobottom < 100) && (!isnavshow)) {
-            // fixednav.style.display = 'block';
             fixednav.style.height = '52px';
             fixednav.style.borderBottomWidth = '1px';
             isnavshow = true;
