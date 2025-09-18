@@ -1164,3 +1164,17 @@ a.arrow::after {
     background: #6f976b;
 }
 /* #endregion playbar*/
+
+
+/* #region revealelement */
+.revealelement {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out
+}
+.revealelement.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* #endregion revealelement */
