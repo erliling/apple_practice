@@ -991,6 +991,32 @@ a.arrow::after {
 @keyframes playbaranimation {
     0% {
       opacity: 0;
+      transform: translateY(100px);
+      /* width: var(--ps-spacing-56);
+      height: var(--ps-spacing-56); */
+    }
+    /* 30% {
+        opacity: 1;
+        transform: translateY(40px);
+        width: var(--ps-spacing-56);
+        height: var(--ps-spacing-56);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(0px);
+        width: var(--ps-spacing-56);
+        height: var(--ps-spacing-56);
+    } */
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+      /* width: fit-content;
+      height: var(--ps-spacing-56); */
+    }
+  }
+/* @keyframes playbaranimation {
+    0% {
+      opacity: 0;
       transform: translateY(30px);
       width: var(--ps-spacing-56);
       height: var(--ps-spacing-56);
@@ -1013,7 +1039,7 @@ a.arrow::after {
       width: fit-content;
       height: var(--ps-spacing-56);
     }
-  }
+  } */
 
 .playbarcontent {
     display: flex;
@@ -1024,13 +1050,10 @@ a.arrow::after {
 
     margin-top: var(--ps-spacing-32);
     margin-bottom: var(--ps-spacing-96);
+
+    opacity: 0;
 }
-.playbarcontent.revealed {
-    animation-name: playbaranimation;
-    animation-duration: 0.4s;
-    animation-timing-function: cubic-bezier(.4,0,.6,1);
-    animation-fill-mode: forwards;
-}
+
 
 .playbarcontent .playbarright {
     display: flex;

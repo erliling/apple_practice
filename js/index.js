@@ -2,8 +2,10 @@
 window.onload = function () {
     
     // reveal playbar
-    const carouselcontent = document.querySelectorAll('.carousel .bigcarousel .carouselcontent');
-    revealhorizontalelements(carouselcontent);
+    const carousel = document.querySelectorAll('.carousel');
+    // const playbar = document.querySelector('.carousel .playbarcontent');
+    // revealplaybar(carouselcontent, playbar);
+    revealhorizontalelements(carousel);
 
     // reveal elements
     const revealelements = document.querySelectorAll('.revealelement');
@@ -237,6 +239,31 @@ function revealverticalelements(rowContainers) {
     // Tell the observer to watch each row container
     rowContainers.forEach(container => {
         observer2.observe(container);
+    });
+}
+
+function revealplaybar(playbarcontainer, playbar) {
+    const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2 // Trigger when 20% of the element is visible
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            // If the element is now intersecting the viewport
+            if (entry.isIntersecting) {
+                // Add the "is-revealed" class to trigger the CSS transition
+                playbar.target.classList.add('revealed');
+                // Stop observing the element once it's revealed
+                observer.unobserve(entry.target);
+            }
+        });
+    }, options);
+
+    // Tell the observer to watch each reveal-element
+    playbarcontainer.forEach(element => {
+        observer.observe(element);
     });
 }
 

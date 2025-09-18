@@ -919,6 +919,14 @@ transform: rotate(-45deg) translate(35px, 35px);
     padding-bottom: 30px;
 }
 
+.carousel.revealed .playbarcontent {
+    animation-name: playbaranimation;
+    animation-duration: 0.4s;
+    animation-timing-function: cubic-bezier(.4,0,.6,1);
+    animation-fill-mode: forwards;
+}
+
+
 /* #endregion carousel*/
 
 /* #region Phonecategory*/
