@@ -1,6 +1,9 @@
 
 window.onload = function () {
     
+    // reveal playbar
+    const carouselcontent = document.querySelectorAll('.carousel .bigcarousel .carouselcontent');
+    revealhorizontalelements(carouselcontent);
 
     // reveal elements
     const revealelements = document.querySelectorAll('.revealelement');
