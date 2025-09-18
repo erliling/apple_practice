@@ -4,67 +4,12 @@ window.onload = function () {
 
     // reveal elements
     const revealelements = document.querySelectorAll('.revealelement');
-
-    // Set up the options for the observer
-    const options = {
-        root: null, // The viewport
-        rootMargin: '0px',
-        threshold: 0.2 // Trigger when 20% of the element is visible
-    };
-    
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          // If the element is now intersecting the viewport
-          if (entry.isIntersecting) {
-            // Add the "is-revealed" class to trigger the CSS transition
-            entry.target.classList.add('revealed');
-            // Stop observing the element once it's revealed
-            observer.unobserve(entry.target);
-          }
-        });
-      }, options);
-
-    // Tell the observer to watch each reveal-element
-    revealelements.forEach(element => {
-        observer.observe(element);
-    });
+    revealhorizontalelements(revealelements);
 
 
     // reveal row containers
     const rowContainers = document.querySelectorAll('.rowcontainer');
-
-    // Set up the options for the observer
-    const options2 = {
-        root: null, // The viewport
-        rootMargin: '0px',
-        threshold: 0.5 // Trigger when 50% of the row is visible
-    };
-
-    // Create a new IntersectionObserver
-    const observer2 = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-        // Get all the child elements within the intersecting row
-        const children = entry.target.querySelectorAll('.revealelement');
-
-        // Loop through the children to apply the staggered animation
-        children.forEach((child, index) => {
-            // Apply a delay based on the child's index
-            setTimeout(() => {
-            child.classList.add('revealed');
-            }, index * 2000); // 150ms delay between each element
-        });
-
-        // Stop observing the row once it's revealed
-        observer.unobserve(entry.target);
-        }
-    });
-    }, options2);
-
-    // Tell the observer to watch each row container
-    rowContainers.forEach(container => {
-        observer2.observe(container);
-    });
+    revealverticalelements(rowContainers);
 
 
     // shrink nav
@@ -256,6 +201,65 @@ window.onload = function () {
         // dissolve scroll
         scrollsection4(piccontainer, pics, texts, photograph, navheight)
     }); 
+}
+
+function revealverticalelements(rowContainers) {
+    const options2 = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5 // Trigger when 50% of the row is visible
+    };
+
+    // Create a new IntersectionObserver
+    const observer2 = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Get all the child elements within the intersecting row
+                const children = entry.target.querySelectorAll('.revealelement');
+
+                // Loop through the children to apply the staggered animation
+                children.forEach((child, index) => {
+                    // Apply a delay based on the child's index
+                    setTimeout(() => {
+                        child.classList.add('revealed');
+                    }, index * 2000); // 150ms delay between each element
+                });
+
+                // Stop observing the row once it's revealed
+                observer.unobserve(entry.target);
+            }
+        });
+    }, options2);
+
+    // Tell the observer to watch each row container
+    rowContainers.forEach(container => {
+        observer2.observe(container);
+    });
+}
+
+function revealhorizontalelements(revealelements) {
+    const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2 // Trigger when 20% of the element is visible
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            // If the element is now intersecting the viewport
+            if (entry.isIntersecting) {
+                // Add the "is-revealed" class to trigger the CSS transition
+                entry.target.classList.add('revealed');
+                // Stop observing the element once it's revealed
+                observer.unobserve(entry.target);
+            }
+        });
+    }, options);
+
+    // Tell the observer to watch each reveal-element
+    revealelements.forEach(element => {
+        observer.observe(element);
+    });
 }
 
 function setshrinkmenuitemnum(navshrinkoverlayitems) {
