@@ -3,7 +3,7 @@ window.onload = function () {
     
     // reveal playbar
     const carousel = document.querySelectorAll('.carousel');
-    revealrowbyrow(carousel, 0.6);
+    revealrowbyrow(carousel, 0.2);
 
     // reveal elements
     const revealelements = document.querySelectorAll('.colcontainer.revealelement');
