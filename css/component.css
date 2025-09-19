@@ -990,7 +990,7 @@ a.arrow::after {
 /* sticky content */
 @keyframes playbaranimation {
     0% {
-      /* opacity: 0; */
+      opacity: 0;
       transform: translateY(100px);
       /* width: var(--ps-spacing-56);
       height: var(--ps-spacing-56); */
@@ -1008,7 +1008,7 @@ a.arrow::after {
         height: var(--ps-spacing-56);
     } */
     100% {
-      /* opacity: 1; */
+      opacity: 1;
       transform: translateY(0px);
       /* width: fit-content;
       height: var(--ps-spacing-56); */
@@ -1051,7 +1051,7 @@ a.arrow::after {
     margin-top: var(--ps-spacing-32);
     margin-bottom: var(--ps-spacing-96);
 
-    opacity: 1;
+    /* opacity: 1; */
 }
 
 
