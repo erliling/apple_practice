@@ -3,19 +3,19 @@ window.onload = function () {
     
     // reveal playbar
     const carousel = document.querySelectorAll('.carousel');
-    // const playbar = document.querySelector('.carousel .playbarcontent');
-    // revealplaybar(carouselcontent, playbar);
-    revealhorizontalelements(carousel);
+    revealrowbyrow(carousel, 0.6);
 
     // reveal elements
     const revealelements = document.querySelectorAll('.revealelement');
-    revealhorizontalelements(revealelements);
-
+    // revealrowbyrow(revealelements, 0.2);
 
     // reveal row containers
     const rowContainers = document.querySelectorAll('.rowcontainer');
-    revealverticalelements(rowContainers);
+    revealitembyitem(rowContainers, 0.2);
 
+    // reveal grid row containers
+    // const gridrevealelements = document.querySelectorAll('.gridrowcontainer .revealelement');
+    // revealgriditembyitem(gridrevealelements, 0.5);
 
     // shrink nav
     const navshrink = document.querySelector('.navshrink');
@@ -208,11 +208,42 @@ window.onload = function () {
     }); 
 }
 
-function revealverticalelements(rowContainers) {
+function revealgriditembyitem(revealelements, thresholdvalue) {
     const options2 = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.5 // Trigger when 50% of the row is visible
+        threshold: thresholdvalue // Trigger when 50% of the row is visible
+    };
+
+    // Create a new IntersectionObserver
+    const observer2 = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Loop through the children to apply the staggered animation
+                const child = entry.target;
+                const index = Array.from(child.parentNode.children).indexOf(child);
+
+                setTimeout(() => {
+                    child.classList.add('revealed');
+                }, index * 3000); // 150ms delay based on its position in the row
+                
+                // Stop observing the element once it's revealed
+                observer.unobserve(child);
+            }
+        });
+    }, options2);
+
+    // Tell the observer to watch each row container
+    revealelements.forEach(element => {
+        observer2.observe(element);
+    });
+}
+
+function revealitembyitem(rowContainers, thresholdvalue) {
+    const options2 = {
+        root: null,
+        rootMargin: '0px',
+        threshold: thresholdvalue // Trigger when 50% of the row is visible
     };
 
     // Create a new IntersectionObserver
@@ -227,7 +258,7 @@ function revealverticalelements(rowContainers) {
                     // Apply a delay based on the child's index
                     setTimeout(() => {
                         child.classList.add('revealed');
-                    }, index * 2000); // 150ms delay between each element
+                    }, index * 200); // 150ms delay between each element
                 });
 
                 // Stop observing the row once it's revealed
@@ -242,36 +273,11 @@ function revealverticalelements(rowContainers) {
     });
 }
 
-function revealplaybar(playbarcontainer, playbar) {
+function revealrowbyrow(revealelements, thresholdvalue) {
     const options = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.2 // Trigger when 20% of the element is visible
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            // If the element is now intersecting the viewport
-            if (entry.isIntersecting) {
-                // Add the "is-revealed" class to trigger the CSS transition
-                playbar.target.classList.add('revealed');
-                // Stop observing the element once it's revealed
-                observer.unobserve(entry.target);
-            }
-        });
-    }, options);
-
-    // Tell the observer to watch each reveal-element
-    playbarcontainer.forEach(element => {
-        observer.observe(element);
-    });
-}
-
-function revealhorizontalelements(revealelements) {
-    const options = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.2 // Trigger when 20% of the element is visible
+        threshold: thresholdvalue // Trigger when 20% of the element is visible
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
