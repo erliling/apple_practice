@@ -6,8 +6,8 @@ window.onload = function () {
     revealrowbyrow(carousel, 0.6);
 
     // reveal elements
-    const revealelements = document.querySelectorAll('.revealelement');
-    // revealrowbyrow(revealelements, 0.2);
+    const revealelements = document.querySelectorAll('.colcontainer.revealelement');
+    revealrowbyrow(revealelements, 0.2);
 
     // reveal row containers
     const rowContainers = document.querySelectorAll('.rowcontainer');
