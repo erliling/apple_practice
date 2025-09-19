@@ -987,60 +987,42 @@ a.arrow::after {
     pointer-events: none;
 }
 
-/* sticky content */
-@keyframes playbaranimation {
+@keyframes bounceAndMorph {
+    /* The circle starts off-screen at the bottom and is a perfect circle */
     0% {
-      opacity: 0;
-      transform: translateY(100px);
-      /* width: var(--ps-spacing-56);
-      height: var(--ps-spacing-56); */
+        transform: translateY(100vh) scale(1);
+        width: 12px;
+        border-radius: 50%;
     }
-    /* 30% {
-        opacity: 1;
-        transform: translateY(40px);
-        width: var(--ps-spacing-56);
-        height: var(--ps-spacing-56);
+    
+    /* The bounce-up phase. The circle rises up into the viewport */
+    25% {
+        transform: translateY(-20px) scale(1.1);
     }
-    60% {
-        opacity: 1;
-        transform: translateY(0px);
-        width: var(--ps-spacing-56);
-        height: var(--ps-spacing-56);
-    } */
-    100% {
-      opacity: 1;
-      transform: translateY(0px);
-      /* width: fit-content;
-      height: var(--ps-spacing-56); */
+    
+    /* The slight fall-back phase. It overshoots, then settles. */
+    50% {
+        transform: translateY(5px) scale(1);
+        width: 12px;
+        border-radius: 50%;
     }
-  }
-/* @keyframes playbaranimation {
-    0% {
-      opacity: 0;
-      transform: translateY(30px);
-      width: var(--ps-spacing-56);
-      height: var(--ps-spacing-56);
-    }
-    30% {
-        opacity: 1;
-        transform: translateY(40px);
-        width: var(--ps-spacing-56);
-        height: var(--ps-spacing-56);
-    }
-    60% {
-        opacity: 1;
-        transform: translateY(0px);
-        width: var(--ps-spacing-56);
-        height: var(--ps-spacing-56);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0px);
-      width: fit-content;
-      height: var(--ps-spacing-56);
-    }
-  } */
 
+    /* The beginning of the stretch and morph */
+    70% {
+        transform: translateY(0) scale(1);
+        width: 12px;
+        border-radius: 50%;
+    }
+
+    /* The final state, where it stretches to match the longdot */
+    100% {
+        transform: translateY(0);
+        width: 25px; /* Adjust this to match your longdot's width */
+        border-radius: 6px; /* Adjust this to match your longdot's border-radius */
+    }
+}
+
+/* sticky content */
 .playbarcontent {
     display: flex;
     /* align-items: center; */
@@ -1051,7 +1033,7 @@ a.arrow::after {
     margin-top: var(--ps-spacing-32);
     margin-bottom: var(--ps-spacing-96);
 
-    /* opacity: 1; */
+    
 }
 
 

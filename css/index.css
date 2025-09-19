@@ -919,16 +919,44 @@ transform: rotate(-45deg) translate(35px, 35px);
     padding-bottom: 30px;
 }
 
-.carousel .playbarleft, .carousel .playbarright {
+.carousel .playbarcontent {
     opacity: 0;
+    transition: opacity 0.3s ease-in;
 }
 
-.carousel.revealed .playbarleft, .carousel.revealed .playbarright {
+.carousel.revealed .playbarcontent {
+    opacity: 1;
+}
+
+.carousel .boucecircle {
+    position: absolute;
+    bottom: 0; /* Positions the element at the bottom of its container */
+    left: 50%; /* Adjust to position correctly relative to the playbar */
+    transform: translateX(-50%);
+    
+    /* Initial styles for the circle */
+    width: 12px;
+    height: 12px;
+    background-color: white;
+    border-radius: 50%;
+    
+    /* Apply the animation */
+    animation-name: bounceAndMorph;
+    animation-duration: 2s; /* How long the animation takes */
+    animation-timing-function: cubic-bezier(.4, 0, .6, 1);
+    animation-fill-mode: forwards; /* This keeps the element in its final state */
+}
+
+/* .carousel .playbarleft, .carousel .playbarright {
+    opacity: 0;
+} */
+
+/* .carousel.revealed .playbarleft, .carousel.revealed .playbarright {
     animation-name: playbaranimation;
     animation-duration: 0.4s;
     animation-timing-function: cubic-bezier(.4,0,.6,1);
     animation-fill-mode: forwards;
-}
+} */
 
 
 /* #endregion carousel*/
