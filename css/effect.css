@@ -28,7 +28,7 @@
     }
     
     /* The bounce-up phase. The circle rises up into the viewport */
-    25% {
+    20% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
         border-radius: 50px;
@@ -37,7 +37,7 @@
     }
     
     /* The slight fall-back phase. It overshoots, then settles. */
-    60% {
+    40% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
         border-radius: 50px;
@@ -46,8 +46,8 @@
     }
 
     /* The beginning of the stretch and morph */
-    70% {
-        width: var(--ps-spacing-56);
+    60% {
+        width: 200px;
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
@@ -55,13 +55,23 @@
 
     }
 
-    /* The final state, where it stretches to match the longdot */
-    100% {
-        width: var(--ps-spacing-56);
+    75% {
+        width: 200px;
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        bottom: 50px;
+        bottom: 60px;
+
+    }
+
+
+    /* The final state, where it stretches to match the longdot */
+    100% {
+        width: 200px;
+        height: var(--ps-spacing-56);
+        border-radius: 50px;
+
+        bottom: 55px;
 
         transform: translateX(28px);
     }
@@ -79,7 +89,7 @@
     }
     
     /* The bounce-up phase. The circle rises up into the viewport */
-    25% {
+    20% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
         border-radius: 50px;
@@ -88,7 +98,7 @@
     }
     
     /* The slight fall-back phase. It overshoots, then settles. */
-    60% {
+    40% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
         border-radius: 50px;
@@ -97,7 +107,7 @@
     }
 
     /* The beginning of the stretch and morph */
-    70% {
+    60% {
         /* transform: translateY(0) scale(1); */
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
@@ -106,13 +116,22 @@
         /* bottom: 40px; */
     }
 
+    75% {
+        width: var(--ps-spacing-56);
+        height: var(--ps-spacing-56);
+        border-radius: 50px;
+
+        bottom: 60px;
+
+    }
+
     /* The final state, where it stretches to match the longdot */
     100% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        bottom: 50px;
+        bottom: 55px;
         transform: translateX(-28px);
     }
 }
