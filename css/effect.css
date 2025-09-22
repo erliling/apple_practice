@@ -47,19 +47,19 @@
 
     /* step4 up a little, strentch, scale up */
     75% {
-        width: 300px;
+        width: 220px;
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
         bottom: 60px;
 
     }
-    85% {
+    /* 85% {
         
-
+        width: 200px;
         bottom: 55px;
 
-    }
+    } */
 
     /* step5 down a little*/
     100% {
@@ -69,7 +69,7 @@
 
         bottom: 60px;
 
-        transform: translateX(28px);
+        transform: translateX(10px);
     }
 }
 @keyframes bounceAndMorph_right {
@@ -108,12 +108,12 @@
         transform: translateX(-30px);
     }
 
-    85% {
+    /* 85% {
         
-
+        width: 100px;
         bottom: 55px;
 
-    }
+    } */
 
     100% {
         width: var(--ps-spacing-56);
@@ -121,7 +121,7 @@
         border-radius: 50px;
 
         bottom: 60px;
-        transform: translateX(50px);
+        transform: translateX(20px);
     }
 }
 /* #endregion global playbar effect */
