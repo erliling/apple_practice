@@ -38,32 +38,32 @@
     
     /* The slight fall-back phase. It overshoots, then settles. */
     60% {
-        width: 300px;
+        width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        bottom: 50px;
+        bottom: 30px;
     }
 
     /* The beginning of the stretch and morph */
     70% {
-        width: 200px;
+        width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        bottom: 60px;
+        /* bottom: 60px; */
 
     }
 
     /* The final state, where it stretches to match the longdot */
     100% {
-        width: 200px;
+        width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        bottom: 60px;
+        bottom: 50px;
 
-        transform: translateX(-40px);
+        transform: translateX(28px);
     }
 }
 @keyframes bounceAndMorph_right {
@@ -93,7 +93,7 @@
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        bottom: 50px;
+        bottom: 30px;
     }
 
     /* The beginning of the stretch and morph */
@@ -103,7 +103,7 @@
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        bottom: 60px;
+        /* bottom: 40px; */
     }
 
     /* The final state, where it stretches to match the longdot */
@@ -112,7 +112,7 @@
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        bottom: 60px;
+        bottom: 50px;
         transform: translateX(-28px);
     }
 }
