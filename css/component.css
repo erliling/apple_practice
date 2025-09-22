@@ -990,7 +990,8 @@ a.arrow::after {
 .bouncecircle {
     position: sticky;
     /* left: 0; */
-    background-color: var(--icon-background-color);
+    /* background-color: var(--icon-background-color); */
+    background-color: pink;
 }
 
 /* sticky content */

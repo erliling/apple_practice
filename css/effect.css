@@ -46,7 +46,7 @@
     }
 
     /* The beginning of the stretch and morph */
-    60% {
+    80% {
         width: 200px;
         height: var(--ps-spacing-56);
         border-radius: 50px;
@@ -55,14 +55,14 @@
 
     }
 
-    75% {
+    /* 75% {
         width: 200px;
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
         bottom: 60px;
 
-    }
+    } */
 
 
     /* The final state, where it stretches to match the longdot */
@@ -107,23 +107,23 @@
     }
 
     /* The beginning of the stretch and morph */
-    60% {
+    80% {
         /* transform: translateY(0) scale(1); */
-        width: var(--ps-spacing-56);
+        width: 100px;
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
         /* bottom: 40px; */
+        transform: translateX(-30px);
     }
 
-    75% {
-        width: var(--ps-spacing-56);
+    /* 75% {
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
         bottom: 60px;
 
-    }
+    } */
 
     /* The final state, where it stretches to match the longdot */
     100% {
@@ -132,7 +132,7 @@
         border-radius: 50px;
 
         bottom: 55px;
-        transform: translateX(-28px);
+        transform: translateX(50px);
     }
 }
 /* #endregion global playbar effect */
