@@ -1,5 +1,6 @@
 @import 'variable.css';
 @import 'component.css';
+@import 'effect.css';
 
 body {
     overflow-x: hidden;
