@@ -987,6 +987,12 @@ a.arrow::after {
     pointer-events: none;
 }
 
+.bouncecircle {
+    position: sticky;
+
+    background-color: var(--icon-background-color);
+}
+
 /* sticky content */
 .playbarcontent {
     display: flex;
