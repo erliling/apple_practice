@@ -16,7 +16,7 @@
 
 /* #region global playbar effect */
 @keyframes bounceAndMorph_left {
-    /* The circle starts off-screen at the bottom and is a perfect circle */
+    /* step1 up */
     0% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
@@ -27,8 +27,8 @@
         transform: translateX(28px);
     }
     
-    /* The bounce-up phase. The circle rises up into the viewport */
-    20% {
+    /* step2 peak */
+    15% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
         border-radius: 50px;
@@ -36,7 +36,7 @@
         bottom: 120px;
     }
     
-    /* The slight fall-back phase. It overshoots, then settles. */
+    /* step3 down more, shrink */
     40% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
@@ -45,39 +45,34 @@
         bottom: 30px;
     }
 
-    /* The beginning of the stretch and morph */
-    80% {
-        width: 200px;
+    /* step4 up a little, strentch, scale up */
+    75% {
+        width: 300px;
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        /* bottom: 60px; */
+        bottom: 60px;
+
+    }
+    85% {
+        
+
+        bottom: 55px;
 
     }
 
-    /* 75% {
+    /* step5 down a little*/
+    100% {
         width: 200px;
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
         bottom: 60px;
 
-    } */
-
-
-    /* The final state, where it stretches to match the longdot */
-    100% {
-        width: 200px;
-        height: var(--ps-spacing-56);
-        border-radius: 50px;
-
-        bottom: 55px;
-
         transform: translateX(28px);
     }
 }
 @keyframes bounceAndMorph_right {
-    /* The circle starts off-screen at the bottom and is a perfect circle */
     0% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
@@ -88,8 +83,7 @@
         transform: translateX(-28px);
     }
     
-    /* The bounce-up phase. The circle rises up into the viewport */
-    20% {
+    15% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
         border-radius: 50px;
@@ -97,7 +91,6 @@
         bottom: 120px;
     }
     
-    /* The slight fall-back phase. It overshoots, then settles. */
     40% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
@@ -106,32 +99,28 @@
         bottom: 30px;
     }
 
-    /* The beginning of the stretch and morph */
-    80% {
-        /* transform: translateY(0) scale(1); */
+    75% {
         width: 100px;
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        /* bottom: 40px; */
+        bottom: 60px;
         transform: translateX(-30px);
     }
 
-    /* 75% {
-        height: var(--ps-spacing-56);
-        border-radius: 50px;
+    85% {
+        
 
-        bottom: 60px;
+        bottom: 55px;
 
-    } */
+    }
 
-    /* The final state, where it stretches to match the longdot */
     100% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        bottom: 55px;
+        bottom: 60px;
         transform: translateX(50px);
     }
 }

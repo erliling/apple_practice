@@ -931,13 +931,13 @@ transform: rotate(-45deg) translate(35px, 35px);
 
 .carousel.revealed .bouncecircle_left {
     animation-name: bounceAndMorph_left;
-    animation-duration: 2s; 
+    animation-duration: 1.5s; 
     animation-timing-function: cubic-bezier(.4, 0, .6, 1);
     animation-fill-mode: forwards; 
 }
 .carousel.revealed .bouncecircle_right {
     animation-name: bounceAndMorph_right;
-    animation-duration: 2s; 
+    animation-duration: 1.5s; 
     animation-timing-function: cubic-bezier(.4, 0, .6, 1);
     animation-fill-mode: forwards; 
 }
