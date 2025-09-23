@@ -34,20 +34,26 @@
         border-radius: 50px;
 
         bottom: 120px;
+
+        transform: translateX(28px);
+
     }
     
     /* step3 down more, shrink */
     40% {
-        width: var(--ps-spacing-56);
+        width: 100px;
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        bottom: 30px;
+        bottom: 20px;
+
+        transform: translateX(-10px);
+        
     }
 
     /* step4 up a little, strentch, scale up */
     75% {
-        width: 220px;
+        width: 250px;
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
@@ -55,21 +61,18 @@
 
     }
     /* 85% {
-        
-        width: 200px;
-        bottom: 55px;
-
+        bottom: 59px;
     } */
 
     /* step5 down a little*/
     100% {
-        width: 200px;
+        width: 250px;
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        bottom: 60px;
+        bottom: 61px;
 
-        transform: translateX(10px);
+        transform: translateX(-10px);
     }
 }
 @keyframes bounceAndMorph_right {
@@ -89,6 +92,8 @@
         border-radius: 50px;
 
         bottom: 120px;
+
+        transform: translateX(-28px);
     }
     
     40% {
@@ -96,23 +101,22 @@
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        bottom: 30px;
+        bottom: 20px;
+        /* transform: translateX(-28px); */
+
+        transform: translateX(-58px);
     }
 
     75% {
-        width: 100px;
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
         bottom: 60px;
-        transform: translateX(-30px);
+        transform: translateX(0px);
     }
 
     /* 85% {
-        
-        width: 100px;
-        bottom: 55px;
-
+        bottom: 59px;
     } */
 
     100% {
@@ -120,8 +124,8 @@
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        bottom: 60px;
-        transform: translateX(20px);
+        bottom: 61px;
+        transform: translateX(0px);
     }
 }
 /* #endregion global playbar effect */
