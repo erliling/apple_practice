@@ -28,51 +28,65 @@
     }
     
     /* step2 peak */
-    15% {
+    20% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        bottom: 120px;
+        bottom: 150px;
 
-        transform: translateX(28px);
+        transform: translateX(28px) scale(1);
 
     }
     
-    /* step3 down more, shrink */
-    40% {
+    /* step3 down more, scale down */
+    50% {
         width: 100px;
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        bottom: 20px;
+        bottom: 0px;
 
-        transform: translateX(-10px);
+        transform: translateX(-10px) scale(0.8);
         
     }
 
-    /* step4 up a little, strentch, scale up */
-    75% {
-        width: 250px;
-        height: var(--ps-spacing-56);
-        border-radius: 50px;
-
-        bottom: 60px;
-
-    }
-    /* 85% {
-        bottom: 59px;
-    } */
-
-    /* step5 down a little*/
-    100% {
+    /* step4 up a little, split, scale up*/
+    80% {
         width: 250px;
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
         bottom: 61px;
 
+        transform: translateX(-10px) scale(1);
+    }
+    /* 95% {
+        width: 250px;
+        height: var(--ps-spacing-56);
+        border-radius: 50px;
+
+        bottom: 60px;
+
         transform: translateX(-10px);
+    }
+    98% {
+        width: 250px;
+        height: var(--ps-spacing-56);
+        border-radius: 50px;
+
+        bottom: 60.5px;
+
+        transform: translateX(-10px);
+    } */
+    100% {
+        width: 250px;
+        height: var(--ps-spacing-56);
+        border-radius: 50px;
+
+        bottom: 60px;
+
+        transform: translateX(-10px) scale(1);
     }
 }
 @keyframes bounceAndMorph_right {
@@ -86,46 +100,58 @@
         transform: translateX(-28px);
     }
     
-    15% {
+    20% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        bottom: 120px;
+        bottom: 150px;
 
-        transform: translateX(-28px);
+        transform: translateX(-28px) scale(1);
     }
     
-    40% {
+    50% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        bottom: 20px;
+        bottom: 0px;
         /* transform: translateX(-28px); */
 
-        transform: translateX(-58px);
+        transform: translateX(-68px) scale(0.8);
     }
 
-    75% {
+    80% {
+        width: var(--ps-spacing-56);
+        height: var(--ps-spacing-56);
+        border-radius: 50px;
+
+        bottom: 61px;
+        transform: translateX(0px) scale(1);
+    }
+    /* 95% {
+        width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
         bottom: 60px;
         transform: translateX(0px);
     }
+    98% {
+        width: var(--ps-spacing-56);
+        height: var(--ps-spacing-56);
+        border-radius: 50px;
 
-    /* 85% {
-        bottom: 59px;
+        bottom: 60.5px;
+        transform: translateX(0px);
     } */
-
     100% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        bottom: 61px;
-        transform: translateX(0px);
+        bottom: 60px;
+        transform: translateX(0px) scale(1);
     }
 }
 /* #endregion global playbar effect */
