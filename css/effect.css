@@ -87,6 +87,7 @@
         bottom: 60px;
 
         transform: translateX(-10px) scale(1);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
     }
 }
 @keyframes bounceAndMorph_right {
@@ -152,6 +153,7 @@
 
         bottom: 60px;
         transform: translateX(0px) scale(1);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
     }
 }
 /* #endregion global playbar effect */
