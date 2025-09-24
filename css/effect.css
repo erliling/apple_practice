@@ -25,6 +25,7 @@
         bottom: -60px;
 
         transform: translateX(28px);
+        animation-timing-function: ease-out;
     }
     
     /* step2 peak */
@@ -36,6 +37,7 @@
         bottom: 150px;
 
         transform: translateX(28px) scale(1);
+        animation-timing-function: ease-in;
 
     }
     
@@ -57,11 +59,11 @@
         height: var(--ps-spacing-56);
         border-radius: 50px;
         
-        transform: translateX(-20px) scaleX(1.08) scaleY(0.98);
+        transform: translateX(-15px) scaleX(1.08) scaleY(0.98);
         bottom: 60.5px;
     }
     /* step5 water ballon effect */
-    80% {
+    85% {
         transform: translateX(-20px) scaleX(0.98) scaleY(1.03);
         bottom: 59.5px;
     }
@@ -86,6 +88,7 @@
         bottom: -60px;
 
         transform: translateX(-28px);
+        animation-timing-function: ease-out;
     }
     
     /* step2 peak */
@@ -97,26 +100,29 @@
         bottom: 150px;
 
         transform: translateX(-28px) scale(1);
+        animation-timing-function: ease-in;
     }
     
     /* step3 down more, scale down */
     35% {
-        width: var(--ps-spacing-56);
+        width: 70px;
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
         bottom: 0px;
 
-        transform: translateX(-38px) scale(0.7);
+        transform: translateX(-28px) scale(0.7);
+        /* animation-timing-function: cubic-bezier(0.1, 0.9, 0.4, 1.2); */
     }
 
     /* step4 up a little, split, scale up*/
     60% {
+        width: var(--ps-spacing-56);
         transform: scaleX(1.03) scaleY(0.97);
         bottom: 60.5px;
     }
     /* step5 water ballon effect */
-    80% {
+    85% {
         transform: scaleX(0.99) scaleY(1.01);
         bottom: 59.5px;
     }
