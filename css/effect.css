@@ -52,7 +52,7 @@
     }
 
     /* step4 up a little, split, scale up*/
-    50% {
+    60% {
         width: 230px;
         height: var(--ps-spacing-56);
         border-radius: 50px;
@@ -63,7 +63,7 @@
     /* step5 water ballon effect */
     80% {
         transform: translateX(-20px) scaleX(0.98) scaleY(1.03);
-        bottom: 57px;
+        bottom: 59.5px;
     }
     /* step6 final status */
     100% {
@@ -107,18 +107,18 @@
 
         bottom: 0px;
 
-        transform: translateX(-58px) scale(0.7);
+        transform: translateX(-38px) scale(0.7);
     }
 
     /* step4 up a little, split, scale up*/
-    50% {
-        transform: translateX(-10px) scaleX(1.03) scaleY(0.97);
+    60% {
+        transform: scaleX(1.03) scaleY(0.97);
         bottom: 60.5px;
     }
     /* step5 water ballon effect */
     80% {
         transform: scaleX(0.99) scaleY(1.01);
-        bottom: 57px;
+        bottom: 59.5px;
     }
     /* step6 final status */
     100% {
