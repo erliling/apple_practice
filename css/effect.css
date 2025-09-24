@@ -16,7 +16,7 @@
 
 /* #region global playbar effect */
 @keyframes bounceAndMorph_left {
-    /* step1 up */
+    /* step1 up, ease out */
     0% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
@@ -25,10 +25,11 @@
         bottom: -60px;
 
         transform: translateX(28px);
+
         animation-timing-function: ease-out;
     }
     
-    /* step2 peak */
+    /* step2 peak, ease in */
     15% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
@@ -41,7 +42,7 @@
 
     }
     
-    /* step3 down more, scale down */
+    /* step3 down, scale down, move to right, width expand */
     35% {
         width: 100px;
         height: var(--ps-spacing-56);
@@ -53,21 +54,22 @@
         
     }
 
-    /* step4 up a little, split, scale up*/
+    /* step4 up, water balloon, move to left (split), width expand*/
     60% {
         width: 230px;
         height: var(--ps-spacing-56);
         border-radius: 50px;
+
+        bottom: 60.5px;
         
         transform: translateX(-15px) scaleX(1.08) scaleY(0.98);
-        bottom: 60.5px;
     }
-    /* step5 water ballon effect */
+    /* step5 down a bit, water balloon, move to left (split) */
     85% {
         transform: translateX(-20px) scaleX(0.98) scaleY(1.03);
         bottom: 59.5px;
     }
-    /* step6 final status */
+    /* step6 up a bit, scale to normal */
     100% {
         width: 230px;
         height: var(--ps-spacing-56);
@@ -79,7 +81,7 @@
     }
 }
 @keyframes bounceAndMorph_right {
-    /* step1 up */
+    /* step1 up, ease out */
     0% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
@@ -88,10 +90,11 @@
         bottom: -60px;
 
         transform: translateX(-28px);
+
         animation-timing-function: ease-out;
     }
     
-    /* step2 peak */
+    /* step2 peak, ease in */
     15% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
@@ -100,10 +103,11 @@
         bottom: 150px;
 
         transform: translateX(-28px) scale(1);
+
         animation-timing-function: ease-in;
     }
     
-    /* step3 down more, scale down */
+    /* step3 down, scale down, width expand */
     35% {
         width: 70px;
         height: var(--ps-spacing-56);
@@ -112,21 +116,20 @@
         bottom: 0px;
 
         transform: translateX(-28px) scale(0.7);
-        /* animation-timing-function: cubic-bezier(0.1, 0.9, 0.4, 1.2); */
     }
 
-    /* step4 up a little, split, scale up*/
+    /* step4 up, water balloon, move to right (split), width shrink*/
     60% {
         width: var(--ps-spacing-56);
         transform: scaleX(1.03) scaleY(0.97);
         bottom: 60.5px;
     }
-    /* step5 water ballon effect */
+    /* step5 down a bit, water balloon, move to right (split) */
     85% {
         transform: scaleX(0.99) scaleY(1.01);
         bottom: 59.5px;
     }
-    /* step6 final status */
+    /* step6 up a bit, scale to normal, move to normal */
     100% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
