@@ -53,27 +53,27 @@
 
     /* step4 up a little, split, scale up*/
     50% {
-        width: 250px;
+        width: 220px;
         height: var(--ps-spacing-56);
         border-radius: 50px;
         
-        transform: translateX(-10px) scaleX(1.08) scaleY(0.98);
+        transform: translateX(-20px) scaleX(1.08) scaleY(0.98);
         bottom: 60.5px;
     }
     /* step5 water ballon effect */
     70% {
-        transform: translateX(-10px) scaleX(0.98) scaleY(1.03);
+        transform: translateX(-20px) scaleX(0.98) scaleY(1.03);
         bottom: 59.7px;
     }
     /* step6 final status */
     100% {
-        width: 250px;
+        width: 220px;
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
         bottom: 60px;
 
-        transform: translateX(-10px) scale(1);
+        transform: translateX(-20px) scale(1);
     }
 }
 @keyframes bounceAndMorph_right {
