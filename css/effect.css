@@ -63,7 +63,7 @@
     /* step5 water ballon effect */
     70% {
         transform: translateX(-10px) scaleX(0.98) scaleY(1.03);
-        bottom: 59.5px;
+        bottom: 59.7px;
     }
     /* step6 final status */
     100% {
@@ -112,13 +112,13 @@
 
     /* step4 up a little, split, scale up*/
     50% {
-        transform: scaleX(1.08) scaleY(0.97);
+        transform: scaleX(1.03) scaleY(0.97);
         bottom: 60.5px;
     }
     /* step5 water ballon effect */
     70% {
         transform: scaleX(0.99) scaleY(1.01);
-        bottom: 59.5px;
+        bottom: 59.7px;
     }
     /* step6 final status */
     100% {
