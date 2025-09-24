@@ -28,7 +28,7 @@
     }
     
     /* step2 peak */
-    25% {
+    15% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
         border-radius: 50px;
@@ -40,29 +40,32 @@
     }
     
     /* step3 down more, scale down */
-    50% {
+    35% {
         width: 100px;
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
         bottom: 0px;
 
-        transform: translateX(20px) scale(0.8);
+        transform: translateX(20px) scale(0.7);
         
     }
 
     /* step4 up a little, split, scale up*/
-    75% {
+    50% {
         width: 250px;
         height: var(--ps-spacing-56);
         border-radius: 50px;
-
-        bottom: 60px;
-
-        transform: translateX(-10px) scale(1);
-        /* animation-timing-function: cubic-bezier(0.1, 0.9, 0.4, 1.2); */
-        animation-timing-function: ease-out;
+        
+        transform: translateX(-10px) scaleX(1.08) scaleY(0.98);
+        bottom: 60.5px;
     }
+    /* step5 water ballon effect */
+    70% {
+        transform: translateX(-10px) scaleX(0.98) scaleY(1.03);
+        bottom: 59.5px;
+    }
+    /* step6 final status */
     100% {
         width: 250px;
         height: var(--ps-spacing-56);
@@ -71,10 +74,10 @@
         bottom: 60px;
 
         transform: translateX(-10px) scale(1);
-        animation-timing-function: ease-out;
     }
 }
 @keyframes bounceAndMorph_right {
+    /* step1 up */
     0% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
@@ -85,7 +88,8 @@
         transform: translateX(-28px);
     }
     
-    25% {
+    /* step2 peak */
+    15% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
         border-radius: 50px;
@@ -95,25 +99,28 @@
         transform: translateX(-28px) scale(1);
     }
     
-    50% {
+    /* step3 down more, scale down */
+    35% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
         bottom: 0px;
 
-        transform: translateX(-48px) scale(0.8);
+        transform: translateX(-48px) scale(0.7);
     }
 
-    75% {
-        width: var(--ps-spacing-56);
-        height: var(--ps-spacing-56);
-        border-radius: 50px;
-
-        bottom: 60px;
-        transform: translateX(0px) scale(1);
-        animation-timing-function: ease-out;
+    /* step4 up a little, split, scale up*/
+    50% {
+        transform: scaleX(1.08) scaleY(0.97);
+        bottom: 60.5px;
     }
+    /* step5 water ballon effect */
+    70% {
+        transform: scaleX(0.99) scaleY(1.01);
+        bottom: 59.5px;
+    }
+    /* step6 final status */
     100% {
         width: var(--ps-spacing-56);
         height: var(--ps-spacing-56);
@@ -121,7 +128,6 @@
 
         bottom: 60px;
         transform: translateX(0px) scale(1);
-        animation-timing-function: ease-out;
     }
 }
 /* #endregion global playbar effect */
