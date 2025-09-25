@@ -139,4 +139,34 @@
         transform: translateX(0px) scale(1);
     }
 }
+@keyframes bounceAndMorph_right2 {
+    /* step1 up, ease out */
+    0% {
+        opacity: 0;
+    }
+    
+    /* step2 peak, ease in */
+    15% {
+    }
+    
+    /* step3 down, scale down, width expand */
+    35% {
+        opacity: 0;
+        transform: scale(0.2) translateX(-5px);
+    }
+
+    /* step4 up, water balloon, move to right (split), width shrink*/
+    60% {
+        opacity: 1;
+        transform: scale(1) translateX(0px);
+    }
+    /* step5 down a bit, water balloon, move to right (split) */
+    85% {
+    }
+    /* step6 up a bit, scale to normal, move to normal */
+    100% {
+        opacity: 1;
+        transform: scale(1)  translateX(0px);
+    }
+}
 /* #endregion global playbar effect */

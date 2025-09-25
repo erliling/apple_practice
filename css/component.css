@@ -991,8 +991,50 @@ a.arrow::after {
     position: sticky;
     /* left: 0; */
     /* background-color: var(--icon-background-color); */
-    background-color: pink;
+    background-color: var(--icon-background-color);
+    backdrop-filter: blur(7px);
+    /* background-color: pink; */
 }
+.playbaraccesscontainer .bouncecircle_left {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+
+    width: fit-content;
+
+    padding: 20px;
+    box-sizing: border-box;
+    margin-left: 20px;
+}
+
+.playbaraccesscontainer .bouncecircle_left .longdot {
+    background-color: var(--default-icon-color);
+
+    /* fv */
+    width: 46px;
+    height: 8px;
+    border-radius: 50px;
+}
+
+.playbaraccesscontainer .bouncecircle_left .dot {
+    background-color: var(--default-icon-color);
+
+    /* fv */
+    width: 8px;
+    height: 8px;
+    border-radius: 50px;
+}
+
+.playbaraccesscontainer .bouncecircle_right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.playbaraccesscontainer .bouncecircle_right svg{
+    fill: var(--default-icon-color);
+}
+
 
 .playbaraccesscontainer.revealed .bouncecircle_left {
     animation-name: bounceAndMorph_left;
@@ -1002,6 +1044,12 @@ a.arrow::after {
 }
 .playbaraccesscontainer.revealed .bouncecircle_right {
     animation-name: bounceAndMorph_right;
+    animation-duration: 1.5s; 
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards; 
+}
+.playbaraccesscontainer.revealed .bouncecircle_right svg{
+    animation-name: bounceAndMorph_right2;
     animation-duration: 1.5s; 
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards; 
