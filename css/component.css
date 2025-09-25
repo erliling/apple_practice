@@ -991,10 +991,8 @@ a.arrow::after {
 .bouncecircle {
     position: sticky;
     /* left: 0; */
-    /* background-color: var(--icon-background-color); */
     background-color: var(--icon-background-color);
     backdrop-filter: blur(7px);
-    /* background-color: pink; */
 }
 .playbaraccesscontainer .bouncecircle_left {
     display: flex;
