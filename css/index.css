@@ -916,31 +916,10 @@ transform: rotate(-45deg) translate(35px, 35px);
 }
 
 .carousel .content {
-    /* width: 100%; */
     padding-bottom: 30px;
 }
 
-.carousel .playbarcontent {
-    opacity: 0;
-    transition: opacity 0.3s ease-in;
-}
 
-.carousel.revealed .playbarcontent {
-    opacity: 1;
-}
-
-.carousel.revealed .bouncecircle_left {
-    animation-name: bounceAndMorph_left;
-    animation-duration: 1.5s; 
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards; 
-}
-.carousel.revealed .bouncecircle_right {
-    animation-name: bounceAndMorph_right;
-    animation-duration: 1.5s; 
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards; 
-}
 
 /* #endregion carousel*/
 

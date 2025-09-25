@@ -994,6 +994,19 @@ a.arrow::after {
     background-color: pink;
 }
 
+.playbaraccesscontainer.revealed .bouncecircle_left {
+    animation-name: bounceAndMorph_left;
+    animation-duration: 1.5s; 
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards; 
+}
+.playbaraccesscontainer.revealed .bouncecircle_right {
+    animation-name: bounceAndMorph_right;
+    animation-duration: 1.5s; 
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards; 
+}
+
 /* sticky content */
 .playbarcontent {
     display: flex;

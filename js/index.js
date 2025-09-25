@@ -2,8 +2,8 @@
 window.onload = function () {
     
     // reveal playbar
-    const carousel = document.querySelectorAll('.carousel');
-    revealrowbyrow(carousel, 0.2);
+    const playbaraccesscontainer = document.querySelectorAll('.playbaraccesscontainer');
+    revealrowbyrow(playbaraccesscontainer, 0.6);
 
     // reveal elements
     const revealelements = document.querySelectorAll('.colcontainer.revealelement');
