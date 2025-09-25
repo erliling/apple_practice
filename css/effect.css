@@ -139,67 +139,42 @@
         transform: translateX(0px) scale(1);
     }
 }
-@keyframes bounceAndMorph_right2 {
-    /* step1 up, ease out */
+
+@keyframes bounceAndMorph_leftinside {
     0% {
-        opacity: 0;
     }
-    
-    /* step2 peak, ease in */
     15% {
+
     }
-    
-    /* step3 down, scale down, width expand */
     35% {
         
     }
+    60% {
+        transform: translateX(10px);
+    }
+    85% {
+        transform: translateX(0px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+@keyframes bounceAndMorph_rightinside {
+    0% {
+        opacity: 0;
+    }
 
-    /* step4 up, water balloon, move to right (split), width shrink*/
     56% {
         opacity: 0;
         transform: scale(0.2) translateX(-10px);
     }
-    /* step5 down a bit, water balloon, move to right (split) */
     70% {
         opacity: 1;
         transform: scale(1) translateX(0px);
     }
-    /* step6 up a bit, scale to normal, move to normal */
     100% {
         opacity: 1;
         transform: scale(1)  translateX(0px);
-    }
-}
-@keyframes bounceAndMorph_left2 {
-    /* step1 up, ease out */
-    0% {
-        /* opacity: 0; */
-    }
-    
-    /* step2 peak, ease in */
-    15% {
-
-    }
-    
-    /* step3 down, scale down, move to right, width expand */
-    35% {
-        
-    }
-
-    /* step4 up, water balloon, move to left (split), width expand*/
-    60% {
-        /* opacity: 0; */
-        transform: translateX(10px);
-    }
-    /* step5 down a bit, water balloon, move to left (split) */
-    85% {
-        /* opacity: 1; */
-        transform: translateX(0px);
-    }
-    /* step6 up a bit, scale to normal */
-    100% {
-        /* opacity: 1; */
-        transform: translateX(0px);
     }
 }
 /* #endregion global playbar effect */
