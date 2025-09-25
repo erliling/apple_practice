@@ -1007,15 +1007,6 @@ a.arrow::after {
     margin-left: 20px;
 }
 
-.playbaraccesscontainer .bouncecircle_left .longdot {
-    background-color: var(--default-icon-color);
-
-    /* fv */
-    width: 46px;
-    height: 8px;
-    border-radius: 50px;
-}
-
 .playbaraccesscontainer .bouncecircle_left .dot {
     background-color: var(--default-icon-color);
 
@@ -1023,6 +1014,15 @@ a.arrow::after {
     width: 8px;
     height: 8px;
     border-radius: 50px;
+}
+
+.playbaraccesscontainer .bouncecircle_left .longdot {
+    /* background-color: var(--default-icon-color); */
+
+    /* fv */
+    width: 46px;
+    /* height: 8px; */
+    /* border-radius: 50px; */
 }
 
 .playbaraccesscontainer .bouncecircle_right {
@@ -1050,6 +1050,12 @@ a.arrow::after {
 }
 .playbaraccesscontainer.revealed .bouncecircle_right svg{
     animation-name: bounceAndMorph_right2;
+    animation-duration: 1.5s; 
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards; 
+}
+.playbaraccesscontainer.revealed .bouncecircle_left .dot{
+    animation-name: bounceAndMorph_left2;
     animation-duration: 1.5s; 
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards; 
