@@ -60,14 +60,14 @@
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        bottom: 60.5px;
+        bottom: 30.5px;
         
         transform: translateX(-15px) scaleX(1.08) scaleY(0.98);
     }
     /* step5 down a bit, water balloon, move to left (split) */
     85% {
         transform: translateX(-20px) scaleX(0.98) scaleY(1.03);
-        bottom: 59.5px;
+        bottom: 29.5px;
     }
     /* step6 up a bit, scale to normal */
     100% {
@@ -75,7 +75,7 @@
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        bottom: 60px;
+        bottom: 30px;
 
         transform: translateX(-20px) scale(1);
     }
@@ -122,12 +122,12 @@
     60% {
         width: var(--ps-spacing-56);
         transform: scaleX(1.03) scaleY(0.97);
-        bottom: 60.5px;
+        bottom: 30.5px;
     }
     /* step5 down a bit, water balloon, move to right (split) */
     85% {
         transform: scaleX(0.99) scaleY(1.01);
-        bottom: 59.5px;
+        bottom: 29.5px;
     }
     /* step6 up a bit, scale to normal, move to normal */
     100% {
@@ -135,7 +135,7 @@
         height: var(--ps-spacing-56);
         border-radius: 50px;
 
-        bottom: 60px;
+        bottom: 30px;
         transform: translateX(0px) scale(1);
     }
 }

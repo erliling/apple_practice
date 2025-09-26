@@ -966,6 +966,8 @@ a.arrow::after {
 }
 /* #endregion accordion */
 
+
+
 /* #region playbar*/
 .playbaraccesscontainer {
     display: flex;
@@ -990,6 +992,11 @@ a.arrow::after {
 
 .bouncecircle {
     position: sticky;
+
+    /* margin-top: var(--ps-spacing-32); */
+    margin-top: 348px;
+    margin-bottom: var(--ps-spacing-96);
+
     /* left: 0; */
     background-color: var(--icon-background-color);
     backdrop-filter: blur(7px);
@@ -1067,6 +1074,7 @@ a.arrow::after {
     bottom: var(--ps-spacing-32);
 
     margin-top: var(--ps-spacing-32);
+    /* margin-top: 300px; */
     margin-bottom: var(--ps-spacing-96);
 }
 
