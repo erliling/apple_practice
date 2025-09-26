@@ -333,6 +333,8 @@ a.arrow::after {
 
 /* #endregion comparedropdown*/
 
+
+
 /* #region bigcarousel */
 .bigcarousel {
     height: var(--shared-media-gallery-height);
@@ -407,6 +409,8 @@ a.arrow::after {
     height: auto; */
 }
 /* #endregion bigcarousel */
+
+
 
 /* #region smallcarousel*/
 .smallcarousel {
@@ -1007,6 +1011,9 @@ a.arrow::after {
     column-gap: 20px;
 
     width: fit-content;
+    height: var(--ps-spacing-56);
+    border-radius: 50px;
+    transform: translateX(-20px);
 
     padding: 20px;
     box-sizing: border-box;
@@ -1031,6 +1038,10 @@ a.arrow::after {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    width: var(--ps-spacing-56);
+    height: var(--ps-spacing-56);
+    border-radius: 50px;
 }
 
 .playbaraccesscontainer .bouncecircle_right svg{

@@ -1,9 +1,20 @@
 
 window.onload = function () {
     
+    // auto carousel
+    const carouselplaybarplaybtn = document.querySelector('.carousel .bouncecircle_right');
+    const carouselcontent = document.querySelector('.carousel .bigcarousel .carouselcontent');
+    carouselplaybarplaybtn.addEventListener('click', () => {
+        carouselcontent.scrollBy({
+            top: 0, 
+            right: 200,
+            behavior: "smooth"
+        })
+    });
+
     // reveal playbar
     const playbaraccesscontainer = document.querySelectorAll('.playbaraccesscontainer');
-    revealrowbyrow(playbaraccesscontainer, 0.6);
+    revealrowbyrow(playbaraccesscontainer, 0.5);
 
     // reveal elements
     const revealelements = document.querySelectorAll('.colcontainer.revealelement');
@@ -13,9 +24,6 @@ window.onload = function () {
     const rowContainers = document.querySelectorAll('.rowcontainer');
     revealitembyitem(rowContainers, 0.2);
 
-    // reveal grid row containers
-    // const gridrevealelements = document.querySelectorAll('.gridrowcontainer .revealelement');
-    // revealgriditembyitem(gridrevealelements, 0.5);
 
     // shrink nav
     const navshrink = document.querySelector('.navshrink');
