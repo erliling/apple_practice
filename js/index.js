@@ -3,13 +3,22 @@ window.onload = function () {
     
     // auto carousel
     const carouselplaybarplaybtn = document.querySelector('.carousel .bouncecircle_right');
-    const carouselcontent = document.querySelector('.carousel .bigcarousel .carouselcontent');
+    const carouselcontent = document.querySelector('.carousel .bigcarousel');
+
+    // --shared-media-gallery-responsive-content-absolute-min-width: 280px;
+    // --shared-media-gallery-viewport-content: max(87.5vw - var(--global-scrollbar-width),var(--shared-media-gallery-responsive-content-absolute-min-width));
+    // --shared-media-gallery-width: min(var(--shared-media-gallery-viewport-content), var(--shared-media-gallery-responsive-content-absolute-max-width));
+
+    // padding: 0 max(6.25vw,(100vw - 1680px)/2,env(safe-area-inset-left),env(safe-area-inset-right));
+
     carouselplaybarplaybtn.addEventListener('click', () => {
         carouselcontent.scrollBy({
             top: 0, 
-            right: 200,
+            left: 1350 + 24,
             behavior: "smooth"
         })
+        // move(carouselcontent, "scrollLeft", 800, 10);
+        // carouselcontent.style.transform = "translateX(-800px)";
     });
 
     // reveal playbar
