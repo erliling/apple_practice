@@ -26,20 +26,17 @@ window.onload = function () {
     });
 
     let currenttileindex = 0;
-    const intervaltime = 6000;
-    if (currenttileindex <= 4) {
-        setInterval (() => {
-            carouselcontent.scrollBy({
-                top: 0, 
-                left: tilewidth + tilegap,
-                behavior: "smooth"
-            })
-        }, intervaltime)
-        currenttileindex ++;
-    }
-    
-
-
+        const intervaltime = 6000;
+        if (currenttileindex <= 4) {
+            setInterval (() => {
+                carouselcontent.scrollBy({
+                    top: 0, 
+                    left: tilewidth + tilegap,
+                    behavior: "smooth"
+                })
+            }, intervaltime)
+            currenttileindex ++;
+        }
 
     // reveal playbar
     const playbaraccesscontainer = document.querySelectorAll('.playbaraccesscontainer');
@@ -53,6 +50,22 @@ window.onload = function () {
     const rowContainers = document.querySelectorAll('.rowcontainer');
     revealitembyitem(rowContainers, 0.2);
 
+    // not working, cause it's not revealed before attached, so that intervaltime won't be applied
+    // const carouselplaybaraccesscontainer = document.querySelector('.carousel .playbaraccesscontainer');
+    // if (hasClass(carouselplaybaraccesscontainer, 'revealed')) {
+    //     let currenttileindex = 0;
+    //     const intervaltime = 6000;
+    //     if (currenttileindex <= 4) {
+    //         setInterval (() => {
+    //             carouselcontent.scrollBy({
+    //                 top: 0, 
+    //                 left: tilewidth + tilegap,
+    //                 behavior: "smooth"
+    //             })
+    //         }, intervaltime)
+    //         currenttileindex ++;
+    //     }
+    // }
 
     // shrink nav
     const navshrink = document.querySelector('.navshrink');
