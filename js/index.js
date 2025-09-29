@@ -25,6 +25,22 @@ window.onload = function () {
         })
     });
 
+    let currenttileindex = 0;
+    const intervaltime = 6000;
+    if (currenttileindex <= 4) {
+        setInterval (() => {
+            carouselcontent.scrollBy({
+                top: 0, 
+                left: tilewidth + tilegap,
+                behavior: "smooth"
+            })
+        }, intervaltime)
+        currenttileindex ++;
+    }
+    
+
+
+
     // reveal playbar
     const playbaraccesscontainer = document.querySelectorAll('.playbaraccesscontainer');
     revealrowbyrow(playbaraccesscontainer, 0.5);
