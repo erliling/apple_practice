@@ -14,7 +14,7 @@ window.onload = function () {
     carouselplaybarplaybtn.addEventListener('click', () => {
         carouselcontent.scrollBy({
             top: 0, 
-            left: 1350 + 24,
+            left: 1420 + 102.5 - (102.5 - 24),
             behavior: "smooth"
         })
         // move(carouselcontent, "scrollLeft", 800, 10);
