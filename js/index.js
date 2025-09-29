@@ -25,19 +25,46 @@ window.onload = function () {
         })
     });
 
-    // scroll to this section, then set interval
+    const carouselplaybaraccesscontainers = document.querySelectorAll('.carousel .playbaraccesscontainer');
     let currenttileindex = 0;
-        const intervaltime = 6000;
-        if (currenttileindex <= 4) {
-            setInterval (() => {
-                carouselcontent.scrollBy({
-                    top: 0, 
-                    left: tilewidth + tilegap,
-                    behavior: "smooth"
-                })
-            }, intervaltime)
-            currenttileindex ++;
-        }
+    const carouselplaybardots = document.querySelectorAll('.carousel .playbaraccesscontainer .bouncecircle .dot');
+
+    // scroll to this section, then set interval
+    const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2 // Trigger when 20% of the element is visible
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            // If the element is now intersecting the viewport
+            if (entry.isIntersecting) {
+                const intervaltime = 6000;
+                let intervalid = setInterval (() => {
+                    carouselcontent.scrollBy({
+                        top: 0, 
+                        left: tilewidth + tilegap,
+                        behavior: "smooth"
+                    })
+                    removeClass(carouselplaybardots[currenttileindex], 'longdot');
+                    addClass(carouselplaybardots[currenttileindex+1], 'longdot');
+                    currenttileindex ++;
+                    if (currenttileindex >= 5) {
+                        clearInterval(intervalid);
+                    }
+                }, intervaltime);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, options);
+
+    // Tell the observer to watch each reveal-element
+    carouselplaybaraccesscontainers.forEach(element => {
+        observer.observe(element);
+    });
+
+    
 
     // reveal playbar
     const playbaraccesscontainer = document.querySelectorAll('.playbaraccesscontainer');
