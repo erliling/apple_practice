@@ -17,7 +17,6 @@ window.onload = function () {
     const viewportcontent = Math.max(87.5 * vw - scrollbarwidth, carouselminwidth);
     const tilewidth = Math.min(viewportcontent, carouselmaxwidth);
 
-
     carouselplaybarplaybtn.addEventListener('click', () => {
         carouselcontent.scrollBy({
             top: 0, 
