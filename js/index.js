@@ -5,20 +5,25 @@ window.onload = function () {
     const carouselplaybarplaybtn = document.querySelector('.carousel .bouncecircle_right');
     const carouselcontent = document.querySelector('.carousel .bigcarousel');
 
-    // --shared-media-gallery-responsive-content-absolute-min-width: 280px;
     // --shared-media-gallery-viewport-content: max(87.5vw - var(--global-scrollbar-width),var(--shared-media-gallery-responsive-content-absolute-min-width));
     // --shared-media-gallery-width: min(var(--shared-media-gallery-viewport-content), var(--shared-media-gallery-responsive-content-absolute-max-width));
-
     // padding: 0 max(6.25vw,(100vw - 1680px)/2,env(safe-area-inset-left),env(safe-area-inset-right));
+    const carouselpadding = 102.5;
+    const tilegap = 24;
+    const carouselminwidth = 280;
+    const carouselmaxwidth = 1680;
+    const scrollbarwidth = 15;
+    const vw = window.innerWidth / 100;
+    const viewportcontent = Math.max(87.5 * vw - scrollbarwidth, carouselminwidth);
+    const tilewidth = Math.min(viewportcontent, carouselmaxwidth);
+
 
     carouselplaybarplaybtn.addEventListener('click', () => {
         carouselcontent.scrollBy({
             top: 0, 
-            left: 1420 + 102.5 - (102.5 - 24),
+            left: tilewidth + tilegap,
             behavior: "smooth"
         })
-        // move(carouselcontent, "scrollLeft", 800, 10);
-        // carouselcontent.style.transform = "translateX(-800px)";
     });
 
     // reveal playbar
