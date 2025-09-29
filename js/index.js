@@ -1,7 +1,7 @@
 
 window.onload = function () {
     
-    // auto carousel
+    // nav carousel by btn
     const carouselplaybarplaybtn = document.querySelector('.carousel .bouncecircle_right');
     const carouselcontent = document.querySelector('.carousel .bigcarousel');
 
@@ -25,46 +25,11 @@ window.onload = function () {
         })
     });
 
+    //auto nav carousel
     const carouselplaybaraccesscontainers = document.querySelectorAll('.carousel .playbaraccesscontainer');
     let currenttileindex = 0;
     const carouselplaybardots = document.querySelectorAll('.carousel .playbaraccesscontainer .bouncecircle .dot');
-
-    // scroll to this section, then set interval
-    const options = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.2 // Trigger when 20% of the element is visible
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            // If the element is now intersecting the viewport
-            if (entry.isIntersecting) {
-                const intervaltime = 6000;
-                let intervalid = setInterval (() => {
-                    carouselcontent.scrollBy({
-                        top: 0, 
-                        left: tilewidth + tilegap,
-                        behavior: "smooth"
-                    })
-                    removeClass(carouselplaybardots[currenttileindex], 'longdot');
-                    addClass(carouselplaybardots[currenttileindex+1], 'longdot');
-                    currenttileindex ++;
-                    if (currenttileindex >= 5) {
-                        clearInterval(intervalid);
-                    }
-                }, intervaltime);
-                observer.unobserve(entry.target);
-            }
-        });
-    }, options);
-
-    // Tell the observer to watch each reveal-element
-    carouselplaybaraccesscontainers.forEach(element => {
-        observer.observe(element);
-    });
-
-    
+    autonavcarousel(carouselcontent, tilewidth, tilegap, carouselplaybardots, currenttileindex, carouselplaybaraccesscontainers);
 
     // reveal playbar
     const playbaraccesscontainer = document.querySelectorAll('.playbaraccesscontainer');
@@ -284,6 +249,40 @@ window.onload = function () {
         // dissolve scroll
         scrollsection4(piccontainer, pics, texts, photograph, navheight)
     }); 
+}
+
+function autonavcarousel(carouselcontent, tilewidth, tilegap, carouselplaybardots, currenttileindex, carouselplaybaraccesscontainers) {
+    const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const intervaltime = 6000;
+                let intervalid = setInterval(() => {
+                    carouselcontent.scrollBy({
+                        top: 0,
+                        left: tilewidth + tilegap,
+                        behavior: "smooth"
+                    });
+                    removeClass(carouselplaybardots[currenttileindex], 'longdot');
+                    addClass(carouselplaybardots[currenttileindex + 1], 'longdot');
+                    currenttileindex++;
+                    if (currenttileindex >= 5) {
+                        clearInterval(intervalid);
+                    }
+                }, intervaltime);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, options);
+
+    carouselplaybaraccesscontainers.forEach(element => {
+        observer.observe(element);
+    });
 }
 
 function revealgriditembyitem(revealelements, thresholdvalue) {
