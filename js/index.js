@@ -25,6 +25,7 @@ window.onload = function () {
         })
     });
 
+    // scroll to this section, then set interval
     let currenttileindex = 0;
         const intervaltime = 6000;
         if (currenttileindex <= 4) {
