@@ -1026,7 +1026,7 @@ a.arrow::after {
 }
 
 .playbaraccesscontainer .bouncecircle_left .dot {
-    background-color: var(--default-icon-color);
+    background-color: var(--default-icon-color-opacity);
 
     /* fv */
     width: 8px;
