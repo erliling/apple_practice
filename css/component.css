@@ -1032,9 +1032,11 @@ a.arrow::after {
     width: 8px;
     height: 8px;
     border-radius: 50px;
+
+    transition: width 0.5s ease-out;
 }
 
-.playbaraccesscontainer .bouncecircle_left .longdot {
+.playbaraccesscontainer .bouncecircle_left .dot.selected {
     /* fv */
     width: 46px;
 }

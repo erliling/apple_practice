@@ -268,8 +268,8 @@ function autonavcarousel(carouselcontent, tilewidth, tilegap, carouselplaybardot
                         left: tilewidth + tilegap,
                         behavior: "smooth"
                     });
-                    removeClass(carouselplaybardots[currenttileindex], 'longdot');
-                    addClass(carouselplaybardots[currenttileindex + 1], 'longdot');
+                    removeClass(carouselplaybardots[currenttileindex], 'selected');
+                    addClass(carouselplaybardots[currenttileindex + 1], 'selected');
                     currenttileindex++;
                     if (currenttileindex >= 5) {
                         clearInterval(intervalid);
