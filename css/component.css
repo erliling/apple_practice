@@ -1041,6 +1041,24 @@ a.arrow::after {
     width: 46px;
 }
 
+.playbaraccesscontainer .bouncecircle_left .dot.selected::after {
+    content: "";
+    height: 100%;
+    border-radius: 50px;
+    background-color: var(--default-icon-color);
+
+    position: absolute;
+    top: 0;
+    inset-inline-start: 0;
+
+    /* width: 50%; */
+
+    animation-name: insidedotbar_progress;
+    animation-duration: 6s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+
 .playbaraccesscontainer .bouncecircle_right {
     display: flex;
     align-items: center;

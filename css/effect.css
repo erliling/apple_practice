@@ -177,4 +177,14 @@
         transform: scale(1)  translateX(0px);
     }
 }
+
+
+@keyframes insidedotbar_progress {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
 /* #endregion global playbar effect */
