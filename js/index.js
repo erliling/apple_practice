@@ -29,7 +29,7 @@ window.onload = function () {
     const carouselplaybaraccesscontainers = document.querySelectorAll('.carousel .playbaraccesscontainer');
     let currenttileindex = 0;
     const carouselplaybardots = document.querySelectorAll('.carousel .playbaraccesscontainer .bouncecircle .dot');
-    autonavcarousel(carouselcontent, tilewidth, tilegap, carouselplaybardots, currenttileindex, carouselplaybaraccesscontainers);
+    // autonavcarousel(carouselcontent, tilewidth, tilegap, carouselplaybardots, currenttileindex, carouselplaybaraccesscontainers);
 
     // reveal playbar
     const playbaraccesscontainer = document.querySelectorAll('.playbaraccesscontainer');
