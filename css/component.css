@@ -339,15 +339,19 @@ a.arrow::after {
 .bigcarousel {
     height: var(--shared-media-gallery-height);
 
-    overflow-x: auto;
+    /* overflow-x: auto; */
     overflow-y: hidden;
     scrollbar-width: none;
+
 }
 .bigcarousel .carouselcontent {
 
     display: grid;
     grid-auto-flow: column;
     grid-column-gap: var(--ps-spacing-24);
+    /* display: flex;
+    flex-wrap: nowrap;
+    column-gap: var(--ps-spacing-24); */
 
     /* will show padding on the right */
     width: fit-content;
@@ -355,7 +359,9 @@ a.arrow::after {
 
     list-style-type: none;
 
-    /* overflow-x: auto; */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory; 
+
 }
 .bigcarousel .carouselcontent .tile {
     display: flex;
@@ -371,7 +377,8 @@ a.arrow::after {
     /* hide overflow image */
     overflow: hidden;
 
-    /* scroll-snap-align: center; */
+    scroll-snap-align: center;
+
 }
 .bigcarousel .carouselcontent .tile h2 {
     /* fv */
@@ -995,7 +1002,7 @@ a.arrow::after {
 
     /* not clickable */
     /* need to figure out here, can't be nonclickable */
-    /* pointer-events: none; */
+    pointer-events: none;
 }
 
 
