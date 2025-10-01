@@ -375,7 +375,7 @@ a.arrow::after {
     /* for absolute children */
     position: relative;
     /* hide overflow image */
-    overflow: hidden;
+    /* overflow: hidden; */
 
     scroll-snap-align: center;
 

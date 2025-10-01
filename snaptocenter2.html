@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .parent {
+        /* padding: 30vh 0; */
+
+        overflow: scroll;
+        height: 100vh;
+        /* scroll-snap-points-y: repeat(100vh); */
+        scroll-snap-type: y mandatory;
+      }
+
+      section {
+        height: 100vh;
+        scroll-snap-align: start;
+        position: relative;
+
+        margin-top: 30px;
+      }
+
+      .one {
+        background-color: red;
+      }
+
+      .two {
+        background-color: blue;
+      }
+
+      .three {
+        background-color: grey;
+      }
+
+      .four {
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parent row">
+      <section class="one"></section>
+      <section class="two"></section>
+      <section class="three"></section>
+      <section class="four"></section>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* --- 1. OUTER CONTAINER --- */
+      .bigcarousel {
+        /* Sets the visible window size */
+        /* width: 100vw; */
+        /* height: 1000px; */
+        overflow: hidden;
+      }
+
+      /* --- 2. SCROLLABLE CONTAINER (Parent) --- */
+      .carouselcontent {
+        /* Layout: Forces tiles into a single horizontal line */
+        display: grid;
+        grid-auto-flow: column;
+        /* Spacing between tiles */
+        grid-column-gap: 32px;
+
+        /* SCROLLING & SNAPPING: Crucial for the effect */
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory; /* The main controller for snapping */
+
+        /* Ensure content is wider than container to enable scroll */
+        width: 100vw;
+
+        list-style-type: none; /* Clean up list bullets */
+        /* Add padding to both sides */
+        padding: 0 100vw;
+        /* This padding allows the *first and last* item to scroll to the center. */
+      }
+
+      /* --- 3. TILE (Child) --- */
+      .tile {
+        /* Sizing */
+        width: 100vw; /* Fixed width for consistent snapping */
+        height: 800px;
+
+        /* Snap Alignment */
+        scroll-snap-align: center; /* Aligns the center of the tile to the center of the viewport */
+
+        /* Visuals (for demo) */
+        background-color: #337ab7;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2em;
+        border-radius: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bigcarousel">
+      <ul class="carouselcontent">
+        <li class="tile">Tile 1</li>
+        <li class="tile">Tile 2</li>
+        <li class="tile">Tile 3 (Will snap here)</li>
+        <li class="tile">Tile 4</li>
+        <li class="tile">Tile 5</li>
+      </ul>
+    </div>
+  </body>
+</html>
