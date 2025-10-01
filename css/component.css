@@ -1041,7 +1041,7 @@ a.arrow::after {
     width: 46px;
 }
 
-.playbaraccesscontainer .bouncecircle_left .dot.selected::after {
+.playbaraccesscontainer.revealed .bouncecircle_left .dot.selected::after {
     content: "";
     height: 100%;
     border-radius: 50px;
