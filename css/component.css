@@ -1000,7 +1000,7 @@ a.arrow::after {
 
     /* not clickable */
     /* need to figure out here, can't be nonclickable */
-    pointer-events: none;
+    /* pointer-events: none; */
 }
 
 
