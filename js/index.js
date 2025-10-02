@@ -3,11 +3,8 @@ window.onload = function () {
     
     // nav carousel by btn
     const carouselplaybarplaybtn = document.querySelector('.carousel .bouncecircle_right');
+    const carouselplaybtns = carouselplaybarplaybtn.querySelectorAll('.svg-icon');
     const carouselcontent = document.querySelector('.carousel .bigcarousel');
-
-    // --shared-media-gallery-viewport-content: max(87.5vw - var(--global-scrollbar-width),var(--shared-media-gallery-responsive-content-absolute-min-width));
-    // --shared-media-gallery-width: min(var(--shared-media-gallery-viewport-content), var(--shared-media-gallery-responsive-content-absolute-max-width));
-    // padding: 0 max(6.25vw,(100vw - 1680px)/2,env(safe-area-inset-left),env(safe-area-inset-right));
     const carouselpadding = 102.5;
     const tilegap = 24;
     const carouselminwidth = 280;
@@ -25,11 +22,11 @@ window.onload = function () {
         })
     });
 
-    //auto nav carousel
+    //nav carousel by auto
     const carouselplaybaraccesscontainers = document.querySelectorAll('.carousel .playbaraccesscontainer');
     let currenttileindex = 0;
     const carouselplaybardots = document.querySelectorAll('.carousel .playbaraccesscontainer .bouncecircle .dot');
-    // autonavcarousel(carouselcontent, tilewidth, tilegap, carouselplaybardots, currenttileindex, carouselplaybaraccesscontainers);
+    autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, currenttileindex, carouselplaybaraccesscontainers);
 
     // reveal playbar
     const playbaraccesscontainer = document.querySelectorAll('.playbaraccesscontainer');
@@ -251,12 +248,13 @@ window.onload = function () {
     }); 
 }
 
-function autonavcarousel(carouselcontent, tilewidth, tilegap, carouselplaybardots, currenttileindex, carouselplaybaraccesscontainers) {
+function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, currenttileindex, carouselplaybaraccesscontainers) {
     const options = {
         root: null,
         rootMargin: '0px',
         threshold: 0.2
     };
+    let scrollDurationBuffer = 5500;
 
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -272,7 +270,13 @@ function autonavcarousel(carouselcontent, tilewidth, tilegap, carouselplaybardot
                     addClass(carouselplaybardots[currenttileindex + 1], 'selected');
                     currenttileindex++;
                     if (currenttileindex >= 5) {
+                        setTimeout(() => {
+                            // play btn changes to replay
+                            carouselplaybtns[1].style.display = 'none';
+                            carouselplaybtns[2].style.display = 'block';
+                        }, scrollDurationBuffer);
                         clearInterval(intervalid);
+
                     }
                 }, intervaltime);
                 observer.unobserve(entry.target);
