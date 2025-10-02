@@ -5,21 +5,33 @@ window.onload = function () {
     const carouselplaybarplaybtn = document.querySelector('.carousel .bouncecircle_right');
     const carouselplaybtns = carouselplaybarplaybtn.querySelectorAll('.svg-icon');
     const carouselcontent = document.querySelector('.carousel .bigcarousel');
-    const carouselpadding = 102.5;
-    const tilegap = 24;
+    
     const carouselminwidth = 280;
     const carouselmaxwidth = 1680;
     const scrollbarwidth = 15;
     const vw = window.innerWidth / 100;
     const viewportcontent = Math.max(87.5 * vw - scrollbarwidth, carouselminwidth);
     const tilewidth = Math.min(viewportcontent, carouselmaxwidth);
+    const tilegap = 24;
 
     carouselplaybarplaybtn.addEventListener('click', () => {
-        carouselcontent.scrollBy({
-            top: 0, 
-            left: tilewidth + tilegap,
-            behavior: "smooth"
-        })
+        // carouselcontent.scrollBy({
+        //     top: 0, 
+        //     left: tilewidth + tilegap,
+        //     behavior: "smooth"
+        // })
+
+        // if it's replay, carousel scrolls back, playbar scrolls back
+        if (carouselplaybtns[2].style.display == 'block') {
+            carouselcontent.scrollTo ({
+                top: 0,
+                left: 0,
+                behavior: "smooth"
+            })
+
+            // scrolltonexttile();
+            
+        }
     });
 
     //nav carousel by auto
@@ -246,6 +258,31 @@ window.onload = function () {
         // dissolve scroll
         scrollsection4(piccontainer, pics, texts, photograph, navheight)
     }); 
+}
+
+function scrolltonexttile() {
+    const carouselminwidth = 280;
+    const carouselmaxwidth = 1680;
+    const scrollbarwidth = 15;
+    const vw = window.innerWidth / 100;
+    const viewportcontent = Math.max(87.5 * vw - scrollbarwidth, carouselminwidth);
+    const tilewidth = Math.min(viewportcontent, carouselmaxwidth);
+    const tilegap = 24;
+    const carouselcontent = document.querySelector('.carousel .bigcarousel');
+
+    let carouselindex = 5;
+    const scrollduration = 100;
+    const scrolldistance = -(tilewidth + tilegap);
+    if (carouselindex >= 0) {
+        carouselcontent.scrollBy({
+            top: 0,
+            left: scrolldistance,
+            behavior: "smooth"
+        });
+        carouselindex--;
+
+        setTimeout(scrolltonexttile, scrollduration);
+    }
 }
 
 function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, currenttileindex, carouselplaybaraccesscontainers) {

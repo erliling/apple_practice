@@ -1039,6 +1039,12 @@ a.arrow::after {
     border-radius: 50px;
 
     transition: width 0.5s ease-out;
+
+    cursor: pointer;
+}
+
+.playbaraccesscontainer .bouncecircle_left .dot:hover {
+    background-color: var(--icon-background-color2);
 }
 
 .playbaraccesscontainer .bouncecircle_left .dot.selected {
@@ -1074,6 +1080,10 @@ a.arrow::after {
     border-radius: 50px;
 
     cursor: pointer;
+}
+
+.playbaraccesscontainer .bouncecircle_right:hover {
+    background-color: var(--icon-background-color2);
 }
 
 .playbaraccesscontainer .bouncecircle_right .svg-icon {

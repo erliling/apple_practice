@@ -22,10 +22,11 @@
     /* global comp */
     --default-gray-border-color: #4b4b4e;
     --default-icon-color: #f5f5f7;
-    --default-icon-color-opacity: rgba(245, 245, 247, 0.7);
+    --default-icon-color-opacity: rgba(245, 245, 247, 0.8);
     --default-btn-bg-color: #0071E3;
     --default-frame-color: rgb(0, 0, 0);
     --icon-background-color: rgba(66, 66, 69, 0.7);
+    --icon-background-color2: rgba(116, 116, 123, 0.7);
     --colornav-item-size: 36px;
     --colornav-swatch-size: 28px;
     --colornav-swatch-size2: 12px;
