@@ -1,7 +1,6 @@
 
 window.onload = function () {
     
-    // nav carousel by btn
     const carouselplaybarplaybtn = document.querySelector('.carousel .bouncecircle_right');
     const carouselplaybtns = carouselplaybarplaybtn.querySelectorAll('.svg-icon');
     const carouselcontent = document.querySelector('.carousel .bigcarousel');
@@ -13,6 +12,9 @@ window.onload = function () {
     const viewportcontent = Math.max(87.5 * vw - scrollbarwidth, carouselminwidth);
     const tilewidth = Math.min(viewportcontent, carouselmaxwidth);
     const tilegap = 24;
+    let carouselindex = 5;
+    const scrollduration = 100;
+    const scrolldistance = -(tilewidth + tilegap);
 
     carouselplaybarplaybtn.addEventListener('click', () => {
         // carouselcontent.scrollBy({
@@ -30,6 +32,7 @@ window.onload = function () {
             })
 
             // scrolltonexttile();
+            // scrolltoprevplaybardot();
             
         }
     });
@@ -260,6 +263,20 @@ window.onload = function () {
     }); 
 }
 
+function scrolltoprevplaybardot() {
+    let carouselindex = 5;
+    const scrollduration = 100;
+    const carouselplaybardots = document.querySelectorAll('.carousel .playbaraccesscontainer .bouncecircle .dot');
+
+    while (carouselindex >= 0) {
+        removeClass(carouselplaybardots[carouselindex], 'selected');
+        addClass(carouselplaybardots[carouselindex - 1], 'selected');
+        carouselindex--;
+
+        // setTimeout(scrolltoprevplaybardot, scrollduration);
+    }
+}
+
 function scrolltonexttile() {
     const carouselminwidth = 280;
     const carouselmaxwidth = 1680;
@@ -308,7 +325,6 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
                     currenttileindex++;
                     if (currenttileindex >= 5) {
                         setTimeout(() => {
-                            // play btn changes to replay
                             carouselplaybtns[1].style.display = 'none';
                             carouselplaybtns[2].style.display = 'block';
                         }, scrollDurationBuffer);
