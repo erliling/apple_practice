@@ -5,6 +5,8 @@ window.onload = function () {
     const carouselplaybarplaybtn = document.querySelector('.carousel .bouncecircle_right');
     const carouselplaybtns = carouselplaybarplaybtn.querySelectorAll('.svg-icon');
     const carouselcontent = document.querySelector('.carousel .bigcarousel');
+    const carouselplaybaraccesscontainers = document.querySelectorAll('.carousel .playbaraccesscontainer');
+    const carouselplaybardots = document.querySelectorAll('.carousel .playbaraccesscontainer .bouncecircle .dot');
     
     const carouselminwidth = 280;
     const carouselmaxwidth = 1680;
@@ -35,14 +37,14 @@ window.onload = function () {
             // scrolltonexttile();
             // scrolltoprevplaybardot();
             
-            movenavcarouselright(carouselplaybardots, carouselplaybaraccesscontainers[0]);
+            movenavcarouselright(carouselplaybardots, carouselplaybaraccesscontainers[0], carouselplaybtns);
+            let currenttileindex = 0;
+            autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, currenttileindex, carouselplaybaraccesscontainers);
         }
     });
 
     //nav carousel by auto
-    const carouselplaybaraccesscontainers = document.querySelectorAll('.carousel .playbaraccesscontainer');
     let currenttileindex = 0;
-    const carouselplaybardots = document.querySelectorAll('.carousel .playbaraccesscontainer .bouncecircle .dot');
     autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, currenttileindex, carouselplaybaraccesscontainers);
 
     // reveal playbar
@@ -304,8 +306,11 @@ function scrolltonexttile() {
     }
 }
 
-function movenavcarouselright(carouselplaybardots, carouselplaybaraccesscontainer) {
-    carouselplaybaraccesscontainer.classList.remove('revealed2');
+function movenavcarouselright(carouselplaybardots, carouselplaybaraccesscontainer, carouselplaybtns) {
+    if (!carouselplaybaraccesscontainer.classList.hasClass('revealed2')) {
+        carouselplaybaraccesscontainer.classList.remove('revealed2');
+    }
+    displaypausebtn(carouselplaybtns);
 
     let currenttileindex = 5;
     const intervaltime = 200;
@@ -317,8 +322,7 @@ function movenavcarouselright(carouselplaybardots, carouselplaybaraccesscontaine
         currenttileindex --;
         if (currenttileindex == 0) {
             setTimeout(() => {
-                // carouselplaybtns[1].style.display = 'none';
-                // carouselplaybtns[2].style.display = 'block';
+                // displaypausebtn(carouselplaybtns);
             }, scrollDurationBuffer);
             clearInterval(intervalid);
         }
@@ -340,8 +344,12 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-                entry.target.classList.add('revealed2');
+                if (!entry.target.classList.hasClass('revealed')) {
+                    entry.target.classList.add('revealed');
+                }
+                if (!entry.target.classList.hasClass('revealed2')) {
+                    entry.target.classList.add('revealed2');
+                }
 
                 const intervaltime = 6000;
                 let intervalid = setInterval(() => {
@@ -355,8 +363,7 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
                     currenttileindex++;
                     if (currenttileindex >= 5) {
                         setTimeout(() => {
-                            carouselplaybtns[1].style.display = 'none';
-                            carouselplaybtns[2].style.display = 'block';
+                            displayrefreshbtn(carouselplaybtns);
                         }, scrollDurationBuffer);
                         clearInterval(intervalid);
 
@@ -370,6 +377,22 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
     carouselplaybaraccesscontainers.forEach(element => {
         observer.observe(element);
     });
+}
+
+function displayplaybtn(carouselplaybtns) {
+    carouselplaybtns[0].style.display = 'block';
+    carouselplaybtns[1].style.display = 'none';
+    carouselplaybtns[2].style.display = 'none';
+}
+function displaypausebtn(carouselplaybtns) {
+    carouselplaybtns[0].style.display = 'none';
+    carouselplaybtns[1].style.display = 'block';
+    carouselplaybtns[2].style.display = 'none';
+}
+function displayrefreshbtn(carouselplaybtns) {
+    carouselplaybtns[0].style.display = 'none';
+    carouselplaybtns[1].style.display = 'none';
+    carouselplaybtns[2].style.display = 'block';
 }
 
 function revealgriditembyitem(revealelements, thresholdvalue) {
