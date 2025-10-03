@@ -1,6 +1,7 @@
 
 window.onload = function () {
     
+    
     const carouselplaybarplaybtn = document.querySelector('.carousel .bouncecircle_right');
     const carouselplaybtns = carouselplaybarplaybtn.querySelectorAll('.svg-icon');
     const carouselcontent = document.querySelector('.carousel .bigcarousel');
@@ -34,6 +35,7 @@ window.onload = function () {
             // scrolltonexttile();
             // scrolltoprevplaybardot();
             
+            movenavcarouselright(carouselplaybardots, carouselplaybaraccesscontainers[0]);
         }
     });
 
@@ -273,7 +275,7 @@ function scrolltoprevplaybardot() {
         addClass(carouselplaybardots[carouselindex - 1], 'selected');
         carouselindex--;
 
-        // setTimeout(scrolltoprevplaybardot, scrollduration);
+        setTimeout(scrolltoprevplaybardot, scrollduration);
     }
 }
 
@@ -302,6 +304,31 @@ function scrolltonexttile() {
     }
 }
 
+function movenavcarouselright(carouselplaybardots, carouselplaybaraccesscontainer) {
+    carouselplaybaraccesscontainer.classList.remove('revealed2');
+
+    let currenttileindex = 5;
+    const intervaltime = 200;
+    let scrollDurationBuffer = 550;
+
+    let intervalid = setInterval(() => {
+        removeClass(carouselplaybardots[currenttileindex], 'selected');
+        addClass(carouselplaybardots[currenttileindex - 1], 'selected');
+        currenttileindex --;
+        if (currenttileindex == 0) {
+            setTimeout(() => {
+                // carouselplaybtns[1].style.display = 'none';
+                // carouselplaybtns[2].style.display = 'block';
+            }, scrollDurationBuffer);
+            clearInterval(intervalid);
+        }
+    }, intervaltime);
+}
+
+function movenavcarouselleft() {
+    
+}
+
 function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, currenttileindex, carouselplaybaraccesscontainers) {
     const options = {
         root: null,
@@ -313,6 +340,9 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                entry.target.classList.add('revealed2');
+
                 const intervaltime = 6000;
                 let intervalid = setInterval(() => {
                     carouselcontent.scrollBy({

@@ -1052,7 +1052,7 @@ a.arrow::after {
     width: 46px;
 }
 
-.playbaraccesscontainer.revealed .bouncecircle_left .dot.selected::after {
+.playbaraccesscontainer.revealed.revealed2 .bouncecircle_left .dot.selected::after {
     content: "";
     height: 100%;
     border-radius: 50px;
