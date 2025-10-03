@@ -36,7 +36,7 @@ window.onload = function () {
             // scrolltonexttile();
             // scrolltoprevplaybardot();
             
-            movenavcarouselright(carouselplaybardots, carouselplaybaraccesscontainers[0], carouselplaybtns);
+            moveplaybardotright(carouselplaybardots, carouselplaybaraccesscontainers[0], carouselplaybtns);
             let currenttileindex = 0;
             autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, currenttileindex, carouselplaybaraccesscontainers);
         }
@@ -313,7 +313,7 @@ function scrolltonexttile() {
     }
 }
 
-function movenavcarouselright(carouselplaybardots, carouselplaybaraccesscontainer, carouselplaybtns) {
+function moveplaybardotright(carouselplaybardots, carouselplaybaraccesscontainer, carouselplaybtns) {
     if (carouselplaybaraccesscontainer.classList.contains('revealed2')) {
         carouselplaybaraccesscontainer.classList.remove('revealed2');
     }
