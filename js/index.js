@@ -307,7 +307,7 @@ function scrolltonexttile() {
 }
 
 function movenavcarouselright(carouselplaybardots, carouselplaybaraccesscontainer, carouselplaybtns) {
-    if (!carouselplaybaraccesscontainer.classList.hasClass('revealed2')) {
+    if (carouselplaybaraccesscontainer.classList.contains('revealed2')) {
         carouselplaybaraccesscontainer.classList.remove('revealed2');
     }
     displaypausebtn(carouselplaybtns);
@@ -344,10 +344,10 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                if (!entry.target.classList.hasClass('revealed')) {
+                if (!entry.target.classList.contains('revealed')) {
                     entry.target.classList.add('revealed');
                 }
-                if (!entry.target.classList.hasClass('revealed2')) {
+                if (!entry.target.classList.contains('revealed2')) {
                     entry.target.classList.add('revealed2');
                 }
 
