@@ -28,11 +28,10 @@ window.onload = function () {
 
         // if it's replay, carousel scrolls back, playbar scrolls back
         if (carouselplaybtns[2].style.display == 'block') {
-            carouselcontent.scrollTo ({
-                top: 0,
-                left: 0,
-                behavior: "smooth"
-            })
+            setTimeout(() => {
+                movenavcarouseltospecificpos(carouselcontent);
+            }, 300);
+            
 
             // scrolltonexttile();
             // scrolltoprevplaybardot();
@@ -265,6 +264,14 @@ window.onload = function () {
         // dissolve scroll
         scrollsection4(piccontainer, pics, texts, photograph, navheight)
     }); 
+}
+
+function movenavcarouseltospecificpos(carouselcontent) {
+    carouselcontent.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+    });
 }
 
 function scrolltoprevplaybardot() {
