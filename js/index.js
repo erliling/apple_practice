@@ -259,10 +259,6 @@ window.onload = function () {
     }); 
 }
 
-let carouselcurrentindex = 0;
-// let intervalid2 = null;
-let intervalid = null;
-
 
 function movenavcarouseltospecificpos(carouselcontent, leftvalue) {
     carouselcontent.scrollTo({
@@ -310,6 +306,10 @@ function scrolltonexttile() {
         setTimeout(scrolltonexttile, scrollduration);
     }
 }
+
+let carouselcurrentindex = 0;
+let intervalid2 = null;
+let intervalid = null;
 
 function moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainer, carouselplaybtns) {
     if (carouselplaybaraccesscontainer.classList.contains('revealed2')) {
