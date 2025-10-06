@@ -257,6 +257,7 @@ window.onload = function () {
 }
 
 let carouselcurrentindex = 0;
+let intervalid = null;
 
 
 function movenavcarouseltospecificpos(carouselcontent, leftvalue) {
