@@ -28,7 +28,7 @@ window.onload = function () {
             clearInterval(intervalid2);
             displayplaybtn(carouselplaybtns);
             // stop progress bar
-            
+
         }
 
         // if it's replay, carousel scrolls back, playbar scrolls back
@@ -261,6 +261,7 @@ window.onload = function () {
 
 let carouselcurrentindex = 0;
 let intervalid2 = null;
+// let intervalid = null;
 
 
 function movenavcarouseltospecificpos(carouselcontent, leftvalue) {
@@ -350,25 +351,79 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
     
 }
 
+// function moveplaybarleft(carouselplaybardots) {
+//     const intervaltime = 200;
+
+//     intervalid = setInterval(() => {
+//         // --- 1. CRITICAL: Check the stop condition FIRST ---
+//         // If the index is already 0, clear the interval and stop the function.
+//         // This prevents the code below from running an extra time.
+//         if (carouselcurrentindex <= 0) {
+//             clearInterval(intervalid); 
+//             // Optional: You can display the pause button here if needed
+//             // displaypausebtn(carouselplaybtns); 
+//             return; // Stops all further execution in this tick.
+//         }
+
+//         // --- 2. EXECUTE THE STEP ---
+//         // Decrement the index BEFORE using it for the new dot/tile.
+//         carouselcurrentindex--; 
+
+//         // Update the dots using the new index (carouselcurrentindex is now 4, 3, 2, etc.)
+//         // The dot being unselected is the *old* one (currentindex + 1)
+//         removeClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
+//         addClass(carouselplaybardots[carouselcurrentindex], 'selected');
+
+//     }, intervaltime);
+// }
+
 function moveplaybarleft(carouselplaybardots) {
-    // carouselcurrentindex = 5;
     const intervaltime = 200;
-    let scrollDurationBuffer = 550;
+    const scrollDurationBuffer = 6000;
 
     let intervalid = setInterval(() => {
         removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
         addClass(carouselplaybardots[carouselcurrentindex - 1], 'selected');
         carouselcurrentindex --;
-        if (carouselcurrentindex == 0) {
-            setTimeout(() => {
-                // displaypausebtn(carouselplaybtns);
-            }, scrollDurationBuffer);
+        if (carouselcurrentindex === 0) {
             clearInterval(intervalid);
+
+            // setTimeout(() => {
+            //     clearInterval(intervalid);
+            // }, scrollDurationBuffer);
+            
+            // return;
         }
     }, intervaltime);
 
     intervalid2 = intervalid;
 }
+
+// function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, scrollDurationBuffer) {
+//     const intervaltime = 6000;
+    
+//     intervalid = setInterval(() => {
+//         if (carouselcurrentindex >= 4) {
+//             setTimeout(() => {
+//                 displayrefreshbtn(carouselplaybtns);
+//                 clearInterval(intervalid);
+//                 return;
+//             }, scrollDurationBuffer);
+//         }
+    
+//         carouselcurrentindex ++;
+    
+//         removeClass(carouselplaybardots[carouselcurrentindex - 1], 'selected');
+//         addClass(carouselplaybardots[carouselcurrentindex], 'selected');
+
+//         carouselcontent.scrollBy({
+//             top: 0,
+//             left: tilewidth + tilegap,
+//             behavior: "smooth"
+//         });
+//     }, intervaltime);
+
+// }
 
 function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, scrollDurationBuffer) {
     const intervaltime = 6000;
@@ -392,7 +447,6 @@ function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carous
 
         }
     }, intervaltime);
-    // return carouselcurrentindex;
 
     intervalid2 = intervalid;
 }
