@@ -25,7 +25,10 @@ window.onload = function () {
 
         // if it's pause, then pause, and change to play
         if (carouselplaybtns[1].style.display == 'block') {
-
+            clearInterval(intervalid2);
+            displayplaybtn(carouselplaybtns);
+            // stop progress bar
+            
         }
 
         // if it's replay, carousel scrolls back, playbar scrolls back
@@ -257,7 +260,7 @@ window.onload = function () {
 }
 
 let carouselcurrentindex = 0;
-let intervalid = null;
+let intervalid2 = null;
 
 
 function movenavcarouseltospecificpos(carouselcontent, leftvalue) {
@@ -363,6 +366,8 @@ function moveplaybarleft(carouselplaybardots) {
             clearInterval(intervalid);
         }
     }, intervaltime);
+
+    intervalid2 = intervalid;
 }
 
 function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, scrollDurationBuffer) {
@@ -388,6 +393,8 @@ function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carous
         }
     }, intervaltime);
     // return carouselcurrentindex;
+
+    intervalid2 = intervalid;
 }
 
 function displayplaybtn(carouselplaybtns) {
