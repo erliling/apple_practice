@@ -378,13 +378,13 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
 // }
 
 function moveplaybarleft(carouselplaybardots) {
-    const intervaltime = 200;
+    const intervaltime = 6000;
     const scrollDurationBuffer = 6000;
 
     // clearInterval(intervalid);
     // intervalid = null;
 
-    let intervalid = setInterval(() => {
+    intervalid = setInterval(() => {
         removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
         addClass(carouselplaybardots[carouselcurrentindex - 1], 'selected');
         carouselcurrentindex --;
@@ -434,7 +434,7 @@ function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carous
     // clearInterval(intervalid);
     // intervalid = null;
 
-    let intervalid = setInterval(() => {
+    intervalid = setInterval(() => {
         // move carousel
         carouselcontent.scrollBy({
             top: 0,
