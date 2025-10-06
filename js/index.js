@@ -260,8 +260,8 @@ window.onload = function () {
 }
 
 let carouselcurrentindex = 0;
-let intervalid2 = null;
-// let intervalid = null;
+// let intervalid2 = null;
+let intervalid = null;
 
 
 function movenavcarouseltospecificpos(carouselcontent, leftvalue) {
@@ -381,12 +381,16 @@ function moveplaybarleft(carouselplaybardots) {
     const intervaltime = 200;
     const scrollDurationBuffer = 6000;
 
+    // clearInterval(intervalid);
+    // intervalid = null;
+
     let intervalid = setInterval(() => {
         removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
         addClass(carouselplaybardots[carouselcurrentindex - 1], 'selected');
         carouselcurrentindex --;
-        if (carouselcurrentindex === 0) {
+        if (carouselcurrentindex == 0) {
             clearInterval(intervalid);
+            // intervalid = null;
 
             // setTimeout(() => {
             //     clearInterval(intervalid);
@@ -427,6 +431,9 @@ function moveplaybarleft(carouselplaybardots) {
 
 function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, scrollDurationBuffer) {
     const intervaltime = 6000;
+    // clearInterval(intervalid);
+    // intervalid = null;
+
     let intervalid = setInterval(() => {
         // move carousel
         carouselcontent.scrollBy({
@@ -442,9 +449,10 @@ function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carous
         if (carouselcurrentindex >= 5) {
             setTimeout(() => {
                 displayrefreshbtn(carouselplaybtns);
+                clearInterval(intervalid);
+                // intervalid = null;
             }, scrollDurationBuffer);
-            clearInterval(intervalid);
-
+            
         }
     }, intervaltime);
 
