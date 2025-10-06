@@ -1,7 +1,7 @@
 
 window.onload = function () {
     
-    
+    // big carousel playbar
     const carouselplaybarplaybtn = document.querySelector('.carousel .bouncecircle_right');
     const carouselplaybtns = carouselplaybarplaybtn.querySelectorAll('.svg-icon');
     const carouselcontent = document.querySelector('.carousel .bigcarousel');
@@ -15,40 +15,46 @@ window.onload = function () {
     const viewportcontent = Math.max(87.5 * vw - scrollbarwidth, carouselminwidth);
     const tilewidth = Math.min(viewportcontent, carouselmaxwidth);
     const tilegap = 24;
-    let carouselindex = 5;
-    const scrollduration = 100;
-    const scrolldistance = -(tilewidth + tilegap);
+    
+    
 
+    // click playbar main btn
     carouselplaybarplaybtn.addEventListener('click', () => {
-        // carouselcontent.scrollBy({
-        //     top: 0, 
-        //     left: tilewidth + tilegap,
-        //     behavior: "smooth"
-        // })
+        // if it's play, then continue play, and change to pause
+
+
+        // if it's pause, then pause, and change to play
+        if (carouselplaybtns[1].style.display == 'block') {
+
+        }
 
         // if it's replay, carousel scrolls back, playbar scrolls back
         if (carouselplaybtns[2].style.display == 'block') {
             setTimeout(() => {
-                movenavcarouseltospecificpos(carouselcontent);
+                // move carousel
+                movenavcarouseltospecificpos(carouselcontent, 0);
             }, 300);
             
+            // move dot
+            moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainers[0], carouselplaybtns);
 
-            // scrolltonexttile();
-            // scrolltoprevplaybardot();
-            
-            moveplaybardotright(carouselplaybardots, carouselplaybaraccesscontainers[0], carouselplaybtns);
-            let currenttileindex = 0;
-            autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, currenttileindex, carouselplaybaraccesscontainers);
+            // after move to the beginning, start auto nav again
+            autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybaraccesscontainers);
         }
     });
 
     //nav carousel by auto
-    let currenttileindex = 0;
-    autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, currenttileindex, carouselplaybaraccesscontainers);
+    autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybaraccesscontainers);
 
     // reveal playbar
     const playbaraccesscontainer = document.querySelectorAll('.playbaraccesscontainer');
     revealrowbyrow(playbaraccesscontainer, 0.5);
+
+
+
+
+
+
 
     // reveal elements
     const revealelements = document.querySelectorAll('.colcontainer.revealelement');
@@ -58,22 +64,6 @@ window.onload = function () {
     const rowContainers = document.querySelectorAll('.rowcontainer');
     revealitembyitem(rowContainers, 0.2);
 
-    // not working, cause it's not revealed before attached, so that intervaltime won't be applied
-    // const carouselplaybaraccesscontainer = document.querySelector('.carousel .playbaraccesscontainer');
-    // if (hasClass(carouselplaybaraccesscontainer, 'revealed')) {
-    //     let currenttileindex = 0;
-    //     const intervaltime = 6000;
-    //     if (currenttileindex <= 4) {
-    //         setInterval (() => {
-    //             carouselcontent.scrollBy({
-    //                 top: 0, 
-    //                 left: tilewidth + tilegap,
-    //                 behavior: "smooth"
-    //             })
-    //         }, intervaltime)
-    //         currenttileindex ++;
-    //     }
-    // }
 
     // shrink nav
     const navshrink = document.querySelector('.navshrink');
@@ -266,10 +256,13 @@ window.onload = function () {
     }); 
 }
 
-function movenavcarouseltospecificpos(carouselcontent) {
+let carouselcurrentindex = 0;
+
+
+function movenavcarouseltospecificpos(carouselcontent, leftvalue) {
     carouselcontent.scrollTo({
         top: 0,
-        left: 0,
+        left: leftvalue,
         behavior: "smooth"
     });
 }
@@ -313,34 +306,16 @@ function scrolltonexttile() {
     }
 }
 
-function moveplaybardotright(carouselplaybardots, carouselplaybaraccesscontainer, carouselplaybtns) {
+function moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainer, carouselplaybtns) {
     if (carouselplaybaraccesscontainer.classList.contains('revealed2')) {
         carouselplaybaraccesscontainer.classList.remove('revealed2');
     }
     displaypausebtn(carouselplaybtns);
 
-    let currenttileindex = 5;
-    const intervaltime = 200;
-    let scrollDurationBuffer = 550;
-
-    let intervalid = setInterval(() => {
-        removeClass(carouselplaybardots[currenttileindex], 'selected');
-        addClass(carouselplaybardots[currenttileindex - 1], 'selected');
-        currenttileindex --;
-        if (currenttileindex == 0) {
-            setTimeout(() => {
-                // displaypausebtn(carouselplaybtns);
-            }, scrollDurationBuffer);
-            clearInterval(intervalid);
-        }
-    }, intervaltime);
+    moveplaybarleft(carouselplaybardots);
 }
 
-function movenavcarouselleft() {
-    
-}
-
-function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, currenttileindex, carouselplaybaraccesscontainers) {
+function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybaraccesscontainers) {
     const options = {
         root: null,
         rootMargin: '0px',
@@ -358,24 +333,7 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
                     entry.target.classList.add('revealed2');
                 }
 
-                const intervaltime = 6000;
-                let intervalid = setInterval(() => {
-                    carouselcontent.scrollBy({
-                        top: 0,
-                        left: tilewidth + tilegap,
-                        behavior: "smooth"
-                    });
-                    removeClass(carouselplaybardots[currenttileindex], 'selected');
-                    addClass(carouselplaybardots[currenttileindex + 1], 'selected');
-                    currenttileindex++;
-                    if (currenttileindex >= 5) {
-                        setTimeout(() => {
-                            displayrefreshbtn(carouselplaybtns);
-                        }, scrollDurationBuffer);
-                        clearInterval(intervalid);
-
-                    }
-                }, intervaltime);
+                moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, scrollDurationBuffer);
                 observer.unobserve(entry.target);
             }
         });
@@ -384,6 +342,51 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
     carouselplaybaraccesscontainers.forEach(element => {
         observer.observe(element);
     });
+
+    
+}
+
+function moveplaybarleft(carouselplaybardots) {
+    // carouselcurrentindex = 5;
+    const intervaltime = 200;
+    let scrollDurationBuffer = 550;
+
+    let intervalid = setInterval(() => {
+        removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
+        addClass(carouselplaybardots[carouselcurrentindex - 1], 'selected');
+        carouselcurrentindex --;
+        if (carouselcurrentindex == 0) {
+            setTimeout(() => {
+                // displaypausebtn(carouselplaybtns);
+            }, scrollDurationBuffer);
+            clearInterval(intervalid);
+        }
+    }, intervaltime);
+}
+
+function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, scrollDurationBuffer) {
+    const intervaltime = 6000;
+    let intervalid = setInterval(() => {
+        // move carousel
+        carouselcontent.scrollBy({
+            top: 0,
+            left: tilewidth + tilegap,
+            behavior: "smooth"
+        });
+
+        // move playbar dots
+        removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
+        addClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
+        carouselcurrentindex ++;
+        if (carouselcurrentindex >= 5) {
+            setTimeout(() => {
+                displayrefreshbtn(carouselplaybtns);
+            }, scrollDurationBuffer);
+            clearInterval(intervalid);
+
+        }
+    }, intervaltime);
+    // return carouselcurrentindex;
 }
 
 function displayplaybtn(carouselplaybtns) {
