@@ -378,7 +378,7 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
 // }
 
 function moveplaybarleft(carouselplaybardots) {
-    const intervaltime = 6000;
+    const intervaltime = 200;
     const scrollDurationBuffer = 6000;
 
     // clearInterval(intervalid);
