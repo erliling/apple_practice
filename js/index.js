@@ -504,8 +504,6 @@ function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carous
 function moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, progressbarlefttime) {
     const intervaltime = 6000;
     let scrollDurationBuffer = 5500;
-    // progressbarlefttime
-
 
     setTimeout (() => {
         scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, scrollDurationBuffer);
