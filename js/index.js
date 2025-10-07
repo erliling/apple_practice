@@ -33,7 +33,8 @@ window.onload = function () {
             displaypausebtn(carouselplaybtns);
 
             // move carousel and playbar right
-            moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns);
+            let progressbarlefttime = 6000 - progressbartimeelapsed;
+            moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, progressbarlefttime);
 
             // start progress bar
             if (carouselplaybaraccesscontainers[0].classList.contains('animationpaused')) {
@@ -53,12 +54,20 @@ window.onload = function () {
             if (!carouselplaybaraccesscontainers[0].classList.contains('animationpaused')) {
                 carouselplaybaraccesscontainers[0].classList.add('animationpaused');
             }
+
+            progressbartimeelapsed = performance.now() - parseFloat(progressbarstartime);
+
         }
 
         // if it's replay, carousel scrolls back, playbar scrolls back, and change to pause
         if (replaydisplayValue == 'block') {
             // change btn icon
             displaypausebtn(carouselplaybtns);
+
+            // start progress bar
+            if (carouselplaybaraccesscontainers[0].classList.contains('animationpaused')) {
+                carouselplaybaraccesscontainers[0].classList.remove('animationpaused');
+            }
 
             // move carousel left
             setTimeout(() => {
@@ -341,6 +350,8 @@ function scrolltonexttile() {
 let carouselcurrentindex = 0;
 // let intervalid2 = null;
 let intervalid = null;
+let progressbarstartime = 0;
+let progressbartimeelapsed = 0;
 
 function moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainer, carouselplaybtns) {
     if (carouselplaybaraccesscontainer.classList.contains('revealed2')) {
@@ -490,31 +501,43 @@ function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carous
     // intervalid2 = intervalid;
 }
 
-function moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
+function moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, progressbarlefttime) {
     const intervaltime = 6000;
     let scrollDurationBuffer = 5500;
+    // progressbarlefttime
 
-    intervalid = setInterval(() => {
-        // move carousel
-        carouselcontent.scrollBy({
-            top: 0,
-            left: tilewidth + tilegap,
-            behavior: "smooth"
-        });
 
-        // move playbar dots
-        removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
-        addClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
-        carouselcurrentindex ++;
+    setTimeout (() => {
+        scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, scrollDurationBuffer);
+        
+        intervalid = setInterval(() => {
+            scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, scrollDurationBuffer);
+        }, intervaltime);
 
-        if (carouselcurrentindex >= 5) {
-            setTimeout(() => {
-                displayrefreshbtn(carouselplaybtns);
-                clearInterval(intervalid);
-            }, scrollDurationBuffer);
-            
-        }
-    }, intervaltime);
+    }, progressbarlefttime);
+    
+}
+
+function scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, scrollDurationBuffer) {
+    carouselcontent.scrollBy({
+        top: 0,
+        left: tilewidth + tilegap,
+        behavior: "smooth"
+    });
+
+    // move playbar dots
+    removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
+    addClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
+    progressbarstartime = performance.now();
+    carouselcurrentindex++;
+
+    if (carouselcurrentindex >= 5) {
+        setTimeout(() => {
+            displayrefreshbtn(carouselplaybtns);
+            clearInterval(intervalid);
+        }, scrollDurationBuffer);
+
+    }
 }
 
 function displayplaybtn(carouselplaybtns) {
