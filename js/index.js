@@ -20,28 +20,53 @@ window.onload = function () {
 
     // click playbar main btn
     carouselplaybarplaybtn.addEventListener('click', () => {
+        const playstyles = window.getComputedStyle(carouselplaybtns[0]);
+        const playdisplayValue = playstyles.display;
+        const pausestyles = window.getComputedStyle(carouselplaybtns[1]);
+        const pausedisplayValue = pausestyles.display;
+        const replaystyles = window.getComputedStyle(carouselplaybtns[2]);
+        const replaydisplayValue = replaystyles.display;
+
         // if it's play, then continue play, and change to pause
+        if (playdisplayValue == 'block') {
+            // change btn icon
+            displaypausebtn(carouselplaybtns);
+
+            // move carousel and playbar right
 
 
-        // if it's pause, then pause, and change to play
-        if (carouselplaybtns[1].style.display == 'block') {
-            clearInterval(intervalid);
-            displayplaybtn(carouselplaybtns);
-            // stop progress bar
+            // start progress bar
 
         }
 
-        // if it's replay, carousel scrolls back, playbar scrolls back
-        if (carouselplaybtns[2].style.display == 'block') {
+        // if it's pause, then pause, and change to play
+        if (pausedisplayValue == 'block') {
+            // stop carousel and playbar
+            clearInterval(intervalid);
+
+            // change btn icon
+            displayplaybtn(carouselplaybtns);
+
+            // stop progress bar
+            if (!carouselplaybaraccesscontainers[0].classList.contains('animationpaused')) {
+                carouselplaybaraccesscontainers[0].classList.add('animationpaused');
+            }
+        }
+
+        // if it's replay, carousel scrolls back, playbar scrolls back, and change to pause
+        if (replaydisplayValue == 'block') {
+            // change btn icon
+            displaypausebtn(carouselplaybtns);
+
+            // move carousel left
             setTimeout(() => {
-                // move carousel
                 movenavcarouseltospecificpos(carouselcontent, 0);
             }, 300);
             
-            // move dot
+            // move playbar left
             moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainers[0], carouselplaybtns);
 
-            // after move to the beginning, start auto nav again
+            // after move to the beginning, start auto nav again to the right
             let scrollDurationBuffer = 2000;
             setTimeout(() => {
                 autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybaraccesscontainers);
@@ -319,7 +344,6 @@ function moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainer,
     if (carouselplaybaraccesscontainer.classList.contains('revealed2')) {
         carouselplaybaraccesscontainer.classList.remove('revealed2');
     }
-    displaypausebtn(carouselplaybtns);
 
     moveplaybarleft(carouselplaybardots);
 }
