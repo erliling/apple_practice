@@ -33,10 +33,12 @@ window.onload = function () {
             displaypausebtn(carouselplaybtns);
 
             // move carousel and playbar right
-
+            moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns);
 
             // start progress bar
-
+            if (carouselplaybaraccesscontainers[0].classList.contains('animationpaused')) {
+                carouselplaybaraccesscontainers[0].classList.remove('animationpaused');
+            }
         }
 
         // if it's pause, then pause, and change to play
@@ -486,6 +488,33 @@ function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carous
     }, intervaltime);
 
     // intervalid2 = intervalid;
+}
+
+function moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
+    const intervaltime = 6000;
+    let scrollDurationBuffer = 5500;
+
+    intervalid = setInterval(() => {
+        // move carousel
+        carouselcontent.scrollBy({
+            top: 0,
+            left: tilewidth + tilegap,
+            behavior: "smooth"
+        });
+
+        // move playbar dots
+        removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
+        addClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
+        carouselcurrentindex ++;
+
+        if (carouselcurrentindex >= 5) {
+            setTimeout(() => {
+                displayrefreshbtn(carouselplaybtns);
+                clearInterval(intervalid);
+            }, scrollDurationBuffer);
+            
+        }
+    }, intervaltime);
 }
 
 function displayplaybtn(carouselplaybtns) {
