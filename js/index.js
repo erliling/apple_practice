@@ -96,9 +96,6 @@ window.onload = function () {
 
 
 
-
-
-
     // reveal elements
     const revealelements = document.querySelectorAll('.colcontainer.revealelement');
     revealrowbyrow(revealelements, 0.2);
@@ -419,57 +416,6 @@ function moveplaybarleft(carouselplaybardots) {
     }, intervaltime);
 }
 
-// function moveplaybarleft(carouselplaybardots) {
-//     const intervaltime = 200;
-//     const scrollDurationBuffer = 6000;
-
-//     // clearInterval(intervalid);
-//     // intervalid = null;
-
-//     intervalid = setInterval(() => {
-//         removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
-//         addClass(carouselplaybardots[carouselcurrentindex - 1], 'selected');
-//         carouselcurrentindex --;
-//         if (carouselcurrentindex == 0) {
-//             clearInterval(intervalid);
-//             // intervalid = null;
-
-//             // setTimeout(() => {
-//             //     clearInterval(intervalid);
-//             // }, scrollDurationBuffer);
-            
-//             // return;
-//         }
-//     }, intervaltime);
-
-//     // intervalid2 = intervalid;
-// }
-
-// function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, scrollDurationBuffer) {
-//     const intervaltime = 6000;
-    
-//     intervalid = setInterval(() => {
-//         if (carouselcurrentindex >= 4) {
-//             setTimeout(() => {
-//                 displayrefreshbtn(carouselplaybtns);
-//                 clearInterval(intervalid);
-//                 return;
-//             }, scrollDurationBuffer);
-//         }
-    
-//         carouselcurrentindex ++;
-    
-//         removeClass(carouselplaybardots[carouselcurrentindex - 1], 'selected');
-//         addClass(carouselplaybardots[carouselcurrentindex], 'selected');
-
-//         carouselcontent.scrollBy({
-//             top: 0,
-//             left: tilewidth + tilegap,
-//             behavior: "smooth"
-//         });
-//     }, intervaltime);
-
-// }
 
 function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, scrollDurationBuffer) {
     const intervaltime = 6000;
