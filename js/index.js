@@ -25,7 +25,7 @@ window.onload = function () {
 
         // if it's pause, then pause, and change to play
         if (carouselplaybtns[1].style.display == 'block') {
-            clearInterval(intervalid2);
+            clearInterval(intervalid);
             displayplaybtn(carouselplaybtns);
             // stop progress bar
 
@@ -42,7 +42,11 @@ window.onload = function () {
             moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainers[0], carouselplaybtns);
 
             // after move to the beginning, start auto nav again
-            autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybaraccesscontainers);
+            let scrollDurationBuffer = 2000;
+            setTimeout(() => {
+                autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybaraccesscontainers);
+            }, scrollDurationBuffer);
+            
         }
     });
 
@@ -308,7 +312,7 @@ function scrolltonexttile() {
 }
 
 let carouselcurrentindex = 0;
-let intervalid2 = null;
+// let intervalid2 = null;
 let intervalid = null;
 
 function moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainer, carouselplaybtns) {
@@ -351,57 +355,58 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
     
 }
 
-// function moveplaybarleft(carouselplaybardots) {
-//     const intervaltime = 200;
-
-//     intervalid = setInterval(() => {
-//         // --- 1. CRITICAL: Check the stop condition FIRST ---
-//         // If the index is already 0, clear the interval and stop the function.
-//         // This prevents the code below from running an extra time.
-//         if (carouselcurrentindex <= 0) {
-//             clearInterval(intervalid); 
-//             // Optional: You can display the pause button here if needed
-//             // displaypausebtn(carouselplaybtns); 
-//             return; // Stops all further execution in this tick.
-//         }
-
-//         // --- 2. EXECUTE THE STEP ---
-//         // Decrement the index BEFORE using it for the new dot/tile.
-//         carouselcurrentindex--; 
-
-//         // Update the dots using the new index (carouselcurrentindex is now 4, 3, 2, etc.)
-//         // The dot being unselected is the *old* one (currentindex + 1)
-//         removeClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
-//         addClass(carouselplaybardots[carouselcurrentindex], 'selected');
-
-//     }, intervaltime);
-// }
-
 function moveplaybarleft(carouselplaybardots) {
     const intervaltime = 200;
-    const scrollDurationBuffer = 6000;
-
-    // clearInterval(intervalid);
-    // intervalid = null;
 
     intervalid = setInterval(() => {
-        removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
-        addClass(carouselplaybardots[carouselcurrentindex - 1], 'selected');
-        carouselcurrentindex --;
-        if (carouselcurrentindex == 0) {
-            clearInterval(intervalid);
-            // intervalid = null;
-
-            // setTimeout(() => {
-            //     clearInterval(intervalid);
-            // }, scrollDurationBuffer);
-            
-            // return;
+        // --- 1. CRITICAL: Check the stop condition FIRST ---
+        // If the index is already 0, clear the interval and stop the function.
+        // This prevents the code below from running an extra time.
+        if (carouselcurrentindex <= 0) {
+            clearInterval(intervalid); 
+            intervalid = null;
+            // Optional: You can display the pause button here if needed
+            // displaypausebtn(carouselplaybtns); 
+            return; // Stops all further execution in this tick.
         }
-    }, intervaltime);
 
-    intervalid2 = intervalid;
+        // --- 2. EXECUTE THE STEP ---
+        // Decrement the index BEFORE using it for the new dot/tile.
+        carouselcurrentindex--; 
+
+        // Update the dots using the new index (carouselcurrentindex is now 4, 3, 2, etc.)
+        // The dot being unselected is the *old* one (currentindex + 1)
+        removeClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
+        addClass(carouselplaybardots[carouselcurrentindex], 'selected');
+
+    }, intervaltime);
 }
+
+// function moveplaybarleft(carouselplaybardots) {
+//     const intervaltime = 200;
+//     const scrollDurationBuffer = 6000;
+
+//     // clearInterval(intervalid);
+//     // intervalid = null;
+
+//     intervalid = setInterval(() => {
+//         removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
+//         addClass(carouselplaybardots[carouselcurrentindex - 1], 'selected');
+//         carouselcurrentindex --;
+//         if (carouselcurrentindex == 0) {
+//             clearInterval(intervalid);
+//             // intervalid = null;
+
+//             // setTimeout(() => {
+//             //     clearInterval(intervalid);
+//             // }, scrollDurationBuffer);
+            
+//             // return;
+//         }
+//     }, intervaltime);
+
+//     // intervalid2 = intervalid;
+// }
 
 // function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, scrollDurationBuffer) {
 //     const intervaltime = 6000;
@@ -456,7 +461,7 @@ function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carous
         }
     }, intervaltime);
 
-    intervalid2 = intervalid;
+    // intervalid2 = intervalid;
 }
 
 function displayplaybtn(carouselplaybtns) {
