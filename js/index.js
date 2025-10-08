@@ -433,6 +433,7 @@ function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carous
         // move playbar dots
         removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
         addClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
+        progressbarstartime = performance.now();
         carouselcurrentindex ++;
         if (carouselcurrentindex >= 5) {
             setTimeout(() => {
