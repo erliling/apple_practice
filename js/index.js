@@ -77,12 +77,13 @@ window.onload = function () {
             // move playbar left
             moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainers[0], carouselplaybtns);
 
+
+            // displayplaybtn(carouselplaybtns);
             // after move to the beginning, start auto nav again to the right
             let scrollDurationBuffer = 2000;
             setTimeout(() => {
                 autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybaraccesscontainers);
             }, scrollDurationBuffer);
-            
         }
     });
 
@@ -410,6 +411,8 @@ function moveplaybarleft(carouselplaybardots) {
 
         // Update the dots using the new index (carouselcurrentindex is now 4, 3, 2, etc.)
         // The dot being unselected is the *old* one (currentindex + 1)
+
+        progressbarstartime = performance.now();
         removeClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
         addClass(carouselplaybardots[carouselcurrentindex], 'selected');
 
