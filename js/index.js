@@ -42,18 +42,17 @@ window.onload = function () {
 
         // if it's pause, then pause, and change to play
         if (pausedisplayValue == 'block') {
-            // stop carousel and playbar
-            clearInterval(intervalid);
-
             // change btn icon
             displayplaybtn(carouselplaybtns);
+
+            // stop carousel and playbar
+            clearInterval(intervalid);
 
             // stop progress bar
             stopprogressbar(carouselplaybaraccesscontainers);
 
             // calculate progress bar time elapsed
             progressbartimeelapsed = performance.now() - parseFloat(progressbarstartime);
-
         }
 
         // if it's replay, carousel scrolls back, playbar scrolls back, and change to pause
