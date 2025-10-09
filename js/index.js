@@ -16,7 +16,6 @@ window.onload = function () {
     const tilewidth = Math.min(viewportcontent, carouselmaxwidth);
     const tilegap = 24;
     
-    
 
     // click playbar main btn
     carouselplaybarplaybtn.addEventListener('click', () => {
@@ -26,6 +25,12 @@ window.onload = function () {
         const pausedisplayValue = pausestyles.display;
         const replaystyles = window.getComputedStyle(carouselplaybtns[2]);
         const replaydisplayValue = replaystyles.display;
+
+        // remove button animation's duration
+        const playbarsvgs = document.querySelectorAll(".playbaraccesscontainer.revealed .bouncecircle_right svg");
+        playbarsvgs[0].style.animationDuration = '0.5s';
+        playbarsvgs[1].style.animationDuration = '0.5s';
+        playbarsvgs[2].style.animationDuration = '0.5s';
 
         // if it's play, then continue play, and change to pause
         if (playdisplayValue == 'block') {
@@ -500,16 +505,25 @@ function displayplaybtn(carouselplaybtns) {
     carouselplaybtns[0].style.display = 'block';
     carouselplaybtns[1].style.display = 'none';
     carouselplaybtns[2].style.display = 'none';
+    // carouselplaybtns[0].style.opacity = 1;
+    // carouselplaybtns[1].style.opacity = 0;
+    // carouselplaybtns[2].style.opacity = 0;
 }
 function displaypausebtn(carouselplaybtns) {
     carouselplaybtns[0].style.display = 'none';
     carouselplaybtns[1].style.display = 'block';
     carouselplaybtns[2].style.display = 'none';
+    // carouselplaybtns[0].style.opacity = 0;
+    // carouselplaybtns[1].style.opacity = 1;
+    // carouselplaybtns[2].style.opacity = 0;
 }
 function displayrefreshbtn(carouselplaybtns) {
     carouselplaybtns[0].style.display = 'none';
     carouselplaybtns[1].style.display = 'none';
     carouselplaybtns[2].style.display = 'block';
+    // carouselplaybtns[0].style.opacity = 0;
+    // carouselplaybtns[1].style.opacity = 0;
+    // carouselplaybtns[2].style.opacity = 1;
 }
 
 function revealgriditembyitem(revealelements, thresholdvalue) {
