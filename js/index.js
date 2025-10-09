@@ -37,9 +37,7 @@ window.onload = function () {
             moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, progressbarlefttime);
 
             // start progress bar
-            if (carouselplaybaraccesscontainers[0].classList.contains('animationpaused')) {
-                carouselplaybaraccesscontainers[0].classList.remove('animationpaused');
-            }
+            startprogressbar(carouselplaybaraccesscontainers);
         }
 
         // if it's pause, then pause, and change to play
@@ -51,10 +49,9 @@ window.onload = function () {
             displayplaybtn(carouselplaybtns);
 
             // stop progress bar
-            if (!carouselplaybaraccesscontainers[0].classList.contains('animationpaused')) {
-                carouselplaybaraccesscontainers[0].classList.add('animationpaused');
-            }
+            stopprogressbar(carouselplaybaraccesscontainers);
 
+            // calculate progress bar time elapsed
             progressbartimeelapsed = performance.now() - parseFloat(progressbarstartime);
 
         }
@@ -63,11 +60,10 @@ window.onload = function () {
         if (replaydisplayValue == 'block') {
             // change btn icon
             displaypausebtn(carouselplaybtns);
-
-            // start progress bar
-            if (carouselplaybaraccesscontainers[0].classList.contains('animationpaused')) {
-                carouselplaybaraccesscontainers[0].classList.remove('animationpaused');
-            }
+            
+            // reseet progress bar variables
+            progressbarstartime = 0;
+            progressbartimeelapsed = 0;
 
             // move carousel left
             setTimeout(() => {
@@ -77,9 +73,11 @@ window.onload = function () {
             // move playbar left
             moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainers[0], carouselplaybtns);
 
+            // start progress bar
+            startprogressbar(carouselplaybaraccesscontainers);
 
-            // displayplaybtn(carouselplaybtns);
             // after move to the beginning, start auto nav again to the right
+            // wait for 2000 ms first
             let scrollDurationBuffer = 2000;
             setTimeout(() => {
                 autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybaraccesscontainers);
@@ -298,6 +296,18 @@ window.onload = function () {
 }
 
 
+function stopprogressbar(carouselplaybaraccesscontainers) {
+    if (!carouselplaybaraccesscontainers[0].classList.contains('animationpaused')) {
+        carouselplaybaraccesscontainers[0].classList.add('animationpaused');
+    }
+}
+
+function startprogressbar(carouselplaybaraccesscontainers) {
+    if (carouselplaybaraccesscontainers[0].classList.contains('animationpaused')) {
+        carouselplaybaraccesscontainers[0].classList.remove('animationpaused');
+    }
+}
+
 function movenavcarouseltospecificpos(carouselcontent, leftvalue) {
     carouselcontent.scrollTo({
         top: 0,
@@ -346,7 +356,6 @@ function scrolltonexttile() {
 }
 
 let carouselcurrentindex = 0;
-// let intervalid2 = null;
 let intervalid = null;
 let progressbarstartime = 0;
 let progressbartimeelapsed = 0;
@@ -442,13 +451,12 @@ function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carous
             setTimeout(() => {
                 displayrefreshbtn(carouselplaybtns);
                 clearInterval(intervalid);
-                // intervalid = null;
+                intervalid = null;
             }, scrollDurationBuffer);
             
         }
     }, intervaltime);
 
-    // intervalid2 = intervalid;
 }
 
 function moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, progressbarlefttime) {
@@ -483,6 +491,7 @@ function scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carou
         setTimeout(() => {
             displayrefreshbtn(carouselplaybtns);
             clearInterval(intervalid);
+            intervalid = null;
         }, scrollDurationBuffer);
 
     }
