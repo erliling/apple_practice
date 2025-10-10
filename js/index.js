@@ -451,6 +451,7 @@ function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carous
         carouselcurrentindex ++;
         if (carouselcurrentindex >= 5) {
             setTimeout(() => {
+                removesvganimation();
                 displayrefreshbtn(carouselplaybtns);
                 clearInterval(intervalid);
                 intervalid = null;
