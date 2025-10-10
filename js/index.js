@@ -43,14 +43,14 @@ window.onload = function () {
 
         // if it's pause, then pause, and change to play
         if (pausedisplayValue == 'block') {
+            // stop progress bar
+            stopprogressbar(carouselplaybaraccesscontainers);
+
             // change btn icon
             displayplaybtn(carouselplaybtns);
 
             // stop carousel and playbar
             clearInterval(intervalid);
-
-            // stop progress bar
-            stopprogressbar(carouselplaybaraccesscontainers);
 
             // calculate progress bar time elapsed
             progressbartimeelapsed = performance.now() - parseFloat(progressbarstartime);
@@ -432,11 +432,21 @@ function moveplaybarleft(carouselplaybardots) {
 
 function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
     const intervaltime = 6000;
-    let scrollDurationBuffer = 5500;
+    let scrollDurationBuffer = 5000;
     // clearInterval(intervalid);
     // intervalid = null;
 
     intervalid = setInterval(() => {
+        if (carouselcurrentindex > 5) {
+            setTimeout(() => {
+                removesvganimation();
+                displayrefreshbtn(carouselplaybtns);
+                clearInterval(intervalid);
+                intervalid = null;
+            }, scrollDurationBuffer);
+            return;
+        }
+
         // move carousel
         carouselcontent.scrollBy({
             top: 0,
@@ -449,15 +459,8 @@ function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carous
         addClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
         progressbarstartime = performance.now();
         carouselcurrentindex ++;
-        if (carouselcurrentindex >= 5) {
-            setTimeout(() => {
-                removesvganimation();
-                displayrefreshbtn(carouselplaybtns);
-                clearInterval(intervalid);
-                intervalid = null;
-            }, scrollDurationBuffer);
-            
-        }
+
+        
     }, intervaltime);
 
 }
@@ -477,7 +480,16 @@ function moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carou
 }
 
 function scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
-    let scrollDurationBuffer = 5500;
+    let scrollDurationBuffer = 500;
+
+    if (carouselcurrentindex >= 5) {
+        setTimeout(() => {
+            displayrefreshbtn(carouselplaybtns);
+            clearInterval(intervalid);
+            intervalid = null;
+        }, scrollDurationBuffer);
+        return;
+    }
 
     carouselcontent.scrollBy({
         top: 0,
@@ -490,15 +502,6 @@ function scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carou
     addClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
     progressbarstartime = performance.now();
     carouselcurrentindex++;
-
-    if (carouselcurrentindex >= 5) {
-        setTimeout(() => {
-            displayrefreshbtn(carouselplaybtns);
-            clearInterval(intervalid);
-            intervalid = null;
-        }, scrollDurationBuffer);
-
-    }
 }
 
 function displayplaybtn(carouselplaybtns) {
