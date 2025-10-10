@@ -16,7 +16,6 @@ window.onload = function () {
     const tilewidth = Math.min(viewportcontent, carouselmaxwidth);
     const tilegap = 24;
     
-
     // click playbar main btn
     carouselplaybarplaybtn.addEventListener('click', () => {
         const playstyles = window.getComputedStyle(carouselplaybtns[0]);
@@ -27,10 +26,7 @@ window.onload = function () {
         const replaydisplayValue = replaystyles.display;
 
         // remove button animation's duration
-        const playbarsvgs = document.querySelectorAll(".playbaraccesscontainer.revealed .bouncecircle_right svg");
-        playbarsvgs[0].style.animationDuration = '0.5s';
-        playbarsvgs[1].style.animationDuration = '0.5s';
-        playbarsvgs[2].style.animationDuration = '0.5s';
+        removesvganimation();
 
         // if it's play, then continue play, and change to pause
         if (playdisplayValue == 'block') {
@@ -98,7 +94,6 @@ window.onload = function () {
 
 
 
-
     // reveal elements
     const revealelements = document.querySelectorAll('.colcontainer.revealelement');
     revealrowbyrow(revealelements, 0.2);
@@ -106,6 +101,7 @@ window.onload = function () {
     // reveal row containers
     const rowContainers = document.querySelectorAll('.rowcontainer');
     revealitembyitem(rowContainers, 0.2);
+
 
 
     // shrink nav
@@ -266,16 +262,13 @@ window.onload = function () {
     const navheight = 0;
     const camera2 = document.querySelector('.camera2');
 
-
     // wipe scroll
     const scrollwrapper = document.querySelector('.photograph .scrollwrapper');
     const images = document.querySelectorAll('.photograph .stickycontainer .image');
     const imglist = document.querySelector('.photograph .stickycontainer .imglist');
     const overlay = document.querySelector('.photograph .stickycontainer .frame');
     const overlayadjust = document.querySelector('.photograph .stickycontainer .frameadjust');
-
     const photograph = document.querySelector('.photograph');
-
 
     // disolve scroll
     const piccontainer = document.querySelector('.dissolvescroll .piccontainer');
@@ -299,6 +292,13 @@ window.onload = function () {
     }); 
 }
 
+
+function removesvganimation() {
+    const playbarsvgs = document.querySelectorAll(".playbaraccesscontainer.revealed .bouncecircle_right svg");
+    playbarsvgs[0].style.animationDuration = '0.5s';
+    playbarsvgs[1].style.animationDuration = '0.5s';
+    playbarsvgs[2].style.animationDuration = '0.5s';
+}
 
 function stopprogressbar(carouselplaybaraccesscontainers) {
     if (!carouselplaybaraccesscontainers[0].classList.contains('animationpaused')) {
