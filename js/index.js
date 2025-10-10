@@ -429,7 +429,6 @@ function moveplaybarleft(carouselplaybardots) {
     }, intervaltime);
 }
 
-
 function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
     const intervaltime = 6000;
     let scrollDurationBuffer = 5000;
@@ -508,25 +507,16 @@ function displayplaybtn(carouselplaybtns) {
     carouselplaybtns[0].style.display = 'block';
     carouselplaybtns[1].style.display = 'none';
     carouselplaybtns[2].style.display = 'none';
-    // carouselplaybtns[0].style.opacity = 1;
-    // carouselplaybtns[1].style.opacity = 0;
-    // carouselplaybtns[2].style.opacity = 0;
 }
 function displaypausebtn(carouselplaybtns) {
     carouselplaybtns[0].style.display = 'none';
     carouselplaybtns[1].style.display = 'block';
     carouselplaybtns[2].style.display = 'none';
-    // carouselplaybtns[0].style.opacity = 0;
-    // carouselplaybtns[1].style.opacity = 1;
-    // carouselplaybtns[2].style.opacity = 0;
 }
 function displayrefreshbtn(carouselplaybtns) {
     carouselplaybtns[0].style.display = 'none';
     carouselplaybtns[1].style.display = 'none';
     carouselplaybtns[2].style.display = 'block';
-    // carouselplaybtns[0].style.opacity = 0;
-    // carouselplaybtns[1].style.opacity = 0;
-    // carouselplaybtns[2].style.opacity = 1;
 }
 
 function revealgriditembyitem(revealelements, thresholdvalue) {
