@@ -378,7 +378,6 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
         rootMargin: '0px',
         threshold: 0.2
     };
-    let scrollDurationBuffer = 5500;
 
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -390,7 +389,7 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
                     entry.target.classList.add('revealed2');
                 }
 
-                moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, scrollDurationBuffer);
+                moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns);
                 observer.unobserve(entry.target);
             }
         });
@@ -399,8 +398,6 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
     carouselplaybaraccesscontainers.forEach(element => {
         observer.observe(element);
     });
-
-    
 }
 
 function moveplaybarleft(carouselplaybardots) {
@@ -433,8 +430,9 @@ function moveplaybarleft(carouselplaybardots) {
 }
 
 
-function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, scrollDurationBuffer) {
+function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
     const intervaltime = 6000;
+    let scrollDurationBuffer = 5500;
     // clearInterval(intervalid);
     // intervalid = null;
 
@@ -465,20 +463,21 @@ function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carous
 
 function moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, progressbarlefttime) {
     const intervaltime = 6000;
-    let scrollDurationBuffer = 5500;
 
     setTimeout (() => {
-        scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, scrollDurationBuffer);
+        scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns);
         
         intervalid = setInterval(() => {
-            scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, scrollDurationBuffer);
+            scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns);
         }, intervaltime);
 
     }, progressbarlefttime);
     
 }
 
-function scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, scrollDurationBuffer) {
+function scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
+    let scrollDurationBuffer = 5500;
+
     carouselcontent.scrollBy({
         top: 0,
         left: tilewidth + tilegap,
