@@ -50,7 +50,7 @@ window.onload = function () {
             displayplaybtn(carouselplaybtns);
 
             // stop carousel and playbar
-            clearInterval(intervalid);
+            cleanupinterval();
 
             // calculate progress bar time elapsed
             progressbartimeelapsed = performance.now() - parseFloat(progressbarstartime);
@@ -408,8 +408,7 @@ function moveplaybarleft(carouselplaybardots) {
         // If the index is already 0, clear the interval and stop the function.
         // This prevents the code below from running an extra time.
         if (carouselcurrentindex <= 0) {
-            clearInterval(intervalid); 
-            intervalid = null;
+            cleanupinterval();
             // Optional: You can display the pause button here if needed
             // displaypausebtn(carouselplaybtns); 
             return; // Stops all further execution in this tick.
@@ -429,6 +428,11 @@ function moveplaybarleft(carouselplaybardots) {
     }, intervaltime);
 }
 
+function cleanupinterval() {
+    clearInterval(intervalid);
+    intervalid = null;
+}
+
 function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
     const intervaltime = 6000;
     let scrollDurationBuffer = 500;
@@ -437,15 +441,13 @@ function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carous
 
     intervalid = setInterval(() => {
         if (carouselcurrentindex >= 5) {
-            clearInterval(intervalid);
-            intervalid = null;
+            cleanupinterval();
 
             setTimeout(() => {
                 removesvganimation();
                 displayrefreshbtn(carouselplaybtns);
-                
             }, scrollDurationBuffer);
-            
+
             return;
         }
 
@@ -478,18 +480,19 @@ function moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carou
         }, intervaltime);
 
     }, progressbarlefttime);
-    
 }
 
 function scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
     let scrollDurationBuffer = 500;
 
     if (carouselcurrentindex >= 5) {
+        cleanupinterval();
+
         setTimeout(() => {
+            removesvganimation();
             displayrefreshbtn(carouselplaybtns);
-            clearInterval(intervalid);
-            intervalid = null;
         }, scrollDurationBuffer);
+
         return;
     }
 
