@@ -431,12 +431,12 @@ function moveplaybarleft(carouselplaybardots) {
 
 function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
     const intervaltime = 6000;
-    let scrollDurationBuffer = 5000;
+    let scrollDurationBuffer = 500;
     // clearInterval(intervalid);
     // intervalid = null;
 
     intervalid = setInterval(() => {
-        if (carouselcurrentindex > 5) {
+        if (carouselcurrentindex >= 5) {
             setTimeout(() => {
                 removesvganimation();
                 displayrefreshbtn(carouselplaybtns);
