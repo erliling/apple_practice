@@ -376,7 +376,7 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
     const options = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.2
+        threshold: 0.4
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
