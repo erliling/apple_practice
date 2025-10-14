@@ -385,19 +385,27 @@ function startInterval(callbackFunction, ...args) {
 }
 
 function pauseInterval() {
-    if (intervalid !== null) {
+    // if (intervalid !== null) {
         // clearInterval(intervalid); 
         cleanupinterval();
         
         // Calculate the time remaining until the next tick
         // (This is only needed if you want high-precision resumption)
-        progressbartimeelapsed = performance.now() - parseFloat(progressbarstartime);
+        if (progressbartimeelapsed == 0) {
+            progressbartimeelapsed = performance.now() - parseFloat(progressbarstartime);
+        } else {
+            progressbartimeelapsed += performance.now() - parseFloat(progressbarstartime);
+        }
+        
         progressbarlefttime = intervaltime - progressbartimeelapsed;
-    }
+        
+    // }
 }
 
 function resumeInterval(callbackFunction, ...args) {
     cleanupinterval();
+    // cleanupprogressbartime();
+    progressbarstartime = performance.now();
 
     if (progressbarlefttime > 0) {
         
@@ -405,6 +413,8 @@ function resumeInterval(callbackFunction, ...args) {
         timeoutid = setTimeout(() => {
             // Once this function runs, the timeout has finished, so clear the ID
             timeoutid = null;
+            progressbarlefttime = 0;
+            // progressbarstartime = 0;
 
             callbackFunction(...args); // Execute the function for the first resumed tick
             // 2. Restart the full interval immediately after the delay
@@ -458,7 +468,7 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
 
 function moveplaybarleft(carouselplaybardots) {
     cleanupinterval();
-    
+
     const intervaltime = 200;
 
     intervalid = setInterval(() => {
@@ -479,9 +489,10 @@ function moveplaybarleft(carouselplaybardots) {
         // Update the dots using the new index (carouselcurrentindex is now 4, 3, 2, etc.)
         // The dot being unselected is the *old* one (currentindex + 1)
 
-        progressbarstartime = performance.now();
+        
         removeClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
         addClass(carouselplaybardots[carouselcurrentindex], 'selected');
+        progressbarstartime = performance.now();
 
     }, intervaltime);
 
@@ -500,6 +511,12 @@ function cleanupinterval() {
         clearTimeout(timeoutid);
         timeoutid = null;
     }
+}
+
+function cleanupprogressbartime() {
+    progressbarstartime = 0;
+    progressbartimeelapsed = 0;
+    progressbarlefttime = 0;
 }
 
 function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
@@ -578,6 +595,7 @@ function scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carou
             removesvganimation();
             displayrefreshbtn(carouselplaybtns);
             cleartimevariables();
+            cleanupprogressbartime();
         }, scrollDurationBuffer);
 
         return;
@@ -592,6 +610,7 @@ function scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carou
     // move playbar dots
     removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
     addClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
+    cleanupprogressbartime();
     progressbarstartime = performance.now();
     carouselcurrentindex++;
 }
