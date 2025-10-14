@@ -34,8 +34,8 @@ window.onload = function () {
             displaypausebtn(carouselplaybtns);
 
             // move carousel and playbar right
-            let progressbarlefttime = 6000 - progressbartimeelapsed;
-            moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, progressbarlefttime);
+            progressbarlefttime = intervaltime - progressbartimeelapsed;
+            moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns);
 
             // start progress bar
             startprogressbar(carouselplaybaraccesscontainers);
@@ -361,12 +361,16 @@ function scrolltonexttile() {
 }
 
 let carouselcurrentindex = 0;
+
 let intervalid = null;
+const intervaltime = 6000;
+
 let progressbarstartime = 0;
 let progressbartimeelapsed = 0;
-let startTime = null;
+let progressbarlefttime = 0;
+
+let startTime = 0;
 let timeRemaining = 0;
-const intervaltime = 6000;
 
 function startInterval(callbackFunction, ...args) {
     if (intervalid === null) {
@@ -384,7 +388,8 @@ function pauseInterval() {
         // Calculate the time remaining until the next tick
         // (This is only needed if you want high-precision resumption)
         const timeElapsed = performance.now() - startTime;
-        timeRemaining = intervaltime - timeElapsed;
+        timeRemaining = intervaltime * 6 - timeElapsed;
+        startTime = 0;
         
         intervalid = null; // Clear the ID
         // console.log(`Paused. Time remaining: ${timeRemaining.toFixed(2)}ms`);
@@ -404,12 +409,14 @@ function resumeInterval(callbackFunction, ...args) {
                 callbackFunction(...args);
             }, intervaltime);
             timeRemaining = 0;
+            progressbarlefttime = 0;
             
-        }, timeRemaining);
+        }, progressbarlefttime);
         
         // console.log("Resuming...");
     } else if (intervalid === null) {
         // If it was fully stopped or not paused precisely, just start it normally
+        startTime = performance.now();
         startInterval(callbackFunction, ...args);
     }
 }
@@ -498,17 +505,18 @@ function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carous
             setTimeout(() => {
                 removesvganimation();
                 displayrefreshbtn(carouselplaybtns);
+                cleartimevariables();
             }, scrollDurationBuffer);
 
             return;
         }
 
         // move carousel
-        carouselcontent.scrollBy({
-            top: 0,
-            left: tilewidth + tilegap,
-            behavior: "smooth"
-        });
+        // carouselcontent.scrollBy({
+        //     top: 0,
+        //     left: tilewidth + tilegap,
+        //     behavior: "smooth"
+        // });
 
         // move playbar dots
         removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
@@ -522,7 +530,16 @@ function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carous
     startTime = 0;
 }
 
-function moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, progressbarlefttime) {
+function cleartimevariables() {
+    progressbarstartime = 0;
+    progressbartimeelapsed = 0;
+    progressbarlefttime = 0;
+
+    startTime = 0;
+    timeRemaining = 0;
+}
+
+function moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
     // const intervaltime = 6000;
 
     // setTimeout (() => {
@@ -548,6 +565,7 @@ function scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carou
         setTimeout(() => {
             removesvganimation();
             displayrefreshbtn(carouselplaybtns);
+            cleartimevariables();
         }, scrollDurationBuffer);
 
         return;
