@@ -42,45 +42,38 @@ window.onload = function () {
 
         // if pause, carousel pauses, and btn switches to play
         if (pausedisplayValue == 'block') {
+            // stop carousel and playbar
+            pauseInterval();
+
             // stop progress bar
             stopprogressbar(carouselplaybaraccesscontainers);
 
             // change btn icon
             displayplaybtn(carouselplaybtns);
-
-            // stop carousel and playbar
-            // cleanupinterval();
-            pauseInterval();
-
-            // calculate progress bar time elapsed
-            // progressbartimeelapsed = performance.now() - parseFloat(progressbarstartime);
         }
 
         // if replay, carousel scrolls back, playbar scrolls back, and btn switches to pause
-        // after move to the very left, start autonav again
+        // after move carousel to the very left, start autonav again
         if (replaydisplayValue == 'block') {
-            // change btn icon
-            displaypausebtn(carouselplaybtns);
-            
-            // reseet progress bar variables
-            // progressbarstartime = 0;
-            // progressbartimeelapsed = 0;
-
-            // move carousel left
-            setTimeout(() => {
+            // move carousel left, but wait for 300 first
+            timeoutid = setTimeout(() => {
+                timeoutid = 0;
                 movenavcarouseltospecificpos(carouselcontent, 0);
             }, 300);
             
-            // move playbar left
-            moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainers[0], carouselplaybtns);
+            // move playbar to the very left
+            moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainers[0]);
 
-            // start progress bar
-            startprogressbar(carouselplaybaraccesscontainers);
+            // change btn icon
+            displaypausebtn(carouselplaybtns);
 
             // after move to the beginning, start auto nav again to the right
             // wait for 2000 ms first
             let scrollDurationBuffer = 2000;
-            setTimeout(() => {
+            timeoutid = setTimeout(() => {
+                timeoutid = 0;
+                // start progress bar
+                startprogressbar(carouselplaybaraccesscontainers);
                 autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybaraccesscontainers);
             }, scrollDurationBuffer);
         }
@@ -490,18 +483,21 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
 }
 
 function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
+    // from autonav
+    // be sure to cleanup interval before starting a new one
     cleanupinterval();
 
-    // const intervaltime = 6000;
     let scrollDurationBuffer = 500;
-    // clearInterval(intervalid);
-    // intervalid = null;
 
     intervalid = setInterval(() => {
         if (carouselcurrentindex >= 5) {
+            // cleanup interval after autonav finishes
             cleanupinterval();
 
+            // wait for 500
+            // then update ui and cleanup variables
             timeoutid = setTimeout(() => {
+                timeoutid = null;
                 removesvganimation();
                 displayrefreshbtn(carouselplaybtns);
                 cleanupprogressbartime();
@@ -510,6 +506,7 @@ function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carous
             return;
         }
 
+        // if carousel not finished
         // move carousel
         carouselcontent.scrollBy({
             top: 0,
@@ -520,13 +517,13 @@ function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carous
         // move playbar dots
         removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
         addClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
+        // if start a new progressbar, can clean up all previous progressbar variables
+        cleanupprogressbartime();
+        // everytime when start a new progress bar, reset progressbar starttime
         progressbarstartime = performance.now();
         carouselcurrentindex ++;
-
         
     }, intervaltime);
-
-    // startTime = 0;
 }
 
 function moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
@@ -536,12 +533,14 @@ function moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carou
 }
 
 function scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
+    // comes from resume actions
     let scrollDurationBuffer = 500;
 
     if (carouselcurrentindex >= 5) {
         cleanupinterval();
 
-        setTimeout(() => {
+        timeoutid = setTimeout(() => {
+            timeoutid = null;
             removesvganimation();
             displayrefreshbtn(carouselplaybtns);
             cleanupprogressbartime();
@@ -559,13 +558,15 @@ function scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carou
     // move playbar dots
     removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
     addClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
+    // if start a new progressbar, can clean up all previous progressbar variables
     cleanupprogressbartime();
+    // calculate new progressbar start time
     progressbarstartime = performance.now();
     carouselcurrentindex++;
 }
 
-// move to left functions
-function moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainer, carouselplaybtns) {
+// move to the very left functions
+function moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainer) {
     if (carouselplaybaraccesscontainer.classList.contains('revealed2')) {
         carouselplaybaraccesscontainer.classList.remove('revealed2');
     }
@@ -579,31 +580,19 @@ function moveplaybarleft(carouselplaybardots) {
     const intervaltime = 200;
 
     intervalid = setInterval(() => {
-        // --- 1. CRITICAL: Check the stop condition FIRST ---
-        // If the index is already 0, clear the interval and stop the function.
-        // This prevents the code below from running an extra time.
         if (carouselcurrentindex <= 0) {
             cleanupinterval();
-            // Optional: You can display the pause button here if needed
-            // displaypausebtn(carouselplaybtns); 
             return; // Stops all further execution in this tick.
         }
 
-        // --- 2. EXECUTE THE STEP ---
-        // Decrement the index BEFORE using it for the new dot/tile.
+        // need to add and remove one at a time, so can't use settimeout
+        removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
+        addClass(carouselplaybardots[carouselcurrentindex - 1], 'selected');
+        // progressbarstartime = performance.now();
         carouselcurrentindex--; 
 
-        // Update the dots using the new index (carouselcurrentindex is now 4, 3, 2, etc.)
-        // The dot being unselected is the *old* one (currentindex + 1)
-
-        
-        removeClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
-        addClass(carouselplaybardots[carouselcurrentindex], 'selected');
-        progressbarstartime = performance.now();
 
     }, intervaltime);
-
-    // startTime = 0;
 }
 
 function movenavcarouseltospecificpos(carouselcontent, leftvalue) {
