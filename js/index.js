@@ -28,20 +28,19 @@ window.onload = function () {
         // remove button animation's duration
         removesvganimation();
 
-        // if it's play, then continue play, and change to pause
+        // if play, carousel plays, btn switches to pause
         if (playdisplayValue == 'block') {
-            // change btn icon
-            displaypausebtn(carouselplaybtns);
-
             // move carousel and playbar right
-            // progressbarlefttime = intervaltime - progressbartimeelapsed;
             moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns);
 
-            // start progress bar
+            // start progress bar animation
             startprogressbar(carouselplaybaraccesscontainers);
+
+            // change btn icon
+            displaypausebtn(carouselplaybtns);
         }
 
-        // if it's pause, then pause, and change to play
+        // if pause, carousel pauses, and btn switches to play
         if (pausedisplayValue == 'block') {
             // stop progress bar
             stopprogressbar(carouselplaybaraccesscontainers);
@@ -57,7 +56,8 @@ window.onload = function () {
             // progressbartimeelapsed = performance.now() - parseFloat(progressbarstartime);
         }
 
-        // if it's replay, carousel scrolls back, playbar scrolls back, and change to pause
+        // if replay, carousel scrolls back, playbar scrolls back, and btn switches to pause
+        // after move to the very left, start autonav again
         if (replaydisplayValue == 'block') {
             // change btn icon
             displaypausebtn(carouselplaybtns);
@@ -294,71 +294,44 @@ window.onload = function () {
 }
 
 
-function removesvganimation() {
-    const playbarsvgs = document.querySelectorAll(".playbaraccesscontainer.revealed .bouncecircle_right svg");
-    playbarsvgs[0].style.animationDuration = '0.5s';
-    playbarsvgs[1].style.animationDuration = '0.5s';
-    playbarsvgs[2].style.animationDuration = '0.5s';
-}
+// function scrolltoprevplaybardot() {
+//     let carouselindex = 5;
+//     const scrollduration = 100;
+//     const carouselplaybardots = document.querySelectorAll('.carousel .playbaraccesscontainer .bouncecircle .dot');
 
-function stopprogressbar(carouselplaybaraccesscontainers) {
-    if (!carouselplaybaraccesscontainers[0].classList.contains('animationpaused')) {
-        carouselplaybaraccesscontainers[0].classList.add('animationpaused');
-    }
-}
+//     while (carouselindex >= 0) {
+//         removeClass(carouselplaybardots[carouselindex], 'selected');
+//         addClass(carouselplaybardots[carouselindex - 1], 'selected');
+//         carouselindex--;
 
-function startprogressbar(carouselplaybaraccesscontainers) {
-    if (carouselplaybaraccesscontainers[0].classList.contains('animationpaused')) {
-        carouselplaybaraccesscontainers[0].classList.remove('animationpaused');
-    }
-}
+//         setTimeout(scrolltoprevplaybardot, scrollduration);
+//     }
+// }
 
-function movenavcarouseltospecificpos(carouselcontent, leftvalue) {
-    carouselcontent.scrollTo({
-        top: 0,
-        left: leftvalue,
-        behavior: "smooth"
-    });
-}
+// function scrolltonexttile() {
+//     const carouselminwidth = 280;
+//     const carouselmaxwidth = 1680;
+//     const scrollbarwidth = 15;
+//     const vw = window.innerWidth / 100;
+//     const viewportcontent = Math.max(87.5 * vw - scrollbarwidth, carouselminwidth);
+//     const tilewidth = Math.min(viewportcontent, carouselmaxwidth);
+//     const tilegap = 24;
+//     const carouselcontent = document.querySelector('.carousel .bigcarousel');
 
-function scrolltoprevplaybardot() {
-    let carouselindex = 5;
-    const scrollduration = 100;
-    const carouselplaybardots = document.querySelectorAll('.carousel .playbaraccesscontainer .bouncecircle .dot');
+//     let carouselindex = 5;
+//     const scrollduration = 100;
+//     const scrolldistance = -(tilewidth + tilegap);
+//     if (carouselindex >= 0) {
+//         carouselcontent.scrollBy({
+//             top: 0,
+//             left: scrolldistance,
+//             behavior: "smooth"
+//         });
+//         carouselindex--;
 
-    while (carouselindex >= 0) {
-        removeClass(carouselplaybardots[carouselindex], 'selected');
-        addClass(carouselplaybardots[carouselindex - 1], 'selected');
-        carouselindex--;
-
-        setTimeout(scrolltoprevplaybardot, scrollduration);
-    }
-}
-
-function scrolltonexttile() {
-    const carouselminwidth = 280;
-    const carouselmaxwidth = 1680;
-    const scrollbarwidth = 15;
-    const vw = window.innerWidth / 100;
-    const viewportcontent = Math.max(87.5 * vw - scrollbarwidth, carouselminwidth);
-    const tilewidth = Math.min(viewportcontent, carouselmaxwidth);
-    const tilegap = 24;
-    const carouselcontent = document.querySelector('.carousel .bigcarousel');
-
-    let carouselindex = 5;
-    const scrollduration = 100;
-    const scrolldistance = -(tilewidth + tilegap);
-    if (carouselindex >= 0) {
-        carouselcontent.scrollBy({
-            top: 0,
-            left: scrolldistance,
-            behavior: "smooth"
-        });
-        carouselindex--;
-
-        setTimeout(scrolltonexttile, scrollduration);
-    }
-}
+//         setTimeout(scrolltonexttile, scrollduration);
+//     }
+// }
 
 let carouselcurrentindex = 0;
 
@@ -370,54 +343,112 @@ let progressbarstartime = 0;
 let progressbartimeelapsed = 0;
 let progressbarlefttime = 0;
 
-// let startTime = 0;
-// let timeRemaining = 0;
+// remove svg's duration after revealed, otherwise the btn will switch slowly
+function removesvganimation() {
+    const playbarsvgs = document.querySelectorAll(".playbaraccesscontainer.revealed .bouncecircle_right svg");
+    playbarsvgs[0].style.animationDuration = '0.5s';
+    playbarsvgs[1].style.animationDuration = '0.5s';
+    playbarsvgs[2].style.animationDuration = '0.5s';
+}
 
+// stop progress bar animation
+function stopprogressbar(carouselplaybaraccesscontainers) {
+    if (!carouselplaybaraccesscontainers[0].classList.contains('animationpaused')) {
+        carouselplaybaraccesscontainers[0].classList.add('animationpaused');
+    }
+}
+
+// start progress bar animation
+function startprogressbar(carouselplaybaraccesscontainers) {
+    if (carouselplaybaraccesscontainers[0].classList.contains('animationpaused')) {
+        carouselplaybaraccesscontainers[0].classList.remove('animationpaused');
+    }
+}
+
+function cleanupinterval() {
+    // 1. Clears the running loop
+    if (intervalid !== null) {
+        clearInterval(intervalid);
+        intervalid = null;
+    }
+    
+    // 2. 🔑 Clears the pending, scheduled restart
+    if (timeoutid !== null) {
+        clearTimeout(timeoutid);
+        timeoutid = null;
+    }
+}
+
+function cleanupprogressbartime() {
+    progressbarstartime = 0;
+    progressbartimeelapsed = 0;
+    progressbarlefttime = 0;
+}
+
+function displayplaybtn(carouselplaybtns) {
+    carouselplaybtns[0].style.display = 'block';
+    carouselplaybtns[1].style.display = 'none';
+    carouselplaybtns[2].style.display = 'none';
+}
+function displaypausebtn(carouselplaybtns) {
+    carouselplaybtns[0].style.display = 'none';
+    carouselplaybtns[1].style.display = 'block';
+    carouselplaybtns[2].style.display = 'none';
+}
+function displayrefreshbtn(carouselplaybtns) {
+    carouselplaybtns[0].style.display = 'none';
+    carouselplaybtns[1].style.display = 'none';
+    carouselplaybtns[2].style.display = 'block';
+}
+
+// move to right functions
 function startInterval(callbackFunction, ...args) {
-    // if (intervalid === null) {
-        cleanupinterval();
+    // be sure to clear interval everytime before starting a new one
+    cleanupinterval();
 
-        // progressbarstartime = performance.now();
-        intervalid = setInterval(() => {
-            callbackFunction(...args); // Pass args inside the loop
-        }, intervaltime);
-    // }
+    intervalid = setInterval(() => {
+        callbackFunction(...args);
+    }, intervaltime);
 }
 
 function pauseInterval() {
-    // if (intervalid !== null) {
-        // clearInterval(intervalid); 
-        cleanupinterval();
-        
-        // Calculate the time remaining until the next tick
-        // (This is only needed if you want high-precision resumption)
-        if (progressbartimeelapsed == 0) {
-            progressbartimeelapsed = performance.now() - parseFloat(progressbarstartime);
-        } else {
-            progressbartimeelapsed += performance.now() - parseFloat(progressbarstartime);
-        }
-        
-        progressbarlefttime = intervaltime - progressbartimeelapsed;
-        
-    // }
+    // be sure to clear interval everytime after 'pausing' an interval
+    cleanupinterval();
+    
+    // calculate time elapsed per progress bar
+    if (progressbartimeelapsed == 0) {
+        // if first time calculate progress bar left time
+        progressbartimeelapsed = performance.now() - parseFloat(progressbarstartime);
+    } else {
+        // if not the first time, then the timeelapsed needs to accumulate
+        // progressbarstartime is not the time when progressbar css being added
+        // but when resume btn clicks
+        progressbartimeelapsed += performance.now() - parseFloat(progressbarstartime);
+    }
+    
+    // calculate time left per progress bar
+    progressbarlefttime = intervaltime - progressbartimeelapsed;
 }
 
 function resumeInterval(callbackFunction, ...args) {
+    // be sure to clear interval everytime before starting a new one
     cleanupinterval();
-    // cleanupprogressbartime();
-    progressbarstartime = performance.now();
 
     if (progressbarlefttime > 0) {
+        // if the current progressbar is not finished
+        // reset progressbar start time to calculate new elapsed time
+        progressbarstartime = performance.now();
         
-        // 1. Wait for the remaining time
+        // wait for the progressbar finishes for 'progressbarlefttime'
+        // then start new interval for the next progress bar
         timeoutid = setTimeout(() => {
             // Once this function runs, the timeout has finished, so clear the ID
             timeoutid = null;
-            progressbarlefttime = 0;
-            // progressbarstartime = 0;
 
-            callbackFunction(...args); // Execute the function for the first resumed tick
-            // 2. Restart the full interval immediately after the delay
+            // Execute the function for the first resumed tick
+            callbackFunction(...args); 
+
+            // start the full interval immediately after the delay
             intervalid = setInterval(() => {
                 callbackFunction(...args);
             }, intervaltime);
@@ -428,14 +459,6 @@ function resumeInterval(callbackFunction, ...args) {
         // If it was fully stopped or not paused precisely, just start it normally
         startInterval(callbackFunction, ...args);
     }
-}
-
-function moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainer, carouselplaybtns) {
-    if (carouselplaybaraccesscontainer.classList.contains('revealed2')) {
-        carouselplaybaraccesscontainer.classList.remove('revealed2');
-    }
-
-    moveplaybarleft(carouselplaybardots);
 }
 
 function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybaraccesscontainers) {
@@ -464,6 +487,90 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
     carouselplaybaraccesscontainers.forEach(element => {
         observer.observe(element);
     });
+}
+
+function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
+    cleanupinterval();
+
+    // const intervaltime = 6000;
+    let scrollDurationBuffer = 500;
+    // clearInterval(intervalid);
+    // intervalid = null;
+
+    intervalid = setInterval(() => {
+        if (carouselcurrentindex >= 5) {
+            cleanupinterval();
+
+            timeoutid = setTimeout(() => {
+                removesvganimation();
+                displayrefreshbtn(carouselplaybtns);
+                cleanupprogressbartime();
+            }, scrollDurationBuffer);
+
+            return;
+        }
+
+        // move carousel
+        carouselcontent.scrollBy({
+            top: 0,
+            left: tilewidth + tilegap,
+            behavior: "smooth"
+        });
+
+        // move playbar dots
+        removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
+        addClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
+        progressbarstartime = performance.now();
+        carouselcurrentindex ++;
+
+        
+    }, intervaltime);
+
+    // startTime = 0;
+}
+
+function moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
+
+    resumeInterval(scrollplaybarandcarouselstep, carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns);
+
+}
+
+function scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
+    let scrollDurationBuffer = 500;
+
+    if (carouselcurrentindex >= 5) {
+        cleanupinterval();
+
+        setTimeout(() => {
+            removesvganimation();
+            displayrefreshbtn(carouselplaybtns);
+            cleanupprogressbartime();
+        }, scrollDurationBuffer);
+
+        return;
+    }
+
+    carouselcontent.scrollBy({
+        top: 0,
+        left: tilewidth + tilegap,
+        behavior: "smooth"
+    });
+
+    // move playbar dots
+    removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
+    addClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
+    cleanupprogressbartime();
+    progressbarstartime = performance.now();
+    carouselcurrentindex++;
+}
+
+// move to left functions
+function moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainer, carouselplaybtns) {
+    if (carouselplaybaraccesscontainer.classList.contains('revealed2')) {
+        carouselplaybaraccesscontainer.classList.remove('revealed2');
+    }
+
+    moveplaybarleft(carouselplaybardots);
 }
 
 function moveplaybarleft(carouselplaybardots) {
@@ -499,137 +606,15 @@ function moveplaybarleft(carouselplaybardots) {
     // startTime = 0;
 }
 
-function cleanupinterval() {
-    // 1. Clears the running loop
-    if (intervalid !== null) {
-        clearInterval(intervalid);
-        intervalid = null;
-    }
-    
-    // 2. 🔑 Clears the pending, scheduled restart
-    if (timeoutid !== null) {
-        clearTimeout(timeoutid);
-        timeoutid = null;
-    }
-}
-
-function cleanupprogressbartime() {
-    progressbarstartime = 0;
-    progressbartimeelapsed = 0;
-    progressbarlefttime = 0;
-}
-
-function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
-    cleanupinterval();
-
-    // const intervaltime = 6000;
-    let scrollDurationBuffer = 500;
-    // clearInterval(intervalid);
-    // intervalid = null;
-
-    intervalid = setInterval(() => {
-        if (carouselcurrentindex >= 5) {
-            cleanupinterval();
-
-            timeoutid = setTimeout(() => {
-                removesvganimation();
-                displayrefreshbtn(carouselplaybtns);
-                cleartimevariables();
-            }, scrollDurationBuffer);
-
-            return;
-        }
-
-        // move carousel
-        carouselcontent.scrollBy({
-            top: 0,
-            left: tilewidth + tilegap,
-            behavior: "smooth"
-        });
-
-        // move playbar dots
-        removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
-        addClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
-        progressbarstartime = performance.now();
-        carouselcurrentindex ++;
-
-        
-    }, intervaltime);
-
-    // startTime = 0;
-}
-
-function cleartimevariables() {
-    progressbarstartime = 0;
-    progressbartimeelapsed = 0;
-    progressbarlefttime = 0;
-
-    // startTime = 0;
-    // timeRemaining = 0;
-}
-
-function moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
-    // const intervaltime = 6000;
-
-    // setTimeout (() => {
-        // scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns);
-        
-        // intervalid = setInterval(() => {
-        //     scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns);
-        // }, intervaltime);
-
-        resumeInterval(scrollplaybarandcarouselstep, carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns);
-
-        // startTime = 0;
-
-    // }, progressbarlefttime);
-}
-
-function scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
-    let scrollDurationBuffer = 500;
-
-    if (carouselcurrentindex >= 5) {
-        cleanupinterval();
-
-        setTimeout(() => {
-            removesvganimation();
-            displayrefreshbtn(carouselplaybtns);
-            cleartimevariables();
-            cleanupprogressbartime();
-        }, scrollDurationBuffer);
-
-        return;
-    }
-
-    carouselcontent.scrollBy({
+function movenavcarouseltospecificpos(carouselcontent, leftvalue) {
+    carouselcontent.scrollTo({
         top: 0,
-        left: tilewidth + tilegap,
+        left: leftvalue,
         behavior: "smooth"
     });
-
-    // move playbar dots
-    removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
-    addClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
-    cleanupprogressbartime();
-    progressbarstartime = performance.now();
-    carouselcurrentindex++;
 }
 
-function displayplaybtn(carouselplaybtns) {
-    carouselplaybtns[0].style.display = 'block';
-    carouselplaybtns[1].style.display = 'none';
-    carouselplaybtns[2].style.display = 'none';
-}
-function displaypausebtn(carouselplaybtns) {
-    carouselplaybtns[0].style.display = 'none';
-    carouselplaybtns[1].style.display = 'block';
-    carouselplaybtns[2].style.display = 'none';
-}
-function displayrefreshbtn(carouselplaybtns) {
-    carouselplaybtns[0].style.display = 'none';
-    carouselplaybtns[1].style.display = 'none';
-    carouselplaybtns[2].style.display = 'block';
-}
+
 
 function revealgriditembyitem(revealelements, thresholdvalue) {
     const options2 = {
