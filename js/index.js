@@ -363,6 +363,7 @@ function scrolltonexttile() {
 let carouselcurrentindex = 0;
 
 let intervalid = null;
+let timeoutid = null;
 const intervaltime = 6000;
 
 let progressbarstartime = 0;
@@ -373,48 +374,48 @@ let progressbarlefttime = 0;
 // let timeRemaining = 0;
 
 function startInterval(callbackFunction, ...args) {
-    if (intervalid === null) {
+    // if (intervalid === null) {
+        cleanupinterval();
+
         // progressbarstartime = performance.now();
         intervalid = setInterval(() => {
             callbackFunction(...args); // Pass args inside the loop
         }, intervaltime);
-    }
+    // }
 }
 
 function pauseInterval() {
     if (intervalid !== null) {
-        clearInterval(intervalid); // Stop the loop
+        // clearInterval(intervalid); 
+        cleanupinterval();
         
         // Calculate the time remaining until the next tick
         // (This is only needed if you want high-precision resumption)
         progressbartimeelapsed = performance.now() - parseFloat(progressbarstartime);
         progressbarlefttime = intervaltime - progressbartimeelapsed;
-        
-        // intervalid = null; // Clear the ID
-        cleanupinterval();
-        // console.log(`Paused. Time remaining: ${timeRemaining.toFixed(2)}ms`);
     }
 }
 
 function resumeInterval(callbackFunction, ...args) {
-    if (intervalid === null && progressbarlefttime > 0) {
+    cleanupinterval();
+
+    if (progressbarlefttime > 0) {
         
         // 1. Wait for the remaining time
-        setTimeout(() => {
+        timeoutid = setTimeout(() => {
+            // Once this function runs, the timeout has finished, so clear the ID
+            timeoutid = null;
+
             callbackFunction(...args); // Execute the function for the first resumed tick
-            
             // 2. Restart the full interval immediately after the delay
             intervalid = setInterval(() => {
                 callbackFunction(...args);
             }, intervaltime);
-            // progressbarlefttime = 0;
             
         }, progressbarlefttime);
         
-        // console.log("Resuming...");
-    } else if (intervalid === null) {
+    } else {
         // If it was fully stopped or not paused precisely, just start it normally
-        // progressbarstartime = performance.now();
         startInterval(callbackFunction, ...args);
     }
 }
@@ -456,6 +457,8 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
 }
 
 function moveplaybarleft(carouselplaybardots) {
+    cleanupinterval();
+    
     const intervaltime = 200;
 
     intervalid = setInterval(() => {
@@ -486,11 +489,22 @@ function moveplaybarleft(carouselplaybardots) {
 }
 
 function cleanupinterval() {
-    clearInterval(intervalid);
-    intervalid = null;
+    // 1. Clears the running loop
+    if (intervalid !== null) {
+        clearInterval(intervalid);
+        intervalid = null;
+    }
+    
+    // 2. 🔑 Clears the pending, scheduled restart
+    if (timeoutid !== null) {
+        clearTimeout(timeoutid);
+        timeoutid = null;
+    }
 }
 
 function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
+    cleanupinterval();
+
     // const intervaltime = 6000;
     let scrollDurationBuffer = 500;
     // clearInterval(intervalid);
@@ -500,7 +514,7 @@ function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carous
         if (carouselcurrentindex >= 5) {
             cleanupinterval();
 
-            setTimeout(() => {
+            timeoutid = setTimeout(() => {
                 removesvganimation();
                 displayrefreshbtn(carouselplaybtns);
                 cleartimevariables();
