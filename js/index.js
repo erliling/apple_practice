@@ -57,7 +57,7 @@ window.onload = function () {
         if (replaydisplayValue == 'block') {
             // move carousel left, but wait for 300 first
             timeoutid = setTimeout(() => {
-                timeoutid = 0;
+                timeoutid = null;
                 movenavcarouseltospecificpos(carouselcontent, 0);
             }, 300);
             
@@ -71,7 +71,7 @@ window.onload = function () {
             // wait for 2000 ms first
             let scrollDurationBuffer = 2000;
             timeoutid = setTimeout(() => {
-                timeoutid = 0;
+                timeoutid = null;
                 // start progress bar
                 startprogressbar(carouselplaybaraccesscontainers);
                 autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybaraccesscontainers);
@@ -365,6 +365,10 @@ function cleanupinterval() {
         intervalid = null;
     }
     
+    
+}
+
+function cleanuptimeout() {
     // 2. 🔑 Clears the pending, scheduled restart
     if (timeoutid !== null) {
         clearTimeout(timeoutid);
@@ -398,6 +402,7 @@ function displayrefreshbtn(carouselplaybtns) {
 function startInterval(callbackFunction, ...args) {
     // be sure to clear interval everytime before starting a new one
     cleanupinterval();
+    cleanuptimeout();
 
     intervalid = setInterval(() => {
         callbackFunction(...args);
@@ -407,6 +412,7 @@ function startInterval(callbackFunction, ...args) {
 function pauseInterval() {
     // be sure to clear interval everytime after 'pausing' an interval
     cleanupinterval();
+    cleanuptimeout();
     
     // calculate time elapsed per progress bar
     if (progressbartimeelapsed == 0) {
@@ -426,6 +432,7 @@ function pauseInterval() {
 function resumeInterval(callbackFunction, ...args) {
     // be sure to clear interval everytime before starting a new one
     cleanupinterval();
+    cleanuptimeout();
 
     if (progressbarlefttime > 0) {
         // if the current progressbar is not finished
@@ -486,6 +493,7 @@ function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carous
     // from autonav
     // be sure to cleanup interval before starting a new one
     cleanupinterval();
+    cleanuptimeout();
 
     let scrollDurationBuffer = 500;
 
@@ -576,6 +584,7 @@ function moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainer)
 
 function moveplaybarleft(carouselplaybardots) {
     cleanupinterval();
+    // cleanuptimeout();
 
     const intervaltime = 200;
 
