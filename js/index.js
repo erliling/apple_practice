@@ -597,7 +597,7 @@ function moveplaybarleft(carouselplaybardots) {
         // need to add and remove one at a time, so can't use settimeout
         removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
         addClass(carouselplaybardots[carouselcurrentindex - 1], 'selected');
-        // progressbarstartime = performance.now();
+        progressbarstartime = performance.now();
         carouselcurrentindex--; 
 
 
