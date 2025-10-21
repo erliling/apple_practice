@@ -34,7 +34,8 @@ window.onload = function () {
             moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns);
 
             // start progress bar animation
-            startprogressbar(carouselplaybaraccesscontainers);
+            startprogressbaranimation(carouselplaybaraccesscontainers[0]);
+            startpausedprogressbaranimation(carouselplaybaraccesscontainers);
 
             // change btn icon
             displaypausebtn(carouselplaybtns);
@@ -46,7 +47,7 @@ window.onload = function () {
             pauseInterval();
 
             // stop progress bar
-            stopprogressbar(carouselplaybaraccesscontainers);
+            pauseprogressbaranimation(carouselplaybaraccesscontainers);
 
             // change btn icon
             displayplaybtn(carouselplaybtns);
@@ -58,11 +59,11 @@ window.onload = function () {
             // move carousel left, but wait for 300 first
             timeoutid = setTimeout(() => {
                 timeoutid = null;
-                movenavcarouseltospecificpos(carouselcontent, 0);
+                movenavcarouseltospecificpos(carouselcontent, 0, tilewidth, tilegap);
             }, 300);
             
             // move playbar to the very left
-            moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainers[0]);
+            moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainers[0], 0);
 
             // change btn icon
             displaypausebtn(carouselplaybtns);
@@ -73,10 +74,38 @@ window.onload = function () {
             timeoutid = setTimeout(() => {
                 timeoutid = null;
                 // start progress bar
-                startprogressbar(carouselplaybaraccesscontainers);
+                startpausedprogressbaranimation(carouselplaybaraccesscontainers);
                 autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybaraccesscontainers);
             }, scrollDurationBuffer);
         }
+    });
+
+    // click playbar dot btn
+    carouselplaybardots.forEach((playbardot, index) => {
+        playbardot.addEventListener('click', () => {
+            if (index < carouselcurrentindex) {
+                // carousel go left
+                // move carousel left, but wait for 300 first
+                timeoutid = setTimeout(() => {
+                    timeoutid = null;
+                    movenavcarouseltospecificpos(carouselcontent, index, tilewidth, tilegap);
+                }, 300);
+                
+                // move playbar to the very left
+                moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainers[0], index);
+
+                // change btn icon
+                if (!isdisplayplaybtn(carouselplaybtns)) {
+                    displayplaybtn(carouselplaybtns);
+                }
+
+                cleanupprogressbartime();
+
+            } else {
+                // carousel go right
+
+            }
+        });
     });
 
     //nav carousel by auto
@@ -345,16 +374,28 @@ function removesvganimation() {
 }
 
 // stop progress bar animation
-function stopprogressbar(carouselplaybaraccesscontainers) {
+function pauseprogressbaranimation(carouselplaybaraccesscontainers) {
     if (!carouselplaybaraccesscontainers[0].classList.contains('animationpaused')) {
         carouselplaybaraccesscontainers[0].classList.add('animationpaused');
     }
 }
 
 // start progress bar animation
-function startprogressbar(carouselplaybaraccesscontainers) {
+function startpausedprogressbaranimation(carouselplaybaraccesscontainers) {
     if (carouselplaybaraccesscontainers[0].classList.contains('animationpaused')) {
         carouselplaybaraccesscontainers[0].classList.remove('animationpaused');
+    }
+}
+
+function startprogressbaranimation(carouselplaybaraccesscontainer) {
+    if (!carouselplaybaraccesscontainer.classList.contains('revealed2')) {
+        carouselplaybaraccesscontainer.classList.add('revealed2');
+    }
+}
+
+function stopprogressbaranimation(carouselplaybaraccesscontainer) {
+    if (carouselplaybaraccesscontainer.classList.contains('revealed2')) {
+        carouselplaybaraccesscontainer.classList.remove('revealed2');
     }
 }
 
@@ -364,8 +405,6 @@ function cleanupinterval() {
         clearInterval(intervalid);
         intervalid = null;
     }
-    
-    
 }
 
 function cleanuptimeout() {
@@ -376,12 +415,19 @@ function cleanuptimeout() {
     }
 }
 
+function startprogressbartime() {
+    progressbarstartime = performance.now();
+}
+
 function cleanupprogressbartime() {
     progressbarstartime = 0;
     progressbartimeelapsed = 0;
     progressbarlefttime = 0;
 }
 
+function isdisplayplaybtn(carouselplaybtns) {
+    return carouselplaybtns[0].style.display == 'block';
+}
 function displayplaybtn(carouselplaybtns) {
     carouselplaybtns[0].style.display = 'block';
     carouselplaybtns[1].style.display = 'none';
@@ -574,22 +620,20 @@ function scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carou
 }
 
 // move to the very left functions
-function moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainer) {
-    if (carouselplaybaraccesscontainer.classList.contains('revealed2')) {
-        carouselplaybaraccesscontainer.classList.remove('revealed2');
-    }
+function moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainer, endindex) {
+    stopprogressbaranimation(carouselplaybaraccesscontainer);
 
-    moveplaybarleft(carouselplaybardots);
+    moveplaybarleft(carouselplaybardots, endindex);
 }
 
-function moveplaybarleft(carouselplaybardots) {
+function moveplaybarleft(carouselplaybardots, endindex) {
     cleanupinterval();
     // cleanuptimeout();
 
     const intervaltime = 200;
 
     intervalid = setInterval(() => {
-        if (carouselcurrentindex <= 0) {
+        if (carouselcurrentindex <= endindex) {
             cleanupinterval();
             return; // Stops all further execution in this tick.
         }
@@ -604,10 +648,11 @@ function moveplaybarleft(carouselplaybardots) {
     }, intervaltime);
 }
 
-function movenavcarouseltospecificpos(carouselcontent, leftvalue) {
+function movenavcarouseltospecificpos(carouselcontent, leftindex, tilewidth, tilegap) {
+
     carouselcontent.scrollTo({
         top: 0,
-        left: leftvalue,
+        left: leftindex * (tilewidth + tilegap),
         behavior: "smooth"
     });
 }
