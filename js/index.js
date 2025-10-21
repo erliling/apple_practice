@@ -31,7 +31,7 @@ window.onload = function () {
         // if play, carousel plays, btn switches to pause
         if (playdisplayValue == 'block') {
             // move carousel and playbar right
-            moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns);
+            moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, 5);
 
             // start progress bar animation
             startprogressbaranimation(carouselplaybaraccesscontainers[0]);
@@ -85,13 +85,14 @@ window.onload = function () {
         playbardot.addEventListener('click', () => {
             if (index < carouselcurrentindex) {
                 // carousel go left
+
                 // move carousel left, but wait for 300 first
                 timeoutid = setTimeout(() => {
                     timeoutid = null;
                     movenavcarouseltospecificpos(carouselcontent, index, tilewidth, tilegap);
                 }, 300);
                 
-                // move playbar to the very left
+                // move playbar to left
                 moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainers[0], index);
 
                 // change btn icon
@@ -104,6 +105,23 @@ window.onload = function () {
             } else {
                 // carousel go right
 
+                cleanupinterval();
+
+                // move carousel right, but wait for 300 first
+                timeoutid = setTimeout(() => {
+                    timeoutid = null;
+                    movenavcarouseltospecificpos(carouselcontent, index, tilewidth, tilegap);
+                }, 300);
+
+                // move playbar right
+                moveplaybardotright(carouselplaybardots, carouselplaybaraccesscontainers[0], index);
+
+                // change btn icon
+                if (!isdisplayplaybtn(carouselplaybtns)) {
+                    displayplaybtn(carouselplaybtns);
+                }
+
+                cleanupprogressbartime();
             }
         });
     });
@@ -580,17 +598,17 @@ function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carous
     }, intervaltime);
 }
 
-function moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
+function moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, index) {
 
-    resumeInterval(scrollplaybarandcarouselstep, carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns);
+    resumeInterval(scrollplaybarandcarouselstep, carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, index);
 
 }
 
-function scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
+function scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, index) {
     // comes from resume actions
     let scrollDurationBuffer = 500;
 
-    if (carouselcurrentindex >= 5) {
+    if (carouselcurrentindex >= index) {
         cleanupinterval();
 
         timeoutid = setTimeout(() => {
@@ -643,6 +661,33 @@ function moveplaybarleft(carouselplaybardots, endindex) {
         addClass(carouselplaybardots[carouselcurrentindex - 1], 'selected');
         progressbarstartime = performance.now();
         carouselcurrentindex--; 
+
+
+    }, intervaltime);
+}
+function moveplaybardotright(carouselplaybardots, carouselplaybaraccesscontainer, endindex) {
+    stopprogressbaranimation(carouselplaybaraccesscontainer);
+
+    moveplaybarright(carouselplaybardots, endindex);
+}
+
+function moveplaybarright(carouselplaybardots, endindex) {
+    cleanupinterval();
+    // cleanuptimeout();
+
+    const intervaltime = 200;
+
+    intervalid = setInterval(() => {
+        if (carouselcurrentindex >= endindex) {
+            cleanupinterval();
+            return; // Stops all further execution in this tick.
+        }
+
+        // need to add and remove one at a time, so can't use settimeout
+        removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
+        addClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
+        progressbarstartime = performance.now();
+        carouselcurrentindex++; 
 
 
     }, intervaltime);
