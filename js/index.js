@@ -102,6 +102,12 @@ window.onload = function () {
 
                 cleanupprogressbartime();
 
+                // change back dot transition duration after carousel moved
+                timeoutid = setTimeout(() => {
+                    timeoutid = null;
+                    expanddottransitionduration(carouselplaybardots);
+                }, 1200);
+
             } else {
                 // carousel go right
 
@@ -122,6 +128,12 @@ window.onload = function () {
                 }
 
                 cleanupprogressbartime();
+
+                // change back dot transition duration after carousel moved
+                timeoutid = setTimeout(() => {
+                    timeoutid = null;
+                    expanddottransitionduration(carouselplaybardots);
+                }, 1200);
             }
         });
     });
@@ -417,6 +429,18 @@ function stopprogressbaranimation(carouselplaybaraccesscontainer) {
     }
 }
 
+function shrinkdottransitionduration(carouselplaybardots) {
+    carouselplaybardots.forEach((playbardot, index) => {
+        playbardot.style.transitionDuration = '0.2s';
+    });
+}
+
+function expanddottransitionduration(carouselplaybardots) {
+    carouselplaybardots.forEach((playbardot, index) => {
+        playbardot.style.transitionDuration = '0.5s';
+    });
+}
+
 function cleanupinterval() {
     // 1. Clears the running loop
     if (intervalid !== null) {
@@ -639,7 +663,11 @@ function scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carou
 
 // move to the very left functions
 function moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainer, endindex) {
+    // won't show detailed playbar
     stopprogressbaranimation(carouselplaybaraccesscontainer);
+
+    // shrink dot transition duration
+    shrinkdottransitionduration(carouselplaybardots);
 
     moveplaybarleft(carouselplaybardots, endindex);
 }
@@ -667,6 +695,8 @@ function moveplaybarleft(carouselplaybardots, endindex) {
 }
 function moveplaybardotright(carouselplaybardots, carouselplaybaraccesscontainer, endindex) {
     stopprogressbaranimation(carouselplaybaraccesscontainer);
+
+    shrinkdottransitionduration(carouselplaybardots);
 
     moveplaybarright(carouselplaybardots, endindex);
 }
