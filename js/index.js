@@ -551,7 +551,7 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
                     entry.target.classList.add('revealed2');
                 }
 
-                moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns);
+                moveplaybarandcarouselright(moveplaybartoveryright, carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns);
                 observer.unobserve(entry.target);
             }
         });
@@ -562,50 +562,54 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
     });
 }
 
-function moveplaybarandcarouselright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
+function moveplaybarandcarouselright(callbackFunction, ...args) {
     // from autonav
     // be sure to cleanup interval before starting a new one
     cleanupinterval();
     cleanuptimeout();
 
-    let scrollDurationBuffer = 500;
-
     intervalid = setInterval(() => {
-        if (carouselcurrentindex >= 5) {
-            // cleanup interval after autonav finishes
-            cleanupinterval();
-
-            // wait for 500
-            // then update ui and cleanup variables
-            timeoutid = setTimeout(() => {
-                timeoutid = null;
-                removesvganimation();
-                displayrefreshbtn(carouselplaybtns);
-                cleanupprogressbartime();
-            }, scrollDurationBuffer);
-
-            return;
-        }
-
-        // if carousel not finished
-        // move carousel
-        carouselcontent.scrollBy({
-            top: 0,
-            left: tilewidth + tilegap,
-            behavior: "smooth"
-        });
-
-        // move playbar dots
-        removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
-        addClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
-        // if start a new progressbar, can clean up all previous progressbar variables
-        cleanupprogressbartime();
-        // everytime when start a new progress bar, reset progressbar starttime
-        progressbarstartime = performance.now();
-        carouselcurrentindex ++;
-        
+        callbackFunction(...args);
     }, intervaltime);
 }
+
+function moveplaybartoveryright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
+    let scrollDurationBuffer = 500;
+    
+    if (carouselcurrentindex >= 5) {
+        // cleanup interval after autonav finishes
+        cleanupinterval();
+
+        // wait for 500
+        // then update ui and cleanup variables
+        timeoutid = setTimeout(() => {
+            timeoutid = null;
+            removesvganimation();
+            displayrefreshbtn(carouselplaybtns);
+            cleanupprogressbartime();
+        }, scrollDurationBuffer);
+
+        return;
+    }
+
+    // if carousel not finished
+    // move carousel
+    carouselcontent.scrollBy({
+        top: 0,
+        left: tilewidth + tilegap,
+        behavior: "smooth"
+    });
+
+    // move playbar dots
+    removeClass(carouselplaybardots[carouselcurrentindex], 'selected');
+    addClass(carouselplaybardots[carouselcurrentindex + 1], 'selected');
+    // if start a new progressbar, can clean up all previous progressbar variables
+    cleanupprogressbartime();
+    // everytime when start a new progress bar, reset progressbar starttime
+    progressbarstartime = performance.now();
+    carouselcurrentindex ++;
+}
+
 
 function moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, index) {
 
