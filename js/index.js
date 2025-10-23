@@ -87,26 +87,7 @@ window.onload = function () {
                 // carousel go left
 
                 // move carousel left, but wait for 300 first
-                timeoutid = setTimeout(() => {
-                    timeoutid = null;
-                    movenavcarouseltospecificpos(carouselcontent, index, tilewidth, tilegap);
-                }, 300);
-                
-                // move playbar to left
-                moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainers[0], index);
-
-                // change btn icon
-                if (!isdisplayplaybtn(carouselplaybtns)) {
-                    displayplaybtn(carouselplaybtns);
-                }
-
-                cleanupprogressbartime();
-
-                // change back dot transition duration after carousel moved
-                timeoutid = setTimeout(() => {
-                    timeoutid = null;
-                    expanddottransitionduration(carouselplaybardots);
-                }, 1200);
+                movecarouselbydotnav(moveplaybardotleft, carouselcontent, index, tilewidth, tilegap, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
 
             } else {
                 // carousel go right
@@ -114,26 +95,7 @@ window.onload = function () {
                 cleanupinterval();
 
                 // move carousel right, but wait for 300 first
-                timeoutid = setTimeout(() => {
-                    timeoutid = null;
-                    movenavcarouseltospecificpos(carouselcontent, index, tilewidth, tilegap);
-                }, 300);
-
-                // move playbar right
-                moveplaybardotright(carouselplaybardots, carouselplaybaraccesscontainers[0], index);
-
-                // change btn icon
-                if (!isdisplayplaybtn(carouselplaybtns)) {
-                    displayplaybtn(carouselplaybtns);
-                }
-
-                cleanupprogressbartime();
-
-                // change back dot transition duration after carousel moved
-                timeoutid = setTimeout(() => {
-                    timeoutid = null;
-                    expanddottransitionduration(carouselplaybardots);
-                }, 1200);
+                movecarouselbydotnav(moveplaybardotright, carouselcontent, index, tilewidth, tilegap, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
             }
         });
     });
@@ -395,6 +357,7 @@ let progressbarstartime = 0;
 let progressbartimeelapsed = 0;
 let progressbarlefttime = 0;
 
+
 // remove svg's duration after revealed, otherwise the btn will switch slowly
 function removesvganimation() {
     const playbarsvgs = document.querySelectorAll(".playbaraccesscontainer.revealed .bouncecircle_right svg");
@@ -484,6 +447,28 @@ function displayrefreshbtn(carouselplaybtns) {
     carouselplaybtns[0].style.display = 'none';
     carouselplaybtns[1].style.display = 'none';
     carouselplaybtns[2].style.display = 'block';
+}
+
+function movecarouselbydotnav(callbackFunction, carouselcontent, index, tilewidth, tilegap, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns) {
+    timeoutid = setTimeout(() => {
+        timeoutid = null;
+        movenavcarouseltospecificpos(carouselcontent, index, tilewidth, tilegap);
+    }, 300);
+
+    callbackFunction(carouselplaybardots, carouselplaybaraccesscontainers[0], index);
+
+    // change btn icon
+    if (!isdisplayplaybtn(carouselplaybtns)) {
+        displayplaybtn(carouselplaybtns);
+    }
+
+    cleanupprogressbartime();
+
+    // change back dot transition duration after carousel moved
+    timeoutid = setTimeout(() => {
+        timeoutid = null;
+        expanddottransitionduration(carouselplaybardots);
+    }, 1200);
 }
 
 // move to right functions
