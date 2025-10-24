@@ -8,13 +8,7 @@ window.onload = function () {
     const carouselplaybaraccesscontainers = document.querySelectorAll('.carousel .playbaraccesscontainer');
     const carouselplaybardots = document.querySelectorAll('.carousel .playbaraccesscontainer .bouncecircle .dot');
     
-    const carouselminwidth = 280;
-    const carouselmaxwidth = 1680;
-    const scrollbarwidth = 15;
-    const vw = window.innerWidth / 100;
-    const viewportcontent = Math.max(87.5 * vw - scrollbarwidth, carouselminwidth);
-    const tilewidth = Math.min(viewportcontent, carouselmaxwidth);
-    const tilegap = 24;
+    calculatetilewidth();
     
     // click playbar main btn
     carouselplaybarplaybtn.addEventListener('click', () => {
@@ -31,7 +25,7 @@ window.onload = function () {
         // if play, carousel plays, btn switches to pause
         if (playdisplayValue == 'block') {
             // move carousel and playbar right
-            moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, 5);
+            moveplaybarandcarouselright2(carouselcontent, carouselplaybardots, carouselplaybtns, 5);
 
             // start progress bar animation
             startprogressbaranimation(carouselplaybaraccesscontainers[0]);
@@ -59,7 +53,7 @@ window.onload = function () {
             // move carousel left, but wait for 300 first
             timeoutid = setTimeout(() => {
                 timeoutid = null;
-                movenavcarouseltospecificpos(carouselcontent, 0, tilewidth, tilegap);
+                movenavcarouseltospecificpos(carouselcontent, 0);
             }, 300);
             
             // move playbar to the very left
@@ -75,7 +69,7 @@ window.onload = function () {
                 timeoutid = null;
                 // start progress bar
                 startpausedprogressbaranimation(carouselplaybaraccesscontainers);
-                autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybaraccesscontainers);
+                autonavcarousel(carouselplaybtns, carouselcontent, carouselplaybardots, carouselplaybaraccesscontainers);
             }, scrollDurationBuffer);
         }
     });
@@ -87,7 +81,7 @@ window.onload = function () {
                 // carousel go left
 
                 // move carousel left, but wait for 300 first
-                movecarouselbydotnav(moveplaybardotleft, carouselcontent, index, tilewidth, tilegap, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
+                movecarouselbydotnav(moveplaybardotleft, carouselcontent, index, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
 
             } else {
                 // carousel go right
@@ -95,13 +89,13 @@ window.onload = function () {
                 cleanupinterval();
 
                 // move carousel right, but wait for 300 first
-                movecarouselbydotnav(moveplaybardotright, carouselcontent, index, tilewidth, tilegap, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
+                movecarouselbydotnav(moveplaybardotright, carouselcontent, index, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
             }
         });
     });
 
     //nav carousel by auto
-    autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybaraccesscontainers);
+    autonavcarousel(carouselplaybtns, carouselcontent, carouselplaybardots, carouselplaybaraccesscontainers);
 
     // reveal playbar
     const playbaraccesscontainer = document.querySelectorAll('.playbaraccesscontainer');
@@ -247,7 +241,11 @@ window.onload = function () {
     window.addEventListener('resize', () => {
         // carsouselcontentcontainer.style.height = `${carouselcontent.offsetHeight}px`;
         // minimagewidth = getminimagewidth();
+
+        // update big carousl tile style
+        calculatetilewidth();
         
+        // update wipe scroll overlay style
         resizeframe(overlay);
     })
 
@@ -357,6 +355,18 @@ let progressbarstartime = 0;
 let progressbartimeelapsed = 0;
 let progressbarlefttime = 0;
 
+let tilewidth = 0;
+const tilegap = 24;
+
+function calculatetilewidth() {
+    const carouselminwidth = 280;
+    const carouselmaxwidth = 1680;
+    const scrollbarwidth = 15;
+    const vw = window.innerWidth / 100;
+    const viewportcontent = Math.max(87.5 * vw - scrollbarwidth, carouselminwidth);
+    tilewidth = Math.min(viewportcontent, carouselmaxwidth);
+}
+
 
 // remove svg's duration after revealed, otherwise the btn will switch slowly
 function removesvganimation() {
@@ -449,10 +459,10 @@ function displayrefreshbtn(carouselplaybtns) {
     carouselplaybtns[2].style.display = 'block';
 }
 
-function movecarouselbydotnav(callbackFunction, carouselcontent, index, tilewidth, tilegap, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns) {
+function movecarouselbydotnav(callbackFunction, carouselcontent, index, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns) {
     timeoutid = setTimeout(() => {
         timeoutid = null;
-        movenavcarouseltospecificpos(carouselcontent, index, tilewidth, tilegap);
+        movenavcarouseltospecificpos(carouselcontent, index);
     }, 300);
 
     callbackFunction(carouselplaybardots, carouselplaybaraccesscontainers[0], index);
@@ -534,7 +544,7 @@ function resumeInterval(callbackFunction, ...args) {
     }
 }
 
-function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybaraccesscontainers) {
+function autonavcarousel(carouselplaybtns, carouselcontent, carouselplaybardots, carouselplaybaraccesscontainers) {
     const options = {
         root: null,
         rootMargin: '0px',
@@ -551,7 +561,7 @@ function autonavcarousel(carouselplaybtns, carouselcontent, tilewidth, tilegap, 
                     entry.target.classList.add('revealed2');
                 }
 
-                moveplaybarandcarouselright(moveplaybartoveryright, carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns);
+                moveplaybarandcarouselright(moveplaybartoveryright, carouselcontent, carouselplaybardots, carouselplaybtns);
                 observer.unobserve(entry.target);
             }
         });
@@ -573,7 +583,7 @@ function moveplaybarandcarouselright(callbackFunction, ...args) {
     }, intervaltime);
 }
 
-function moveplaybartoveryright(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns) {
+function moveplaybartoveryright(carouselcontent, carouselplaybardots, carouselplaybtns) {
     let scrollDurationBuffer = 500;
     
     if (carouselcurrentindex >= 5) {
@@ -611,13 +621,13 @@ function moveplaybartoveryright(carouselcontent, tilewidth, tilegap, carouselpla
 }
 
 
-function moveplaybarandcarouselright2(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, index) {
+function moveplaybarandcarouselright2(carouselcontent, carouselplaybardots, carouselplaybtns, index) {
 
-    resumeInterval(scrollplaybarandcarouselstep, carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, index);
+    resumeInterval(scrollplaybarandcarouselstep, carouselcontent, carouselplaybardots, carouselplaybtns, index);
 
 }
 
-function scrollplaybarandcarouselstep(carouselcontent, tilewidth, tilegap, carouselplaybardots, carouselplaybtns, index) {
+function scrollplaybarandcarouselstep(carouselcontent, carouselplaybardots, carouselplaybtns, index) {
     // comes from resume actions
     let scrollDurationBuffer = 500;
 
@@ -712,7 +722,7 @@ function moveplaybarright(carouselplaybardots, endindex) {
     }, intervaltime);
 }
 
-function movenavcarouseltospecificpos(carouselcontent, leftindex, tilewidth, tilegap) {
+function movenavcarouseltospecificpos(carouselcontent, leftindex) {
 
     carouselcontent.scrollTo({
         top: 0,
