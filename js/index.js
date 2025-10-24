@@ -244,6 +244,9 @@ window.onload = function () {
 
         // update big carousl tile style
         calculatetilewidth();
+
+        // keep the current tile center
+        centercurrenttile(carouselcontent);
         
         // update wipe scroll overlay style
         resizeframe(overlay);
@@ -367,6 +370,26 @@ function calculatetilewidth() {
     tilewidth = Math.min(viewportcontent, carouselmaxwidth);
 }
 
+function centercurrenttile(carouselcontent) {
+    const tiles = carouselcontent.querySelectorAll('.tile');
+    const currenttile = tiles[carouselcurrentindex];
+
+    if (!currenttile) return 0;
+    const offset = getscrolloffsettocenter(currenttile)
+    carouselcontent.scrollTo ({
+        left: offset,
+        behavior: 'auto'
+    });
+}
+
+function getscrolloffsettocenter(tiletocenter) {
+    if (!tiletocenter) return 0;
+
+    const tileleft = tiletocenter.offsetLeft;
+    const viewportwidth = window.innerWidth;
+
+    return tileleft - (viewportwidth - tilewidth) / 2;
+}
 
 // remove svg's duration after revealed, otherwise the btn will switch slowly
 function removesvganimation() {
