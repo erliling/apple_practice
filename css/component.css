@@ -1000,7 +1000,7 @@ a.arrow::after {
 
     /* not clickable */
     /* need to figure out here, can't be nonclickable */
-    /* pointer-events: none; */
+    pointer-events: none;
 }
 
 .bouncecircle {
@@ -1040,6 +1040,8 @@ a.arrow::after {
     transition: width 0.5s ease-out;
 
     cursor: pointer;
+
+    pointer-events: auto;
 }
 
 .playbaraccesscontainer .bouncecircle_left .dot:hover {
@@ -1083,6 +1085,8 @@ a.arrow::after {
     border-radius: 50px;
 
     cursor: pointer;
+
+    pointer-events: auto;
 }
 
 .playbaraccesscontainer .bouncecircle_right:hover {
