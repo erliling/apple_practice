@@ -7,7 +7,9 @@ window.onload = function () {
     const carouselcontent = document.querySelector('.carousel .bigcarousel');
     const carouselplaybaraccesscontainers = document.querySelectorAll('.carousel .playbaraccesscontainer');
     const carouselplaybardots = document.querySelectorAll('.carousel .playbaraccesscontainer .bouncecircle .dot');
+    const carouseltiles = carouselcontent.querySelectorAll('.carouselcontent .tile');
     
+
     calculatetilewidth();
     
     // click playbar main btn
@@ -92,6 +94,23 @@ window.onload = function () {
                 movecarouselbydotnav(moveplaybardotright, carouselcontent, index, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
             }
         });
+    });
+
+    // click carousel tile
+    carouseltiles.forEach((tile, index) => {
+        tile.addEventListener('click', () => {
+            if (index < carouselcurrentindex) {
+                // carousel go left
+                // move carousel left, but wait for 300 first
+                movecarouselbydotnav(moveplaybardotleft, carouselcontent, index, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
+
+            } else {
+                // carousel go right
+                cleanupinterval();
+                // move carousel right, but wait for 300 first
+                movecarouselbydotnav(moveplaybardotright, carouselcontent, index, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
+            }
+        })
     });
 
     //nav carousel by auto
