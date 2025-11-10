@@ -99,6 +99,11 @@ window.onload = function () {
     // click carousel tile
     carouseltiles.forEach((tile, index) => {
         tile.addEventListener('click', () => {
+            //temporately change dot width transition
+            //transition: width 0.5s ease-out;
+
+            resetdottransitionduration(carouselplaybardots, index, '1s');
+            
             if (index < carouselcurrentindex) {
                 // carousel go left
                 // move carousel left, but wait for 300 first
@@ -110,6 +115,8 @@ window.onload = function () {
                 // move carousel right, but wait for 300 first
                 movecarouselbydotnav(moveplaybardotright, carouselcontent, index, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
             }
+
+            resetdottransitionduration(carouselplaybardots, index, '0.5s');
         })
     });
 
@@ -379,6 +386,16 @@ let progressbarlefttime = 0;
 
 let tilewidth = 0;
 const tilegap = 24;
+
+function resetdottransitionduration(carouselplaybardots, index, duration) {
+    carouselplaybardots[index].style.transitionDuration = duration;
+    if (index - 1 >= 0) {
+        carouselplaybardots[index - 1].style.transitionDuration = duration;
+    }
+    if (index + 1 <= 4) {
+        carouselplaybardots[index + 1].style.transitionDuration = duration;
+    }
+}
 
 function calculatetilewidth() {
     const carouselminwidth = 280;
