@@ -1039,7 +1039,8 @@ a.arrow::after {
     height: 8px;
     border-radius: 50px;
 
-    transition: width 0.5s ease-out;
+    /* transition: width 0.5s ease-out; */
+    transition: width 1s ease-out;
 
     cursor: pointer;
 

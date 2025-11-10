@@ -64,9 +64,11 @@ function move(obj, attr, target, speed, callback) {
 
   function removeClass(obj, cn) {
     var reg = new RegExp("\\b" + cn +"\\b");
+    obj.className = obj.className.trimEnd();
     obj.className = obj.className.replace(reg, "");
   }
 
   function addClass(obj, cn) {
+    obj.className = obj.className.trimEnd();
     obj.className += " " + cn;
   }
