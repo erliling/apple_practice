@@ -391,6 +391,12 @@ let progressbarlefttime = 0;
 let tilewidth = 0;
 const tilegap = 24;
 
+const shortdottransitionduration = '0.2s';
+const normaldottransitionduration = '0.5s';
+const shortdotintervaltime = 200;
+const normaldotintervaltime = 500;
+// const totalshortdotintervaltime = 6 * shortdotintervaltime;
+// const totalnormaldotintervaltime = 6 * normaldotintervaltime;
 
 
 function resetdottransitionduration(carouselplaybardots, index, duration) {
@@ -524,13 +530,11 @@ function displayrefreshbtn(carouselplaybtns) {
     carouselplaybtns[2].style.display = 'block';
 }
 
-const shortdottransitionduration = '0.5s';
-const normaldottransitionduration = '1s';
-const normaldotintervaltime = 500;
-const totalnormaldotintervaltime = 6 * normaldotintervaltime;
-
-
 function movecarouselbydotnav(callbackFunction, carouselcontent, index, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns) {
+    const indexdiff = Math.abs(index-carouselcurrentindex);
+    const intervaltime = indexdiff > 1 ? shortdotintervaltime : normaldotintervaltime;
+    const totalintervaltime = intervaltime * indexdiff;
+
     timeoutid = setTimeout(() => {
         timeoutid = null;
         movenavcarouseltospecificpos(carouselcontent, index);
@@ -549,7 +553,7 @@ function movecarouselbydotnav(callbackFunction, carouselcontent, index, carousel
     timeoutid = setTimeout(() => {
         timeoutid = null;
         expanddottransitionduration(carouselplaybardots);
-    }, totalnormaldotintervaltime);
+    }, totalintervaltime);
 }
 
 // move to right functions
@@ -736,8 +740,10 @@ function moveplaybardotleft(carouselplaybardots, carouselplaybaraccesscontainer,
     // won't show detailed playbar
     stopprogressbaranimation(carouselplaybaraccesscontainer);
 
-    // shrink dot transition duration
-    shrinkdottransitionduration(carouselplaybardots);
+    if (Math.abs(carouselcurrentindex - endindex) > 1) {
+        // shrink dot transition duration
+        shrinkdottransitionduration(carouselplaybardots);
+    }
 
     moveplaybarleft(carouselplaybardots, endindex);
 }
@@ -747,6 +753,11 @@ function moveplaybarleft(carouselplaybardots, endindex) {
     // cleanuptimeout();
 
     // const intervaltime = 500;
+    let intervaltime = normaldotintervaltime;
+    if (Math.abs(carouselcurrentindex - endindex) > 1) {
+        intervaltime = shortdotintervaltime;
+    }
+
 
     intervalid = setInterval(() => {
         if (carouselcurrentindex <= endindex) {
@@ -761,12 +772,15 @@ function moveplaybarleft(carouselplaybardots, endindex) {
         carouselcurrentindex--; 
 
 
-    }, normaldotintervaltime);
+    }, intervaltime);
 }
 function moveplaybardotright(carouselplaybardots, carouselplaybaraccesscontainer, endindex) {
     stopprogressbaranimation(carouselplaybaraccesscontainer);
 
-    shrinkdottransitionduration(carouselplaybardots);
+    if (Math.abs(carouselcurrentindex - endindex) > 1) {
+        // shrink dot transition duration
+        shrinkdottransitionduration(carouselplaybardots);
+    }
 
     moveplaybarright(carouselplaybardots, endindex);
 }
@@ -776,6 +790,10 @@ function moveplaybarright(carouselplaybardots, endindex) {
     // cleanuptimeout();
 
     // const intervaltime = 500;
+    let intervaltime = normaldotintervaltime;
+    if (Math.abs(carouselcurrentindex - endindex) > 1) {
+        intervaltime = shortdotintervaltime;
+    }
 
     intervalid = setInterval(() => {
         if (carouselcurrentindex >= endindex) {
@@ -790,7 +808,7 @@ function moveplaybarright(carouselplaybardots, endindex) {
         carouselcurrentindex++; 
 
 
-    }, normaldotintervaltime);
+    }, intervaltime);
 }
 
 function movenavcarouseltospecificpos(carouselcontent, leftindex) {

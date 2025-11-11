@@ -1040,7 +1040,7 @@ a.arrow::after {
     border-radius: 50px;
 
     /* transition: width 0.5s ease-out; */
-    transition: width 1s ease-out;
+    transition: width 0.5s ease-in-out;
 
     cursor: pointer;
 
