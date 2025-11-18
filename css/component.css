@@ -346,8 +346,9 @@ a.arrow::after {
 }
 .bigcarousel .carouselcontent {
 
-    display: grid;
-    grid-auto-flow: column;
+    /* display: grid;
+    grid-auto-flow: column; */
+    display: flex;
     grid-column-gap: var(--ps-spacing-24);
 
     list-style-type: none;
@@ -355,6 +356,7 @@ a.arrow::after {
     /* width: 100vw; */
     width: fit-content;
     padding: 0 max(6.25vw,(100vw - 1680px)/2,env(safe-area-inset-left),env(safe-area-inset-right));
+    /* padding: 0; */
     box-sizing: border-box;
 
     overflow-x: auto;
