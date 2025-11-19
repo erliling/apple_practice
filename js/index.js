@@ -1,14 +1,13 @@
 
 window.onload = function () {
     
-    // big carousel playbar
+    // big carousel
     const carouselplaybarplaybtn = document.querySelector('.carousel .bouncecircle_right');
     const carouselplaybtns = carouselplaybarplaybtn.querySelectorAll('.svg-icon');
     const carouselcontent = document.querySelector('.carousel .bigcarousel');
     const carouselplaybaraccesscontainers = document.querySelectorAll('.carousel .playbaraccesscontainer');
     const carouselplaybardots = document.querySelectorAll('.carousel .playbaraccesscontainer .bouncecircle .dot');
     const carouseltiles = carouselcontent.querySelectorAll('.carouselcontent .tile');
-    
 
     calculatetilewidth();
     
@@ -131,7 +130,39 @@ window.onload = function () {
     const playbaraccesscontainer = document.querySelectorAll('.playbaraccesscontainer');
     revealrowbyrow(playbaraccesscontainer, 0.5);
 
+    // scroll carousel, precondition for snap to center
+    const carouselcontentcontainer = document.querySelector('.bigcarousel .carouselcontent');
+    // let isScrolling = false;
+    // let scrollEndTimer = null; 
+    
+    // carouselcontentcontainer.addEventListener("scroll", () => {
+    //     console.log('scroll');
 
+    //     // SCROLL START
+    //     if (!isScrolling) {
+    //         isScrolling = true;
+    //         carouselcontentcontainer.dispatchEvent(new Event("scrollStart"));
+    //     }
+
+    //     // SCROLL END (debounced)
+    //     clearTimeout(scrollEndTimer);
+    //     scrollEndTimer = setTimeout(() => {
+    //         isScrolling = false;
+    //         carouselcontentcontainer.dispatchEvent(new Event("scrollEnd"));
+    //     }, 150);
+    // });
+    // carouselcontentcontainer.addEventListener("scrollStart", () => {
+    //     console.log('start');
+    //     carouselcontentcontainer.style.width = '100vw';
+    // });
+    // carouselcontentcontainer.addEventListener("scrollEnd", () => {
+    //     console.log('end');
+    //     carouselcontentcontainer.style.width = 'fit-content';
+    // });
+
+    // carouselcontentcontainer.addEventListener('touchstart', () => {
+    //     console.log("User is about to scroll (touchstart)");
+    // });
 
     // reveal elements
     const revealelements = document.querySelectorAll('.colcontainer.revealelement');
