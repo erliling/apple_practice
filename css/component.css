@@ -343,6 +343,7 @@ a.arrow::after {
     overflow-x: auto;
     scrollbar-width: none;
 
+    scroll-snap-type: x mandatory;
 }
 .bigcarousel .carouselcontent {
 
@@ -360,13 +361,15 @@ a.arrow::after {
     /* padding: 0; */
     box-sizing: border-box;
 
-    overflow-x: auto;
+    /* overflow-x: auto;
     scroll-snap-type: x mandatory; 
-    scrollbar-width: none;
+    scrollbar-width: none; */
     /* scroll-behavior: smooth;
     scroll-padding-left: 50%;
     scroll-padding-right: 50%; */
     
+    /* padding-left: 50vw;
+    padding-right: 50vw; */
 }
 .bigcarousel .carouselcontent .tile {
     display: flex;
@@ -383,7 +386,14 @@ a.arrow::after {
     overflow: hidden;
 
     scroll-snap-align: center;
+    /* scroll-snap-stop: always; */
+    /* scroll-margin-left: 50%;
+    scroll-margin-right: 50%; */
+
     flex-shrink: 0;
+
+    /* scroll-margin-left: 50vw;
+    scroll-margin-right: 50vw; */
 }
 .bigcarousel .carouselcontent .tile:hover {
     cursor: pointer;

@@ -135,30 +135,15 @@ window.onload = function () {
     // let isScrolling = false;
     // let scrollEndTimer = null; 
     
-    // carouselcontentcontainer.addEventListener("scroll", () => {
-    //     console.log('scroll');
+    carouselcontent.addEventListener("scroll", () => {
+        console.log('scroll big');
+    });
+    
+    carouselcontentcontainer.addEventListener("scroll", () => {
+        console.log('scroll small');
 
-    //     // SCROLL START
-    //     if (!isScrolling) {
-    //         isScrolling = true;
-    //         carouselcontentcontainer.dispatchEvent(new Event("scrollStart"));
-    //     }
-
-    //     // SCROLL END (debounced)
-    //     clearTimeout(scrollEndTimer);
-    //     scrollEndTimer = setTimeout(() => {
-    //         isScrolling = false;
-    //         carouselcontentcontainer.dispatchEvent(new Event("scrollEnd"));
-    //     }, 150);
-    // });
-    // carouselcontentcontainer.addEventListener("scrollStart", () => {
-    //     console.log('start');
-    //     carouselcontentcontainer.style.width = '100vw';
-    // });
-    // carouselcontentcontainer.addEventListener("scrollEnd", () => {
-    //     console.log('end');
-    //     carouselcontentcontainer.style.width = 'fit-content';
-    // });
+        
+    });
 
     // carouselcontentcontainer.addEventListener('touchstart', () => {
     //     console.log("User is about to scroll (touchstart)");
