@@ -131,19 +131,15 @@ window.onload = function () {
     revealrowbyrow(playbaraccesscontainer, 0.5);
 
     // scroll carousel, precondition for snap to center
-    const carouselcontentcontainer = document.querySelector('.bigcarousel .carouselcontent');
-    // let isScrolling = false;
-    // let scrollEndTimer = null; 
+    // const carouselcontentcontainer = document.querySelector('.bigcarousel .carouselcontent');
     
-    carouselcontent.addEventListener("scroll", () => {
-        console.log('scroll big');
-    });
-    
-    carouselcontentcontainer.addEventListener("scroll", () => {
-        console.log('scroll small');
+    // carouselcontent.addEventListener("scroll", () => {
+    //     console.log('scroll big');
+    // });
 
-        
-    });
+    // carouselcontentcontainer.addEventListener("scroll", () => {
+    //     console.log('scroll small');
+    // });
 
     // carouselcontentcontainer.addEventListener('touchstart', () => {
     //     console.log("User is about to scroll (touchstart)");
