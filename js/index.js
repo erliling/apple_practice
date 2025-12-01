@@ -130,20 +130,29 @@ window.onload = function () {
     const playbaraccesscontainer = document.querySelectorAll('.playbaraccesscontainer');
     revealrowbyrow(playbaraccesscontainer, 0.5);
 
-    // scroll carousel, precondition for snap to center
-    // const carouselcontentcontainer = document.querySelector('.bigcarousel .carouselcontent');
-    
-    // carouselcontent.addEventListener("scroll", () => {
-    //     console.log('scroll big');
-    // });
+    // scroll carousel, nav bar scroll to specific pos
+    carouselcontent.addEventListener("scroll", () => {
+        console.log("scrolling");
+        // if (!isautoscrolling) {
+            const currentscrollleft = carouselcontent.scrollLeft;
 
-    // carouselcontentcontainer.addEventListener("scroll", () => {
-    //     console.log('scroll small');
-    // });
+            if (currentscrollleft < lastscrollleft) {
+                // carousel go left
+                console.log("scroll to left");
 
-    // carouselcontentcontainer.addEventListener('touchstart', () => {
-    //     console.log("User is about to scroll (touchstart)");
-    // });
+            } else {
+                // carousel go right
+                console.log("scroll to right");
+
+                // cleanupinterval();
+
+                // move carousel right, but wait for 300 first
+            }
+
+            lastscrollleft = currentscrollleft;
+        // }
+        
+    });
 
     // reveal elements
     const revealelements = document.querySelectorAll('.colcontainer.revealelement');
@@ -390,6 +399,9 @@ window.onload = function () {
 //     }
 // }
 
+let lastscrollleft = 0;
+let isautoscrolling = false;
+
 let carouselcurrentindex = 0;
 
 let intervalid = null;
@@ -632,6 +644,8 @@ function resumeInterval(callbackFunction, ...args) {
 }
 
 function autonavcarousel(carouselplaybtns, carouselcontent, carouselplaybardots, carouselplaybaraccesscontainers) {
+    isautoscrolling = true;
+
     const options = {
         root: null,
         rootMargin: '0px',
@@ -684,6 +698,7 @@ function moveplaybartoveryright(carouselcontent, carouselplaybardots, carouselpl
             removesvganimation();
             displayrefreshbtn(carouselplaybtns);
             cleanupprogressbartime();
+            isautoscrolling = false;
         }, scrollDurationBuffer);
 
         return;
