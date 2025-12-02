@@ -130,29 +130,99 @@ window.onload = function () {
     const playbaraccesscontainer = document.querySelectorAll('.playbaraccesscontainer');
     revealrowbyrow(playbaraccesscontainer, 0.5);
 
-    // scroll carousel, nav bar scroll to specific pos
-    carouselcontent.addEventListener("scroll", () => {
-        console.log("scrolling");
-        // if (!isautoscrolling) {
-            const currentscrollleft = carouselcontent.scrollLeft;
+    // scroll navbar to pos as tile scroll to pos
+    const carouselcontentcontainer = document.querySelectorAll('.carousel .bigcarousel');
 
-            if (currentscrollleft < lastscrollleft) {
-                // carousel go left
-                console.log("scroll to left");
+    // function revealrowbyrow(revealelements, thresholdvalue) {
+    const tileoptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2 // Trigger when 20% of the element is visible
+    };
 
-            } else {
-                // carousel go right
-                console.log("scroll to right");
-
-                // cleanupinterval();
-
-                // move carousel right, but wait for 300 first
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            // If the element is now intersecting the viewport
+            if (entry.isIntersecting) {
+                console.log("enter carousel");
+                // Add the "is-revealed" class to trigger the CSS transition
+                // entry.target.classList.add('revealed');
+                // Stop observing the element once it's revealed
+                // observer.unobserve(entry.target);
             }
+        });
+    }, tileoptions);
 
-            lastscrollleft = currentscrollleft;
-        // }
-        
+    // Tell the observer to watch each reveal-element
+    carouselcontentcontainer.forEach(element => {
+        observer.observe(element);
     });
+    // }
+
+
+    // // Make sure to convert children to an array for ease of use
+    // const tiles = Array.from(carouselcontentcontainer.children);
+
+    // const tileObserver = new IntersectionObserver(
+    //     (entries) => {
+    //         entries.forEach(entry => {
+    //             // Because of our rootMargin trick, only ONE item
+    //             // should ever be 'isIntersecting' at a time.
+    //             if (entry.isIntersecting) {
+    //                 const tile = entry.target;
+    //                 const i = tiles.indexOf(tile);
+
+    //                 // We found the center item.
+    //                 // Using 'lastscrollindex' variable assumed to be defined in outer scope
+    //                 if (typeof lastscrollindex !== 'undefined' && i !== lastscrollindex) {
+    //                     lastscrollindex = i;
+    //                     console.log("New center tile index: " + i);
+    //                     // syncNavBar(i);
+    //                 } else if (typeof lastscrollindex === 'undefined') {
+    //                     // Handle case where lastscrollindex isn't defined yet
+    //                     console.log("Center tile index: " + i);
+    //                 }
+    //             }
+    //         });
+    //     },
+    //     {
+    //         root: carouselcontentcontainer,
+    //         // THE FIX:
+    //         // Shrink the hit area to a 0px wide line in the center horizontally.
+    //         // Top Right Bottom Left
+    //         rootMargin: '0px -49% 0px -49%',
+
+    //         // THE FIX:
+    //         // Threshold must be 0 so it triggers the moment it touches that center line.
+    //         threshold: 0
+    //     }
+    // );
+
+    // tiles.forEach(t => tileObserver.observe(t));
+
+    // scroll carousel, nav bar scroll to specific pos
+    // carouselcontent.addEventListener("scroll", () => {
+    //     console.log("scrolling");
+    //     // if (!isautoscrolling) {
+    //         const currentscrollleft = carouselcontent.scrollLeft;
+
+    //         if (currentscrollleft < lastscrollleft) {
+    //             // carousel go left
+    //             console.log("scroll to left");
+
+    //         } else {
+    //             // carousel go right
+    //             console.log("scroll to right");
+
+    //             // cleanupinterval();
+
+    //             // move carousel right, but wait for 300 first
+    //         }
+
+    //         lastscrollleft = currentscrollleft;
+    //     // }
+        
+    // });
 
     // reveal elements
     const revealelements = document.querySelectorAll('.colcontainer.revealelement');
@@ -399,8 +469,8 @@ window.onload = function () {
 //     }
 // }
 
-let lastscrollleft = 0;
-let isautoscrolling = false;
+let lastscrollindex = -1;
+// let isautoscrolling = false;
 
 let carouselcurrentindex = 0;
 
@@ -644,7 +714,7 @@ function resumeInterval(callbackFunction, ...args) {
 }
 
 function autonavcarousel(carouselplaybtns, carouselcontent, carouselplaybardots, carouselplaybaraccesscontainers) {
-    isautoscrolling = true;
+    // isautoscrolling = true;
 
     const options = {
         root: null,
@@ -698,7 +768,7 @@ function moveplaybartoveryright(carouselcontent, carouselplaybardots, carouselpl
             removesvganimation();
             displayrefreshbtn(carouselplaybtns);
             cleanupprogressbartime();
-            isautoscrolling = false;
+            // isautoscrolling = false;
         }, scrollDurationBuffer);
 
         return;
@@ -849,36 +919,36 @@ function movenavcarouseltospecificpos(carouselcontent, leftindex) {
 
 
 
-function revealgriditembyitem(revealelements, thresholdvalue) {
-    const options2 = {
-        root: null,
-        rootMargin: '0px',
-        threshold: thresholdvalue // Trigger when 50% of the row is visible
-    };
+// function revealgriditembyitem(revealelements, thresholdvalue) {
+//     const options2 = {
+//         root: null,
+//         rootMargin: '0px',
+//         threshold: thresholdvalue // Trigger when 50% of the row is visible
+//     };
 
-    // Create a new IntersectionObserver
-    const observer2 = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Loop through the children to apply the staggered animation
-                const child = entry.target;
-                const index = Array.from(child.parentNode.children).indexOf(child);
+//     // Create a new IntersectionObserver
+//     const observer2 = new IntersectionObserver((entries, observer) => {
+//         entries.forEach(entry => {
+//             if (entry.isIntersecting) {
+//                 // Loop through the children to apply the staggered animation
+//                 const child = entry.target;
+//                 const index = Array.from(child.parentNode.children).indexOf(child);
 
-                setTimeout(() => {
-                    child.classList.add('revealed');
-                }, index * 3000); // 150ms delay based on its position in the row
+//                 setTimeout(() => {
+//                     child.classList.add('revealed');
+//                 }, index * 3000); // 150ms delay based on its position in the row
                 
-                // Stop observing the element once it's revealed
-                observer.unobserve(child);
-            }
-        });
-    }, options2);
+//                 // Stop observing the element once it's revealed
+//                 observer.unobserve(child);
+//             }
+//         });
+//     }, options2);
 
-    // Tell the observer to watch each row container
-    revealelements.forEach(element => {
-        observer2.observe(element);
-    });
-}
+//     // Tell the observer to watch each row container
+//     revealelements.forEach(element => {
+//         observer2.observe(element);
+//     });
+// }
 
 function revealitembyitem(rowContainers, thresholdvalue) {
     const options2 = {
@@ -891,6 +961,7 @@ function revealitembyitem(rowContainers, thresholdvalue) {
     const observer2 = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                // console.log('enters');
                 // Get all the child elements within the intersecting row
                 const children = entry.target.querySelectorAll('.revealelement');
 
