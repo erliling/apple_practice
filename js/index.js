@@ -131,7 +131,7 @@ window.onload = function () {
     revealrowbyrow(playbaraccesscontainer, 0.5);
 
     // scroll navbar to pos as tile scroll to pos
-    const carouselcontentcontainer = document.querySelectorAll('.carousel .bigcarousel');
+    const carouselcontentcontainer = document.querySelectorAll('.carousel .bigcarousel .carouselcontent');
 
     // function revealrowbyrow(revealelements, thresholdvalue) {
     const tileoptions = {
