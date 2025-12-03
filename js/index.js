@@ -131,13 +131,12 @@ window.onload = function () {
     revealrowbyrow(playbaraccesscontainer, 0.5);
 
     // scroll navbar to pos as tile scroll to pos
-    const carouselcontentcontainer = document.querySelectorAll('.carousel .bigcarousel .carouselcontent');
+    const tiles = [...carouselcontent.querySelector('.carouselcontent').children];
 
-    // function revealrowbyrow(revealelements, thresholdvalue) {
     const tileoptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.2 // Trigger when 20% of the element is visible
+        root: carouselcontent,
+        rootMargin: '0px -45% 0px -45%', 
+        threshold: 0.1 // Trigger when 20% of the element is visible
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
@@ -145,19 +144,14 @@ window.onload = function () {
             // If the element is now intersecting the viewport
             if (entry.isIntersecting) {
                 console.log("enter carousel");
-                // Add the "is-revealed" class to trigger the CSS transition
-                // entry.target.classList.add('revealed');
-                // Stop observing the element once it's revealed
-                // observer.unobserve(entry.target);
             }
         });
     }, tileoptions);
 
     // Tell the observer to watch each reveal-element
-    carouselcontentcontainer.forEach(element => {
+    tiles.forEach(element => {
         observer.observe(element);
     });
-    // }
 
 
     // // Make sure to convert children to an array for ease of use
@@ -996,6 +990,7 @@ function revealrowbyrow(revealelements, thresholdvalue) {
         entries.forEach(entry => {
             // If the element is now intersecting the viewport
             if (entry.isIntersecting) {
+                // console.log("reveal row by row");
                 // Add the "is-revealed" class to trigger the CSS transition
                 entry.target.classList.add('revealed');
                 // Stop observing the element once it's revealed
