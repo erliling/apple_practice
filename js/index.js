@@ -8,6 +8,7 @@ window.onload = function () {
     const carouselplaybaraccesscontainers = document.querySelectorAll('.carousel .playbaraccesscontainer');
     const carouselplaybardots = document.querySelectorAll('.carousel .playbaraccesscontainer .bouncecircle .dot');
     const carouseltiles = carouselcontent.querySelectorAll('.carouselcontent .tile');
+    const tiles = [...carouselcontent.querySelector('.carouselcontent').children];
 
     calculatetilewidth();
     
@@ -126,13 +127,8 @@ window.onload = function () {
     //nav carousel by auto
     autonavcarousel(carouselplaybtns, carouselcontent, carouselplaybardots, carouselplaybaraccesscontainers);
 
-    // reveal playbar
-    const playbaraccesscontainer = document.querySelectorAll('.playbaraccesscontainer');
-    revealrowbyrow(playbaraccesscontainer, 0.5);
 
     // scroll navbar to pos as tile scroll to pos
-    const tiles = [...carouselcontent.querySelector('.carouselcontent').children];
-
     const tileoptions = {
         root: carouselcontent,
         rootMargin: '0px -45% 0px -45%', 
@@ -154,78 +150,12 @@ window.onload = function () {
     });
 
 
-    // // Make sure to convert children to an array for ease of use
-    // const tiles = Array.from(carouselcontentcontainer.children);
-
-    // const tileObserver = new IntersectionObserver(
-    //     (entries) => {
-    //         entries.forEach(entry => {
-    //             // Because of our rootMargin trick, only ONE item
-    //             // should ever be 'isIntersecting' at a time.
-    //             if (entry.isIntersecting) {
-    //                 const tile = entry.target;
-    //                 const i = tiles.indexOf(tile);
-
-    //                 // We found the center item.
-    //                 // Using 'lastscrollindex' variable assumed to be defined in outer scope
-    //                 if (typeof lastscrollindex !== 'undefined' && i !== lastscrollindex) {
-    //                     lastscrollindex = i;
-    //                     console.log("New center tile index: " + i);
-    //                     // syncNavBar(i);
-    //                 } else if (typeof lastscrollindex === 'undefined') {
-    //                     // Handle case where lastscrollindex isn't defined yet
-    //                     console.log("Center tile index: " + i);
-    //                 }
-    //             }
-    //         });
-    //     },
-    //     {
-    //         root: carouselcontentcontainer,
-    //         // THE FIX:
-    //         // Shrink the hit area to a 0px wide line in the center horizontally.
-    //         // Top Right Bottom Left
-    //         rootMargin: '0px -49% 0px -49%',
-
-    //         // THE FIX:
-    //         // Threshold must be 0 so it triggers the moment it touches that center line.
-    //         threshold: 0
-    //     }
-    // );
-
-    // tiles.forEach(t => tileObserver.observe(t));
-
-    // scroll carousel, nav bar scroll to specific pos
-    // carouselcontent.addEventListener("scroll", () => {
-    //     console.log("scrolling");
-    //     // if (!isautoscrolling) {
-    //         const currentscrollleft = carouselcontent.scrollLeft;
-
-    //         if (currentscrollleft < lastscrollleft) {
-    //             // carousel go left
-    //             console.log("scroll to left");
-
-    //         } else {
-    //             // carousel go right
-    //             console.log("scroll to right");
-
-    //             // cleanupinterval();
-
-    //             // move carousel right, but wait for 300 first
-    //         }
-
-    //         lastscrollleft = currentscrollleft;
-    //     // }
-        
-    // });
-
-    // reveal elements
+    // reveal
+    const playbaraccesscontainer = document.querySelectorAll('.playbaraccesscontainer');
     const revealelements = document.querySelectorAll('.colcontainer.revealelement');
-    revealrowbyrow(revealelements, 0.2);
-
-    // reveal row containers
     const rowContainers = document.querySelectorAll('.rowcontainer');
-    revealitembyitem(rowContainers, 0.2);
 
+    handleReveal(playbaraccesscontainer, revealelements, rowContainers);
 
 
     // shrink nav
@@ -235,138 +165,27 @@ window.onload = function () {
     const navshrinkoverlayitems = document.querySelectorAll('.navshrink .navshrinkoverlay li');
     const leftnavicon = document.querySelector('.navshrink .togglenav .mininav .leftnavicon');
     const leftnavpath = document.querySelector('.navshrink .togglenav .mininav .leftnavpath');
-    setshrinkmenuitemnum(navshrinkoverlayitems);
-
-    toggleoverlaybtn.addEventListener('click', () => {
-        // close menu
-        if (hasClass(navshrink, 'open')) {
-            // control toggle btn
-            removeClass(navshrink, ' open');
-
-            // control content div scroll y
-            document.body.style.overflowY = "auto";
-
-            // menu toggle effect
-            if (hasClass(navshrink, 'open2')) {
-                removeClass(navshrink, ' open2');
-            } 
-            if (hasClass(navshrink, 'open2close')) {
-                removeClass(navshrink, ' open2close');
-            } 
-            const newpath2 = "m13.0729 17.6825a3.61 3.61 0 0 0 -1.7248 3.0365 3.5132 3.5132 0 0 0 2.1379 3.2223 8.394 8.394 0 0 1 -1.0948 2.2618c-.6816.9812-1.3943 1.9623-2.4787 1.9623s-1.3633-.63-2.613-.63c-1.2187 0-1.6525.6507-2.644.6507s-1.6834-.9089-2.4787-2.0243a9.7842 9.7842 0 0 1 -1.6628-5.2776c0-3.0984 2.014-4.7405 3.9969-4.7405 1.0535 0 1.9314.6919 2.5924.6919.63 0 1.6112-.7333 2.8092-.7333a3.7579 3.7579 0 0 1 3.1604 1.5802zm-3.7284-2.8918a3.5615 3.5615 0 0 0 .8469-2.22 1.5353 1.5353 0 0 0 -.031-.32 3.5686 3.5686 0 0 0 -2.3445 1.2084 3.4629 3.4629 0 0 0 -.8779 2.1585 1.419 1.419 0 0 0 .031.2892 1.19 1.19 0 0 0 .2169.0207 3.0935 3.0935 0 0 0 2.1586-1.1368z";
-            leftnavpath.setAttribute('d', newpath2);
-        } else {
-            // open menu
-            addClass(navshrink, 'open');
-
-            // if put overflow in css, the navshrinkoverlay won't close smoothly
-            navshrink.style.overflow = 'visible';
-
-            document.body.style.overflowY = "hidden";
-
-            //shrink nav, secondary menu, mac item
-            const shrinknavmacitem = document.querySelector('.navshrink.open .navshrinkoverlay li.macitem');
-            shrinknavmacitem.addEventListener('click', () => {
-                if (!hasClass(navshrink, 'open2')) {
-                    addClass(navshrink, 'open2');
-                    if (hasClass(navshrink, 'open2close')) {
-                        removeClass(navshrink, ' open2close');
-                    } 
-                    const newpath = "m1.5618 24.0621 6.5581-6.4238c.2368-.2319.2407-.6118.0088-.8486-.2324-.2373-.6123-.2407-.8486-.0088l-7 6.8569c-.1157.1138-.1807.2695-.1802.4316.001.1621.0674.3174.1846.4297l7 6.7241c.1162.1118.2661.1675.4155.1675.1577 0 .3149-.062.4326-.1846.2295-.2388.2222-.6187-.0171-.8481z";
-                    leftnavpath.setAttribute('d', newpath);
-
-                    leftnavicon.addEventListener('click', () => {
-                        if (hasClass(navshrink, 'open2')) {
-                            removeClass(navshrink, ' open2');
-
-                            if (!hasClass(navshrink, 'open2close')) {
-                                addClass(navshrink, 'open2close');
-                            }
-
-                        }
-                        
-                    }, {once : true});
-                } 
-            });
-        }
-    });
-
-    // Listen for the end of the transition
-    navshrinkcontent.addEventListener('transitionend', () => {
-        if (!hasClass(navshrink, 'open')) {
-            // not showing shrink nav via expanded
-            // also not make this into transition section
-            // so the height can shrink smoothly
-            navshrink.style.overflow = 'hidden';
-        }
-    });
-
+    
+    handleShrinkMenuandSecondMenu(navshrinkoverlayitems, toggleoverlaybtn, navshrink, leftnavpath, leftnavicon, navshrinkcontent);
 
 
     // normal nav, secondary menu
     const secondmenus = document.querySelectorAll('.secondmenu');
     const secondmenuoverlay = document.querySelector('.navcls .navoverlay');
-    secondmenus.forEach((secondmenu, index) => {
-        const flycolumns = secondmenu.querySelectorAll('.flyout-column');
-
-        // Set the total number of elevated groups for the calculation
-        secondmenu.style.setProperty('--r-globalnav-flyout-elevated-group-count', 1); // Example: 1 elevated group
-
-        // Loop through each column and set its unique number
-        setsecondmenucolumnnum(flycolumns);
-
-        const flymenu = secondmenu.querySelector('.flyout-menu');
-        const navitem = secondmenu.parentElement;
-        hoversecondmenuitem(navitem, flycolumns, flymenu, secondmenu, secondmenuoverlay);
-    })
-
+    handleSecondMenu(secondmenus, secondmenuoverlay);
 
 
     // play video/img
     const welcomevideo = document.querySelector('.welcome .content .video-wrapper video');
     const welcomeimg = document.querySelector('.welcome .content .video-wrapper .picture2');
     const welcometitle = document.querySelector('.welcome .content .picture1');
-    const scalewelcometitledown = ()=> {
-        welcometitle.classList.add('scaledown');
-    }
-    // 1. Check if the video is already playing
-    if (!welcomevideo.paused && !welcomevideo.ended) {
-        // If it is, apply the class immediately
-        scalewelcometitledown();
-    }
-    // 2. If it's not playing yet, listen for the 'playing' event
-    // The { once: true } ensures the listener runs only once, for good practice
-    welcomevideo.addEventListener('playing', scalewelcometitledown, { once: true });
 
-    welcomevideo.addEventListener('ended', () => {
-        welcomevideo.pause();
-        welcomevideo.style.opacity = 0;
-        welcomeimg.style.opacity = 1;
-
-        // Optional: After the transition, hide the video element completely to save resources
-        setTimeout(() => {
-            welcomevideo.style.display = 'none';
-        }, 1000); // Wait for 1 second to match the CSS transition duration
-    })
-
+    handleVideoPlayer(welcometitle, welcomevideo, welcomeimg);
 
 
     // resizing
     // update the height and min width values when resized
-    window.addEventListener('resize', () => {
-        // carsouselcontentcontainer.style.height = `${carouselcontent.offsetHeight}px`;
-        // minimagewidth = getminimagewidth();
-
-        // update big carousl tile style
-        calculatetilewidth();
-
-        // keep the current tile center
-        centercurrenttile(carouselcontent);
-        
-        // update wipe scroll overlay style
-        resizeframe(overlay);
-    })
-
+    handleResizeEvent(carouselcontent, overlay);
 
 
     // show nav scroll
@@ -406,62 +225,8 @@ window.onload = function () {
     const pics = document.querySelectorAll('.dissolvescroll .pic');
     const texts = document.querySelectorAll('.dissolvescroll .text');
 
-
-    window.addEventListener('scroll', () => {
-        // show nav scroll
-        scrollwelcomesection(welcome, navheight, fixednav);
-        
-        // shrink scroll
-        scrollinsection(container, img, sectiontitlecontent2, frame, screen, videoaudio, navheight, shrinkscroll1);
-        scrollinsection(container2, img2, sectiontitlecontent3, frame2, screen2, camera2, navheight, shrinkscroll2);
-
-        // wipe scroll
-        scrollsection3(scrollwrapper, images, overlay, imglist, overlayadjust, photograph, navheight);
-
-        // dissolve scroll
-        scrollsection4(piccontainer, pics, texts, photograph, navheight)
-    }); 
+    handleScrollEvent(welcome, navheight, fixednav, container, img, sectiontitlecontent2, frame, screen, videoaudio, container2, img2, sectiontitlecontent3, frame2, screen2, camera2, scrollwrapper, images, overlay, imglist, overlayadjust, photograph, piccontainer, pics, texts); 
 }
-
-
-// function scrolltoprevplaybardot() {
-//     let carouselindex = 5;
-//     const scrollduration = 100;
-//     const carouselplaybardots = document.querySelectorAll('.carousel .playbaraccesscontainer .bouncecircle .dot');
-
-//     while (carouselindex >= 0) {
-//         removeClass(carouselplaybardots[carouselindex], 'selected');
-//         addClass(carouselplaybardots[carouselindex - 1], 'selected');
-//         carouselindex--;
-
-//         setTimeout(scrolltoprevplaybardot, scrollduration);
-//     }
-// }
-
-// function scrolltonexttile() {
-//     const carouselminwidth = 280;
-//     const carouselmaxwidth = 1680;
-//     const scrollbarwidth = 15;
-//     const vw = window.innerWidth / 100;
-//     const viewportcontent = Math.max(87.5 * vw - scrollbarwidth, carouselminwidth);
-//     const tilewidth = Math.min(viewportcontent, carouselmaxwidth);
-//     const tilegap = 24;
-//     const carouselcontent = document.querySelector('.carousel .bigcarousel');
-
-//     let carouselindex = 5;
-//     const scrollduration = 100;
-//     const scrolldistance = -(tilewidth + tilegap);
-//     if (carouselindex >= 0) {
-//         carouselcontent.scrollBy({
-//             top: 0,
-//             left: scrolldistance,
-//             behavior: "smooth"
-//         });
-//         carouselindex--;
-
-//         setTimeout(scrolltonexttile, scrollduration);
-//     }
-// }
 
 let lastscrollindex = -1;
 // let isautoscrolling = false;
@@ -483,9 +248,154 @@ const shortdottransitionduration = '0.2s';
 const normaldottransitionduration = '0.5s';
 const shortdotintervaltime = 200;
 const normaldotintervaltime = 500;
-// const totalshortdotintervaltime = 6 * shortdotintervaltime;
-// const totalnormaldotintervaltime = 6 * normaldotintervaltime;
 
+function handleReveal(playbaraccesscontainer, revealelements, rowContainers) {
+    revealrowbyrow(playbaraccesscontainer, 0.5);
+    revealrowbyrow(revealelements, 0.2);
+    revealitembyitem(rowContainers, 0.2);
+}
+
+function handleShrinkMenuandSecondMenu(navshrinkoverlayitems, toggleoverlaybtn, navshrink, leftnavpath, leftnavicon, navshrinkcontent) {
+    setshrinkmenuitemnum(navshrinkoverlayitems);
+
+    toggleoverlaybtn.addEventListener('click', () => {
+        // close menu
+        if (hasClass(navshrink, 'open')) {
+            // control toggle btn
+            removeClass(navshrink, ' open');
+
+            // control content div scroll y
+            document.body.style.overflowY = "auto";
+
+            // menu toggle effect
+            if (hasClass(navshrink, 'open2')) {
+                removeClass(navshrink, ' open2');
+            }
+            if (hasClass(navshrink, 'open2close')) {
+                removeClass(navshrink, ' open2close');
+            }
+            const newpath2 = "m13.0729 17.6825a3.61 3.61 0 0 0 -1.7248 3.0365 3.5132 3.5132 0 0 0 2.1379 3.2223 8.394 8.394 0 0 1 -1.0948 2.2618c-.6816.9812-1.3943 1.9623-2.4787 1.9623s-1.3633-.63-2.613-.63c-1.2187 0-1.6525.6507-2.644.6507s-1.6834-.9089-2.4787-2.0243a9.7842 9.7842 0 0 1 -1.6628-5.2776c0-3.0984 2.014-4.7405 3.9969-4.7405 1.0535 0 1.9314.6919 2.5924.6919.63 0 1.6112-.7333 2.8092-.7333a3.7579 3.7579 0 0 1 3.1604 1.5802zm-3.7284-2.8918a3.5615 3.5615 0 0 0 .8469-2.22 1.5353 1.5353 0 0 0 -.031-.32 3.5686 3.5686 0 0 0 -2.3445 1.2084 3.4629 3.4629 0 0 0 -.8779 2.1585 1.419 1.419 0 0 0 .031.2892 1.19 1.19 0 0 0 .2169.0207 3.0935 3.0935 0 0 0 2.1586-1.1368z";
+            leftnavpath.setAttribute('d', newpath2);
+        } else {
+            // open menu
+            addClass(navshrink, 'open');
+
+            // if put overflow in css, the navshrinkoverlay won't close smoothly
+            navshrink.style.overflow = 'visible';
+
+            document.body.style.overflowY = "hidden";
+
+            //shrink nav, secondary menu, mac item
+            const shrinknavmacitem = document.querySelector('.navshrink.open .navshrinkoverlay li.macitem');
+            shrinknavmacitem.addEventListener('click', () => {
+                if (!hasClass(navshrink, 'open2')) {
+                    addClass(navshrink, 'open2');
+                    if (hasClass(navshrink, 'open2close')) {
+                        removeClass(navshrink, ' open2close');
+                    }
+                    const newpath = "m1.5618 24.0621 6.5581-6.4238c.2368-.2319.2407-.6118.0088-.8486-.2324-.2373-.6123-.2407-.8486-.0088l-7 6.8569c-.1157.1138-.1807.2695-.1802.4316.001.1621.0674.3174.1846.4297l7 6.7241c.1162.1118.2661.1675.4155.1675.1577 0 .3149-.062.4326-.1846.2295-.2388.2222-.6187-.0171-.8481z";
+                    leftnavpath.setAttribute('d', newpath);
+
+                    leftnavicon.addEventListener('click', () => {
+                        if (hasClass(navshrink, 'open2')) {
+                            removeClass(navshrink, ' open2');
+
+                            if (!hasClass(navshrink, 'open2close')) {
+                                addClass(navshrink, 'open2close');
+                            }
+
+                        }
+
+                    }, { once: true });
+                }
+            });
+        }
+    });
+
+    // Listen for the end of the transition
+    navshrinkcontent.addEventListener('transitionend', () => {
+        if (!hasClass(navshrink, 'open')) {
+            // not showing shrink nav via expanded
+            // also not make this into transition section
+            // so the height can shrink smoothly
+            navshrink.style.overflow = 'hidden';
+        }
+    });
+}
+
+function handleSecondMenu(secondmenus, secondmenuoverlay) {
+    secondmenus.forEach((secondmenu, index) => {
+        const flycolumns = secondmenu.querySelectorAll('.flyout-column');
+
+        // Set the total number of elevated groups for the calculation
+        secondmenu.style.setProperty('--r-globalnav-flyout-elevated-group-count', 1); // Example: 1 elevated group
+
+
+        // Loop through each column and set its unique number
+        setsecondmenucolumnnum(flycolumns);
+
+        const flymenu = secondmenu.querySelector('.flyout-menu');
+        const navitem = secondmenu.parentElement;
+        hoversecondmenuitem(navitem, flycolumns, flymenu, secondmenu, secondmenuoverlay);
+    });
+}
+
+function handleVideoPlayer(welcometitle, welcomevideo, welcomeimg) {
+    const scalewelcometitledown = () => {
+        welcometitle.classList.add('scaledown');
+    };
+    // 1. Check if the video is already playing
+    if (!welcomevideo.paused && !welcomevideo.ended) {
+        // If it is, apply the class immediately
+        scalewelcometitledown();
+    }
+    // 2. If it's not playing yet, listen for the 'playing' event
+    // The { once: true } ensures the listener runs only once, for good practice
+    welcomevideo.addEventListener('playing', scalewelcometitledown, { once: true });
+
+    welcomevideo.addEventListener('ended', () => {
+        welcomevideo.pause();
+        welcomevideo.style.opacity = 0;
+        welcomeimg.style.opacity = 1;
+
+        // Optional: After the transition, hide the video element completely to save resources
+        setTimeout(() => {
+            welcomevideo.style.display = 'none';
+        }, 1000);
+    });
+}
+
+function handleResizeEvent(carouselcontent, overlay) {
+    window.addEventListener('resize', () => {
+        // carsouselcontentcontainer.style.height = `${carouselcontent.offsetHeight}px`;
+        // minimagewidth = getminimagewidth();
+        // update big carousl tile style
+        calculatetilewidth();
+
+        // keep the current tile center
+        centercurrenttile(carouselcontent);
+
+        // update wipe scroll overlay style
+        resizeframe(overlay);
+    });
+}
+
+function handleScrollEvent(welcome, navheight, fixednav, container, img, sectiontitlecontent2, frame, screen, videoaudio, container2, img2, sectiontitlecontent3, frame2, screen2, camera2, scrollwrapper, images, overlay, imglist, overlayadjust, photograph, piccontainer, pics, texts) {
+    window.addEventListener('scroll', () => {
+        // show float nav scroll
+        scrollwelcomesection(welcome, navheight, fixednav);
+
+        // shrink scroll
+        scrollinsection(container, img, sectiontitlecontent2, frame, screen, videoaudio, navheight, shrinkscroll1);
+        scrollinsection(container2, img2, sectiontitlecontent3, frame2, screen2, camera2, navheight, shrinkscroll2);
+
+        // wipe scroll
+        scrollsection3(scrollwrapper, images, overlay, imglist, overlayadjust, photograph, navheight);
+
+        // dissolve scroll
+        scrollsection4(piccontainer, pics, texts, photograph, navheight);
+    });
+}
 
 function resetdottransitionduration(carouselplaybardots, index, duration) {
     carouselplaybardots[index].style.transitionDuration = duration;
