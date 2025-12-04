@@ -185,6 +185,8 @@ window.onload = function () {
 
     // resizing
     // update the height and min width values when resized
+    const overlay = document.querySelector('.photograph .stickycontainer .frame');
+
     handleResizeEvent(carouselcontent, overlay);
 
 
@@ -216,7 +218,6 @@ window.onload = function () {
     const scrollwrapper = document.querySelector('.photograph .scrollwrapper');
     const images = document.querySelectorAll('.photograph .stickycontainer .image');
     const imglist = document.querySelector('.photograph .stickycontainer .imglist');
-    const overlay = document.querySelector('.photograph .stickycontainer .frame');
     const overlayadjust = document.querySelector('.photograph .stickycontainer .frameadjust');
     const photograph = document.querySelector('.photograph');
 
