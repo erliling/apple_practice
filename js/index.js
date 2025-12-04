@@ -139,7 +139,19 @@ window.onload = function () {
         entries.forEach(entry => {
             // If the element is now intersecting the viewport
             if (entry.isIntersecting) {
-                console.log("enter carousel");
+                // console.log("enter carousel");
+                const tile = entry.target;
+                const tileIndex = tiles.indexOf(tile);
+
+                // if (tileIndex < carouselcurrentindex) {
+                //     // carousel go left
+                //     movedotnavonly(moveplaybardotleft, tileIndex, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
+    
+                // } else {
+                //     // carousel go right
+                //     cleanupinterval();
+                //     movedotnavonly(moveplaybardotright, tileIndex, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
+                // }
             }
         });
     }, tileoptions);
@@ -538,6 +550,26 @@ function movecarouselbydotnav(callbackFunction, carouselcontent, index, carousel
         timeoutid = null;
         movenavcarouseltospecificpos(carouselcontent, index);
     }, 300);
+
+    callbackFunction(carouselplaybardots, carouselplaybaraccesscontainers[0], index);
+
+    // change btn icon
+    if (!isdisplayplaybtn(carouselplaybtns)) {
+        displayplaybtn(carouselplaybtns);
+    }
+
+    cleanupprogressbartime();
+
+    // change back dot transition duration after carousel moved
+    timeoutid = setTimeout(() => {
+        timeoutid = null;
+        expanddottransitionduration(carouselplaybardots);
+    }, totalintervaltime);
+}
+function movedotnavonly(callbackFunction, index, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns) {
+    const indexdiff = Math.abs(index-carouselcurrentindex);
+    const intervaltime = indexdiff > 1 ? shortdotintervaltime : normaldotintervaltime;
+    const totalintervaltime = intervaltime * indexdiff;
 
     callbackFunction(carouselplaybardots, carouselplaybaraccesscontainers[0], index);
 
