@@ -129,7 +129,6 @@ window.onload = function () {
 
 
     // scroll navbar to pos as tile scroll to pos
-
     carouselcontent.addEventListener("scroll", () => {
         if (!isautoscrolling) {
             const centerX = carouselcontent.scrollLeft + carouselcontent.clientWidth / 2;
