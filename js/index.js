@@ -155,15 +155,15 @@ window.onload = function () {
                 const tile = entry.target;
                 const tileIndex = tiles.indexOf(tile);
 
-                // if (tileIndex < carouselcurrentindex) {
-                //     // carousel go left
-                //     movedotnavonly(moveplaybardotleft, tileIndex, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
+                if (tileIndex < carouselcurrentindex) {
+                    // carousel go left
+                    movedotnavonly(moveplaybardotleft, tileIndex, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
     
-                // } else {
-                //     // carousel go right
-                //     cleanupinterval();
-                //     movedotnavonly(moveplaybardotright, tileIndex, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
-                // }
+                } else {
+                    // carousel go right
+                    cleanupinterval();
+                    movedotnavonly(moveplaybardotright, tileIndex, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
+                }
             }
         });
     }, tileoptions);
