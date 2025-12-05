@@ -130,6 +130,41 @@ window.onload = function () {
 
     // scroll navbar to pos as tile scroll to pos
 
+    carouselcontent.addEventListener("scroll", () => {
+        if (!isautoscrolling) {
+            const centerX = carouselcontent.scrollLeft + carouselcontent.clientWidth / 2;
+    
+            // Find tile closest to the center
+            let closestIndex = 0;
+            let minDist = Infinity;
+        
+            tiles.forEach((tile, i) => {
+                const tileCenter = tile.offsetLeft + tile.offsetWidth / 2;
+                const dist = Math.abs(tileCenter - centerX);
+        
+                if (dist < minDist) {
+                    minDist = dist;
+                    closestIndex = i;
+                }
+            });
+        
+            if (closestIndex !== lastscrollindex) {
+                lastscrollindex = closestIndex;
+                if (closestIndex < carouselcurrentindex) {
+                    // carousel go left
+                    movedotnavonly(moveplaybardotleft, closestIndex, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
+    
+                } else {
+                    // carousel go right
+                    cleanupinterval();
+                    movedotnavonly(moveplaybardotright, closestIndex, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
+                }
+            }
+        }
+        
+    });
+    
+
     // carouselcontent.addEventListener("pointerdown", () => {
     //     isUserScrolling = true;
     // });
@@ -141,37 +176,37 @@ window.onload = function () {
     // });
 
 
-    const tileoptions = {
-        root: carouselcontent,
-        rootMargin: '0px -45% 0px -45%', 
-        threshold: 0.1 // Trigger when 20% of the element is visible
-    };
+    // const tileoptions = {
+    //     root: carouselcontent,
+    //     rootMargin: '0px -45% 0px -45%', 
+    //     threshold: 0.1 // Trigger when 20% of the element is visible
+    // };
 
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            // If the element is now intersecting the viewport
-            if (entry.isIntersecting && !isautoscrolling) {
-                console.log("enter carousel");
-                const tile = entry.target;
-                const tileIndex = tiles.indexOf(tile);
+    // const observer = new IntersectionObserver((entries, observer) => {
+    //     entries.forEach(entry => {
+    //         // If the element is now intersecting the viewport
+    //         if (entry.isIntersecting && !isautoscrolling) {
+    //             console.log("enter carousel");
+    //             const tile = entry.target;
+    //             const tileIndex = tiles.indexOf(tile);
 
-                if (tileIndex < carouselcurrentindex) {
-                    // carousel go left
-                    movedotnavonly(moveplaybardotleft, tileIndex, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
+    //             if (tileIndex < carouselcurrentindex) {
+    //                 // carousel go left
+    //                 movedotnavonly(moveplaybardotleft, tileIndex, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
     
-                } else {
-                    // carousel go right
-                    cleanupinterval();
-                    movedotnavonly(moveplaybardotright, tileIndex, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
-                }
-            }
-        });
-    }, tileoptions);
+    //             } else {
+    //                 // carousel go right
+    //                 cleanupinterval();
+    //                 movedotnavonly(moveplaybardotright, tileIndex, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
+    //             }
+    //         }
+    //     });
+    // }, tileoptions);
 
-    // Tell the observer to watch each reveal-element
-    tiles.forEach(element => {
-        observer.observe(element);
-    });
+    // // Tell the observer to watch each reveal-element
+    // tiles.forEach(element => {
+    //     observer.observe(element);
+    // });
 
 
     // reveal
