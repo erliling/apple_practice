@@ -129,6 +129,18 @@ window.onload = function () {
 
 
     // scroll navbar to pos as tile scroll to pos
+
+    // carouselcontent.addEventListener("pointerdown", () => {
+    //     isUserScrolling = true;
+    // });
+
+    // carouselcontent.addEventListener("pointerup", () => {
+    //     setTimeout(() => { 
+    //         isUserScrolling = false;
+    //     }, 150);
+    // });
+
+
     const tileoptions = {
         root: carouselcontent,
         rootMargin: '0px -45% 0px -45%', 
@@ -138,8 +150,8 @@ window.onload = function () {
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             // If the element is now intersecting the viewport
-            if (entry.isIntersecting) {
-                // console.log("enter carousel");
+            if (entry.isIntersecting && !isautoscrolling) {
+                console.log("enter carousel");
                 const tile = entry.target;
                 const tileIndex = tiles.indexOf(tile);
 
@@ -241,8 +253,9 @@ window.onload = function () {
     handleScrollEvent(welcome, navheight, fixednav, container, img, sectiontitlecontent2, frame, screen, videoaudio, container2, img2, sectiontitlecontent3, frame2, screen2, camera2, scrollwrapper, images, overlay, imglist, overlayadjust, photograph, piccontainer, pics, texts); 
 }
 
+
 let lastscrollindex = -1;
-// let isautoscrolling = false;
+let isautoscrolling = true;
 
 let carouselcurrentindex = 0;
 
@@ -705,7 +718,7 @@ function moveplaybartoveryright(carouselcontent, carouselplaybardots, carouselpl
             removesvganimation();
             displayrefreshbtn(carouselplaybtns);
             cleanupprogressbartime();
-            // isautoscrolling = false;
+            isautoscrolling = false;
         }, scrollDurationBuffer);
 
         return;
