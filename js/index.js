@@ -128,37 +128,34 @@ window.onload = function () {
     autonavcarousel(carouselplaybtns, carouselcontent, carouselplaybardots, carouselplaybaraccesscontainers);
 
 
+    let isScrolling = false;
+    const updateDotsThrottled = throttle(() => {
+        updateactivedotonscroll(carouselcontent, tiles, carouselplaybardots);
+    }, 200);
+
     // scroll navbar to pos as tile scroll to pos
     carouselcontent.addEventListener("scroll", () => {
-        if (!isautoscrolling) {
-            const centerX = carouselcontent.scrollLeft + carouselcontent.clientWidth / 2;
-    
-            // Find tile closest to the center
-            let closestIndex = 0;
-            let minDist = Infinity;
-        
-            tiles.forEach((tile, i) => {
-                const tileCenter = tile.offsetLeft + tile.offsetWidth / 2;
-                const dist = Math.abs(tileCenter - centerX);
-        
-                if (dist < minDist) {
-                    minDist = dist;
-                    closestIndex = i;
-                }
+        if (!isautoscrolling && !isScrolling) {
+            window.requestAnimationFrame(() => {
+                updateDotsThrottled();
+                // updateactivedotonscroll(carouselcontent, tiles, carouselplaybardots);
+                isScrolling = false;
             });
+            
+            isScrolling = true;
         
-            if (closestIndex !== lastscrollindex) {
-                lastscrollindex = closestIndex;
-                if (closestIndex < carouselcurrentindex) {
-                    // carousel go left
-                    movedotnavonly(moveplaybardotleft, closestIndex, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
+            // if (closestIndex !== lastscrollindex) {
+            //     lastscrollindex = closestIndex;
+            //     if (closestIndex < carouselcurrentindex) {
+            //         // carousel go left
+            //         movedotnavonly(moveplaybardotleft, closestIndex, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
     
-                } else {
-                    // carousel go right
-                    cleanupinterval();
-                    movedotnavonly(moveplaybardotright, closestIndex, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
-                }
-            }
+            //     } else {
+            //         // carousel go right
+            //         cleanupinterval();
+            //         movedotnavonly(moveplaybardotright, closestIndex, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
+            //     }
+            // }
         }
         
     });
@@ -455,6 +452,60 @@ function handleScrollEvent(welcome, navheight, fixednav, container, img, section
         // dissolve scroll
         scrollsection4(piccontainer, pics, texts, photograph, navheight);
     });
+}
+
+function updateactivedotonscroll (carouselcontent, tiles, carouselplaybardots) {
+    // 1. Calculate the center point of the carousel viewport
+    const carouselCenter = carouselcontent.scrollLeft + (carouselcontent.clientWidth / 2);
+    
+    let closestTileIndex = 0;
+    let minDistance = Infinity;
+
+    // 2. Loop through all tiles to see which one is closest to that center point
+    tiles.forEach((tile, index) => {
+        // Calculate the center of the current tile relative to the start of the scroll area
+        // offsetLeft is the distance from the parent's left edge
+        // offsetWidth / 2 gives us the middle of the tile
+        const tileCenter = tile.offsetLeft + (tile.offsetWidth / 2);
+        
+        // Measure absolute distance between carousel center and tile center
+        const distance = Math.abs(carouselCenter - tileCenter);
+
+        // If this tile is closer than the previous best match, save it
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestTileIndex = index;
+        }
+    });
+
+    // 3. Update the dots immediately
+    updateDots(carouselplaybardots, closestTileIndex);
+}
+
+function updateDots(carouselplaybardots, activeIndex) {
+    carouselplaybardots.forEach(dot => dot.classList.remove('selected'));
+    if(carouselplaybardots[activeIndex]) {
+        carouselplaybardots[activeIndex].classList.add('selected');
+    }
+}
+
+function throttle(func, limit) {
+    let inThrottle; // This is the "Lock"
+    return function(...args) {
+        // 1. Is the turnstile unlocked?
+        if (!inThrottle) {
+            
+            // 2. Run the function immediately!
+            func.apply(this, args);
+            
+            // 3. LOCK the turnstile
+            inThrottle = true;
+            
+            // 4. Set a timer to UNLOCK it after 100ms
+            setTimeout(() => inThrottle = false, limit);
+        }
+        // If locked (inThrottle is true), do nothing.
+    }
 }
 
 function resetdottransitionduration(carouselplaybardots, index, duration) {
