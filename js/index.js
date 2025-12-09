@@ -138,39 +138,21 @@ window.onload = function () {
         if (!isautoscrolling && !isScrolling) {
             window.requestAnimationFrame(() => {
                 updateDotsThrottled();
-                // updateactivedotonscroll(carouselcontent, tiles, carouselplaybardots);
+                // updateactivedotonscroll(carouselcontent, tiles, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
                 isScrolling = false;
+                // expanddottransitionduration(carouselplaybardots);
+
             });
             
             isScrolling = true;
-        
-            // if (closestIndex !== lastscrollindex) {
-            //     lastscrollindex = closestIndex;
-            //     if (closestIndex < carouselcurrentindex) {
-            //         // carousel go left
-            //         movedotnavonly(moveplaybardotleft, closestIndex, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
-    
-            //     } else {
-            //         // carousel go right
-            //         cleanupinterval();
-            //         movedotnavonly(moveplaybardotright, closestIndex, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
-            //     }
-            // }
         }
         
     });
     
-
-    // carouselcontent.addEventListener("pointerdown", () => {
-    //     isUserScrolling = true;
-    // });
-
-    // carouselcontent.addEventListener("pointerup", () => {
-    //     setTimeout(() => { 
-    //         isUserScrolling = false;
-    //     }, 150);
-    // });
-
+    carouselcontent.addEventListener("scrollend", () => {
+        expanddottransitionduration(carouselplaybardots);
+        carouselcurrentindex = closestTileIndex;
+    });
 
     // const tileoptions = {
     //     root: carouselcontent,
@@ -454,11 +436,12 @@ function handleScrollEvent(welcome, navheight, fixednav, container, img, section
     });
 }
 
-function updateactivedotonscroll (carouselcontent, tiles, carouselplaybardots) {
+let closestTileIndex = 0;
+
+function updateactivedotonscroll (carouselcontent, tiles, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns) {
     // 1. Calculate the center point of the carousel viewport
     const carouselCenter = carouselcontent.scrollLeft + (carouselcontent.clientWidth / 2);
     
-    let closestTileIndex = 0;
     let minDistance = Infinity;
 
     // 2. Loop through all tiles to see which one is closest to that center point
@@ -479,14 +462,30 @@ function updateactivedotonscroll (carouselcontent, tiles, carouselplaybardots) {
     });
 
     // 3. Update the dots immediately
-    updateDots(carouselplaybardots, closestTileIndex);
+    updateDots(carouselplaybardots);
+    // if (closestTileIndex < carouselcurrentindex) {
+    //     // carousel go left
+    //     movedotnavonly(moveplaybardotleft, closestTileIndex, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
+
+    // } else {
+    //     // carousel go right
+    //     cleanupinterval();
+    //     movedotnavonly(moveplaybardotright, closestTileIndex, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
+    // }
 }
 
-function updateDots(carouselplaybardots, activeIndex) {
-    carouselplaybardots.forEach(dot => dot.classList.remove('selected'));
-    if(carouselplaybardots[activeIndex]) {
-        carouselplaybardots[activeIndex].classList.add('selected');
+function updateDots(carouselplaybardots) {
+    if (Math.abs(carouselcurrentindex - closestTileIndex) > 1) {
+        // shrink dot transition duration
+        shrinkdottransitionduration(carouselplaybardots);
     }
+
+    carouselplaybardots.forEach(dot => dot.classList.remove('selected'));
+    if(carouselplaybardots[closestTileIndex]) {
+        carouselplaybardots[closestTileIndex].classList.add('selected');
+    }
+
+    // carouselcurrentindex = activeIndex;
 }
 
 function throttle(func, limit) {
