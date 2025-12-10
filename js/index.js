@@ -135,7 +135,7 @@ window.onload = function () {
 
     // scroll navbar to pos as tile scroll to pos
     carouselcontent.addEventListener("scroll", () => {
-        if (!isautoscrolling && !isScrolling) {
+        if (isuserscrolling && !isScrolling) {
             window.requestAnimationFrame(() => {
                 updateDotsThrottled();
                 // updateactivedotonscroll(carouselcontent, tiles, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
@@ -150,8 +150,16 @@ window.onload = function () {
     });
     
     carouselcontent.addEventListener("scrollend", () => {
-        expanddottransitionduration(carouselplaybardots);
-        carouselcurrentindex = closestTileIndex;
+        if (isuserscrolling) {
+            expanddottransitionduration(carouselplaybardots);
+            carouselcurrentindex = closestTileIndex;
+            // isautoscrolling = true;
+        }
+    });
+
+    // detect when user scroll
+    carouselcontent.addEventListener("wheel", () => {
+        isuserscrolling = true;
     });
 
     // const tileoptions = {
@@ -268,7 +276,8 @@ window.onload = function () {
 
 
 let lastscrollindex = -1;
-let isautoscrolling = true;
+// let isautoscrolling = true;
+let isuserscrolling = false;
 
 let carouselcurrentindex = 0;
 
@@ -748,7 +757,8 @@ function resumeInterval(callbackFunction, ...args) {
 }
 
 function autonavcarousel(carouselplaybtns, carouselcontent, carouselplaybardots, carouselplaybaraccesscontainers) {
-    // isautoscrolling = true;
+
+    isuserscrolling = false;
 
     const options = {
         root: null,
@@ -802,7 +812,7 @@ function moveplaybartoveryright(carouselcontent, carouselplaybardots, carouselpl
             removesvganimation();
             displayrefreshbtn(carouselplaybtns);
             cleanupprogressbartime();
-            isautoscrolling = false;
+            // isautoscrolling = false;
         }, scrollDurationBuffer);
 
         return;
