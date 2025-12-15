@@ -130,7 +130,7 @@ window.onload = function () {
 
     let isScrolling = false;
     const updateDotsThrottled = throttle(() => {
-        updateactivedotonscroll(carouselcontent, tiles, carouselplaybardots);
+        updateactivedotonscroll(carouselcontent, tiles, carouselplaybardots, carouselplaybaraccesscontainers);
     }, 200);
 
     // scroll navbar to pos as tile scroll to pos
@@ -471,7 +471,7 @@ function updateactivedotonscroll (carouselcontent, tiles, carouselplaybardots, c
     });
 
     // 3. Update the dots immediately
-    updateDots(carouselplaybardots);
+    updateDots(carouselplaybardots, carouselplaybaraccesscontainers[0]);
     // if (closestTileIndex < carouselcurrentindex) {
     //     // carousel go left
     //     movedotnavonly(moveplaybardotleft, closestTileIndex, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
@@ -483,7 +483,10 @@ function updateactivedotonscroll (carouselcontent, tiles, carouselplaybardots, c
     // }
 }
 
-function updateDots(carouselplaybardots) {
+function updateDots(carouselplaybardots, carouselplaybaraccesscontainer) {
+    // won't show detailed playbar
+    stopprogressbaranimation(carouselplaybaraccesscontainer);
+
     if (Math.abs(carouselcurrentindex - closestTileIndex) > 1) {
         // shrink dot transition duration
         shrinkdottransitionduration(carouselplaybardots);
