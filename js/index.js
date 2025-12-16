@@ -471,7 +471,7 @@ function updateactivedotonscroll (carouselcontent, tiles, carouselplaybardots, c
     });
 
     // 3. Update the dots immediately
-    updateDots(carouselplaybardots, carouselplaybaraccesscontainers[0]);
+    updateDots(carouselplaybardots, carouselplaybaraccesscontainers[0], carouselcontent);
     // if (closestTileIndex < carouselcurrentindex) {
     //     // carousel go left
     //     movedotnavonly(moveplaybardotleft, closestTileIndex, carouselplaybardots, carouselplaybaraccesscontainers, carouselplaybtns);
@@ -483,14 +483,18 @@ function updateactivedotonscroll (carouselcontent, tiles, carouselplaybardots, c
     // }
 }
 
-function updateDots(carouselplaybardots, carouselplaybaraccesscontainer) {
+function updateDots(carouselplaybardots, carouselplaybaraccesscontainer, carouselcontent) {
     // won't show detailed playbar
     stopprogressbaranimation(carouselplaybaraccesscontainer);
 
-    if (Math.abs(carouselcurrentindex - closestTileIndex) > 1) {
-        // shrink dot transition duration
-        shrinkdottransitionduration(carouselplaybardots);
-    }
+    // if (Math.abs(carouselcurrentindex - closestTileIndex) > 1) {
+    //     // shrink dot transition duration
+    //     shrinkdottransitionduration(carouselplaybardots);
+    // }
+
+    // make dot transition time change smoothly via scrolling
+    const progress = carouselcontent.scrollLeft / carouselcontent.offsetWidth;
+    changedottransitionduration(carouselplaybardots, progress);
 
     carouselplaybardots.forEach(dot => dot.classList.remove('selected'));
     if(carouselplaybardots[closestTileIndex]) {
@@ -591,6 +595,12 @@ function stopprogressbaranimation(carouselplaybaraccesscontainer) {
     if (carouselplaybaraccesscontainer.classList.contains('revealed2')) {
         carouselplaybaraccesscontainer.classList.remove('revealed2');
     }
+}
+
+function changedottransitionduration(carouselplaybardots, progress) {
+    carouselplaybardots.forEach((playbardot, index) => {
+        playbardot.style.transitionDuration = normaldottransitionduration * (1-progress);
+    });
 }
 
 function shrinkdottransitionduration(carouselplaybardots) {
